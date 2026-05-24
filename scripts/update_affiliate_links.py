@@ -150,7 +150,7 @@ def main():
             affiliate_url = get_11st_affiliate_link(product_url, st11_key)
 
         # G마켓 / 옥션
-        elif any(d in product_url for d in STORE_UTM_MAP):
+        elif any(d in product_url for d in STORE_AFFILIATE_PARAM):
             affiliate_url = get_generic_affiliate_link(product_url, store)
 
         if affiliate_url:
