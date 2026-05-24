@@ -100,10 +100,8 @@ function renderCard(deal) {
     }),
   ].join('');
 
-  // 제휴링크 미설정 표시
-  const affiliateBadge = !isAffiliate
-    ? `<span class="affiliate-unset-badge" title="제휴링크 미설정 — 어드민에서 등록하세요">🔗 미설정</span>`
-    : '';
+  // 제휴링크 미설정 표시 (어드민 전용 — 외부 사용자에게 노출 안 함)
+  const affiliateBadge = '';
 
   const timerHtml = tLeft
     ? `<div class="timer-wrap">
@@ -222,9 +220,6 @@ function updateTimers() {
 function trackClick(dealId, isAffiliate) {
   const deal = state.deals.find(d => d.id === dealId);
   if (!deal) return;
-  if (!isAffiliate) {
-    showToast('⚠️ 제휴링크 미설정 — 어드민 페이지에서 링크를 등록하세요', 'warn');
-  }
   // Google Analytics 이벤트 (GA 연동 시 활성화)
   if (window.gtag) {
     window.gtag('event', 'affiliate_click', {
@@ -359,7 +354,7 @@ async function init() {
   renderSkeletons();
   renderCategories();
   try {
-    const res = await fetch('./data/deals.json');
+    const res = await fetch('./data/deals.json?v=' + Date.now());
     if (!res.ok) throw new Error();
     state.deals = await res.json();
   } catch {
