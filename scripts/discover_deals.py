@@ -153,10 +153,14 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str, disp
     return []
 
 
-def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -> dict | None:
+def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int, msrp: int = 0) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
-    hprice(최고가)가 없는 경우 제목에서 할인율 파싱 시도
+    할인율 판단 우선순위:
+      1) hprice > lprice (API 제공 최고가 활용)
+      2) 제목에서 "N% 할인" 파싱
+      3) 제목에서 "정가→판매가" 파싱
+      4) config msrp 기준가 활용 (API가 hprice를 안 줄 때 핵심 fallback)
     """
     title = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()
     lp    = int(p.get("lprice") or 0)
@@ -166,6 +170,10 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -
     image = p.get("image", "")
 
     if not lp or lp < 30000:   # 3만원 미만 제품 제외 (케이스·스티커 등 잡동사니)
+        return None
+
+    # 중고 / 리퍼 제품 제외
+    if re.search(r'중고|B급|리퍼|리퍼비시|반품|A급|S급|최상급|판매완료', title):
         return None
 
     disc = 0
@@ -192,7 +200,18 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -
             lp   = sale
             disc = round((orig - sale) / orig * 100) if orig > sale else 0
 
+    # Case 4: config의 msrp를 기준가로 사용 (네이버 API가 hprice를 안 줄 때 핵심 fallback)
+    if orig == 0 and msrp > 0:
+        if lp < msrp:
+            disc = round((msrp - lp) / msrp * 100)
+            orig = msrp
+        # lp >= msrp이면 할인 없음 → orig=0 유지 → 아래에서 필터
+
     if disc < min_disc or orig == 0:
+        return None
+
+    # 과도한 할인율 필터: 55% 초과는 중고·오류 가능성 높음
+    if disc > 55:
         return None
 
     tags = []
@@ -467,21 +486,24 @@ def main():
         for kw_cfg in config["search_keywords"]:
             keyword  = kw_cfg["keyword"]
             category = kw_cfg["category"]
+            msrp     = kw_cfg.get("msrp", 0)
             products = search_naver_products(keyword, naver_id, naver_secret, display=10)
-            # 첫 결과 hprice/lprice 디버그 (한 번만 출력)
+            # 첫 결과 디버그
             if products:
                 p0 = products[0]
-                print(f"  [DEBUG] lprice={p0.get('lprice')} hprice={p0.get('hprice')} title={re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
+                lp0 = int(p0.get('lprice') or 0)
+                disc_ref = round((msrp - lp0) / msrp * 100) if msrp and lp0 < msrp else 0
+                print(f"  [DEBUG] lprice={lp0:,} msrp={msrp:,} → MSRP대비 {disc_ref}% | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
             passed = 0
             for p in products:
-                deal = naver_product_to_deal(p, category, next_id, min_disc)
+                deal = naver_product_to_deal(p, category, next_id, min_disc, msrp=msrp)
                 if deal and not is_duplicate(deal, deals + new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     passed += 1
                     disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
                     print(f"  ✅ [{disc}%][{deal['store']}] {deal['name'][:35]}")
-            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개")
+            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 (MSRP {msrp:,}원 기준)")
             time.sleep(0.3)
     else:
         print("\n⚠️  NAVER_CLIENT_ID 없음 — 네이버 검색 스킵")
