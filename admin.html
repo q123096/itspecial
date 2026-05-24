@@ -199,6 +199,48 @@
 </head>
 <body>
 
+<!-- ===== 비밀번호 게이트 ===== -->
+<div id="pw-gate" style="
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#1A1A2E,#16213E);
+  display:flex;align-items:center;justify-content:center;
+">
+  <div style="
+    background:white;border-radius:16px;padding:40px 36px;
+    width:340px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);
+  ">
+    <div style="font-size:40px;margin-bottom:12px;">⚙️</div>
+    <h2 style="font-size:20px;font-weight:900;margin-bottom:6px;">관리자 전용</h2>
+    <p style="font-size:13px;color:#6C757D;margin-bottom:24px;">비밀번호를 입력하세요</p>
+    <input id="pw-input" type="password"
+      placeholder="비밀번호"
+      style="
+        width:100%;padding:12px 16px;border:2px solid #DEE2E6;
+        border-radius:10px;font-size:15px;outline:none;
+        text-align:center;letter-spacing:4px;margin-bottom:12px;
+        transition:border-color .15s;
+      "
+      onkeydown="if(event.key==='Enter') checkPw()"
+      onfocus="this.style.borderColor='#FF4136'"
+      onblur="this.style.borderColor='#DEE2E6'"
+    >
+    <button onclick="checkPw()" style="
+      width:100%;padding:12px;background:#FF4136;color:white;
+      border:none;border-radius:10px;font-size:15px;font-weight:700;
+      cursor:pointer;transition:background .15s;
+    " onmouseover="this.style.background='#C0392B'"
+       onmouseout="this.style.background='#FF4136'">
+      입장하기
+    </button>
+    <p id="pw-error" style="
+      color:#FF4136;font-size:12px;margin-top:10px;
+      min-height:18px;font-weight:600;
+    "></p>
+  </div>
+</div>
+
+<div id="admin-content" style="display:none;">
+
 <header class="admin-header">
   <span style="font-size:20px">⚙️</span>
   <h1>Tech<span>Deal</span> KR — 딜 관리</h1>
@@ -715,6 +757,54 @@ async function init() {
 }
 
 init();
+</script>
+
+</div><!-- /admin-content -->
+
+<script>
+// ─── 비밀번호 게이트 ───────────────────────────────────────────
+// 비밀번호 변경: 아래 ADMIN_PW 값만 바꾸면 됩니다
+const ADMIN_PW = 'itspecial2026!';
+const PW_KEY   = 'tdkr_admin_auth';
+
+function checkPw() {
+  const input = document.getElementById('pw-input').value;
+  const error = document.getElementById('pw-error');
+
+  if (input === ADMIN_PW) {
+    // 세션 동안 인증 유지 (탭 닫으면 자동 해제)
+    sessionStorage.setItem(PW_KEY, '1');
+    document.getElementById('pw-gate').style.display    = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    // 어드민 데이터 로드
+    init();
+  } else {
+    error.textContent = '비밀번호가 틀렸습니다.';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+    // 3회 틀리면 1분 잠금
+    checkPw._fail = (checkPw._fail || 0) + 1;
+    if (checkPw._fail >= 3) {
+      const btn = document.querySelector('#pw-gate button');
+      btn.disabled = true;
+      btn.textContent = '1분 후 재시도';
+      error.textContent = '3회 실패 — 1분 대기';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = '입장하기';
+        error.textContent = '';
+        checkPw._fail = 0;
+      }, 60000);
+    }
+  }
+}
+
+// 이미 인증된 세션이면 바로 통과
+if (sessionStorage.getItem(PW_KEY) === '1') {
+  document.getElementById('pw-gate').style.display    = 'none';
+  document.getElementById('admin-content').style.display = 'block';
+}
+// 인증 전에는 init() 실행 안 함 (위 checkPw에서 호출)
 </script>
 </body>
 </html>
