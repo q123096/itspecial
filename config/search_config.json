@@ -27,31 +27,36 @@
   ],
 
   "search_keywords": [
-    { "keyword": "갤럭시 스마트폰 특가",  "category": "smartphone", "priority": 1 },
-    { "keyword": "아이폰 자급제 할인",    "category": "smartphone", "priority": 1 },
-    { "keyword": "에어팟 최저가",         "category": "audio",      "priority": 1 },
-    { "keyword": "갤럭시 버즈 특가",      "category": "audio",      "priority": 1 },
-    { "keyword": "소니 헤드폰 할인",      "category": "audio",      "priority": 2 },
-    { "keyword": "LG 그램 특가",          "category": "laptop",     "priority": 1 },
-    { "keyword": "맥북 할인",             "category": "laptop",     "priority": 1 },
-    { "keyword": "갤럭시탭 특가",         "category": "tablet",     "priority": 1 },
-    { "keyword": "아이패드 할인",         "category": "tablet",     "priority": 1 },
-    { "keyword": "게이밍 모니터 특가",    "category": "monitor",    "priority": 2 },
-    { "keyword": "닌텐도 스위치 최저가",  "category": "gaming",     "priority": 1 },
-    { "keyword": "PS5 할인",              "category": "gaming",     "priority": 1 },
-    { "keyword": "갤럭시 워치 특가",      "category": "wearable",   "priority": 1 },
-    { "keyword": "애플워치 할인",         "category": "wearable",   "priority": 1 },
-    { "keyword": "로지텍 마우스 할인",    "category": "accessory",  "priority": 2 },
-    { "keyword": "소니 카메라 특가",      "category": "camera",     "priority": 2 }
+    { "keyword": "갤럭시 S25",              "category": "smartphone", "priority": 1 },
+    { "keyword": "갤럭시 S24 FE",           "category": "smartphone", "priority": 1 },
+    { "keyword": "아이폰 16 자급제",         "category": "smartphone", "priority": 1 },
+    { "keyword": "아이폰 15 자급제",         "category": "smartphone", "priority": 2 },
+    { "keyword": "에어팟 프로 2세대",        "category": "audio",      "priority": 1 },
+    { "keyword": "갤럭시 버즈 3 프로",       "category": "audio",      "priority": 1 },
+    { "keyword": "소니 WH-1000XM5",         "category": "audio",      "priority": 2 },
+    { "keyword": "소니 WF-1000XM5",         "category": "audio",      "priority": 2 },
+    { "keyword": "LG 그램 16",              "category": "laptop",     "priority": 1 },
+    { "keyword": "맥북 에어 M3",            "category": "laptop",     "priority": 1 },
+    { "keyword": "맥북 프로 M4",            "category": "laptop",     "priority": 2 },
+    { "keyword": "갤럭시탭 S10 FE",         "category": "tablet",     "priority": 1 },
+    { "keyword": "아이패드 에어 M2",         "category": "tablet",     "priority": 1 },
+    { "keyword": "아이패드 프로 M4",         "category": "tablet",     "priority": 2 },
+    { "keyword": "삼성 오디세이 모니터",     "category": "monitor",    "priority": 2 },
+    { "keyword": "LG 울트라기어 모니터",     "category": "monitor",    "priority": 2 },
+    { "keyword": "닌텐도 스위치 2",         "category": "gaming",     "priority": 1 },
+    { "keyword": "PS5 슬림",               "category": "gaming",     "priority": 1 },
+    { "keyword": "갤럭시 워치 7",           "category": "wearable",   "priority": 1 },
+    { "keyword": "애플워치 시리즈 10",      "category": "wearable",   "priority": 1 },
+    { "keyword": "로지텍 MX Master",        "category": "accessory",  "priority": 2 },
+    { "keyword": "소니 알파 ZV-E10M2",      "category": "camera",     "priority": 2 }
   ],
 
   "ppomppu_rss": {
     "enabled": true,
     "urls": [
-      "https://www.ppomppu.co.kr/rss.php?id=ppomppu",
-      "https://www.ppomppu.co.kr/rss.php?id=computer",
-      "https://www.ppomppu.co.kr/rss.php?id=phone"
+      "https://www.ppomppu.co.kr/rss.php?id=ppomppu"
     ],
+    "_comment_urls": "computer·phone 게시판은 Q&A 토론 게시판이라 딜 게시글이 없음 — 메인 핫딜 게시판만 사용",
     "tech_keywords": [
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",

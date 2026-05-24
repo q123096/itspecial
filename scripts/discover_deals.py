@@ -137,7 +137,12 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str, disp
                 "X-Naver-Client-Id":     client_id,
                 "X-Naver-Client-Secret": client_secret,
             },
-            params={"query": keyword, "display": display, "sort": "asc"},
+            params={
+                "query":   keyword,
+                "display": display,
+                "sort":    "sim",              # 정확도순 (asc=최저가순은 잡동사니 반환)
+                "filter":  "minPrice:30000",   # 3만원 미만 제외 (케이스·스티커 등)
+            },
             timeout=10,
         )
         if r.status_code == 200:
@@ -160,7 +165,7 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -
     link  = p.get("link", "")
     image = p.get("image", "")
 
-    if not lp:
+    if not lp or lp < 30000:   # 3만원 미만 제품 제외 (케이스·스티커 등 잡동사니)
         return None
 
     disc = 0
