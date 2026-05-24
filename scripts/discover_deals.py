@@ -310,6 +310,9 @@ def remove_expired(deals: list[dict], keep_days: int = 1) -> tuple[list[dict], i
         if exp:
             try:
                 exp_dt = datetime.fromisoformat(exp.replace("Z", "+00:00"))
+                # 시간대 정보 없으면 UTC로 간주
+                if exp_dt.tzinfo is None:
+                    exp_dt = exp_dt.replace(tzinfo=timezone.utc)
                 if exp_dt < cutoff:
                     removed += 1
                     continue
