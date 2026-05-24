@@ -101,8 +101,10 @@ function renderCard(deal) {
     }),
   ].join('');
 
-  // 제휴링크 미설정 표시 (어드민 전용 — 외부 사용자에게 노출 안 함)
-  const affiliateBadge = '';
+  // 제휴링크 설정 시 소표시 (공정위 추천보증 심사지침 대응)
+  const affiliateBadge = isAffiliate
+    ? `<span class="meta-tag affiliate-tag" title="이 링크를 통해 구매 시 소정의 수수료를 받을 수 있습니다">🤝 파트너스</span>`
+    : '';
 
   const timerHtml = tLeft
     ? `<div class="timer-wrap">

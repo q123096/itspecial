@@ -33,9 +33,69 @@ except ImportError:
     sys.exit(1)
 
 # ─── 경로 설정 ───────────────────────────────────────────────────
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEALS_PATH  = os.path.join(ROOT, "data", "deals.json")
-CONFIG_PATH = os.path.join(ROOT, "config", "search_config.json")
+ROOT               = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEALS_PATH         = os.path.join(ROOT, "data", "deals.json")
+CONFIG_PATH        = os.path.join(ROOT, "config", "search_config.json")
+PRICE_HISTORY_PATH = os.path.join(ROOT, "data", "price_history.json")
+
+
+# ─── 7일 평균가 시스템 ───────────────────────────────────────────
+def load_price_history() -> dict:
+    """저장된 가격 히스토리 로드 (없으면 빈 딕셔너리)"""
+    if os.path.exists(PRICE_HISTORY_PATH):
+        with open(PRICE_HISTORY_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def update_price_history(history: dict, keyword: str, lprice: int) -> None:
+    """
+    키워드별 오늘 최저가 기록 → 7일치만 유지 → 7일 평균 재계산
+    하루 3회 실행 시 그날의 최솟값으로 갱신
+    """
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    if keyword not in history:
+        history[keyword] = {"history": [], "avg_7d": 0, "days": 0}
+
+    entries = history[keyword]["history"]
+    today_entry = next((e for e in entries if e["date"] == today), None)
+    if today_entry:
+        today_entry["lprice"] = min(today_entry["lprice"], lprice)
+    else:
+        entries.append({"date": today, "lprice": lprice})
+
+    # 7일 이전 데이터 제거
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
+    history[keyword]["history"] = [e for e in entries if e["date"] >= cutoff]
+
+    # 7일 평균 재계산
+    valid = [e["lprice"] for e in history[keyword]["history"] if e["lprice"] >= 30000]
+    history[keyword]["avg_7d"] = round(sum(valid) / len(valid)) if valid else 0
+    history[keyword]["days"]   = len(valid)
+
+
+def get_reference_price(history: dict, keyword: str, msrp: int) -> int:
+    """
+    기준가 결정:
+      - 3일 이상 데이터 축적 → 7일 평균가 (실제 시장가 기반)
+      - 3일 미만             → msrp fallback (초기 부트스트랩)
+      - 7일 평균이 msrp의 110% 초과 시 msrp 우선 (품귀·가격 급등 방어)
+    """
+    entry = history.get(keyword, {})
+    avg   = entry.get("avg_7d", 0)
+    days  = entry.get("days", 0)
+
+    if days >= 3 and avg > 0:
+        if msrp > 0 and avg > msrp * 1.1:
+            return msrp   # 시장가가 MSRP보다 비정상적으로 높으면 MSRP 사용
+        return avg
+
+    return msrp   # 데이터 부족 → MSRP fallback
+
+
+def save_price_history(history: dict) -> None:
+    with open(PRICE_HISTORY_PATH, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
 
 # ─── 쿠팡 파트너스 API 인증 ──────────────────────────────────────
 COUPANG_HOST = "https://api-gateway.coupang.com"
@@ -500,28 +560,50 @@ def main():
     # ── 3. 네이버 쇼핑 검색 ──
     if naver_id and naver_secret:
         print(f"\n🛍️  네이버 쇼핑 검색 시작 ({len(config['search_keywords'])}개 키워드)...")
+        price_history = load_price_history()
+
         for kw_cfg in config["search_keywords"]:
             keyword  = kw_cfg["keyword"]
             category = kw_cfg["category"]
             msrp     = kw_cfg.get("msrp", 0)
             products = search_naver_products(keyword, naver_id, naver_secret, display=10)
+
+            # 오늘 최저가 기록 → 7일 평균 업데이트
+            if products:
+                min_lp = min(
+                    (int(p.get("lprice") or 0) for p in products if p.get("lprice")),
+                    default=0,
+                )
+                if min_lp >= 30000:
+                    update_price_history(price_history, keyword, min_lp)
+
+            # 기준가 결정: 7일 평균(3일 이상 데이터) 또는 MSRP fallback
+            ref_price = get_reference_price(price_history, keyword, msrp)
+            hist_entry = price_history.get(keyword, {})
+            hist_days  = hist_entry.get("days", 0)
+            ref_label  = f"7일평균({hist_days}일치)" if hist_days >= 3 else "MSRP"
+
             # 첫 결과 디버그
             if products:
                 p0 = products[0]
-                lp0 = int(p0.get('lprice') or 0)
-                disc_ref = round((msrp - lp0) / msrp * 100) if msrp and lp0 < msrp else 0
-                print(f"  [DEBUG] lprice={lp0:,} msrp={msrp:,} → MSRP대비 {disc_ref}% | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
+                lp0 = int(p0.get("lprice") or 0)
+                disc_ref = round((ref_price - lp0) / ref_price * 100) if ref_price and lp0 < ref_price else 0
+                print(f"  [DEBUG] lprice={lp0:,} {ref_label}={ref_price:,} → 기준가대비 {disc_ref}% | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
+
             passed = 0
             for p in products:
-                deal = naver_product_to_deal(p, category, next_id, min_disc, msrp=msrp)
+                deal = naver_product_to_deal(p, category, next_id, min_disc, msrp=ref_price)
                 if deal and not is_duplicate(deal, deals + new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     passed += 1
                     disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
                     print(f"  ✅ [{disc}%][{deal['store']}] {deal['name'][:35]}")
-            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 (MSRP {msrp:,}원 기준)")
+            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 ({ref_label} {ref_price:,}원 기준)")
             time.sleep(0.3)
+
+        save_price_history(price_history)
+        print(f"  💾 가격 히스토리 저장 완료 ({len(price_history)}개 키워드 누적)")
     else:
         print("\n⚠️  NAVER_CLIENT_ID 없음 — 네이버 검색 스킵")
 
