@@ -586,6 +586,25 @@
   },
   {
     "id": 31,
+    "name": "BEELINK EQ12 인텔 N100 12세대 미니PC 준시스템 네이비블루",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8995120/89951205177.jpg",
+    "originalPrice": 280000,
+    "salePrice": 223100,
+    "store": "와이오유엔에이",
+    "productUrl": "https://smartstore.naver.com/main/products/12406694452",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 32,
     "name": "[리뷰이벤트+강화유리필름] 삼성전자 갤럭시워치7 44mm 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5994504/59945040278.7.jpg",
@@ -604,7 +623,7 @@
     "freeShipping": false
   },
   {
-    "id": 32,
+    "id": 33,
     "name": "LG전자 울트라기어 27GP750 68~69cm(27인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5261176/52611765708.20250123103415.jpg",
@@ -623,7 +642,7 @@
     "freeShipping": false
   },
   {
-    "id": 33,
+    "id": 34,
     "name": "LG전자 LG그램 14ZD95U-GX56K RAM 16GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5848818/58488180590.20260416154654.jpg",
@@ -642,7 +661,7 @@
     "freeShipping": false
   },
   {
-    "id": 34,
+    "id": 35,
     "name": "LG그램 2026 노트북 인텔 팬서레이크 Ultra5 16GB 256GB 사무용 인강용",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8663600/86636005031.8.jpg",
@@ -661,7 +680,7 @@
     "freeShipping": false
   },
   {
-    "id": 35,
+    "id": 36,
     "name": "삼성전자 갤럭시탭 S10 FE WiFi전용, 128GB, 그레이",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5392010/53920107147.20250407160502.jpg",
@@ -680,7 +699,7 @@
     "freeShipping": false
   },
   {
-    "id": 36,
+    "id": 37,
     "name": "애플 아이패드 에어 6세대 11인치 WiFi 128GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_8785082/87850821670.jpg",
@@ -699,7 +718,7 @@
     "freeShipping": false
   },
   {
-    "id": 37,
+    "id": 38,
     "name": "애플워치 Series 10 GPS 46mm 제트블랙",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_6001486/60014860207.2.jpg",

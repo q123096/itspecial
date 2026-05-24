@@ -248,5 +248,65 @@
     ],
     "avg_7d": 32560,
     "days": 1
+  },
+  "MINISFORUM 미니PC": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 579900
+      }
+    ],
+    "avg_7d": 579900,
+    "days": 1
+  },
+  "Beelink 미니PC": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 103400
+      }
+    ],
+    "avg_7d": 103400,
+    "days": 1
+  },
+  "GMKtec 미니PC": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 253080
+      }
+    ],
+    "avg_7d": 253080,
+    "days": 1
+  },
+  "한성컴퓨터 게이밍PC": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 1823710
+      }
+    ],
+    "avg_7d": 1823710,
+    "days": 1
+  },
+  "레노버 씽크센터": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 170000
+      }
+    ],
+    "avg_7d": 170000,
+    "days": 1
+  },
+  "HP Pavilion 데스크탑": {
+    "history": [
+      {
+        "date": "2026-05-24",
+        "lprice": 1140000
+      }
+    ],
+    "avg_7d": 1140000,
+    "days": 1
   }
 }
