@@ -51,12 +51,14 @@
     { "keyword": "애플워치 시리즈 10",   "category": "wearable",   "priority": 1, "msrp": 589000  },
     { "keyword": "로지텍 MX Master",     "category": "accessory",  "priority": 2, "msrp": 189000  },
     { "keyword": "소니 알파 ZV-E10M2",   "category": "camera",     "priority": 2, "msrp": 1200000 },
-    { "keyword": "맥 미니 M4",           "category": "desktop",    "priority": 1, "msrp": 899000  },
-    { "keyword": "아이맥 M4",            "category": "desktop",    "priority": 1, "msrp": 1990000 },
-    { "keyword": "맥 스튜디오 M4",       "category": "desktop",    "priority": 2, "msrp": 2590000 },
+    { "keyword": "RTX 4070 그래픽카드",   "category": "desktop",    "priority": 1, "msrp": 750000  },
+    { "keyword": "RTX 4060 Ti 그래픽카드","category": "desktop",   "priority": 1, "msrp": 520000  },
+    { "keyword": "라이젠 7 7800X3D",     "category": "desktop",    "priority": 1, "msrp": 450000  },
+    { "keyword": "인텔 i5-14600KF",      "category": "desktop",    "priority": 1, "msrp": 270000  },
+    { "keyword": "삼성 데스크탑 DM",     "category": "desktop",    "priority": 2, "msrp": 990000  },
     { "keyword": "삼성 990 PRO SSD 1TB", "category": "desktop",    "priority": 2, "msrp": 120000  },
-    { "keyword": "RTX 5070",             "category": "desktop",    "priority": 2, "msrp": 950000  },
-    { "keyword": "인텔 코어 Ultra 5",    "category": "desktop",    "priority": 2, "msrp": 350000  }
+    { "keyword": "WD Black SN850X 1TB",  "category": "desktop",    "priority": 2, "msrp": 130000  },
+    { "keyword": "맥 미니 M4",           "category": "desktop",    "priority": 2, "msrp": 899000  }
   ],
 
   "ppomppu_rss": {
@@ -69,7 +71,8 @@
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
       "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플",
-      "맥미니", "아이맥", "데스크탑", "조립PC", "그래픽카드", "램", "메모리"
+      "맥미니", "아이맥", "데스크탑", "조립PC", "그래픽카드", "램", "메모리",
+      "RTX", "라이젠", "AMD", "SSD", "파워서플라이", "쿨러", "케이스"
     ],
     "max_posts": 30
   }
