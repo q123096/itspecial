@@ -10,12 +10,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   # ════════════════════════════════════════
@@ -26,6 +20,7 @@ jobs:
   # ════════════════════════════════════════
   discover:
     runs-on: ubuntu-latest
+    continue-on-error: true   # API 키 미설정 시에도 워크플로 중단 방지
     outputs:
       changed: ${{ steps.check.outputs.changed }}
     steps:
@@ -71,6 +66,8 @@ jobs:
   affiliate-links:
     runs-on: ubuntu-latest
     needs: discover
+    if: always()             # discover 실패해도 반드시 실행
+    continue-on-error: true  # API 키 미설정 시에도 워크플로 중단 방지
     steps:
       - uses: actions/checkout@v4
         with:
@@ -101,26 +98,3 @@ jobs:
           else
             echo "변경사항 없음 — 커밋 스킵"
           fi
-
-  # ════════════════════════════════════════
-  # 3단계: GitHub Pages 배포
-  # ════════════════════════════════════════
-  deploy:
-    runs-on: ubuntu-latest
-    needs: affiliate-links
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main   # 자동 커밋 포함한 최신 상태로
-
-      - uses: actions/configure-pages@v4
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - id: deployment
-        uses: actions/deploy-pages@v4
