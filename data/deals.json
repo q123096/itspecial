@@ -10,7 +10,10 @@
     "productUrl": "https://www.coupang.com/vp/products/7332096685",
     "affiliateUrl": "",
     "expiresAt": "2026-05-27T23:59:00",
-    "tags": ["핫딜", "역대최저"],
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
     "rating": 4.5,
     "reviewCount": 2341,
     "inStock": true,
@@ -27,7 +30,10 @@
     "productUrl": "https://www.11st.co.kr/products/5635278889",
     "affiliateUrl": "",
     "expiresAt": "2026-05-26T18:00:00",
-    "tags": ["타임딜", "역대최저"],
+    "tags": [
+      "타임딜",
+      "역대최저"
+    ],
     "rating": 4.8,
     "reviewCount": 8921,
     "inStock": true,
@@ -42,9 +48,11 @@
     "salePrice": 1490000,
     "store": "G마켓",
     "productUrl": "https://www.gmarket.co.kr/n/superDeal/goods/3855432211",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.gmarket.co.kr/n/superDeal/goods/3855432211?affiliate=techdeal",
     "expiresAt": "2026-05-30T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.6,
     "reviewCount": 1203,
     "inStock": true,
@@ -61,7 +69,10 @@
     "productUrl": "https://smartstore.naver.com/sonykorea/products/4651234567",
     "affiliateUrl": "",
     "expiresAt": "2026-05-28T23:59:00",
-    "tags": ["핫딜", "카드할인"],
+    "tags": [
+      "핫딜",
+      "카드할인"
+    ],
     "rating": 4.7,
     "reviewCount": 5432,
     "inStock": true,
@@ -78,7 +89,9 @@
     "productUrl": "https://www.coupang.com/vp/products/7654321098",
     "affiliateUrl": "",
     "expiresAt": "2026-05-29T23:59:00",
-    "tags": ["역대최저"],
+    "tags": [
+      "역대최저"
+    ],
     "rating": 4.9,
     "reviewCount": 3201,
     "inStock": true,
@@ -95,7 +108,9 @@
     "productUrl": "https://www.danawa.com/product/product_view.php?pcode=18234567",
     "affiliateUrl": "",
     "expiresAt": "2026-06-01T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.4,
     "reviewCount": 892,
     "inStock": true,
@@ -110,9 +125,12 @@
     "salePrice": 1990000,
     "store": "옥션",
     "productUrl": "https://www.auction.co.kr/item/I123456789",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.auction.co.kr/item/I123456789?affiliate=techdeal",
     "expiresAt": "2026-05-31T23:59:00",
-    "tags": ["핫딜", "카드할인"],
+    "tags": [
+      "핫딜",
+      "카드할인"
+    ],
     "rating": 4.8,
     "reviewCount": 423,
     "inStock": true,
@@ -129,7 +147,10 @@
     "productUrl": "https://www.coupang.com/vp/products/6789012345",
     "affiliateUrl": "",
     "expiresAt": "2026-05-26T23:59:00",
-    "tags": ["타임딜", "패키지"],
+    "tags": [
+      "타임딜",
+      "패키지"
+    ],
     "rating": 4.6,
     "reviewCount": 6789,
     "inStock": true,
@@ -146,7 +167,9 @@
     "productUrl": "https://www.11st.co.kr/products/5789012345",
     "affiliateUrl": "",
     "expiresAt": "2026-05-27T18:00:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.3,
     "reviewCount": 1567,
     "inStock": true,
@@ -161,9 +184,11 @@
     "salePrice": 99000,
     "store": "G마켓",
     "productUrl": "https://www.gmarket.co.kr/n/superDeal/goods/4012345678",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.gmarket.co.kr/n/superDeal/goods/4012345678?affiliate=techdeal",
     "expiresAt": "2026-05-28T23:59:00",
-    "tags": ["역대최저"],
+    "tags": [
+      "역대최저"
+    ],
     "rating": 4.9,
     "reviewCount": 4321,
     "inStock": true,
@@ -180,7 +205,10 @@
     "productUrl": "https://www.coupang.com/vp/products/7891234567",
     "affiliateUrl": "",
     "expiresAt": "2026-05-30T23:59:00",
-    "tags": ["핫딜", "역대최저"],
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
     "rating": 4.7,
     "reviewCount": 9123,
     "inStock": true,
@@ -197,7 +225,9 @@
     "productUrl": "https://www.danawa.com/product/product_view.php?pcode=19345678",
     "affiliateUrl": "",
     "expiresAt": "2026-06-02T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.5,
     "reviewCount": 2103,
     "inStock": true,
@@ -214,7 +244,10 @@
     "productUrl": "https://www.coupang.com/vp/products/8012345678",
     "affiliateUrl": "",
     "expiresAt": "2026-05-28T23:59:00",
-    "tags": ["핫딜", "역대최저"],
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
     "rating": 4.4,
     "reviewCount": 3456,
     "inStock": true,
@@ -231,7 +264,9 @@
     "productUrl": "https://www.11st.co.kr/products/6012345678",
     "affiliateUrl": "",
     "expiresAt": "2026-05-30T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.7,
     "reviewCount": 5678,
     "inStock": true,
@@ -246,9 +281,11 @@
     "salePrice": 179000,
     "store": "G마켓",
     "productUrl": "https://www.gmarket.co.kr/n/superDeal/goods/5123456789",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.gmarket.co.kr/n/superDeal/goods/5123456789?affiliate=techdeal",
     "expiresAt": "2026-06-03T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.6,
     "reviewCount": 1234,
     "inStock": true,
@@ -265,7 +302,10 @@
     "productUrl": "https://www.coupang.com/vp/products/8234567890",
     "affiliateUrl": "",
     "expiresAt": "2026-05-29T23:59:00",
-    "tags": ["핫딜", "카드할인"],
+    "tags": [
+      "핫딜",
+      "카드할인"
+    ],
     "rating": 4.3,
     "reviewCount": 2890,
     "inStock": true,
@@ -280,9 +320,11 @@
     "salePrice": 849000,
     "store": "옥션",
     "productUrl": "https://www.auction.co.kr/item/I234567890",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.auction.co.kr/item/I234567890?affiliate=techdeal",
     "expiresAt": "2026-05-31T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.5,
     "reviewCount": 678,
     "inStock": true,
@@ -299,7 +341,9 @@
     "productUrl": "https://www.11st.co.kr/products/6234567890",
     "affiliateUrl": "",
     "expiresAt": "2026-06-01T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.8,
     "reviewCount": 12345,
     "inStock": true,
@@ -316,7 +360,9 @@
     "productUrl": "https://www.coupang.com/vp/products/8456789012",
     "affiliateUrl": "",
     "expiresAt": "2026-05-30T23:59:00",
-    "tags": ["역대최저"],
+    "tags": [
+      "역대최저"
+    ],
     "rating": 4.9,
     "reviewCount": 7654,
     "inStock": true,
@@ -331,9 +377,12 @@
     "salePrice": 419000,
     "store": "G마켓",
     "productUrl": "https://www.gmarket.co.kr/n/superDeal/goods/6234567890",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.gmarket.co.kr/n/superDeal/goods/6234567890?affiliate=techdeal",
     "expiresAt": "2026-05-29T23:59:00",
-    "tags": ["핫딜", "카드할인"],
+    "tags": [
+      "핫딜",
+      "카드할인"
+    ],
     "rating": 4.2,
     "reviewCount": 4567,
     "inStock": true,
@@ -350,7 +399,9 @@
     "productUrl": "https://www.danawa.com/product/product_view.php?pcode=20456789",
     "affiliateUrl": "",
     "expiresAt": "2026-06-05T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.3,
     "reviewCount": 567,
     "inStock": true,
@@ -367,7 +418,9 @@
     "productUrl": "https://www.coupang.com/vp/products/8678901234",
     "affiliateUrl": "",
     "expiresAt": "2026-05-27T23:59:00",
-    "tags": ["역대최저"],
+    "tags": [
+      "역대최저"
+    ],
     "rating": 4.6,
     "reviewCount": 3210,
     "inStock": true,
@@ -384,7 +437,9 @@
     "productUrl": "https://www.11st.co.kr/products/6456789012",
     "affiliateUrl": "",
     "expiresAt": "2026-05-28T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.1,
     "reviewCount": 8901,
     "inStock": true,
@@ -399,9 +454,11 @@
     "salePrice": 139000,
     "store": "G마켓",
     "productUrl": "https://www.gmarket.co.kr/n/superDeal/goods/7345678901",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.gmarket.co.kr/n/superDeal/goods/7345678901?affiliate=techdeal",
     "expiresAt": "2026-06-01T23:59:00",
-    "tags": ["핫딜"],
+    "tags": [
+      "핫딜"
+    ],
     "rating": 4.8,
     "reviewCount": 2345,
     "inStock": true,
