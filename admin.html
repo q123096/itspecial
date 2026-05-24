@@ -176,6 +176,30 @@
     .form-input:focus, .form-select:focus { border-color: var(--primary); }
     .form-actions { margin-top: 16px; display: flex; gap: 10px; }
 
+    /* ─── GitHub push button ─── */
+    .btn-push { background: #6f42c1; color: white; }
+    .btn-push:hover { background: #5a32a3; }
+    .btn-push:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
+
+    /* ─── GitHub token section ─── */
+    .gh-token-box {
+      background: #f5f0ff; border: 1.5px solid #c9b8f5;
+      border-radius: var(--radius); padding: 18px 20px; margin-bottom: 20px;
+    }
+    .gh-token-box h3 { font-size: 14px; font-weight: 800; color: #4a2c8a; margin-bottom: 6px; }
+    .gh-token-box p  { font-size: 13px; color: #6c45b5; margin-bottom: 12px; line-height: 1.6; }
+    .gh-token-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .gh-token-input {
+      flex: 1; min-width: 200px; padding: 8px 12px;
+      border: 1.5px solid #c9b8f5; border-radius: 8px;
+      font: inherit; font-size: 13px; outline: none;
+      transition: border-color .15s; background: white;
+    }
+    .gh-token-input:focus { border-color: #6f42c1; }
+    .gh-status { font-size: 12px; margin-top: 8px; font-weight: 600; }
+    .gh-status.ok   { color: #2ECC40; }
+    .gh-status.none { color: #6c45b5; }
+
     /* ─── Toast ─── */
     .toast {
       position: fixed; bottom: 24px; left: 50%;
@@ -243,11 +267,11 @@
 
 <header class="admin-header">
   <span style="font-size:20px">⚙️</span>
-  <h1>Tech<span>Deal</span> KR — 딜 관리</h1>
+  <h1>IT<span>Special</span> — 딜 관리</h1>
   <nav class="header-nav">
     <a href="index.html" class="btn-sm btn-outline">← 사이트 보기</a>
-    <button class="btn-sm btn-success" onclick="exportJSON()">JSON 내보내기</button>
-    <button class="btn-sm btn-primary" onclick="saveAll()">전체 저장</button>
+    <button class="btn-sm btn-success" onclick="saveAll()">전체 저장</button>
+    <button id="btn-gh-push" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub에 저장</button>
   </nav>
 </header>
 
@@ -335,6 +359,24 @@
       💡 네이버 쇼핑 파트너: <a href="https://partner.naver.com" target="_blank" rel="noopener">partner.naver.com</a> &nbsp;|&nbsp;
       11번가: <a href="https://affiliate.11st.co.kr" target="_blank" rel="noopener">affiliate.11st.co.kr</a>
     </div>
+  </div>
+
+  <!-- GitHub 자동 저장 설정 -->
+  <div class="gh-token-box" id="gh-token-section">
+    <h3>🔑 GitHub 자동 저장 설정 (최초 1회)</h3>
+    <p>Personal Access Token을 입력하면 <strong>"🚀 GitHub에 저장"</strong> 버튼 하나로<br>
+       deals.json이 GitHub에 바로 반영됩니다. (1~2분 후 사이트 자동 업데이트)</p>
+    <div class="gh-token-row">
+      <input type="password" class="gh-token-input" id="gh-token-input"
+             placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      <button class="btn-sm btn-push" onclick="saveGHToken()">토큰 저장</button>
+      <a href="https://github.com/settings/tokens/new?scopes=repo&description=ITSpecial+Admin"
+         target="_blank" rel="noopener"
+         style="font-size:12px;color:#6f42c1;font-weight:700;">
+        PAT 발급하기 →
+      </a>
+    </div>
+    <div class="gh-status none" id="gh-status">● 토큰 미설정</div>
   </div>
 
   <!-- 통계 -->
@@ -474,12 +516,14 @@
 
   <!-- JSON 내보내기 -->
   <div class="export-section">
-    <h2>📋 JSON 내보내기</h2>
+    <h2>📋 JSON 내보내기 / GitHub 저장</h2>
     <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">
-      아래 JSON을 복사해서 <code style="background:var(--bg);padding:2px 6px;border-radius:4px;">data/deals.json</code> 파일을 덮어쓰세요. 그 후 GitHub에 커밋하면 사이트에 반영됩니다.
+      <strong style="color:#6f42c1;">🚀 GitHub에 저장</strong>을 누르면 자동으로 deals.json이 업데이트됩니다.<br>
+      토큰이 없으면 아래에서 JSON을 복사해 수동으로 적용할 수 있습니다.
     </p>
     <pre class="json-box" id="json-output">// 저장 또는 내보내기 버튼을 누르면 JSON이 여기 표시됩니다.</pre>
     <div class="export-actions">
+      <button id="btn-gh-push2" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub에 저장</button>
       <button class="btn-sm btn-primary" onclick="exportJSON()">JSON 생성</button>
       <button class="btn-sm btn-success" onclick="copyJSON()">📋 클립보드 복사</button>
       <button class="btn-sm btn-outline" style="color:var(--text);border-color:var(--border);" onclick="downloadJSON()">⬇️ 파일로 다운로드</button>
@@ -710,6 +754,102 @@ function clearForm() {
     .forEach(id => { document.getElementById(id).value = ''; });
 }
 
+// ─── GitHub API 자동 저장 ───
+const GH_REPO = 'q123096/itspecial';
+const GH_PATH = 'data/deals.json';
+
+function getGHToken() { return localStorage.getItem('gh_pat') || ''; }
+
+function saveGHToken() {
+  const val = document.getElementById('gh-token-input').value.trim();
+  if (!val) { toast('토큰을 입력하세요.', 'warn'); return; }
+  localStorage.setItem('gh_pat', val);
+  document.getElementById('gh-token-input').value = '';
+  document.getElementById('gh-status').textContent = '● 토큰 저장됨 ✅';
+  document.getElementById('gh-status').className = 'gh-status ok';
+  toast('✅ 토큰이 저장되었습니다!', 'success');
+}
+
+async function pushToGitHub() {
+  const token = getGHToken();
+  if (!token) {
+    toast('⚠️ 상단에서 GitHub 토큰을 먼저 설정하세요', 'warn');
+    document.getElementById('gh-token-section').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  // 현재 입력값 전부 반영
+  deals.forEach(d => {
+    const affEl = document.getElementById('aff-' + d.id);
+    const expEl = document.getElementById('exp-' + d.id);
+    if (affEl) d.affiliateUrl = affEl.value.trim();
+    if (expEl && expEl.value) d.expiresAt = expEl.value + ':00';
+  });
+
+  const clean   = deals.map(({ _newAff, _newExp, ...rest }) => rest);
+  const json    = JSON.stringify(clean, null, 2);
+  const content = btoa(unescape(encodeURIComponent(json)));  // UTF-8 base64
+
+  const headers = {
+    Authorization: `token ${token}`,
+    Accept: 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+
+  // 버튼 비활성화
+  ['btn-gh-push', 'btn-gh-push2'].forEach(id => {
+    const b = document.getElementById(id);
+    if (b) { b.disabled = true; b.textContent = '업로드 중...'; }
+  });
+
+  try {
+    // 현재 파일 SHA 조회
+    const getRes = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`,
+      { headers }
+    );
+    if (!getRes.ok) {
+      const e = await getRes.json();
+      throw new Error(e.message || `조회 실패 (${getRes.status})`);
+    }
+    const { sha } = await getRes.json();
+
+    // 파일 업데이트
+    const putRes = await fetch(
+      `https://api.github.com/repos/${GH_REPO}/contents/${GH_PATH}`,
+      {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({
+          message: `🔗 어드민에서 딜 업데이트 (${new Date().toLocaleString('ko-KR')})`,
+          content,
+          sha,
+        }),
+      }
+    );
+    if (!putRes.ok) {
+      const e = await putRes.json();
+      throw new Error(e.message || `업로드 실패 (${putRes.status})`);
+    }
+
+    updateStats();
+    renderTable();
+    toast('✅ GitHub 저장 완료! 1~2분 후 사이트에 반영됩니다.', 'success');
+  } catch (err) {
+    console.error(err);
+    if (err.message.includes('Bad credentials')) {
+      toast('❌ 토큰이 잘못됐어요. 상단에서 재발급 후 다시 입력하세요.', 'warn');
+    } else {
+      toast(`❌ 저장 실패: ${err.message}`, 'warn');
+    }
+  } finally {
+    ['btn-gh-push', 'btn-gh-push2'].forEach(id => {
+      const b = document.getElementById(id);
+      if (b) { b.disabled = false; b.textContent = '🚀 GitHub에 저장'; }
+    });
+  }
+}
+
 // ─── JSON export ───
 function exportJSON() {
   // 임시 필드 제거 후 직렬화
@@ -745,6 +885,12 @@ document.getElementById('filter-unset-only').addEventListener('change', renderTa
 
 // ─── Load data ───
 async function init() {
+  // GitHub 토큰 상태 표시
+  if (getGHToken()) {
+    document.getElementById('gh-status').textContent = '● 토큰 저장됨 ✅';
+    document.getElementById('gh-status').className = 'gh-status ok';
+  }
+
   try {
     const res = await fetch('./data/deals.json');
     deals = await res.json();
