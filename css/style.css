@@ -609,9 +609,22 @@ img { display: block; max-width: 100%; }
 }
 
 /* ===== Responsive ===== */
+
+/* ── 태블릿 (≤768px) ── */
 @media (max-width: 768px) {
-  .header-inner { gap: 10px; }
-  .btn-alert span { display: none; }
+  /* 헤더: 검색창을 두 번째 줄로 내림 */
+  .header-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+  .logo         { order: 1; }
+  .header-actions { order: 2; margin-left: auto; }
+  .search-wrap  { order: 3; flex: 1 1 100%; max-width: 100%; }
+
+  .btn-alert span { display: none; }   /* 알림 버튼 아이콘만 */
+
   .hero { padding: 28px 16px; }
   .hero-stats { gap: 24px; }
   .main { padding: 20px 16px 40px; }
@@ -620,11 +633,54 @@ img { display: block; max-width: 100%; }
   .footer-top { flex-direction: column; gap: 24px; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+/* ── 모바일 (≤480px) — 2열, 카드 내부 레이아웃 보정 ── */
 @media (max-width: 480px) {
-  .deals-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .deal-name { font-size: 13px; }
-  .sale-price { font-size: 18px; }
-  .btn-buy { padding: 7px 12px; font-size: 12px; }
+  .deals-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* 카드 본문 여백 축소 */
+  .deal-body { padding: 10px; gap: 6px; }
+
+  /* 텍스트 크기 */
+  .deal-name     { font-size: 12px; }
+  .original-price { font-size: 11px; }
+  .sale-price    { font-size: 16px; }
+
+  /* 별점은 공간 절약을 위해 숨김 */
+  .deal-rating { display: none; }
+
+  /* 카드 하단: 가로 → 세로 스택으로 변경 (핵심 수정) */
+  .deal-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  /* 좁은 화면에서 부수적인 뱃지 숨김 */
+  .meta-tag.savings,
+  .affiliate-tag { display: none; }
+
+  /* 구매 버튼 전체 너비 */
+  .btn-buy {
+    width: 100%;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ── 소형폰 (≤360px) — 1열로 전환 ── */
+@media (max-width: 360px) {
+  .deals-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  /* 1열에서는 다시 가로 레이아웃 복원 */
+  .deal-body     { padding: 14px; gap: 8px; }
+  .deal-name     { font-size: 14px; }
+  .sale-price    { font-size: 20px; }
+  .deal-footer   { flex-direction: row; align-items: center; }
+  .deal-rating   { display: flex; }
+  .meta-tag.savings { display: flex; }
+  .btn-buy       { width: auto; }
 }
 
 /* ===== Skeleton Loader ===== */
