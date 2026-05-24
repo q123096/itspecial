@@ -11,6 +11,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Node.js 24 사용 (deprecation 경고 해결)
+
 jobs:
   # ════════════════════════════════════════
   # 1단계: 새 딜 자동 발굴
@@ -31,7 +34,8 @@ jobs:
           python-version: '3.12'
           cache: pip
 
-      - run: pip install requests
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
 
       - name: 딜 자동 발굴 실행
         env:
@@ -78,7 +82,8 @@ jobs:
           python-version: '3.12'
           cache: pip
 
-      - run: pip install requests
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
 
       - name: 파트너스 링크 자동 생성
         env:
