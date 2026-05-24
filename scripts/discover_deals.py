@@ -240,11 +240,20 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                 headers={"User-Agent": "Mozilla/5.0 (compatible; ITSpecialBot/1.0)"}
             )
             with urllib.request.urlopen(req, timeout=10) as resp:
-                xml_data = resp.read().decode("utf-8", errors="replace")
+                raw = resp.read()
+            # ppomppu는 EUC-KR 인코딩 사용 — UTF-8 실패 시 EUC-KR로 재시도
+            try:
+                xml_data = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                xml_data = raw.decode("euc-kr", errors="replace")
 
             root  = ET.fromstring(xml_data)
             items = root.findall(".//item")[:max_posts]
-            print(f"  📂 {url.split('id=')[-1]} 게시판: {len(items)}개 포스팅")
+            board_name = url.split('id=')[-1]
+            print(f"  📂 {board_name} 게시판: {len(items)}개 포스팅")
+            # 첫 3개 제목 출력 (디버그)
+            for dbg in items[:3]:
+                print(f"    └ {(dbg.findtext('title') or '')[:60]}")
 
             for item in items:
                 title = (item.findtext("title") or "").strip()
@@ -454,6 +463,10 @@ def main():
             keyword  = kw_cfg["keyword"]
             category = kw_cfg["category"]
             products = search_naver_products(keyword, naver_id, naver_secret, display=10)
+            # 첫 결과 hprice/lprice 디버그 (한 번만 출력)
+            if products:
+                p0 = products[0]
+                print(f"  [DEBUG] lprice={p0.get('lprice')} hprice={p0.get('hprice')} title={re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
             passed = 0
             for p in products:
                 deal = naver_product_to_deal(p, category, next_id, min_disc)
