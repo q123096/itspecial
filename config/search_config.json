@@ -1,0 +1,54 @@
+{
+  "_comment": "이 파일만 수정하면 자동 발굴 대상이 바뀝니다. 코드는 건드릴 필요 없음.",
+  "_apis": {
+    "coupang": "partners.coupang.com → 오픈API → COUPANG_ACCESS_KEY / COUPANG_SECRET_KEY",
+    "naver":   "developers.naver.com → 앱 등록 → 쇼핑 선택 → NAVER_CLIENT_ID / NAVER_CLIENT_SECRET",
+    "11st":    "openapi.11st.co.kr → ST11_API_KEY"
+  },
+
+  "settings": {
+    "min_discount_pct": 15,
+    "max_deals_total": 50,
+    "deals_per_keyword": 3,
+    "expire_days_default": 7,
+    "keep_expired_days": 1
+  },
+
+  "coupang_categories": [
+    { "id": "1",    "name": "스마트폰",     "category": "smartphone" },
+    { "id": "2",    "name": "노트북",       "category": "laptop" },
+    { "id": "3",    "name": "태블릿",       "category": "tablet" },
+    { "id": "4",    "name": "이어폰헤드폰", "category": "audio" },
+    { "id": "5",    "name": "모니터",       "category": "monitor" },
+    { "id": "6",    "name": "카메라",       "category": "camera" },
+    { "id": "7",    "name": "게이밍",       "category": "gaming" },
+    { "id": "8",    "name": "스마트워치",   "category": "wearable" },
+    { "id": "9",    "name": "주변기기",     "category": "accessory" }
+  ],
+
+  "search_keywords": [
+    { "keyword": "갤럭시 스마트폰",    "category": "smartphone", "priority": 1 },
+    { "keyword": "아이폰 자급제",       "category": "smartphone", "priority": 1 },
+    { "keyword": "에어팟",              "category": "audio",      "priority": 1 },
+    { "keyword": "갤럭시 버즈",        "category": "audio",      "priority": 1 },
+    { "keyword": "소니 헤드폰",        "category": "audio",      "priority": 2 },
+    { "keyword": "LG 그램",            "category": "laptop",     "priority": 1 },
+    { "keyword": "맥북",               "category": "laptop",     "priority": 1 },
+    { "keyword": "갤럭시탭",           "category": "tablet",     "priority": 1 },
+    { "keyword": "아이패드",           "category": "tablet",     "priority": 1 },
+    { "keyword": "게이밍 모니터",      "category": "monitor",    "priority": 2 },
+    { "keyword": "닌텐도 스위치",      "category": "gaming",     "priority": 1 },
+    { "keyword": "PS5",                "category": "gaming",     "priority": 1 },
+    { "keyword": "갤럭시 워치",        "category": "wearable",   "priority": 1 },
+    { "keyword": "애플워치",           "category": "wearable",   "priority": 1 },
+    { "keyword": "로지텍 마우스",      "category": "accessory",  "priority": 2 },
+    { "keyword": "소니 카메라",        "category": "camera",     "priority": 2 }
+  ],
+
+  "ppomppu_rss": {
+    "enabled": true,
+    "url": "https://www.ppomppu.co.kr/rss.php?id=ppomppu",
+    "tech_keywords": ["갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5", "워치", "버즈", "그램", "아이패드"],
+    "max_posts": 30
+  }
+}
