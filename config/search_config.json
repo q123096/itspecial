@@ -47,8 +47,16 @@
 
   "ppomppu_rss": {
     "enabled": true,
-    "url": "https://www.ppomppu.co.kr/rss.php?id=ppomppu",
-    "tech_keywords": ["갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5", "워치", "버즈", "그램", "아이패드"],
+    "urls": [
+      "https://www.ppomppu.co.kr/rss.php?id=ppomppu",
+      "https://www.ppomppu.co.kr/rss.php?id=computer",
+      "https://www.ppomppu.co.kr/rss.php?id=phone"
+    ],
+    "tech_keywords": [
+      "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
+      "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
+      "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플"
+    ],
     "max_posts": 30
   }
 }

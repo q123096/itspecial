@@ -149,19 +149,45 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str, disp
 
 
 def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -> dict | None:
-    """네이버 쇼핑 API 상품 → deals.json 포맷"""
+    """
+    네이버 쇼핑 API 상품 → deals.json 포맷
+    hprice(최고가)가 없는 경우 제목에서 할인율 파싱 시도
+    """
     title = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()
-    lp    = int(p.get("lprice") or 0)   # 최저가 (특가)
-    hp    = int(p.get("hprice") or 0)   # 최고가 (정가로 사용)
+    lp    = int(p.get("lprice") or 0)
+    hp    = int(p.get("hprice") or 0)
     mall  = p.get("mallName", "네이버쇼핑")
     link  = p.get("link", "")
     image = p.get("image", "")
 
-    if not lp or not hp or hp <= lp:
+    if not lp:
         return None
 
-    disc = round((hp - lp) / hp * 100)
-    if disc < min_disc:
+    disc = 0
+    orig = 0
+    sale = lp
+
+    # Case 1: hprice(최고가)가 있고 lprice보다 클 때 → 정상 할인율 계산
+    if hp > lp:
+        disc = round((hp - lp) / hp * 100)
+        orig = hp
+
+    # Case 2: hprice 없음 → 제목에서 할인율 파싱 (예: "30% 할인", "[20%↓]")
+    elif re.search(r'(\d+)\s*%\s*할인|(\d+)%↓|(\d+)%\s*off', title, re.IGNORECASE):
+        m    = re.search(r'(\d+)\s*%', title)
+        disc = int(m.group(1)) if m else 0
+        orig = round(lp / (1 - disc / 100)) if disc < 100 else lp
+
+    # Case 3: 제목에서 두 가격 파싱 (예: "89,000원→59,000원")
+    elif re.search(r'[\d,]+원\s*[→\-]\s*[\d,]+원', title):
+        prices = [int(x.replace(",", "")) for x in re.findall(r'([\d,]+)원', title)]
+        if len(prices) >= 2:
+            orig = max(prices)
+            sale = min(prices)
+            lp   = sale
+            disc = round((orig - sale) / orig * 100) if orig > sale else 0
+
+    if disc < min_disc or orig == 0:
         return None
 
     tags = []
@@ -174,7 +200,7 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -
         "name":          title[:60],
         "category":      category,
         "image":         image,
-        "originalPrice": hp,
+        "originalPrice": orig,
         "salePrice":     lp,
         "store":         mall,
         "productUrl":    link,
@@ -191,70 +217,90 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int) -
 # ─── 뽐뿌 RSS 파싱 ───────────────────────────────────────────────
 def fetch_ppomppu_deals(config: dict) -> list[dict]:
     """
-    뽐뿌 RSS에서 테크 관련 핫딜 포스팅 수집.
-    제목에서 가격 정보를 파싱해 deals 후보로 변환.
+    뽐뿌 RSS 여러 게시판에서 테크 핫딜 수집.
+    - ppomppu (핫딜 통합), computer (PC/부품), phone (스마트폰)
     """
     rss_cfg = config.get("ppomppu_rss", {})
     if not rss_cfg.get("enabled"):
         return []
 
-    tech_kw = rss_cfg.get("tech_keywords", [])
-    max_posts = rss_cfg.get("max_posts", 20)
-    url = rss_cfg.get("url", "")
+    tech_kw   = rss_cfg.get("tech_keywords", [])
+    max_posts = rss_cfg.get("max_posts", 30)
+    # 단일 url 또는 urls 배열 모두 지원
+    urls = rss_cfg.get("urls") or ([rss_cfg["url"]] if rss_cfg.get("url") else [])
 
-    print(f"\n📡 뽐뿌 RSS 파싱 중...")
+    print(f"\n📡 뽐뿌 RSS 파싱 중... ({len(urls)}개 게시판)")
     candidates = []
+    seen_links = set()
 
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "TechDealKR/1.0"})
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            xml_data = resp.read().decode("utf-8", errors="replace")
+    for url in urls:
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={"User-Agent": "Mozilla/5.0 (compatible; ITSpecialBot/1.0)"}
+            )
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                xml_data = resp.read().decode("utf-8", errors="replace")
 
-        root = ET.fromstring(xml_data)
-        items = root.findall(".//item")[:max_posts]
+            root  = ET.fromstring(xml_data)
+            items = root.findall(".//item")[:max_posts]
+            print(f"  📂 {url.split('id=')[-1]} 게시판: {len(items)}개 포스팅")
 
-        for item in items:
-            title = (item.findtext("title") or "").strip()
-            link  = (item.findtext("link") or "").strip()
-            desc  = (item.findtext("description") or "").strip()
+            for item in items:
+                title = (item.findtext("title") or "").strip()
+                link  = (item.findtext("link") or "").strip()
+                desc  = (item.findtext("description") or "").strip()
 
-            # 테크 키워드 포함 여부 확인
-            if not any(kw in title for kw in tech_kw):
-                continue
+                if link in seen_links:
+                    continue
+                seen_links.add(link)
 
-            # 가격 추출 (예: 79,000원 / 79000 패턴)
-            prices = re.findall(r"[\d,]+(?=원)", title + " " + desc)
-            prices = [int(p.replace(",", "")) for p in prices if int(p.replace(",", "")) > 1000]
+                # 테크 키워드 포함 여부
+                combined = title + " " + desc
+                if not any(kw in combined for kw in tech_kw):
+                    continue
 
-            if len(prices) >= 2:
-                orig, sale = max(prices), min(prices)
-            elif len(prices) == 1:
-                # 가격 1개만 있으면 원가 추정 불가 → 스킵
-                continue
-            else:
-                continue
+                # 가격 추출
+                raw_prices = re.findall(r"[\d,]+(?=원)", combined)
+                prices = []
+                for rp in raw_prices:
+                    v = int(rp.replace(",", ""))
+                    if 1000 < v < 10_000_000:
+                        prices.append(v)
 
-            if sale >= orig or orig <= 0:
-                continue
+                if len(prices) >= 2:
+                    orig, sale = max(prices), min(prices)
+                else:
+                    # 가격 1개뿐: 제목에서 할인율 파싱 시도
+                    m = re.search(r'(\d+)\s*%\s*할인', title)
+                    if m and len(prices) == 1:
+                        disc_pct = int(m.group(1))
+                        sale = prices[0]
+                        orig = round(sale / (1 - disc_pct / 100))
+                    else:
+                        continue
 
-            disc = round((orig - sale) / orig * 100)
-            if disc < config["settings"]["min_discount_pct"]:
-                continue
+                if sale >= orig or orig <= 0:
+                    continue
 
-            candidates.append({
-                "_source": "ppomppu",
-                "title":   title,
-                "link":    link,
-                "originalPrice": orig,
-                "salePrice":     sale,
-                "discount":      disc,
-            })
-            print(f"  📌 [{disc}%할인] {title[:50]}")
+                disc = round((orig - sale) / orig * 100)
+                if disc < config["settings"]["min_discount_pct"]:
+                    continue
 
-    except Exception as e:
-        print(f"  ❌ 뽐뿌 RSS 오류: {e}")
+                candidates.append({
+                    "_source": "ppomppu",
+                    "title":   title,
+                    "link":    link,
+                    "originalPrice": orig,
+                    "salePrice":     sale,
+                    "discount":      disc,
+                })
+                print(f"  📌 [{disc}%할인] {title[:50]}")
 
-    print(f"  → 뽐뿌에서 {len(candidates)}개 테크 딜 감지")
+        except Exception as e:
+            print(f"  ❌ {url} 오류: {e}")
+
+    print(f"  → 뽐뿌 합계 {len(candidates)}개 테크 딜 감지")
     return candidates
 
 
@@ -403,19 +449,22 @@ def main():
 
     # ── 3. 네이버 쇼핑 검색 ──
     if naver_id and naver_secret:
-        print(f"\n🛍️  네이버 쇼핑 검색 시작...")
+        print(f"\n🛍️  네이버 쇼핑 검색 시작 ({len(config['search_keywords'])}개 키워드)...")
         for kw_cfg in config["search_keywords"]:
             keyword  = kw_cfg["keyword"]
             category = kw_cfg["category"]
-            products = search_naver_products(keyword, naver_id, naver_secret, display=5)
+            products = search_naver_products(keyword, naver_id, naver_secret, display=10)
+            passed = 0
             for p in products:
                 deal = naver_product_to_deal(p, category, next_id, min_disc)
                 if deal and not is_duplicate(deal, deals + new_deals):
                     new_deals.append(deal)
                     next_id += 1
+                    passed += 1
                     disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
                     print(f"  ✅ [{disc}%][{deal['store']}] {deal['name'][:35]}")
-            time.sleep(0.2)
+            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개")
+            time.sleep(0.3)
     else:
         print("\n⚠️  NAVER_CLIENT_ID 없음 — 네이버 검색 스킵")
 
