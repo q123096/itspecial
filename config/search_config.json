@@ -17,6 +17,7 @@
   "coupang_categories": [
     { "id": "1",    "name": "스마트폰",     "category": "smartphone" },
     { "id": "2",    "name": "노트북",       "category": "laptop" },
+    { "id": "10",   "name": "데스크탑PC",   "category": "desktop" },
     { "id": "3",    "name": "태블릿",       "category": "tablet" },
     { "id": "4",    "name": "이어폰헤드폰", "category": "audio" },
     { "id": "5",    "name": "모니터",       "category": "monitor" },
@@ -49,7 +50,13 @@
     { "keyword": "갤럭시 워치 7",        "category": "wearable",   "priority": 1, "msrp": 369000  },
     { "keyword": "애플워치 시리즈 10",   "category": "wearable",   "priority": 1, "msrp": 589000  },
     { "keyword": "로지텍 MX Master",     "category": "accessory",  "priority": 2, "msrp": 189000  },
-    { "keyword": "소니 알파 ZV-E10M2",   "category": "camera",     "priority": 2, "msrp": 1200000 }
+    { "keyword": "소니 알파 ZV-E10M2",   "category": "camera",     "priority": 2, "msrp": 1200000 },
+    { "keyword": "맥 미니 M4",           "category": "desktop",    "priority": 1, "msrp": 899000  },
+    { "keyword": "아이맥 M4",            "category": "desktop",    "priority": 1, "msrp": 1990000 },
+    { "keyword": "맥 스튜디오 M4",       "category": "desktop",    "priority": 2, "msrp": 2590000 },
+    { "keyword": "삼성 990 PRO SSD 1TB", "category": "desktop",    "priority": 2, "msrp": 120000  },
+    { "keyword": "RTX 5070",             "category": "desktop",    "priority": 2, "msrp": 950000  },
+    { "keyword": "인텔 코어 Ultra 5",    "category": "desktop",    "priority": 2, "msrp": 350000  }
   ],
 
   "ppomppu_rss": {
@@ -61,7 +68,8 @@
     "tech_keywords": [
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
-      "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플"
+      "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플",
+      "맥미니", "아이맥", "데스크탑", "조립PC", "그래픽카드", "램", "메모리"
     ],
     "max_posts": 30
   }
