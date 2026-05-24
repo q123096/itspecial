@@ -28,8 +28,8 @@
 
   "_msrp_comment": "msrp = 공식 출시가(원). hprice 비어있을 때 기준가로 사용. lprice < msrp × (1 - min_discount_pct/100) 이면 특가로 판단.",
   "search_keywords": [
-    { "keyword": "갤럭시 S25",           "category": "smartphone", "priority": 1, "msrp": 1199000 },
-    { "keyword": "갤럭시 S24 FE",        "category": "smartphone", "priority": 1, "msrp": 699000  },
+    { "keyword": "갤럭시 S25 자급제",     "category": "smartphone", "priority": 1, "msrp": 1199000 },
+    { "keyword": "갤럭시 S24 FE 자급제", "category": "smartphone", "priority": 1, "msrp": 699000  },
     { "keyword": "아이폰 16 자급제",      "category": "smartphone", "priority": 1, "msrp": 1250000 },
     { "keyword": "아이폰 15 자급제",      "category": "smartphone", "priority": 2, "msrp": 1050000 },
     { "keyword": "에어팟 프로 2세대",     "category": "audio",      "priority": 1, "msrp": 359000  },
