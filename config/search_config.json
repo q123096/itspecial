@@ -51,10 +51,16 @@
     { "keyword": "애플워치 시리즈 10",   "category": "wearable",   "priority": 1, "msrp": 589000  },
     { "keyword": "로지텍 MX Master",     "category": "accessory",  "priority": 2, "msrp": 189000  },
     { "keyword": "소니 알파 ZV-E10M2",   "category": "camera",     "priority": 2, "msrp": 1200000 },
-    { "keyword": "RTX 4070 그래픽카드",   "category": "desktop",    "priority": 1, "msrp": 750000  },
+    { "keyword": "MINISFORUM 미니PC",     "category": "desktop",    "priority": 1, "msrp": 380000  },
+    { "keyword": "Beelink 미니PC",       "category": "desktop",    "priority": 1, "msrp": 280000  },
+    { "keyword": "GMKtec 미니PC",        "category": "desktop",    "priority": 1, "msrp": 250000  },
+    { "keyword": "한성컴퓨터 게이밍PC",  "category": "desktop",    "priority": 1, "msrp": 990000  },
+    { "keyword": "RTX 4070 그래픽카드",  "category": "desktop",    "priority": 1, "msrp": 750000  },
     { "keyword": "RTX 4060 Ti 그래픽카드","category": "desktop",   "priority": 1, "msrp": 520000  },
-    { "keyword": "라이젠 7 7800X3D",     "category": "desktop",    "priority": 1, "msrp": 450000  },
-    { "keyword": "인텔 i5-14600KF",      "category": "desktop",    "priority": 1, "msrp": 270000  },
+    { "keyword": "라이젠 7 7800X3D",     "category": "desktop",    "priority": 2, "msrp": 450000  },
+    { "keyword": "인텔 i5-14600KF",      "category": "desktop",    "priority": 2, "msrp": 270000  },
+    { "keyword": "레노버 씽크센터",      "category": "desktop",    "priority": 2, "msrp": 750000  },
+    { "keyword": "HP Pavilion 데스크탑", "category": "desktop",    "priority": 2, "msrp": 890000  },
     { "keyword": "삼성 데스크탑 DM",     "category": "desktop",    "priority": 2, "msrp": 990000  },
     { "keyword": "삼성 990 PRO SSD 1TB", "category": "desktop",    "priority": 2, "msrp": 120000  },
     { "keyword": "WD Black SN850X 1TB",  "category": "desktop",    "priority": 2, "msrp": 130000  },
@@ -72,7 +78,8 @@
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
       "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플",
       "맥미니", "아이맥", "데스크탑", "조립PC", "그래픽카드", "램", "메모리",
-      "RTX", "라이젠", "AMD", "SSD", "파워서플라이", "쿨러", "케이스"
+      "RTX", "라이젠", "AMD", "SSD", "파워서플라이", "쿨러", "케이스",
+      "미니PC", "완본체", "한성", "MINISFORUM", "Beelink", "GMKtec", "씽크센터"
     ],
     "max_posts": 30
   }
