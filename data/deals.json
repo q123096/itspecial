@@ -28,7 +28,7 @@
     "salePrice": 259000,
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/products/5635278889",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.11st.co.kr/products/5635278889?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
     "expiresAt": "2026-05-26T18:00:00",
     "tags": [
       "타임딜",
@@ -165,7 +165,7 @@
     "salePrice": 289000,
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/products/5789012345",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.11st.co.kr/products/5789012345?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
     "expiresAt": "2026-05-27T18:00:00",
     "tags": [
       "핫딜"
@@ -262,7 +262,7 @@
     "salePrice": 459000,
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/products/6012345678",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.11st.co.kr/products/6012345678?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
     "expiresAt": "2026-05-30T23:59:00",
     "tags": [
       "핫딜"
@@ -339,7 +339,7 @@
     "salePrice": 579000,
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/products/6234567890",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.11st.co.kr/products/6234567890?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
     "expiresAt": "2026-06-01T23:59:00",
     "tags": [
       "핫딜"
@@ -435,7 +435,7 @@
     "salePrice": 59000,
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/products/6456789012",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://www.11st.co.kr/products/6456789012?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
     "expiresAt": "2026-05-28T23:59:00",
     "tags": [
       "핫딜"
