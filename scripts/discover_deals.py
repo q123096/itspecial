@@ -239,16 +239,22 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int, m
     if re.search(r'중고|B급|리퍼|리퍼비시|반품|A급|S급|최상급|판매완료', title):
         return None
 
-    # 스마트폰 카테고리: 통신사 개통 상품 제외 → 자급제 핫딜만 허용
+    # 스마트폰 카테고리: 자급제 / 공기계 표기 없으면 전부 차단
     if category == 'smartphone':
-        # 제목에 개통/약정 관련 키워드 있으면 제외
+        # ① 화이트리스트: 제목에 자급제·공기계 표기가 없으면 통신사 개통폰으로 간주
+        #    (Naver sort=sim이 "자급제" 검색에도 통신사 폰을 반환하는 문제 대응)
+        if not any(kw in title for kw in ['자급제', '공기계']):
+            return None
+
+        # ② 블랙리스트: 자급제 표기가 있어도 개통 관련 키워드 있으면 제외
         carrier_title_kw = [
             '개통', '약정', '공시지원금', '선택약정', '번호이동',
             '기기변경', '신규가입', '통신사', '유심',
         ]
         if any(kw in title for kw in carrier_title_kw):
             return None
-        # 통신사 공식 쇼핑몰 제외 (쇼핑몰명 기준)
+
+        # ③ 통신사 공식몰 블랙리스트 (쇼핑몰명 기준)
         carrier_mall_kw = [
             '텔레콤', '유플러스', 'lgu', 'kt공식', 'sk공식',
             'olleh', '브로드밴드', '티플', '엔텔레콤',
