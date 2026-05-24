@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechDeal KR — 딜 관리 어드민</title>
+  <title>ITSpecial — 딜 관리 어드민</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
@@ -892,7 +892,7 @@ async function init() {
   }
 
   try {
-    const res = await fetch('./data/deals.json');
+    const res = await fetch('./data/deals.json?v=' + Date.now());
     deals = await res.json();
   } catch {
     toast('deals.json을 불러오지 못했습니다.', 'warn');
@@ -902,7 +902,7 @@ async function init() {
   renderTable();
 }
 
-init();
+// init()는 인증 완료 후에만 실행 (아래 비밀번호 게이트에서 호출)
 </script>
 
 </div><!-- /admin-content -->
@@ -945,12 +945,13 @@ function checkPw() {
   }
 }
 
-// 이미 인증된 세션이면 바로 통과
+// 이미 인증된 세션이면 바로 통과 후 데이터 로드
 if (sessionStorage.getItem(PW_KEY) === '1') {
   document.getElementById('pw-gate').style.display    = 'none';
   document.getElementById('admin-content').style.display = 'block';
+  init();  // 세션 인증 시 데이터 로드
 }
-// 인증 전에는 init() 실행 안 함 (위 checkPw에서 호출)
+// 미인증 상태에서는 checkPw() 성공 시 init() 호출됨
 </script>
 </body>
 </html>

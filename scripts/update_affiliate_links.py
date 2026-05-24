@@ -86,21 +86,21 @@ def get_11st_affiliate_link(product_url: str, api_key: str) -> str:
     return ""
 
 
-# ─── Linkprice (G마켓/옥션/네이버 공통) ──────────────────────────
-STORE_UTM_MAP = {
-    "gmarket.co.kr": "?&from=ad&gi=",
-    "auction.co.kr": "?&from=ad&ai=",
+# ─── G마켓/옥션 (Linkprice 정식 연동 전 UTM 추적) ────────────────
+STORE_AFFILIATE_PARAM = {
+    "gmarket.co.kr": "partner=itspecial&trackingCode=itspecial",
+    "auction.co.kr": "partner=itspecial&trackingCode=itspecial",
 }
 
 def get_generic_affiliate_link(product_url: str, store: str) -> str:
     """
-    G마켓, 옥션 등 — UTM 파라미터 기반 간단 제휴 추적
-    (Linkprice 정식 연동 전 임시 방편)
+    G마켓, 옥션 — UTM 파라미터 기반 추적 (Linkprice 정식 연동 전 임시)
+    실제 수수료 발생은 Linkprice 연동 후 가능
     """
-    for domain, utm in STORE_UTM_MAP.items():
+    for domain, param in STORE_AFFILIATE_PARAM.items():
         if domain in product_url:
             sep = "&" if "?" in product_url else "?"
-            return product_url + sep + "affiliate=techdeal"
+            return product_url + sep + param
     return ""
 
 

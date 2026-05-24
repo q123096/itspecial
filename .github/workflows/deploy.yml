@@ -55,12 +55,14 @@ jobs:
             git diff --stat data/deals.json
           fi
 
-      - name: 변경된 deals.json 스테이징
+      - name: 변경된 deals.json 커밋 & 푸시
         if: steps.check.outputs.changed == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/deals.json
+          git commit -m "🤖 딜 자동 발굴 $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
+          git push
 
   # ════════════════════════════════════════
   # 2단계: 파트너스 링크 자동 생성
