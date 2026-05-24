@@ -223,7 +223,7 @@
     <div>
       <h3>직접 이메일 문의</h3>
       <p>폼 작성이 불편하시면 이메일로 직접 연락주세요.<br>
-      <a href="mailto:contact@itspecial.co.kr">contact@itspecial.co.kr</a></p>
+      <a href="mailto:q123096@gmail.com">q123096@gmail.com</a></p>
     </div>
   </div>
 
@@ -247,7 +247,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     const body    = encodeURIComponent(
       `담당자: ${data.get('name')}\n회사: ${data.get('company')}\n연락처: ${data.get('phone')}\n유형: ${data.get('type')}\n\n${data.get('message')}`
     );
-    window.location.href = `mailto:contact@itspecial.co.kr?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:q123096@gmail.com?subject=${subject}&body=${body}`;
     return;
   }
 
@@ -261,10 +261,10 @@ document.getElementById('contact-form').addEventListener('submit', async functio
       form.style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
     } else {
-      alert('전송 중 오류가 발생했습니다. contact@itspecial.co.kr 로 직접 문의해 주세요.');
+      alert('전송 중 오류가 발생했습니다. q123096@gmail.com 로 직접 문의해 주세요.');
     }
   } catch {
-    alert('네트워크 오류. contact@itspecial.co.kr 로 직접 문의해 주세요.');
+    alert('네트워크 오류. q123096@gmail.com 로 직접 문의해 주세요.');
   }
 });
 </script>
