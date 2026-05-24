@@ -1,1 +1,720 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "삼성전자 갤럭시 S25엣지 512G SM-S937N512미개봉 새상품",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_9050758/90507587975.jpg",
+    "originalPrice": 1199000,
+    "salePrice": 590000,
+    "store": "모바일 익스프레스",
+    "productUrl": "https://smartstore.naver.com/main/products/12963076965",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
+    "name": "Apple 아이폰15 256GB Apple 미개봉 새상품",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_9091205/90912059021.jpg",
+    "originalPrice": 1050000,
+    "salePrice": 550000,
+    "store": "휴대폰핫딜마켓",
+    "productUrl": "https://smartstore.naver.com/main/products/13367548685",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
+    "name": "삼성전자 삼성 갤럭시s24 FE_256GB 공기계 S721",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5808373/58083736681.jpg",
+    "originalPrice": 699000,
+    "salePrice": 383860,
+    "store": "롯데ON",
+    "productUrl": "https://www.lotteon.com/p/product/LO2589043706?sitmNo=LO2589043706_2589043707&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 4,
+    "name": "갤럭시 S25 FE 256GB / Galaxy S25 FE / SM-S731 / 키즈폰 효도폰",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_9037769/90377699959.jpg",
+    "originalPrice": 1199000,
+    "salePrice": 659000,
+    "store": "메인 라이프",
+    "productUrl": "https://smartstore.naver.com/main/products/12833188967",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 5,
+    "name": "삼성 오디세이 G5 QHD G55C 165Hz 게이밍 모니터 80~81cm(32인치)",
+    "category": "monitor",
+    "image": "https://shopping-phinf.pstatic.net/main_8262364/82623640431.32.jpg",
+    "originalPrice": 499000,
+    "salePrice": 280000,
+    "store": "삼성공식파트너 유겐트",
+    "productUrl": "https://smartstore.naver.com/main/products/5079118733",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 6,
+    "name": "에디파이어 네오버즈 프로 3 블루투스 노이즈 캔슬링 이어버드 블랙",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5865691/58656915781.jpg",
+    "originalPrice": 279000,
+    "salePrice": 156850,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9051792108&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 7,
+    "name": "그래픽카드 RTX 4060TI 4060 4070 3050 3060 3070 3080 TI SUPER",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9065112/90651129436.2.jpg",
+    "originalPrice": 520000,
+    "salePrice": 299000,
+    "store": "조립컴퓨터삼성LG중고노트북",
+    "productUrl": "https://smartstore.naver.com/main/products/13106618344",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 8,
+    "name": "Samsung 갤럭시 워치 7 크림 40mm",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5890444/58904444255.1.jpg",
+    "originalPrice": 369000,
+    "salePrice": 221660,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F481888804&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 9,
+    "name": "애플 미국정품 에어팟 프로 2세대 Apple 에어팟 프로 2세대 정품/USB-C 지원",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5595320/55953206062.3.jpg",
+    "originalPrice": 359000,
+    "salePrice": 216290,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F290182991&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 10,
+    "name": "Mate Mini-A 맥 미니 M4 도크, 80Gbps 썬더볼트 5 알루미늄 합금 스탠드",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9073031/90730311029.jpg",
+    "originalPrice": 899000,
+    "salePrice": 542710,
+    "store": "블루3",
+    "productUrl": "https://smartstore.naver.com/main/products/13185799932",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 11,
+    "name": "갤럭시탭 s10 fe 128GB wifi SM-X520 s펜+북커버포함-그레이",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_9041284/90412840719.jpg",
+    "originalPrice": 799000,
+    "salePrice": 501340,
+    "store": "해외구매대행전문일상컴퍼니",
+    "productUrl": "https://smartstore.naver.com/main/products/12868329727",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 12,
+    "name": "삼성 갤럭시 워치 7 40MM 크림",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5974814/59748149244.1.jpg",
+    "originalPrice": 369000,
+    "salePrice": 231540,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F541620357&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 13,
+    "name": "아이폰 16프로 256GB Apple 미개봉 새상품",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5848981/58489811341.jpg",
+    "originalPrice": 1250000,
+    "salePrice": 798750,
+    "store": "롯데ON",
+    "productUrl": "https://www.lotteon.com/p/product/LO2604555346?sitmNo=LO2604555346_2604555347&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 14,
+    "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
+    "originalPrice": 1049000,
+    "salePrice": 675340,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8989846237&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 15,
+    "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
+    "originalPrice": 449000,
+    "salePrice": 291900,
+    "store": "아메리칸직구",
+    "productUrl": "https://smartstore.naver.com/main/products/13426622062",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 16,
+    "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
+    "originalPrice": 279000,
+    "salePrice": 186500,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53508451505",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 17,
+    "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
+    "originalPrice": 189000,
+    "salePrice": 128000,
+    "store": "DELESHOP",
+    "productUrl": "https://smartstore.naver.com/main/products/7050537094",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 18,
+    "name": "소니 WH-1000XM5",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
+    "originalPrice": 449000,
+    "salePrice": 309000,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53509045307",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 19,
+    "name": "애플 맥북에어 13인치 M3 8C 8C 8G 256G 미드나이트 애플케어플러스 적용",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_9098785/90987855309.jpg",
+    "originalPrice": 1690000,
+    "salePrice": 1198000,
+    "store": "고릴라맥",
+    "productUrl": "https://smartstore.naver.com/main/products/13443344957",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 20,
+    "name": "Apple 아이폰 16프로 512GB Apple 미개봉 새상품",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_9088676/90886769996.jpg",
+    "originalPrice": 1250000,
+    "salePrice": 890000,
+    "store": "전국온라인최저가",
+    "productUrl": "https://smartstore.naver.com/main/products/13342259664",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 21,
+    "name": "삼성 갤럭시 워치7 (강화유리 2매 포함 패키지) 그린, 44mm, 블루투스",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_8930820/89308208131.122.jpg",
+    "originalPrice": 369000,
+    "salePrice": 264000,
+    "store": "삼성공식파트너 dmac",
+    "productUrl": "https://smartstore.naver.com/main/products/11763697544",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 22,
+    "name": "로지텍 MX MASTER 3S 정품, 그래파이트",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_5559432/55594320931.20250702110906.jpg",
+    "originalPrice": 189000,
+    "salePrice": 136940,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/55594320931",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 23,
+    "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
+    "originalPrice": 1690000,
+    "salePrice": 1259000,
+    "store": "나노스토어",
+    "productUrl": "https://smartstore.naver.com/main/products/11843706255",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 24,
+    "name": "갤럭시 S 24 FE 자급제  256GB  그레이",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5805805/58058050816.1.jpg",
+    "originalPrice": 699000,
+    "salePrice": 530000,
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=9221808652&ctag=9221808652&lptag=I27251244345&itemId=27251244345&vendorItemId=95454293241&spec=10305199",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 25,
+    "name": "삼성 갤럭시 탭 S10 FE 회색 128GB",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_5997021/59970216201.1.jpg",
+    "originalPrice": 799000,
+    "salePrice": 608200,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9338846103&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 26,
+    "name": "소니 WF 1000XM5 이어폰 무선 블루투스 노이즈캔슬링",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5961844/59618441344.jpg",
+    "originalPrice": 349000,
+    "salePrice": 268892,
+    "store": "크로켓Croket",
+    "productUrl": "https://www.croket.co.kr/seller/product/69d7b76f16eb9fc42c8198d9?yg_type=naver_shopping&yg_method=69d7b76f16eb9fc42c8198d9&utm_source=naver&utm_medium=shopping&utm_campaign=69d7b76f16eb9fc42c8198d9&utm_content={keyword}&utm_term={query}",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 27,
+    "name": "삼성전자 오디세이 G5 LS32FG500 80~81cm(32인치)",
+    "category": "monitor",
+    "image": "https://shopping-phinf.pstatic.net/main_5785495/57854950469.20251121150455.jpg",
+    "originalPrice": 499000,
+    "salePrice": 384750,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/57854950469",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 28,
+    "name": "삼성전자 갤럭시 워치7 알루미늄 실버, 44mm, 블루투스",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5425752/54257526116.20250417180309.jpg",
+    "originalPrice": 369000,
+    "salePrice": 286670,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/54257526116",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 29,
+    "name": "삼성전자 갤럭시워치7",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5529031/55290312583.jpg",
+    "originalPrice": 369000,
+    "salePrice": 286670,
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=1180582270&ctag=1180582270&lptag=l725741193721&itemId=39271171547&vendorItemId=90230341917&spec=10305197",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 30,
+    "name": "[브랜드위크]삼성전자 갤럭시 S25 FE 256GB 자급제 SM-S731N AI폰",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_8982611/89826110066.1.jpg",
+    "originalPrice": 1199000,
+    "salePrice": 938640,
+    "store": "삼성전자공식파트너 쇼마젠시",
+    "productUrl": "https://smartstore.naver.com/main/products/12281599350",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 31,
+    "name": "[리뷰이벤트+강화유리필름] 삼성전자 갤럭시워치7 44mm 블루투스",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5994504/59945040278.7.jpg",
+    "originalPrice": 369000,
+    "salePrice": 295000,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=7297404657&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 32,
+    "name": "LG전자 울트라기어 27GP750 68~69cm(27인치)",
+    "category": "monitor",
+    "image": "https://shopping-phinf.pstatic.net/main_5261176/52611765708.20250123103415.jpg",
+    "originalPrice": 399000,
+    "salePrice": 319000,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/52611765708",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 33,
+    "name": "LG전자 LG그램 14ZD95U-GX56K RAM 16GB, 256GB",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_5848818/58488180590.20260416154654.jpg",
+    "originalPrice": 1990000,
+    "salePrice": 1596000,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/58488180590",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 34,
+    "name": "LG그램 2026 노트북 인텔 팬서레이크 Ultra5 16GB 256GB 사무용 인강용",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_8663600/86636005031.8.jpg",
+    "originalPrice": 1990000,
+    "salePrice": 1599000,
+    "store": "온라인총판대리점",
+    "productUrl": "https://smartstore.naver.com/main/products/9091504708",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 35,
+    "name": "삼성전자 갤럭시탭 S10 FE WiFi전용, 128GB, 그레이",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_5392010/53920107147.20250407160502.jpg",
+    "originalPrice": 799000,
+    "salePrice": 661990,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53920107147",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 36,
+    "name": "애플 아이패드 에어 6세대 11인치 WiFi 128GB",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_8785082/87850821670.jpg",
+    "originalPrice": 1049000,
+    "salePrice": 869900,
+    "store": "ANDREWCHOCOUSA",
+    "productUrl": "https://smartstore.naver.com/main/products/10306317623",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 37,
+    "name": "애플워치 Series 10 GPS 46mm 제트블랙",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_6001486/60014860207.2.jpg",
+    "originalPrice": 589000,
+    "salePrice": 495140,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9347777687&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
