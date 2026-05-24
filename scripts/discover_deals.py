@@ -183,12 +183,15 @@ def coupang_product_to_deal(p: dict, category: str, next_id: int) -> dict | None
 NAVER_SHOP_URL = "https://openapi.naver.com/v1/search/shop.json"
 
 
-def search_naver_products(keyword: str, client_id: str, client_secret: str, display: int = 10) -> list[dict]:
+def search_naver_products(keyword: str, client_id: str, client_secret: str,
+                          display: int = 10, min_price: int = 30000) -> list[dict]:
     """
     네이버 쇼핑 검색 API
     - 가입: https://developers.naver.com/apps/#/register
     - 무료: 하루 25,000건
     - 반환: lprice(최저가), hprice(최고가), mallName, image, link, title
+    - min_price: config의 min_price 필드로 가격대 필터 (기본 3만원)
+                 "게이밍 완본체"처럼 광범위한 키워드에 700000 걸면 잡동사니 차단
     """
     try:
         r = requests.get(
@@ -200,8 +203,8 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str, disp
             params={
                 "query":   keyword,
                 "display": display,
-                "sort":    "sim",              # 정확도순 (asc=최저가순은 잡동사니 반환)
-                "filter":  "minPrice:30000",   # 3만원 미만 제외 (케이스·스티커 등)
+                "sort":    "sim",                        # 정확도순
+                "filter":  f"minPrice:{min_price}",      # 가격 하한 필터
             },
             timeout=10,
         )
@@ -563,10 +566,11 @@ def main():
         price_history = load_price_history()
 
         for kw_cfg in config["search_keywords"]:
-            keyword  = kw_cfg["keyword"]
-            category = kw_cfg["category"]
-            msrp     = kw_cfg.get("msrp", 0)
-            products = search_naver_products(keyword, naver_id, naver_secret, display=10)
+            keyword   = kw_cfg["keyword"]
+            category  = kw_cfg["category"]
+            msrp      = kw_cfg.get("msrp", 0)
+            min_price = kw_cfg.get("min_price", 30000)
+            products  = search_naver_products(keyword, naver_id, naver_secret, display=10, min_price=min_price)
 
             # 오늘 최저가 기록 → 7일 평균 업데이트
             if products:
