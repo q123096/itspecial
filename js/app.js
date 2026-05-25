@@ -131,7 +131,14 @@ function renderCard(deal) {
         </div>
         <p class="deal-name">${deal.name}</p>
         <div class="deal-prices">
-          <span class="original-price">${fmt(deal.originalPrice)}</span>
+          <span class="original-price">
+            ${deal.priceType === 'hprice'
+              ? '<span class="price-type-label">타사 최고가</span>'
+              : deal.priceType === 'avg7d'
+                ? '<span class="price-type-label">7일 평균가</span>'
+                : ''}
+            ${fmt(deal.originalPrice)}
+          </span>
           <span class="sale-price">${fmt(deal.salePrice)}</span>
         </div>
         <div class="deal-footer">

@@ -470,47 +470,51 @@ def naver_product_to_deal(
         if any(kw in mall.lower() for kw in carrier_mall_kw):
             return None
 
-    disc = 0
-    orig = 0
-    sale = lp
+    disc       = 0
+    orig       = 0
+    sale       = lp
+    price_type = ""   # 가격 근거 출처 → UI 라벨 결정
 
-    # Case 1: hprice(최고가)가 있고 lprice보다 클 때 → 정상 할인율 계산
+    # Case 1: hprice(타사 최고가)가 있고 lprice보다 클 때
+    # → 동일 상품을 파는 여러 쇼핑몰 중 최고가 대비 최저가 비교 (신뢰 높음)
     if hp > lp:
-        disc = round((hp - lp) / hp * 100)
-        orig = hp
+        disc       = round((hp - lp) / hp * 100)
+        orig       = hp
+        price_type = "hprice"
 
-    # Case 2: hprice 없음 → 제목에서 할인율 파싱 (예: "30% 할인", "[20%↓]")
+    # Case 2: 제목에서 할인율 파싱 (예: "30% 할인", "[20%↓]")
     elif re.search(r'(\d+)\s*%\s*할인|(\d+)%↓|(\d+)%\s*off', title, re.IGNORECASE):
-        m    = re.search(r'(\d+)\s*%', title)
-        disc = int(m.group(1)) if m else 0
-        orig = round(lp / (1 - disc / 100)) if disc < 100 else lp
+        m          = re.search(r'(\d+)\s*%', title)
+        disc       = int(m.group(1)) if m else 0
+        orig       = round(lp / (1 - disc / 100)) if disc < 100 else lp
+        price_type = "store"
 
     # Case 3: 제목에서 두 가격 파싱 (예: "89,000원→59,000원")
     elif re.search(r'[\d,]+원\s*[→\-]\s*[\d,]+원', title):
         prices = [int(x.replace(",", "")) for x in re.findall(r'([\d,]+)원', title)]
         if len(prices) >= 2:
-            orig = max(prices)
-            sale = min(prices)
-            lp   = sale
-            disc = round((orig - sale) / orig * 100) if orig > sale else 0
+            orig       = max(prices)
+            sale       = min(prices)
+            lp         = sale
+            disc       = round((orig - sale) / orig * 100) if orig > sale else 0
+            price_type = "store"
 
-    # Case 4: 7일 평균가 (5일 이상 축적 + 30% 이내만 허용 — 보수적 적용)
+    # Case 4: 7일 평균가 (5일 이상 축적 + 30% 이내만 허용)
     # MSRP는 절대 originalPrice로 사용하지 않음 → 신뢰도 원칙
-    avg_used = False
     if orig == 0 and avg_7d > 0 and hist_days >= 5 and lp < avg_7d:
         disc = round((avg_7d - lp) / avg_7d * 100)
         if disc <= 30:
-            orig = avg_7d
-            avg_used = True
+            orig       = avg_7d
+            price_type = "avg7d"
 
     # 가격 근거 없으면 제외 (MSRP 추정 불허)
     if disc < min_disc or orig == 0:
         return None
 
     # 할인율 상한
-    # - hprice 기반(Case 1): 50% 이하
-    # - 제목 파싱(Case 2·3) / 7일 평균(Case 4): 35% 이하 (파싱 오류·신뢰도 보정)
-    max_disc = 50 if (hp > lp) else 35
+    # - hprice 기반(Case 1): 50% 이하 (실제 시장가 비교)
+    # - 제목·7일평균(Case 2·3·4): 35% 이하 (파싱 오류·신뢰도 보정)
+    max_disc = 50 if price_type == "hprice" else 35
     if disc > max_disc:
         return None
 
@@ -526,6 +530,7 @@ def naver_product_to_deal(
         "image":         image,
         "originalPrice": orig,
         "salePrice":     lp,
+        "priceType":     price_type,   # "hprice" | "avg7d" | "store" | "" (쿠팡은 필드 없음)
         "store":         mall,
         "productUrl":    link,
         "affiliateUrl":  "",
