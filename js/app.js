@@ -85,25 +85,27 @@ async function shareDeal(dealId, e) {
   const title = `🔥 ${disc}% 할인! ${deal.name}`;
   const text  = `${deal.name}\n${fmt(deal.originalPrice)} → ${fmt(deal.salePrice)} (${disc}% 할인)\n\nITSpecial에서 더 많은 특가 확인하기`;
 
-  // 1순위: 카카오톡 SDK (JS 키 설정 시)
+  // 1순위: 카카오톡 SDK (JS 키 설정 + 도메인 등록 시)
   if (KAKAO_JS_KEY && window.Kakao?.isInitialized()) {
-    window.Kakao.Share.sendDefault({
-      objectType: 'commerce',
-      content: {
-        title: deal.name,
-        imageUrl: deal.image,
-        link: { mobileWebUrl: href, webUrl: href },
-        description: `${disc}% 할인 · ${fmt(deal.salePrice)} · ${deal.store}`,
-      },
-      commerce: {
-        productName: deal.name,
-        regularPrice: deal.originalPrice,
-        salePrice:    deal.salePrice,
-        discountRate: disc,
-      },
-      buttons: [{ title: '구매하러 가기', link: { mobileWebUrl: href, webUrl: href } }],
-    });
-    return;
+    try {
+      window.Kakao.Share.sendDefault({
+        objectType: 'commerce',
+        content: {
+          title: deal.name,
+          imageUrl: deal.image,
+          link: { mobileWebUrl: href, webUrl: href },
+          description: `${disc}% 할인 · ${fmt(deal.salePrice)} · ${deal.store}`,
+        },
+        commerce: {
+          productName: deal.name,
+          regularPrice: deal.originalPrice,
+          salePrice:    deal.salePrice,
+          discountRate: disc,
+        },
+        buttons: [{ title: '구매하러 가기', link: { mobileWebUrl: href, webUrl: href } }],
+      });
+      return;
+    } catch { /* 도메인 미등록 등 Kakao 오류 → 다음 수단으로 폴백 */ }
   }
   // 2순위: Web Share API (모바일 — 카카오톡 포함)
   if (navigator.share) {
