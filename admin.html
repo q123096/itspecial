@@ -302,6 +302,7 @@
   <nav class="header-nav">
     <a href="index.html" class="btn-sm btn-outline">← 사이트 보기</a>
     <button class="btn-sm btn-success" onclick="saveAll()">전체 저장</button>
+    <button id="btn-bulk-desc" class="btn-sm" style="background:#17a2b8;color:white;" onclick="bulkEnrichDescriptions()">📝 설명 자동 보강</button>
     <button id="btn-gh-push" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub에 저장</button>
   </nav>
 </header>
@@ -603,7 +604,15 @@ const CAT_LABELS = {
   camera:'📷 카메라', gaming:'🎮 게이밍', wearable:'⌚ 웨어러블', accessory:'🖱️ 주변기기',
 };
 
+/** 색상·접두어 제거 → products.json 조회 키 */
+function makeProductKey(name) {
+  const COLOR_RE  = /\s*[,·]?\s*(?:블랙|화이트|실버|그레이|블루|레드|핑크|퍼플|골드|그린|베이지|티타늄|카키|네이비|코랄|민트|라벤더|크림|챠콜|미드나잇|스타라이트|아이보리|스카이블루|옐로우?|오렌지|브라운|팬텀블랙|팬텀화이트|아이스블루|에버그린)(?=\s|,|$)/gi;
+  const PREFIX_RE = /^\s*\[?(?:쿠팡|11번가|G마켓|옥션|SSG닷컴?|네이버쇼핑?|롯데온|다나와|에누리)\]?\s*[-_]?\s*/i;
+  return (name || '').replace(PREFIX_RE, '').replace(COLOR_RE, '').replace(/\s+/g, ' ').trim();
+}
+
 let deals = [];
+let productsDB = {};   // 상품 설명 DB (data/products.json)
 
 // ─── Toast ───
 function toast(msg, type = '') {
@@ -939,6 +948,32 @@ async function pushToGitHub() {
       throw new Error(e.message || `업로드 실패 (${putRes.status})`);
     }
 
+    // ── products.json 도 함께 업로드 ──
+    try {
+      const prodJson    = JSON.stringify(productsDB, null, 2);
+      const prodContent = btoa(unescape(encodeURIComponent(prodJson)));
+      const getProd = await fetch(
+        `https://api.github.com/repos/${GH_REPO}/contents/data/products.json`,
+        { headers }
+      );
+      const prodSha = getProd.ok ? (await getProd.json()).sha : undefined;
+      await fetch(
+        `https://api.github.com/repos/${GH_REPO}/contents/data/products.json`,
+        {
+          method: 'PUT',
+          headers,
+          body: JSON.stringify({
+            message: `📝 products.json 업데이트 (${new Date().toLocaleString('ko-KR')})`,
+            content: prodContent,
+            ...(prodSha ? { sha: prodSha } : {}),
+          }),
+        }
+      );
+    } catch (pe) {
+      console.warn('[products.json 업로드 실패]', pe);
+      // deals.json은 이미 성공했으므로 경고만 출력
+    }
+
     updateStats();
     renderTable();
     toast('✅ GitHub 저장 완료! 1~2분 후 사이트에 반영됩니다.', 'success');
@@ -1246,7 +1281,7 @@ async function autoFill() {
     const mlData = await mlRes.json();
 
     if (mlData.status === 'success') {
-      const { title, image } = mlData.data;
+      const { title, image, description } = mlData.data;
 
       // 상품명 (플랫폼 이름이 그대로 들어오면 무시)
       const PLATFORM_TITLES = ['네이버 브랜드 커넥트', '네이버쇼핑', 'Naver', 'Coupang', '쿠팡', '11번가', 'G마켓', 'SSG'];
@@ -1273,6 +1308,19 @@ async function autoFill() {
         imgEl.value = imgUrl;
         previewImg(imgUrl);
         filled.push('이미지');
+      }
+
+      // ── 상품 설명 → products.json 저장 ──
+      const prodName = (!isBadTitle && cleanedTitle) ? cleanedTitle : nameEl.value.trim();
+      if (description && description.length >= 20 && prodName) {
+        const key = makeProductKey(prodName);
+        if (key && !productsDB[key]?.description) {
+          productsDB[key] = {
+            description: description.slice(0, 150).trim(),
+            fetchedAt:   new Date().toISOString(),
+          };
+          filled.push('설명');
+        }
       }
     }
 
@@ -1302,6 +1350,51 @@ async function autoFill() {
   }
 }
 
+// ─── 상품 설명 일괄 보강 ───
+async function bulkEnrichDescriptions() {
+  const toEnrich = deals.filter(d => {
+    const key = makeProductKey(d.name);
+    return key && !productsDB[key]?.description && d.productUrl;
+  });
+
+  if (!toEnrich.length) {
+    toast('✅ 모든 상품에 설명이 이미 있습니다!', 'success');
+    return;
+  }
+
+  const btn = document.getElementById('btn-bulk-desc');
+  if (btn) { btn.disabled = true; btn.textContent = `⏳ 0/${toEnrich.length}개 처리 중...`; }
+
+  let count = 0;
+  for (const deal of toEnrich) {
+    try {
+      const res  = await fetchWithTimeout(
+        `https://api.microlink.io/?url=${encodeURIComponent(deal.productUrl)}`, 8000
+      );
+      const data = await res.json();
+      if (data.status === 'success' && data.data.description?.length >= 20) {
+        const key = makeProductKey(deal.name);
+        if (key) {
+          productsDB[key] = {
+            description: data.data.description.slice(0, 150).trim(),
+            fetchedAt:   new Date().toISOString(),
+          };
+          count++;
+        }
+      }
+    } catch { /* 개별 실패는 무시하고 계속 */ }
+
+    if (btn) btn.textContent = `⏳ ${count}/${toEnrich.length}개 처리 중...`;
+    await new Promise(r => setTimeout(r, 600)); // API rate limit 배려
+  }
+
+  if (btn) { btn.disabled = false; btn.textContent = '📝 설명 자동 보강'; }
+  toast(
+    `✅ ${count}/${toEnrich.length}개 설명 수집 완료 — 🚀 GitHub 저장 버튼으로 반영하세요`,
+    count > 0 ? 'success' : ''
+  );
+}
+
 // ─── Load data ───
 async function init() {
   // GitHub 토큰 상태 표시
@@ -1317,6 +1410,11 @@ async function init() {
     toast('deals.json을 불러오지 못했습니다.', 'warn');
     deals = [];
   }
+  // 상품 설명 DB 로드
+  try {
+    const pr = await fetch('./data/products.json?v=' + Date.now());
+    if (pr.ok) productsDB = await pr.json();
+  } catch {}
   updateStats();
   renderTable();
 }

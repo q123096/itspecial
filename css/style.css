@@ -343,6 +343,19 @@ img { display: block; max-width: 100%; }
   padding-right: 44px; /* 찜·공유 버튼 겹침 방지 */
 }
 
+/* 한줄 설명 */
+.img-tooltip-desc {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.68);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-right: 44px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* 하단: 가격 비교 + 메타 */
 .img-tooltip-prices { width: 100%; }
 .img-tooltip-orig {

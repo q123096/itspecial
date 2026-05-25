@@ -26,6 +26,13 @@ const TAG_MAP = {
   '패키지':   { cls: 'badge-hot',      icon: '📦' },
 };
 
+/* ─── Product Key (색상·접두어 제거 → products.json 조회키) ─── */
+function makeProductKey(name) {
+  const COLOR_RE  = /\s*[,·]?\s*(?:블랙|화이트|실버|그레이|블루|레드|핑크|퍼플|골드|그린|베이지|티타늄|카키|네이비|코랄|민트|라벤더|크림|챠콜|미드나잇|스타라이트|아이보리|스카이블루|옐로우?|오렌지|브라운|팬텀블랙|팬텀화이트|아이스블루|에버그린)(?=\s|,|$)/gi;
+  const PREFIX_RE = /^\s*\[?(?:쿠팡|11번가|G마켓|옥션|SSG닷컴?|네이버쇼핑?|롯데온|다나와|에누리)\]?\s*[-_]?\s*/i;
+  return (name || '').replace(PREFIX_RE, '').replace(COLOR_RE, '').replace(/\s+/g, ' ').trim();
+}
+
 /* ─── State ─── */
 const state = {
   deals: [],
@@ -36,6 +43,7 @@ const state = {
   maxPrice: Infinity,
   query: '',
   wishlist: JSON.parse(localStorage.getItem('tdkr_wishlist') || '[]'),
+  products: {},   // 상품 설명 DB (products.json)
 };
 
 function saveWishlist() {
@@ -212,6 +220,9 @@ function renderCard(deal) {
     return info ? `<span class="img-tooltip-tag">${info.icon} ${t}</span>` : '';
   }).join('');
 
+  const prodKey  = makeProductKey(deal.name);
+  const prodDesc = (state.products[prodKey]?.description || '').slice(0, 100);
+
   const tooltipHtml = `
     <div class="img-tooltip" aria-hidden="true">
       <div class="img-tooltip-header">
@@ -219,6 +230,7 @@ function renderCard(deal) {
         ${tagBadges}
       </div>
       <div class="img-tooltip-name">${deal.name}</div>
+      ${prodDesc ? `<div class="img-tooltip-desc">${prodDesc}${prodDesc.length >= 100 ? '…' : ''}</div>` : ''}
       <div class="img-tooltip-prices">
         <div class="img-tooltip-orig">${fmt(deal.originalPrice)}</div>
         <div class="img-tooltip-sale">${fmt(deal.salePrice)}</div>
@@ -635,6 +647,11 @@ async function init() {
     $grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚡</div><h3>데이터를 불러오는 중이에요</h3></div>`;
     return;
   }
+  // 상품 설명 DB 로드 (없어도 정상 동작)
+  try {
+    const pr = await fetch('./data/products.json?v=' + Date.now());
+    if (pr.ok) state.products = await pr.json();
+  } catch {}
   updateHeroStats();
   document.getElementById('live-count').textContent = state.deals.length;
   applyFilters();
