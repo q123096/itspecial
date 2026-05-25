@@ -760,18 +760,21 @@ def main():
     print(f"\n🗑️  만료 딜 {expired_count}개 제거")
 
     # ── MSRP 부풀리기 소급 제거 ──
-    # 쿠팡 외 딜 중 할인율 40% 초과는 MSRP fallback 오류 가능성이 높음
-    # (쿠팡은 실제 originalPrice 제공, 네이버는 hprice 없으면 MSRP 사용)
+    # hprice 기반(priceType=hprice)은 50% 이내 허용 (실제 시장 최고가 비교)
+    # 그 외 비쿠팡 딜은 40% 초과 시 MSRP 오류 가능성 → 제거
     before = len(deals)
+    def _disc(d):
+        op = d.get("originalPrice", 0)
+        return round((op - d.get("salePrice", 0)) / op * 100) if op else 0
     deals = [
         d for d in deals
         if d.get("store") == "쿠팡"
-        or d.get("originalPrice", 0) == 0
-        or round((d["originalPrice"] - d["salePrice"]) / d["originalPrice"] * 100) <= 40
+        or d.get("priceType") == "hprice"   # 타사 최고가 기반 → 50%까지 허용
+        or _disc(d) <= 40
     ]
     cleaned = before - len(deals)
     if cleaned:
-        print(f"🔧 MSRP 부풀리기 의심 딜 {cleaned}개 소급 제거 (비쿠팡 할인율 40% 초과)")
+        print(f"🔧 MSRP 부풀리기 의심 딜 {cleaned}개 소급 제거")
 
     new_deals  = []
     next_id    = max((d["id"] for d in deals), default=0) + 1
@@ -836,7 +839,6 @@ def main():
         for kw_cfg in config["search_keywords"]:
             keyword   = kw_cfg["keyword"]
             category  = kw_cfg["category"]
-            msrp      = kw_cfg.get("msrp", 0)
             min_price = kw_cfg.get("min_price", 30000)
             products  = search_naver_products(keyword, naver_id, naver_secret, display=10, min_price=min_price)
 
@@ -849,7 +851,7 @@ def main():
                 if min_lp >= 30000:
                     update_price_history(price_history, keyword, min_lp)
 
-            # 기준가 결정: 7일 평균(3일 이상 데이터) 또는 MSRP fallback
+            # 7일 평균가 (5일 이상 축적 시 Case 4 fallback으로 활용)
             hist_entry = price_history.get(keyword, {})
             hist_days  = hist_entry.get("days", 0)
             avg_7d     = hist_entry.get("avg_7d", 0)
