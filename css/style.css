@@ -278,8 +278,11 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  z-index: 3;   /* 툴팁 위에 표시 */
+  z-index: 2;
+  transition: opacity 0.2s ease;
 }
+/* 호버 시 툴팁이 배지를 대체 — 부드럽게 숨김 */
+.deal-card:hover .deal-badges { opacity: 0; pointer-events: none; }
 
 /* ===== 이미지 호버 툴팁 (상세 정보) ===== */
 .img-tooltip {
@@ -294,7 +297,7 @@ img { display: block; max-width: 100%; }
   gap: 0;
   opacity: 0;
   transition: opacity 0.22s ease;
-  z-index: 1;
+  z-index: 3;   /* 배지(2)보다 위 — 배지가 가리지 않음 */
   padding: 12px 13px;
   text-align: left;
 }
@@ -376,9 +379,12 @@ img { display: block; max-width: 100%; }
   font-weight: 600;
   padding: 3px 8px;
   border-radius: 6px;
-  z-index: 3;
+  z-index: 2;
   letter-spacing: 0.2px;
+  transition: opacity 0.2s ease;
 }
+/* 호버 시 툴팁이 대신 정보 보여줌 */
+.deal-card:hover .update-badge { opacity: 0; }
 
 /* ===== Card action buttons (wish ❤️ + share) ===== */
 .card-actions {
@@ -391,7 +397,7 @@ img { display: block; max-width: 100%; }
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 0.18s ease, transform 0.18s ease;
-  z-index: 2;
+  z-index: 4;   /* 툴팁(3)보다 위 — 항상 클릭 가능 */
 }
 .deal-card:hover .card-actions,
 .card-actions:focus-within { opacity: 1; transform: translateY(0); }
