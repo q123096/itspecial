@@ -7,6 +7,13 @@ on:
     # 한국시간 오전 9시 / 오후 3시 / 오후 9시
     - cron: '0 0,6,12 * * *'
   workflow_dispatch:   # 수동 실행 (GitHub Actions 탭에서 버튼 클릭)
+    inputs:
+      send_test_alert:
+        description: '📧 테스트 이메일 발송 (기존 딜로 구독자에게 발송)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
 
 permissions:
   contents: write
@@ -46,6 +53,7 @@ jobs:
           RESEND_API_KEY:       ${{ secrets.RESEND_API_KEY }}
           SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SEND_TEST_ALERT:      ${{ github.event.inputs.send_test_alert }}
         run: python scripts/discover_deals.py
 
       - id: check

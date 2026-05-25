@@ -849,9 +849,14 @@ def main():
     print(f"{'='*55}\n")
 
     # ── 구독자 딜 알림 발송 ──
+    test_alert = os.environ.get("SEND_TEST_ALERT", "").lower() == "true"
     if new_deals:
         print(f"\n📨 구독자 알림 발송 중...")
         send_deal_alerts(new_deals, resend_key)
+    elif test_alert and all_deals:
+        sample = all_deals[:3]
+        print(f"\n🧪 테스트 알림 발송 중 (기존 딜 {len(sample)}개)...")
+        send_deal_alerts(sample, resend_key)
     else:
         print("\n📭 신규 딜 없음 — 알림 발송 스킵")
 
