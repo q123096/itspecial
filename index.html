@@ -23,10 +23,31 @@
   <meta name="twitter:description" content="스마트폰·노트북·이어폰 최저가를 한눈에. 하루 3회 자동 업데이트.">
   <meta name="twitter:image"       content="https://itspecial.co.kr/og-image.png">
 
-  <!-- Google Analytics 4 (GA_MEASUREMENT_ID를 실제 ID로 교체) -->
-  <!-- TODO: https://analytics.google.com → 속성 만들기 → 측정 ID(G-XXXXXXXXXX) -->
+  <!-- Google Analytics 4 -->
   <script>window.GA_ID = 'G-8DWD095RS4';</script>
   <title>ITSpecial — 테크 특가 모음 🔥</title>
+
+  <!-- Schema Markup: WebSite (정적 — 사이트 전체) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ITSpecial",
+    "alternateName": "아이티스페셜",
+    "url": "https://itspecial.co.kr",
+    "description": "한국 테크 특가 모음. 스마트폰·노트북·이어폰 등 IT 기기 최저가를 한눈에.",
+    "inLanguage": "ko-KR",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://itspecial.co.kr/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <!-- Schema Markup: Product/Offer (동적 — app.js가 딜 로드 후 주입) -->
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">

@@ -270,10 +270,81 @@ function render() {
         <p>다른 카테고리나 검색어를 시도해보세요</p>
       </div>`;
     $count.innerHTML = `결과 <strong>0</strong>개`;
+    injectSchemaMarkup([]);
     return;
   }
   $grid.innerHTML = state.filtered.map(renderCard).join('');
   $count.innerHTML = `특가 <strong>${state.filtered.length}</strong>개`;
+  injectSchemaMarkup(state.filtered);
+}
+
+/* ─── Schema Markup (JSON-LD) ─── */
+/**
+ * 현재 필터된 딜 목록을 구글이 읽을 수 있는 구조화 데이터로 변환해 <head>에 주입.
+ * - ItemList  : 딜 목록 전체 (카테고리/검색 결과)
+ * - Product   : 개별 상품 (이름·이미지)
+ * - Offer     : 가격·재고·판매처·유효기간
+ * - AggregateRating : 별점·리뷰수 (있을 때만)
+ * 구글 리치 스니펫 기준: https://developers.google.com/search/docs/appearance/structured-data/product
+ */
+function injectSchemaMarkup(deals) {
+  // 기존 동적 스키마 제거 (render 호출마다 최신 데이터로 교체)
+  document.getElementById('schema-deals-ld')?.remove();
+  if (!deals.length) return;
+
+  const SITE_URL = 'https://itspecial.co.kr';
+
+  const itemListElements = deals.slice(0, 20).map((deal, i) => {
+    const { href } = resolveLink(deal);
+    const expiresDate = deal.expiresAt ? deal.expiresAt.split('T')[0] : '';
+
+    const product = {
+      '@type': 'Product',
+      name: deal.name,
+      image: [deal.image],
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'KRW',
+        price: String(deal.salePrice),
+        availability: deal.inStock
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/OutOfStock',
+        ...(expiresDate ? { priceValidUntil: expiresDate } : {}),
+        url: href,
+        seller: { '@type': 'Organization', name: deal.store },
+      },
+    };
+
+    // 별점/리뷰수가 있을 때만 AggregateRating 추가
+    // (구글 가이드: 리뷰 없는 별점은 스팸으로 분류될 수 있음)
+    if (deal.rating >= 1 && deal.reviewCount > 0) {
+      product.aggregateRating = {
+        '@type': 'AggregateRating',
+        ratingValue: deal.rating.toFixed(1),
+        reviewCount: String(deal.reviewCount),
+        bestRating: '5',
+        worstRating: '1',
+      };
+    }
+
+    return { '@type': 'ListItem', position: i + 1, item: product };
+  });
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: '한국 테크 특가 모음 — ITSpecial',
+    description: '스마트폰·노트북·이어폰 등 IT 기기 최저가를 한눈에',
+    url: SITE_URL,
+    numberOfItems: deals.length,
+    itemListElement: itemListElements,
+  };
+
+  const script = document.createElement('script');
+  script.id   = 'schema-deals-ld';
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schema, null, 0);
+  document.head.appendChild(script);
 }
 
 /* ─── Filter & Sort ─── */
