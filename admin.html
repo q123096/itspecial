@@ -213,6 +213,37 @@
     .toast.success { background: #2ECC40; }
     .toast.warn { background: #FF851B; }
 
+    /* ─── Pin button (table row) ─── */
+    .btn-pin-row {
+      padding: 5px 9px; border-radius: 6px; font-size: 13px;
+      cursor: pointer; border: 1.5px solid var(--border);
+      background: #f8f9fa; color: #adb5bd; transition: all .15s; white-space: nowrap;
+    }
+    .btn-pin-row:hover { background: #fff3cd; color: #e67e00; border-color: #ffc107; }
+    .btn-pin-row.is-pinned { background: #fff3cd; color: #e67e00; border-color: #ffc107; font-weight: 700; }
+
+    /* ─── Pinned row highlight ─── */
+    tr.pinned-row > td { background: #fffef0 !important; }
+    tr.pinned-row:hover > td { background: #fffbe6 !important; }
+    .pinned-row-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      color: #e67e00; background: #fff3cd; border: 1px solid #ffc107;
+      border-radius: 4px; padding: 1px 5px; margin-top: 3px;
+    }
+
+    /* ─── Pin toggle (add form) ─── */
+    .pin-toggle-wrap {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 14px; border-radius: 8px;
+      border: 1.5px solid var(--border); cursor: pointer;
+      transition: all .15s; user-select: none;
+    }
+    .pin-toggle-wrap:hover { border-color: #ffc107; background: #fffef0; }
+    .pin-toggle-wrap.active { border-color: #ffc107; background: #fff3cd; }
+    .pin-toggle-wrap input[type=checkbox] { width: 18px; height: 18px; accent-color: #e67e00; cursor: pointer; flex-shrink: 0; }
+    .pin-toggle-desc strong { display: block; font-size: 13px; color: var(--text); }
+    .pin-toggle-desc span { font-size: 11px; color: var(--muted); }
+
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
       .admin-header h1 { font-size: 14px; }
@@ -432,7 +463,7 @@
           <th>할인율</th>
           <th>가격</th>
           <th>제휴링크 <span style="color:#ffc107;font-size:10px">★ 핵심</span></th>
-          <th>마감일</th>
+          <th>마감일 <span style="font-size:10px;color:#2ECC40;font-weight:600">빈칸=무기한</span></th>
           <th>관리</th>
         </tr>
       </thead>
@@ -487,7 +518,19 @@
       </div>
       <div class="form-group" style="grid-column: span 2;">
         <label>상품 원본 URL *</label>
-        <input type="url" class="form-input" id="new-product-url" placeholder="https://www.coupang.com/vp/products/...">
+        <div style="display:flex;gap:8px;align-items:stretch;">
+          <input type="url" class="form-input" id="new-product-url"
+                 placeholder="https://www.coupang.com/vp/products/..."
+                 style="flex:1;">
+          <button type="button" id="btn-autofill" class="btn-sm btn-primary"
+                  onclick="autoFill()"
+                  style="white-space:nowrap;padding:8px 16px;font-size:13px;">
+            🔍 자동 가져오기
+          </button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:5px;">
+          💡 URL 붙여넣으면 이름·이미지·가격·카테고리를 자동으로 채워드립니다
+        </div>
       </div>
       <div class="form-group" style="grid-column: span 2;">
         <label>제휴링크 URL (파트너스 링크)</label>
@@ -495,7 +538,14 @@
       </div>
       <div class="form-group">
         <label>이미지 URL</label>
-        <input type="url" class="form-input" id="new-image" placeholder="https://images.unsplash.com/...">
+        <input type="url" class="form-input" id="new-image"
+               placeholder="자동 가져오기로 자동 입력됩니다"
+               oninput="previewImg(this.value)">
+        <div id="img-preview-wrap" style="display:none;margin-top:6px;align-items:center;gap:10px;">
+          <img id="img-preview" alt="미리보기"
+               style="width:72px;height:72px;object-fit:cover;border-radius:8px;border:1.5px solid var(--border);">
+          <span style="font-size:11px;color:var(--muted);">이미지 미리보기</span>
+        </div>
       </div>
       <div class="form-group">
         <label>마감일시</label>
@@ -508,6 +558,16 @@
       <div class="form-group">
         <label>평점 (0~5)</label>
         <input type="number" class="form-input" id="new-rating" placeholder="4.5" min="0" max="5" step="0.1">
+      </div>
+      <div class="form-group" style="grid-column: span 2;">
+        <label>📌 고정 여부</label>
+        <div class="pin-toggle-wrap active" id="pin-toggle-label" onclick="togglePinForm()">
+          <input type="checkbox" id="new-pinned" checked onclick="event.stopPropagation(); syncPinLabel()">
+          <div class="pin-toggle-desc">
+            <strong id="pin-toggle-title">📌 영구 고정 ON — 크롤러가 이 딜을 자동 삭제하지 않음</strong>
+            <span>직접 추가하는 딜은 기본으로 고정됩니다. 마감일 없이도 영구 표시됩니다.</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-actions">
@@ -594,7 +654,7 @@ function renderTable() {
       : '';
 
     return `
-    <tr data-id="${deal.id}" style="${expired ? 'opacity:.6;' : ''}">
+    <tr data-id="${deal.id}" class="${deal.pinned ? 'pinned-row' : ''}" style="${expired ? 'opacity:.6;' : ''}">
       <td style="font-size:12px;color:var(--muted);font-weight:700;">${deal.id}</td>
       <td>
         <div class="product-cell">
@@ -603,6 +663,7 @@ function renderTable() {
           <div>
             <div class="product-name">${deal.name}</div>
             <div class="product-store">${deal.store}</div>
+            ${deal.pinned ? '<div class="pinned-row-badge">📌 고정됨</div>' : ''}
           </div>
         </div>
       </td>
@@ -629,11 +690,20 @@ function renderTable() {
         <input type="datetime-local" class="expires-input"
                id="exp-${deal.id}" value="${expiresVal}"
                oninput="onExpInput(${deal.id}, this)">
-        ${expired ? '<div class="expires-label expires-expired">⚠️ 만료됨</div>' : ''}
+        ${expired
+          ? '<div class="expires-label expires-expired">⚠️ 만료됨</div>'
+          : !expiresVal
+            ? '<div class="expires-label" style="color:#2ECC40;font-size:11px;">✅ 무기한 유지</div>'
+            : ''}
       </td>
       <td>
         <div class="row-actions">
           <button class="btn-save-row" id="save-${deal.id}" onclick="saveRow(${deal.id})" disabled>저장</button>
+          <button class="btn-pin-row ${deal.pinned ? 'is-pinned' : ''}"
+                  onclick="togglePin(${deal.id})"
+                  title="${deal.pinned ? '📌 클릭 시 고정 해제' : '📍 클릭 시 고정 (자동삭제 방지)'}">
+            ${deal.pinned ? '📌' : '📍'}
+          </button>
           <button class="btn-del-row" onclick="deleteDeal(${deal.id})" title="삭제">🗑️</button>
         </div>
       </td>
@@ -658,6 +728,18 @@ function onExpInput(id, el) {
 function enableSave(id) {
   const btn = document.getElementById('save-' + id);
   if (btn) { btn.disabled = false; btn.style.background = '#2ECC40'; }
+}
+
+// ─── Pin toggle (table) ───
+function togglePin(id) {
+  const deal = deals.find(d => d.id === id);
+  if (!deal) return;
+  deal.pinned = !deal.pinned;
+  renderTable();
+  toast(
+    deal.pinned ? '📌 고정 설정됨 — GitHub 저장 버튼을 눌러 반영하세요' : '📍 고정 해제됨 — GitHub 저장 버튼을 눌러 반영하세요',
+    deal.pinned ? 'success' : ''
+  );
 }
 
 // ─── Save row ───
@@ -738,6 +820,7 @@ function addDeal() {
     productUrl:    purl,
     affiliateUrl:  document.getElementById('new-affiliate-url').value.trim(),
     expiresAt:     expiresRaw ? expiresRaw + ':00' : '',
+    pinned:        document.getElementById('new-pinned').checked,
     tags:          rawTags ? rawTags.split(',').map(t => t.trim()).filter(Boolean) : ['핫딜'],
     rating:        parseFloat(document.getElementById('new-rating').value) || 4.0,
     reviewCount:   0,
@@ -754,6 +837,28 @@ function addDeal() {
 function clearForm() {
   ['new-name','new-orig','new-sale','new-product-url','new-affiliate-url','new-image','new-tags','new-rating','new-expires']
     .forEach(id => { document.getElementById(id).value = ''; });
+  // 핀 토글 초기화 (기본 ON)
+  const pinCb = document.getElementById('new-pinned');
+  if (pinCb) { pinCb.checked = true; syncPinLabel(); }
+  // 이미지 프리뷰 초기화
+  previewImg('');
+}
+
+// ─── Pin toggle (form) ───
+function togglePinForm() {
+  const cb = document.getElementById('new-pinned');
+  cb.checked = !cb.checked;
+  syncPinLabel();
+}
+function syncPinLabel() {
+  const cb    = document.getElementById('new-pinned');
+  const wrap  = document.getElementById('pin-toggle-label');
+  const title = document.getElementById('pin-toggle-title');
+  if (!wrap) return;
+  wrap.classList.toggle('active', cb.checked);
+  title.textContent = cb.checked
+    ? '📌 영구 고정 ON — 크롤러가 이 딜을 자동 삭제하지 않음'
+    : '📍 고정 해제 — 마감일이 지나면 자동 삭제됨';
 }
 
 // ─── GitHub API 자동 저장 ───
@@ -884,6 +989,222 @@ function downloadJSON() {
 document.getElementById('admin-search').addEventListener('input', renderTable);
 document.getElementById('admin-cat-filter').addEventListener('change', renderTable);
 document.getElementById('filter-unset-only').addEventListener('change', renderTable);
+
+// ─── URL 붙여넣기 → 자동 가져오기 트리거 ───
+document.getElementById('new-product-url').addEventListener('paste', () => {
+  setTimeout(autoFill, 250); // paste 완료 후 실행
+});
+
+// ══════════════════════════════════════════════════════════
+// 🔍 자동 정보 가져오기
+// ══════════════════════════════════════════════════════════
+
+/** URL 도메인 → 쇼핑몰 이름 매핑 */
+const STORE_PATTERNS = [
+  [/coupang\.com/,          '쿠팡'],
+  [/11st\.co\.kr/,          '11번가'],
+  [/gmarket\.co\.kr/,       'G마켓'],
+  [/auction\.co\.kr/,       '옥션'],
+  [/shopping\.naver\.com/,  '네이버쇼핑'],
+  [/ssg\.com/,              'SSG닷컴'],
+  [/lotteon\.com/,          '롯데온'],
+  [/danawa\.com/,           '다나와'],
+  [/enuri\.com/,            '에누리'],
+];
+
+/** 상품명 키워드 → 카테고리 자동 감지 */
+const CAT_PATTERNS = [
+  [/갤럭시\s*[SZA]\d|아이폰\s*\d|자급제\s*스마트폰|스마트폰/i, 'smartphone'],
+  [/맥북|노트북|그램\s*\d|갤럭시북|ThinkPad|zenbook|vivobook|레노버/i, 'laptop'],
+  [/아이패드|갤럭시\s*탭|태블릿/i, 'tablet'],
+  [/이어폰|헤드폰|에어팟|버즈|WH-\d|WF-\d|QuietComfort|소니.*무선/i, 'audio'],
+  [/모니터|디스플레이|오디세이|울트라기어|울트라와이드/i, 'monitor'],
+  [/완본체|미니\s*PC|RTX\s*\d|게이밍\s*PC|MINISFORUM|Beelink|맥\s*미니/i, 'desktop'],
+  [/갤럭시\s*워치|애플워치|Apple Watch|스마트워치/i, 'wearable'],
+  [/미러리스|DSLR|카메라|캐논|소니.*카메라/i, 'camera'],
+  [/닌텐도|플레이스테이션|PS5|Xbox|게이밍 컨트롤러/i, 'gaming'],
+  [/마우스|키보드|SSD|외장|허브|충전기|케이블/i, 'accessory'],
+];
+
+function detectStore(url) {
+  for (const [re, name] of STORE_PATTERNS) {
+    if (re.test(url)) return name;
+  }
+  return '';
+}
+
+function detectCategory(title) {
+  for (const [re, cat] of CAT_PATTERNS) {
+    if (re.test(title)) return cat;
+  }
+  return '';
+}
+
+/** OG 제목에서 쇼핑몰 이름 등 불필요한 suffix 제거 */
+function cleanTitle(raw) {
+  const suffixes = ['쿠팡', '11번가', 'G마켓', '옥션', '네이버쇼핑', 'SSG닷컴', '롯데온', '다나와', '에누리', 'Coupang'];
+  let t = raw.trim();
+  for (const s of suffixes) {
+    t = t.replace(new RegExp(`\\s*[\\-\\|\\:]\\s*${s}\\s*$`, 'i'), '');
+    t = t.replace(new RegExp(`^${s}\\s*[\\-\\|\\:]\\s*`, 'i'), '');
+  }
+  return t.trim();
+}
+
+/** 이미지 URL → 미리보기 */
+function previewImg(val) {
+  const wrap = document.getElementById('img-preview-wrap');
+  const img  = document.getElementById('img-preview');
+  if (!wrap || !img) return;
+  if (!val) { wrap.style.display = 'none'; return; }
+  img.src     = val;
+  img.onerror = () => { wrap.style.display = 'none'; };
+  img.onload  = () => { wrap.style.display = 'flex'; };
+}
+
+/** fetch에 타임아웃 적용 */
+function fetchWithTimeout(url, ms = 8000) {
+  const ctrl  = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(timer));
+}
+
+/** HTML에서 가격 파싱 (JSON-LD → OG meta → 사이트별 패턴 순) */
+async function extractPriceFromHtml(url) {
+  const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+  const res   = await fetchWithTimeout(proxy, 9000);
+  if (!res.ok) throw new Error('proxy error');
+  const { contents: html } = await res.json();
+  if (!html) throw new Error('empty html');
+
+  let sale = 0, orig = 0;
+
+  // 1) JSON-LD (가장 신뢰)
+  for (const [, json] of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const obj = JSON.parse(json.trim());
+      // offers 배열 or 단일 Offer
+      const checkOffer = o => {
+        if (!o) return;
+        const p = parseFloat(String(o.price  || '').replace(/,/g,''));
+        const h = parseFloat(String(o.highPrice || o.originalPrice || '').replace(/,/g,''));
+        if (p > 0 && !sale) sale = Math.round(p);
+        if (h > 0 && !orig) orig = Math.round(h);
+      };
+      if (obj.offers) {
+        Array.isArray(obj.offers) ? obj.offers.forEach(checkOffer) : checkOffer(obj.offers);
+      }
+      if (obj['@type'] === 'Offer') checkOffer(obj);
+    } catch {}
+  }
+
+  // 2) OG / product 메타태그
+  if (!sale) {
+    const m = html.match(/property="(?:product|og):price:amount"\s+content="([0-9.]+)"/);
+    if (m) sale = Math.round(parseFloat(m[1]));
+  }
+
+  // 3) 쿠팡 전용 JS 변수
+  if (!sale && url.includes('coupang.com')) {
+    const fm = html.match(/"finalPrice"\s*:\s*(\d+)/);
+    const bm = html.match(/"basePrice"\s*:\s*(\d+)/);
+    if (fm) sale = parseInt(fm[1]);
+    if (bm) orig = parseInt(bm[1]);
+  }
+
+  // 4) 11번가 전용 패턴
+  if (!sale && url.includes('11st.co.kr')) {
+    const m = html.match(/id="price"[^>]*>[\s\S]{0,60}?([\d,]{4,})/);
+    if (m) sale = parseInt(m[1].replace(/,/g,''));
+  }
+
+  // 유효범위 체크: 100원 ~ 2억원
+  if (sale < 100 || sale > 200000000) sale = 0;
+  if (orig < 100 || orig > 200000000) orig = 0;
+
+  return { sale, orig };
+}
+
+/** ★ 메인: 자동 가져오기 */
+async function autoFill() {
+  const urlVal = document.getElementById('new-product-url').value.trim();
+  if (!urlVal) { toast('상품 URL을 먼저 입력하세요', 'warn'); return; }
+  if (!/^https?:\/\//i.test(urlVal)) { toast('올바른 URL을 입력하세요 (https://...)', 'warn'); return; }
+
+  const btn = document.getElementById('btn-autofill');
+  btn.disabled    = true;
+  btn.textContent = '⏳ 가져오는 중...';
+
+  const filled = [];
+
+  try {
+    // ── ① 쇼핑몰 자동 감지 ──
+    const storeName = detectStore(urlVal);
+    if (storeName) {
+      const sel = document.getElementById('new-store');
+      for (const opt of sel.options) {
+        if (opt.text === storeName) { sel.value = opt.value; break; }
+      }
+      filled.push('쇼핑몰');
+    }
+
+    // ── ② Microlink API: 이름 + 이미지 ──
+    const mlRes  = await fetchWithTimeout(
+      `https://api.microlink.io/?url=${encodeURIComponent(urlVal)}`, 10000
+    );
+    const mlData = await mlRes.json();
+
+    if (mlData.status === 'success') {
+      const { title, image } = mlData.data;
+
+      // 상품명
+      const nameEl = document.getElementById('new-name');
+      if (title && !nameEl.value.trim()) {
+        nameEl.value = cleanTitle(title);
+        filled.push('상품명');
+
+        // 카테고리 자동 감지
+        const cat = detectCategory(nameEl.value);
+        if (cat) {
+          document.getElementById('new-cat').value = cat;
+          filled.push('카테고리');
+        }
+      }
+
+      // 이미지
+      const imgEl = document.getElementById('new-image');
+      if (!imgEl.value.trim() && image?.url) {
+        imgEl.value = image.url;
+        previewImg(image.url);
+        filled.push('이미지');
+      }
+    }
+
+    // ── ③ CORS Proxy: 가격 파싱 ──
+    try {
+      const { sale, orig } = await extractPriceFromHtml(urlVal);
+      const saleEl = document.getElementById('new-sale');
+      const origEl = document.getElementById('new-orig');
+      if (sale && !saleEl.value) { saleEl.value = sale; filled.push('특가'); }
+      if (orig && !origEl.value) { origEl.value = orig; filled.push('정가'); }
+    } catch {
+      // 가격은 실패해도 계속 (직접 입력)
+    }
+
+    if (filled.length) {
+      toast(`✅ 자동 입력 완료 — ${filled.join(', ')}`, 'success');
+    } else {
+      toast('자동으로 가져올 수 없었습니다. 직접 입력해 주세요.', 'warn');
+    }
+
+  } catch (err) {
+    console.error('[autoFill]', err);
+    toast('정보를 가져오지 못했어요. 직접 입력해 주세요.', 'warn');
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = '🔍 자동 가져오기';
+  }
+}
 
 // ─── Load data ───
 async function init() {

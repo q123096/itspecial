@@ -807,6 +807,7 @@ def main():
     deals = [
         d for d in deals
         if d.get("pinned")                  # pinned 딜은 소급 제거 예외
+        or not d.get("expiresAt")           # 마감일 없는 딜 = 수동 영구 딜, 건드리지 않음
         or d.get("store") == "쿠팡"
         or d.get("priceType") == "hprice"   # 타사 최고가 기반 → 50%까지 허용
         or _disc(d) <= 40
