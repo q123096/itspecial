@@ -762,7 +762,7 @@ function saveAll() {
     const affEl = document.getElementById('aff-' + d.id);
     const expEl = document.getElementById('exp-' + d.id);
     if (affEl) d.affiliateUrl = affEl.value.trim();
-    if (expEl && expEl.value) d.expiresAt = expEl.value + ':00';
+    if (expEl) d.expiresAt = expEl.value ? expEl.value + ':00' : '';
   });
   updateStats();
   renderTable();
@@ -890,7 +890,7 @@ async function pushToGitHub() {
     const affEl = document.getElementById('aff-' + d.id);
     const expEl = document.getElementById('exp-' + d.id);
     if (affEl) d.affiliateUrl = affEl.value.trim();
-    if (expEl && expEl.value) d.expiresAt = expEl.value + ':00';
+    if (expEl) d.expiresAt = expEl.value ? expEl.value + ':00' : '';
   });
 
   const clean   = deals.map(({ _newAff, _newExp, ...rest }) => rest);

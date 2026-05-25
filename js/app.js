@@ -129,8 +129,10 @@ const $cats     = document.getElementById('cat-tabs');
 const $toast    = document.getElementById('toast');
 
 /* ─── Utils ─── */
-const fmt = n => n.toLocaleString('ko-KR') + '원';
-const pct = (o, s) => Math.round((o - s) / o * 100);
+// fmt: NaN·undefined·Infinity 방어
+const fmt = n => (isFinite(n) && n != null ? Math.round(n).toLocaleString('ko-KR') : 0) + '원';
+// pct: 정가 0 방어 (division by zero → 0%)
+const pct = (o, s) => (o > 0 ? Math.round((o - s) / o * 100) : 0);
 
 function timeLeft(expiresAt) {
   const diff = new Date(expiresAt) - Date.now();
@@ -176,15 +178,15 @@ function renderSkeletons() {
 }
 
 function renderCard(deal) {
-  const disc     = pct(deal.originalPrice, deal.salePrice);
-  const savings  = deal.originalPrice - deal.salePrice;
+  const disc    = Math.max(0, pct(deal.originalPrice, deal.salePrice));
+  const savings = Math.max(0, (deal.originalPrice || 0) - (deal.salePrice || 0));
   const { href, isAffiliate } = resolveLink(deal);
   const isWished = state.wishlist.includes(deal.id);
 
   // ── 배지 ──
   const badgesHtml = [
     `<span class="badge badge-discount">${disc}% 할인</span>`,
-    ...deal.tags.map(t => {
+    ...(deal.tags || []).map(t => {
       const info = TAG_MAP[t] || { cls: 'badge-hot', icon: '' };
       return `<span class="badge ${info.cls}">${info.icon} ${t}</span>`;
     }),
@@ -322,9 +324,10 @@ function injectSchemaMarkup(deals) {
         '@type': 'Offer',
         priceCurrency: 'KRW',
         price: String(deal.salePrice),
-        availability: deal.inStock
-          ? 'https://schema.org/InStock'
-          : 'https://schema.org/OutOfStock',
+        // inStock 미정의 시 InStock 기본값 (undefined → 재고없음 오류 방지)
+        availability: deal.inStock === false
+          ? 'https://schema.org/OutOfStock'
+          : 'https://schema.org/InStock',
         ...(expiresDate ? { priceValidUntil: expiresDate } : {}),
         url: href,
         seller: { '@type': 'Organization', name: deal.store },
@@ -602,9 +605,9 @@ async function init() {
     gtag('config', GA_ID);
   }
 
-  // Kakao SDK 초기화
+  // Kakao SDK 초기화 (실패해도 딜 로드는 계속)
   if (KAKAO_JS_KEY && window.Kakao && !Kakao.isInitialized()) {
-    Kakao.init(KAKAO_JS_KEY);
+    try { Kakao.init(KAKAO_JS_KEY); } catch (e) { console.warn('Kakao init 실패:', e); }
   }
 
   renderSkeletons();
