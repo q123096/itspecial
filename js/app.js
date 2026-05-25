@@ -647,11 +647,22 @@ async function init() {
     $grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚡</div><h3>데이터를 불러오는 중이에요</h3></div>`;
     return;
   }
-  // 상품 설명 DB 로드 (없어도 정상 동작)
+  // 상품 설명 DB — Supabase에서 로드 (실패 시 products.json 폴백)
   try {
-    const pr = await fetch('./data/products.json?v=' + Date.now());
-    if (pr.ok) state.products = await pr.json();
-  } catch {}
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?select=key,description`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (res.ok) {
+      const rows = await res.json();
+      rows.forEach(r => { if (r.key) state.products[r.key] = { description: r.description }; });
+    }
+  } catch {
+    try {
+      const pr = await fetch('./data/products.json?v=' + Date.now());
+      if (pr.ok) state.products = await pr.json();
+    } catch {}
+  }
   updateHeroStats();
   document.getElementById('live-count').textContent = state.deals.length;
   applyFilters();

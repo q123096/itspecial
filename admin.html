@@ -612,7 +612,16 @@ function makeProductKey(name) {
 }
 
 let deals = [];
-let productsDB = {};   // 상품 설명 DB (data/products.json)
+let productsDB = {};   // 상품 설명 DB (로컬 캐시, 소스는 Supabase)
+
+// ── Supabase 연결 ──
+const SUPABASE_URL      = 'https://dcwxomhlezoqyliexatv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjd3hvbWhsZXpvcXlsaWV4YXR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODE2MzQsImV4cCI6MjA5NTI1NzYzNH0.VcB0ivWpzynM7QnbqRtPLZ3fGJONFuUykUB-Gr1lSzU';
+const SB_HEADERS = {
+  'apikey':        SUPABASE_ANON_KEY,
+  'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+  'Content-Type':  'application/json',
+};
 
 // ─── Toast ───
 function toast(msg, type = '') {
@@ -842,25 +851,8 @@ function addDeal() {
   renderTable();
   toast('✅ 딜이 추가되었습니다!', 'success');
 
-  // 백그라운드: 상품 설명 자동 수집 (논블로킹 — UI 차단 없음)
-  void (async () => {
-    if (!purl) return;
-    const key = makeProductKey(name);
-    if (!key || productsDB[key]?.description) return; // 이미 있으면 스킵
-    try {
-      const r = await fetchWithTimeout(
-        `https://api.microlink.io/?url=${encodeURIComponent(purl)}`, 8000
-      );
-      const d = await r.json();
-      if (d.status === 'success' && (d.data.description || '').length >= 20) {
-        productsDB[key] = {
-          description: d.data.description.slice(0, 150).trim(),
-          fetchedAt:   new Date().toISOString(),
-        };
-        console.log(`[자동 설명] "${key}" 수집 완료`);
-      }
-    } catch {}
-  })();
+  // 백그라운드: Supabase 확인 → 없으면 Microlink 수집 (논블로킹)
+  void enrichDescription(name, purl);
 }
 
 function clearForm() {
@@ -939,7 +931,7 @@ async function pushToGitHub() {
   });
 
   try {
-    // ── 설명 누락 딜 자동 보강 (5개씩 병렬, 업로드 전 선처리) ──
+    // ── 설명 누락 딜 자동 보강 (Supabase 확인 → 없으면 Microlink) ──
     const missingDesc = deals.filter(d => {
       const k = makeProductKey(d.name);
       return k && !productsDB[k]?.description && d.productUrl;
@@ -947,33 +939,20 @@ async function pushToGitHub() {
     if (missingDesc.length > 0) {
       ['btn-gh-push', 'btn-gh-push2'].forEach(id => {
         const b = document.getElementById(id);
-        if (b) b.textContent = `📝 설명 수집 중 (0/${missingDesc.length})...`;
+        if (b) b.textContent = `📝 설명 확보 중 (0/${missingDesc.length})...`;
       });
       let done = 0;
-      // 5개씩 묶어서 병렬 처리
       for (let i = 0; i < missingDesc.length; i += 5) {
         const chunk = missingDesc.slice(i, i + 5);
         await Promise.allSettled(chunk.map(async deal => {
-          try {
-            const r = await fetchWithTimeout(
-              `https://api.microlink.io/?url=${encodeURIComponent(deal.productUrl)}`, 6000
-            );
-            const d = await r.json();
-            if (d.status === 'success' && (d.data.description || '').length >= 20) {
-              const k = makeProductKey(deal.name);
-              if (k) productsDB[k] = {
-                description: d.data.description.slice(0, 150).trim(),
-                fetchedAt:   new Date().toISOString(),
-              };
-              done++;
-            }
-          } catch {}
+          await enrichDescription(deal.name, deal.productUrl);
+          done++;
         }));
         ['btn-gh-push', 'btn-gh-push2'].forEach(id => {
           const b = document.getElementById(id);
-          if (b) b.textContent = `📝 설명 수집 중 (${Math.min(done, missingDesc.length)}/${missingDesc.length})...`;
+          if (b) b.textContent = `📝 설명 확보 중 (${done}/${missingDesc.length})...`;
         });
-        await new Promise(r => setTimeout(r, 300)); // chunk 간 간격
+        if (i + 5 < missingDesc.length) await new Promise(r => setTimeout(r, 300));
       }
       ['btn-gh-push', 'btn-gh-push2'].forEach(id => {
         const b = document.getElementById(id);
@@ -1010,31 +989,7 @@ async function pushToGitHub() {
       throw new Error(e.message || `업로드 실패 (${putRes.status})`);
     }
 
-    // ── products.json 도 함께 업로드 ──
-    try {
-      const prodJson    = JSON.stringify(productsDB, null, 2);
-      const prodContent = btoa(unescape(encodeURIComponent(prodJson)));
-      const getProd = await fetch(
-        `https://api.github.com/repos/${GH_REPO}/contents/data/products.json`,
-        { headers }
-      );
-      const prodSha = getProd.ok ? (await getProd.json()).sha : undefined;
-      await fetch(
-        `https://api.github.com/repos/${GH_REPO}/contents/data/products.json`,
-        {
-          method: 'PUT',
-          headers,
-          body: JSON.stringify({
-            message: `📝 products.json 업데이트 (${new Date().toLocaleString('ko-KR')})`,
-            content: prodContent,
-            ...(prodSha ? { sha: prodSha } : {}),
-          }),
-        }
-      );
-    } catch (pe) {
-      console.warn('[products.json 업로드 실패]', pe);
-      // deals.json은 이미 성공했으므로 경고만 출력
-    }
+    // ※ 상품 설명(products)은 Supabase에 실시간 저장 — GitHub 업로드 불필요
 
     updateStats();
     renderTable();
@@ -1372,15 +1327,12 @@ async function autoFill() {
         filled.push('이미지');
       }
 
-      // ── 상품 설명 → products.json 저장 ──
+      // ── 상품 설명 → Supabase 저장 (Microlink 데이터 바로 활용) ──
       const prodName = (!isBadTitle && cleanedTitle) ? cleanedTitle : nameEl.value.trim();
       if (description && description.length >= 20 && prodName) {
         const key = makeProductKey(prodName);
-        if (key && !productsDB[key]?.description) {
-          productsDB[key] = {
-            description: description.slice(0, 150).trim(),
-            fetchedAt:   new Date().toISOString(),
-          };
+        if (key) {
+          void saveDescriptionToSupabase(key, description.slice(0, 150).trim());
           filled.push('설명');
         }
       }
@@ -1412,6 +1364,58 @@ async function autoFill() {
   }
 }
 
+// ─── Supabase 설명 저장 (upsert) ───
+async function saveDescriptionToSupabase(key, description) {
+  if (!key || !description || productsDB[key]?.description) return;
+  productsDB[key] = { description }; // 로컬 캐시 즉시 반영
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/products`, {
+      method:  'POST',
+      headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates' },
+      body:    JSON.stringify({ key, description, fetched_at: new Date().toISOString() }),
+    });
+  } catch (e) { console.warn('[Supabase 저장 실패]', e); }
+}
+
+// ─── 설명 확보 (Supabase → Microlink 순) ───
+async function enrichDescription(name, url) {
+  const key = makeProductKey(name);
+  if (!key || !url) return null;
+
+  // 1) 로컬 캐시
+  if (productsDB[key]?.description) return productsDB[key].description;
+
+  // 2) Supabase 조회
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?key=eq.${encodeURIComponent(key)}&select=description`,
+      { headers: SB_HEADERS }
+    );
+    if (res.ok) {
+      const rows = await res.json();
+      if (rows[0]?.description) {
+        productsDB[key] = { description: rows[0].description };
+        return rows[0].description;
+      }
+    }
+  } catch {}
+
+  // 3) Microlink 호출 → Supabase 저장
+  try {
+    const r = await fetchWithTimeout(
+      `https://api.microlink.io/?url=${encodeURIComponent(url)}`, 8000
+    );
+    const d = await r.json();
+    if (d.status === 'success' && (d.data.description || '').length >= 20) {
+      const desc = d.data.description.slice(0, 150).trim();
+      await saveDescriptionToSupabase(key, desc);
+      return desc;
+    }
+  } catch {}
+
+  return null;
+}
+
 // ─── 상품 설명 일괄 보강 ───
 async function bulkEnrichDescriptions() {
   const toEnrich = deals.filter(d => {
@@ -1428,31 +1432,19 @@ async function bulkEnrichDescriptions() {
   if (btn) { btn.disabled = true; btn.textContent = `⏳ 0/${toEnrich.length}개 처리 중...`; }
 
   let count = 0;
-  for (const deal of toEnrich) {
-    try {
-      const res  = await fetchWithTimeout(
-        `https://api.microlink.io/?url=${encodeURIComponent(deal.productUrl)}`, 8000
-      );
-      const data = await res.json();
-      if (data.status === 'success' && data.data.description?.length >= 20) {
-        const key = makeProductKey(deal.name);
-        if (key) {
-          productsDB[key] = {
-            description: data.data.description.slice(0, 150).trim(),
-            fetchedAt:   new Date().toISOString(),
-          };
-          count++;
-        }
-      }
-    } catch { /* 개별 실패는 무시하고 계속 */ }
-
+  for (let i = 0; i < toEnrich.length; i += 5) {
+    const chunk = toEnrich.slice(i, i + 5);
+    await Promise.allSettled(chunk.map(async deal => {
+      const desc = await enrichDescription(deal.name, deal.productUrl);
+      if (desc) count++;
+    }));
     if (btn) btn.textContent = `⏳ ${count}/${toEnrich.length}개 처리 중...`;
-    await new Promise(r => setTimeout(r, 600)); // API rate limit 배려
+    if (i + 5 < toEnrich.length) await new Promise(r => setTimeout(r, 300));
   }
 
   if (btn) { btn.disabled = false; btn.textContent = '📝 설명 자동 보강'; }
   toast(
-    `✅ ${count}/${toEnrich.length}개 설명 수집 완료 — 🚀 GitHub 저장 버튼으로 반영하세요`,
+    `✅ ${count}/${toEnrich.length}개 설명 완료 — Supabase에 자동 저장됨`,
     count > 0 ? 'success' : ''
   );
 }
@@ -1472,10 +1464,16 @@ async function init() {
     toast('deals.json을 불러오지 못했습니다.', 'warn');
     deals = [];
   }
-  // 상품 설명 DB 로드
+  // 상품 설명 DB — Supabase에서 로드
   try {
-    const pr = await fetch('./data/products.json?v=' + Date.now());
-    if (pr.ok) productsDB = await pr.json();
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?select=key,description`,
+      { headers: SB_HEADERS }
+    );
+    if (res.ok) {
+      const rows = await res.json();
+      rows.forEach(r => { if (r.key) productsDB[r.key] = { description: r.description }; });
+    }
   } catch {}
   updateStats();
   renderTable();
