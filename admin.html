@@ -1026,22 +1026,68 @@ const STORE_PATTERNS = [
   [/enuri\.com/,                 '에누리'],
 ];
 
-/** 단축 URL → 원본 URL 해제 (allorigins 프록시의 status.url 활용) */
+/** 단축 URL → 원본 URL 해제
+ *  1순위: allorigins status.url (HTTP 리디렉션 추적)
+ *  2순위: HTML 내 meta refresh 파싱
+ *  3순위: HTML 내 JS location 리디렉션 파싱 (naver.me 등)
+ */
 async function resolveShortUrl(url) {
   if (!SHORT_URL_PATTERNS.some(re => re.test(url))) return url;
   try {
     const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const res   = await fetchWithTimeout(proxy, 8000);
+    const res   = await fetchWithTimeout(proxy, 9000);
     const data  = await res.json();
-    const final = data.status?.url;
-    if (final && final.startsWith('http') && final !== url) {
-      console.log(`[resolveShortUrl] ${url} → ${final}`);
-      return final;
+    const html  = data.contents || '';
+
+    // 1) status.url — allorigins가 HTTP 리디렉션을 따라간 경우
+    const statusUrl = data.status?.url;
+    if (statusUrl && statusUrl.startsWith('http') && statusUrl !== url
+        && !SHORT_URL_PATTERNS.some(re => re.test(statusUrl))) {
+      console.log(`[resolveShortUrl] status.url: ${url} → ${statusUrl}`);
+      return statusUrl;
     }
+
+    // 2) <meta http-equiv="refresh" content="0; url=https://...">
+    const metaMatch = html.match(
+      /<meta[^>]+http-equiv=["']?refresh["']?[^>]+content=["'][^"']*url=([^"'\s&>]+)/i
+    );
+    if (metaMatch) {
+      const dest = decodeURIComponent(metaMatch[1]);
+      if (dest.startsWith('http')) {
+        console.log(`[resolveShortUrl] meta refresh: ${dest}`);
+        return dest;
+      }
+    }
+
+    // 3) JS 리디렉션 파싱 (naver.me는 주로 이 방식)
+    //    location.href = "https://..."  /  location.replace("...")  / window.location = "..."
+    const jsPatterns = [
+      /location\.href\s*=\s*["'`]([^"'`]+)["'`]/,
+      /location\.replace\s*\(\s*["'`]([^"'`]+)["'`]\s*\)/,
+      /window\.location\s*=\s*["'`]([^"'`]+)["'`]/,
+      /location\s*=\s*["'`]([^"'`]+)["'`]/,
+    ];
+    for (const re of jsPatterns) {
+      const m = html.match(re);
+      if (m && m[1].startsWith('http')) {
+        console.log(`[resolveShortUrl] JS redirect: ${m[1]}`);
+        return m[1];
+      }
+    }
+
+    // 4) <a href> 가 하나뿐인 페이지 (일부 단축 URL 서비스)
+    const aMatches = [...html.matchAll(/href=["'](https?:\/\/[^"']+)["']/g)]
+      .map(m => m[1])
+      .filter(h => !SHORT_URL_PATTERNS.some(re => re.test(h)));
+    if (aMatches.length === 1) {
+      console.log(`[resolveShortUrl] single href: ${aMatches[0]}`);
+      return aMatches[0];
+    }
+
   } catch (e) {
     console.warn('[resolveShortUrl] 실패, 원본 URL 사용:', e.message);
   }
-  return url;
+  return url; // 해제 실패 시 원본 그대로
 }
 
 /** 상품명 키워드 → 카테고리 자동 감지 */
@@ -1202,25 +1248,30 @@ async function autoFill() {
     if (mlData.status === 'success') {
       const { title, image } = mlData.data;
 
-      // 상품명
+      // 상품명 (플랫폼 이름이 그대로 들어오면 무시)
+      const PLATFORM_TITLES = ['네이버 브랜드 커넥트', '네이버쇼핑', 'Naver', 'Coupang', '쿠팡', '11번가', 'G마켓', 'SSG'];
       const nameEl = document.getElementById('new-name');
-      if (title && !nameEl.value.trim()) {
-        nameEl.value = cleanTitle(title);
+      const cleanedTitle = cleanTitle(title || '');
+      const isBadTitle = PLATFORM_TITLES.some(p => cleanedTitle === p || cleanedTitle.startsWith(p + ' '));
+      if (cleanedTitle && !isBadTitle && !nameEl.value.trim()) {
+        nameEl.value = cleanedTitle;
         filled.push('상품명');
 
         // 카테고리 자동 감지
-        const cat = detectCategory(nameEl.value);
+        const cat = detectCategory(cleanedTitle);
         if (cat) {
           document.getElementById('new-cat').value = cat;
           filled.push('카테고리');
         }
       }
 
-      // 이미지
-      const imgEl = document.getElementById('new-image');
-      if (!imgEl.value.trim() && image?.url) {
-        imgEl.value = image.url;
-        previewImg(image.url);
+      // 이미지 (data:image/svg 등 플레이스홀더 제외)
+      const imgEl  = document.getElementById('new-image');
+      const imgUrl = image?.url || '';
+      const isRealImg = imgUrl.startsWith('http') && !imgUrl.startsWith('data:');
+      if (!imgEl.value.trim() && isRealImg) {
+        imgEl.value = imgUrl;
+        previewImg(imgUrl);
         filled.push('이미지');
       }
     }
