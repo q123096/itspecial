@@ -857,6 +857,25 @@
   },
   {
     "id": 45,
+    "name": "삼성전자 갤럭시 갤럭시버즈3 프로 R630 블루투스 이어폰",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5557762/55577622642.20250701121718.jpg",
+    "originalPrice": 279000,
+    "salePrice": 225990,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/55577622642",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-01T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 46,
     "name": "삼성전자 갤럭시탭 S10 FE WiFi전용, 128GB, 그레이",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5392010/53920107147.20250407160502.jpg",
@@ -875,7 +894,7 @@
     "freeShipping": false
   },
   {
-    "id": 46,
+    "id": 47,
     "name": "애플 아이패드 에어 6세대 11인치 WiFi 128GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_8785082/87850821670.jpg",
@@ -894,7 +913,7 @@
     "freeShipping": false
   },
   {
-    "id": 47,
+    "id": 48,
     "name": "애플워치 Series 10 GPS 46mm 제트블랙",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_6001486/60014860207.2.jpg",
