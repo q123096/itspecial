@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수신거부 — ITSpecial</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary:#FF4136; --text:#1A1A2E; --muted:#6C757D; --border:#DEE2E6; --bg:#F8F9FA; --surface:#fff; --radius:12px; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+
+    .header { background:var(--text); color:#fff; padding:0 24px; height:56px; display:flex; align-items:center; gap:12px; }
+    .header a { color:#fff; text-decoration:none; font-size:18px; font-weight:900; }
+    .header a span { color:var(--primary); }
+
+    .main { flex:1; display:flex; align-items:center; justify-content:center; padding:40px 20px; }
+
+    .card {
+      background:var(--surface); border:1.5px solid var(--border); border-radius:16px;
+      padding:48px 40px; max-width:480px; width:100%; text-align:center;
+    }
+    .icon { font-size:56px; margin-bottom:20px; }
+    .card h1 { font-size:22px; font-weight:900; margin-bottom:10px; }
+    .card p { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:28px; }
+
+    .email-display {
+      background:#f8f9fa; border:1.5px solid var(--border); border-radius:8px;
+      padding:12px 16px; font-size:15px; font-weight:700; color:var(--text);
+      margin-bottom:28px; word-break:break-all;
+    }
+
+    .btn {
+      display:inline-block; width:100%; padding:14px;
+      border:none; border-radius:999px; cursor:pointer;
+      font-size:15px; font-weight:700; font-family:inherit;
+      transition:opacity .15s;
+    }
+    .btn:hover { opacity:.85; }
+    .btn-unsub { background:var(--primary); color:#fff; margin-bottom:12px; }
+    .btn-cancel { background:#f1f3f5; color:var(--text); text-decoration:none; }
+
+    .result { display:none; }
+    .result.show { display:block; }
+    .result-ok  { color:#2f9e44; font-weight:700; font-size:15px; margin-top:20px; }
+    .result-err { color:var(--primary); font-weight:700; font-size:15px; margin-top:20px; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <a href="./index.html">⚡ <span>IT</span>Special</a>
+</header>
+
+<main class="main">
+  <div class="card" id="form-view">
+    <div class="icon">📭</div>
+    <h1>특가 알림 수신거부</h1>
+    <p>아래 이메일 주소의 특가 알림 구독을 해지합니다.<br>해지 후에는 더 이상 이메일을 받지 않습니다.</p>
+
+    <div class="email-display" id="email-display">—</div>
+
+    <button class="btn btn-unsub" id="btn-unsub" onclick="doUnsubscribe()">수신거부 확인</button>
+    <a class="btn btn-cancel" href="./index.html">취소 — 계속 받을게요</a>
+
+    <div class="result" id="result-ok">
+      <p class="result-ok">✅ 수신거부가 완료되었습니다.<br>앞으로 알림 메일을 받지 않습니다.</p>
+    </div>
+    <div class="result" id="result-err">
+      <p class="result-err">⚠️ 처리 중 오류가 발생했습니다.<br><a href="mailto:no-reply@itspecial.co.kr">no-reply@itspecial.co.kr</a>로 직접 요청해 주세요.</p>
+    </div>
+  </div>
+</main>
+
+<script>
+  // URL 파라미터에서 이메일 추출
+  const params = new URLSearchParams(location.search);
+  const email  = params.get('email') || '';
+  const el     = document.getElementById('email-display');
+
+  if (email) {
+    el.textContent = email;
+  } else {
+    el.textContent = '이메일 정보 없음';
+    document.getElementById('btn-unsub').disabled = true;
+  }
+
+  const SUPABASE_URL      = 'https://dcwxomhlezoqyliexatv.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjd3hvbWhsZXpvcXlsaWV4YXR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODE2MzQsImV4cCI6MjA5NTI1NzYzNH0.VcB0ivWpzynM7QnbqRtPLZ3fGJONFuUykUB-Gr1lSzU';
+
+  async function doUnsubscribe() {
+    if (!email) return;
+    const btn = document.getElementById('btn-unsub');
+    btn.disabled = true;
+    btn.textContent = '처리 중...';
+
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'apikey':         SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        }
+      );
+      if (res.ok) {
+        btn.style.display = 'none';
+        document.getElementById('result-ok').classList.add('show');
+      } else {
+        throw new Error(res.status);
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = '수신거부 확인';
+      document.getElementById('result-err').classList.add('show');
+    }
+  }
+</script>
+
+</body>
+</html>

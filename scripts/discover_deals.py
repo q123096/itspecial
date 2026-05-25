@@ -157,8 +157,9 @@ def _deal_card_html(deal: dict) -> str:
     </div>"""
 
 
-def _build_email_html(deals: list[dict], categories: list[str]) -> str:
+def _build_email_html(deals: list[dict], categories: list[str], recipient_email: str = "") -> str:
     cat_names = " · ".join(CAT_LABEL.get(c, c) for c in categories)
+    unsub_url = f"{SITE_URL}/unsubscribe.html?email={urllib.parse.quote(recipient_email)}" if recipient_email else f"{SITE_URL}/unsubscribe.html"
     cards = "".join(_deal_card_html(d) for d in deals[:5])  # 최대 5개
     return f"""
 <!DOCTYPE html>
@@ -202,7 +203,9 @@ def _build_email_html(deals: list[dict], categories: list[str]) -> str:
       이 메일은 ITSpecial 특가 알림을 신청하셨기 때문에 발송됩니다.<br>
       이 메일은 <a href="mailto:no-reply@itspecial.co.kr"
                   style="color:#adb5bd;">no-reply@itspecial.co.kr</a>에서 발송되었습니다.<br>
-      © 2025 ITSpecial · 개인정보는 알림 발송 목적으로만 사용됩니다.
+      더 이상 받지 않으려면
+      <a href="{unsub_url}" style="color:#adb5bd;text-decoration:underline;">수신거부</a>를 클릭하세요.<br>
+      © 2026 ITSpecial · 개인정보는 알림 발송 목적으로만 사용됩니다.
     </div>
   </div>
 </body>
@@ -275,7 +278,7 @@ def send_deal_alerts(new_deals: list[dict], api_key: str) -> None:
             skipped += 1
             continue
 
-        html    = _build_email_html(matching, cats)
+        html    = _build_email_html(matching, cats, email)
         subject = f"🔥 {len(matching)}개 특가 발견! ({', '.join(CAT_LABEL.get(c,c) for c in cats[:2])})"
 
         try:
