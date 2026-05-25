@@ -999,18 +999,50 @@ document.getElementById('new-product-url').addEventListener('paste', () => {
 // 🔍 자동 정보 가져오기
 // ══════════════════════════════════════════════════════════
 
+/** 단축 URL 패턴 — 원본 URL 해제 필요 */
+const SHORT_URL_PATTERNS = [
+  /naver\.me\//,
+  /bit\.ly\//,
+  /tinyurl\.com\//,
+  /goo\.gl\//,
+  /t\.co\//,
+  /ow\.ly\//,
+  /han\.gl\//,
+  /url\.kr\//,
+];
+
 /** URL 도메인 → 쇼핑몰 이름 매핑 */
 const STORE_PATTERNS = [
-  [/coupang\.com/,          '쿠팡'],
-  [/11st\.co\.kr/,          '11번가'],
-  [/gmarket\.co\.kr/,       'G마켓'],
-  [/auction\.co\.kr/,       '옥션'],
-  [/shopping\.naver\.com/,  '네이버쇼핑'],
-  [/ssg\.com/,              'SSG닷컴'],
-  [/lotteon\.com/,          '롯데온'],
-  [/danawa\.com/,           '다나와'],
-  [/enuri\.com/,            '에누리'],
+  [/coupang\.com/,               '쿠팡'],
+  [/11st\.co\.kr/,               '11번가'],
+  [/gmarket\.co\.kr/,            'G마켓'],
+  [/auction\.co\.kr/,            '옥션'],
+  [/brand\.naver\.com/,          '네이버쇼핑'],
+  [/smartstore\.naver\.com/,     '네이버쇼핑'],
+  [/shopping\.naver\.com/,       '네이버쇼핑'],
+  [/ssg\.com/,                   'SSG닷컴'],
+  [/lotteon\.com/,               '롯데온'],
+  [/danawa\.com/,                '다나와'],
+  [/enuri\.com/,                 '에누리'],
 ];
+
+/** 단축 URL → 원본 URL 해제 (allorigins 프록시의 status.url 활용) */
+async function resolveShortUrl(url) {
+  if (!SHORT_URL_PATTERNS.some(re => re.test(url))) return url;
+  try {
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res   = await fetchWithTimeout(proxy, 8000);
+    const data  = await res.json();
+    const final = data.status?.url;
+    if (final && final.startsWith('http') && final !== url) {
+      console.log(`[resolveShortUrl] ${url} → ${final}`);
+      return final;
+    }
+  } catch (e) {
+    console.warn('[resolveShortUrl] 실패, 원본 URL 사용:', e.message);
+  }
+  return url;
+}
 
 /** 상품명 키워드 → 카테고리 자동 감지 */
 const CAT_PATTERNS = [
@@ -1138,8 +1170,19 @@ async function autoFill() {
   const filled = [];
 
   try {
-    // ── ① 쇼핑몰 자동 감지 ──
-    const storeName = detectStore(urlVal);
+    // ── ① 단축 URL 해제 (naver.me, bit.ly 등) ──
+    let resolvedUrl = urlVal;
+    if (SHORT_URL_PATTERNS.some(re => re.test(urlVal))) {
+      btn.textContent = '🔗 URL 해제 중...';
+      resolvedUrl = await resolveShortUrl(urlVal);
+      if (resolvedUrl !== urlVal) {
+        document.getElementById('new-product-url').value = resolvedUrl;
+        toast(`🔗 단축 URL 해제됨`, 'success');
+      }
+    }
+
+    // ── ② 쇼핑몰 자동 감지 ──
+    const storeName = detectStore(resolvedUrl);
     if (storeName) {
       const sel = document.getElementById('new-store');
       for (const opt of sel.options) {
@@ -1148,9 +1191,11 @@ async function autoFill() {
       filled.push('쇼핑몰');
     }
 
-    // ── ② Microlink API: 이름 + 이미지 ──
+    btn.textContent = '⏳ 정보 가져오는 중...';
+
+    // ── ③ Microlink API: 이름 + 이미지 ──
     const mlRes  = await fetchWithTimeout(
-      `https://api.microlink.io/?url=${encodeURIComponent(urlVal)}`, 10000
+      `https://api.microlink.io/?url=${encodeURIComponent(resolvedUrl)}`, 10000
     );
     const mlData = await mlRes.json();
 
@@ -1180,9 +1225,9 @@ async function autoFill() {
       }
     }
 
-    // ── ③ CORS Proxy: 가격 파싱 ──
+    // ── ④ CORS Proxy: 가격 파싱 ──
     try {
-      const { sale, orig } = await extractPriceFromHtml(urlVal);
+      const { sale, orig } = await extractPriceFromHtml(resolvedUrl);
       const saleEl = document.getElementById('new-sale');
       const origEl = document.getElementById('new-orig');
       if (sale && !saleEl.value) { saleEl.value = sale; filled.push('특가'); }
