@@ -418,14 +418,20 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str,
     return []
 
 
-def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int, msrp: int = 0) -> dict | None:
+def naver_product_to_deal(
+    p: dict, category: str, next_id: int, min_disc: int,
+    avg_7d: int = 0, hist_days: int = 0,
+) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
+    originalPrice는 반드시 실제 가격 근거가 있을 때만 사용 (신뢰도 원칙).
+
     할인율 판단 우선순위:
-      1) hprice > lprice (API 제공 최고가 활용)
-      2) 제목에서 "N% 할인" 파싱
-      3) 제목에서 "정가→판매가" 파싱
-      4) config msrp 기준가 활용 (API가 hprice를 안 줄 때 핵심 fallback)
+      1) hprice > lprice  → API 제공 실제 최고가 (가장 신뢰)
+      2) 제목 "N% 할인"    → 판매자 명시 할인율
+      3) 제목 "정가→판매가" → 판매자 명시 두 가격
+      4) 7일 평균가        → 5일 이상 축적 & 30% 이내일 때만 (보수적)
+      ✗ MSRP 키워드 기준가 → 절대 originalPrice로 사용 안 함
     """
     title = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()
     lp    = int(p.get("lprice") or 0)
@@ -488,22 +494,23 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int, m
             lp   = sale
             disc = round((orig - sale) / orig * 100) if orig > sale else 0
 
-    # Case 4: config의 msrp/7일평균을 기준가로 사용 (네이버 API가 hprice를 안 줄 때 핵심 fallback)
-    msrp_used = False
-    if orig == 0 and msrp > 0:
-        if lp < msrp:
-            disc = round((msrp - lp) / msrp * 100)
-            orig = msrp
-            msrp_used = True
-        # lp >= msrp이면 할인 없음 → orig=0 유지 → 아래에서 필터
+    # Case 4: 7일 평균가 (5일 이상 축적 + 30% 이내만 허용 — 보수적 적용)
+    # MSRP는 절대 originalPrice로 사용하지 않음 → 신뢰도 원칙
+    avg_used = False
+    if orig == 0 and avg_7d > 0 and hist_days >= 5 and lp < avg_7d:
+        disc = round((avg_7d - lp) / avg_7d * 100)
+        if disc <= 30:
+            orig = avg_7d
+            avg_used = True
 
+    # 가격 근거 없으면 제외 (MSRP 추정 불허)
     if disc < min_disc or orig == 0:
         return None
 
-    # 할인율 상한 필터
-    # - hprice 기반(Case 1): 실제 최고가 대비 50% 초과면 비정상
-    # - MSRP/평균가 fallback(Case 4): 40% 초과는 MSRP 과대설정 가능성 → 차단
-    max_disc = 40 if msrp_used else 50
+    # 할인율 상한
+    # - hprice 기반(Case 1): 50% 이하
+    # - 제목 파싱(Case 2·3) / 7일 평균(Case 4): 35% 이하 (파싱 오류·신뢰도 보정)
+    max_disc = 50 if (hp > lp) else 35
     if disc > max_disc:
         return None
 
@@ -810,28 +817,32 @@ def main():
                     update_price_history(price_history, keyword, min_lp)
 
             # 기준가 결정: 7일 평균(3일 이상 데이터) 또는 MSRP fallback
-            ref_price = get_reference_price(price_history, keyword, msrp)
             hist_entry = price_history.get(keyword, {})
             hist_days  = hist_entry.get("days", 0)
-            ref_label  = f"7일평균({hist_days}일치)" if hist_days >= 3 else "MSRP"
+            avg_7d     = hist_entry.get("avg_7d", 0)
 
             # 첫 결과 디버그
             if products:
-                p0 = products[0]
+                p0  = products[0]
                 lp0 = int(p0.get("lprice") or 0)
-                disc_ref = round((ref_price - lp0) / ref_price * 100) if ref_price and lp0 < ref_price else 0
-                print(f"  [DEBUG] lprice={lp0:,} {ref_label}={ref_price:,} → 기준가대비 {disc_ref}% | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
+                hp0 = int(p0.get("hprice") or 0)
+                src = f"hprice={hp0:,}" if hp0 > lp0 else (f"7일평균={avg_7d:,}({hist_days}일)" if avg_7d else "기준가없음")
+                print(f"  [DEBUG] lprice={lp0:,} {src} | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
 
             passed = 0
             for p in products:
-                deal = naver_product_to_deal(p, category, next_id, min_disc, msrp=ref_price)
+                deal = naver_product_to_deal(
+                    p, category, next_id, min_disc,
+                    avg_7d=avg_7d, hist_days=hist_days,
+                )
                 if deal and not is_duplicate(deal, deals + new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     passed += 1
                     disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
                     print(f"  ✅ [{disc}%][{deal['store']}] {deal['name'][:35]}")
-            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 ({ref_label} {ref_price:,}원 기준)")
+            avg_info = f"7일평균 {avg_7d:,}원({hist_days}일)" if avg_7d else "기준가없음(MSRP 미사용)"
+            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 | {avg_info}")
             time.sleep(0.3)
 
         save_price_history(price_history)
