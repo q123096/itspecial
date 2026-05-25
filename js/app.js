@@ -244,7 +244,14 @@ function updateHeroStats() {
 /* ───────────────────────────────────────────
    ALERT MODAL — 카테고리별 특가 알림 구독
 ─────────────────────────────────────────── */
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjrbjwn'; // 알림 신청 수집용
+// ── 구독자 저장 백엔드 ──────────────────────────────────────────
+// Supabase 설정 후 아래 두 값을 채우면 모달 → Supabase 자동 저장
+// (anon key는 RLS가 INSERT만 허용하므로 공개 커밋 OK)
+const SUPABASE_URL      = ''; // 예) https://xyzxyzxyz.supabase.co
+const SUPABASE_ANON_KEY = ''; // Supabase → Settings → API → anon public
+
+// Formspree: contact.html 연락처 폼 전용 유지 (Supabase 미설정 시 알림모달 폴백)
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjrbjwn';
 
 function openAlertModal(preselectedCat) {
   const modal = document.getElementById('alert-modal');
@@ -292,13 +299,36 @@ async function submitAlertForm() {
   // 로컬스토리지 저장 (재방문 시 복원용)
   localStorage.setItem('tdkr_subscription', JSON.stringify({ email, categories: cats }));
 
-  // Formspree 전송 (endpoint 설정 시 활성화)
-  if (FORMSPREE_ENDPOINT) {
+  // ── Supabase 저장 (설정된 경우 우선 사용) ─────────────────────────
+  if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers`, {
+        method:  'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'apikey':         SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer':         'resolution=merge-duplicates', // 동일 이메일 재구독 시 카테고리 갱신
+        },
+        body: JSON.stringify({ email, categories: cats, updated_at: new Date().toISOString() }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `HTTP ${res.status}`);
+      }
+    } catch (e) {
+      console.error('구독 저장 오류:', e);
+      showToast('전송 실패 — 잠시 후 다시 시도해주세요', 'warn');
+      return;
+    }
+
+  // ── Formspree 폴백 (Supabase 미설정 시) ──────────────────────────
+  } else if (FORMSPREE_ENDPOINT) {
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
+        method:  'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email, categories: cats.join(', '), _subject: '특가 알림 신청' }),
+        body:    JSON.stringify({ email, categories: cats.join(', '), _subject: '특가 알림 신청' }),
       });
       if (!res.ok) throw new Error();
     } catch {

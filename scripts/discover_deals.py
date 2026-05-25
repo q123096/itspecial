@@ -42,6 +42,12 @@ SUBSCRIBERS_PATH   = os.path.join(ROOT, "data", "subscribers.json")
 SITE_URL           = "https://q123096.github.io/itspecial"
 FROM_EMAIL         = "ITSpecial <no-reply@itspecial.co.kr>"
 
+# ─── Supabase (구독자 DB) ────────────────────────────────────────
+# GitHub Secrets에 SUPABASE_URL + SUPABASE_SERVICE_KEY 추가 시 자동 연동
+# 미설정 시 data/subscribers.json 폴백
+SUPABASE_URL         = os.environ.get("SUPABASE_URL", "")
+SUPABASE_SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
+
 
 # ─── 7일 평균가 시스템 ───────────────────────────────────────────
 def load_price_history() -> dict:
@@ -203,20 +209,50 @@ def _build_email_html(deals: list[dict], categories: list[str]) -> str:
 </html>"""
 
 
+def load_subscribers() -> list[dict]:
+    """
+    구독자 목록 로드.
+    우선순위: Supabase REST API → data/subscribers.json 폴백
+    Supabase: service role key로 전체 조회 (RLS 우회)
+    """
+    if SUPABASE_URL and SUPABASE_SERVICE_KEY:
+        try:
+            res = requests.get(
+                f"{SUPABASE_URL}/rest/v1/subscribers",
+                params={"select": "email,categories"},
+                headers={
+                    "apikey":         SUPABASE_SERVICE_KEY,
+                    "Authorization": f"Bearer {SUPABASE_SERVICE_KEY}",
+                },
+                timeout=10,
+            )
+            if res.status_code == 200:
+                data = res.json()
+                print(f"  ☁️  Supabase에서 구독자 {len(data)}명 로드")
+                # categories 는 jsonb → Python list 로 자동 파싱됨
+                return [{"email": d["email"], "categories": d.get("categories", [])} for d in data]
+            else:
+                print(f"  ⚠️  Supabase 조회 실패 [{res.status_code}]: {res.text[:120]}")
+        except Exception as e:
+            print(f"  ⚠️  Supabase 로드 예외: {e}")
+
+    # ── 폴백: 로컬 subscribers.json ───────────────────────────────
+    if os.path.exists(SUBSCRIBERS_PATH):
+        with open(SUBSCRIBERS_PATH, encoding="utf-8") as f:
+            subs = json.load(f)
+        if subs:
+            print(f"  📄 subscribers.json에서 구독자 {len(subs)}명 로드")
+        return subs
+
+    return []
+
+
 def send_deal_alerts(new_deals: list[dict], api_key: str) -> None:
-    """
-    새로 발굴된 딜을 카테고리별 구독자에게 Resend로 발송.
-    subscribers.json 구조:
-      [{"email": "user@example.com", "categories": ["smartphone", "audio"]}, ...]
-    """
+    """새로 발굴된 딜을 카테고리별 구독자에게 Resend로 발송."""
     if not api_key or not new_deals:
         return
-    if not os.path.exists(SUBSCRIBERS_PATH):
-        return
 
-    with open(SUBSCRIBERS_PATH, encoding="utf-8") as f:
-        subscribers = json.load(f)
-
+    subscribers = load_subscribers()
     if not subscribers:
         print("  📭 구독자 없음 — 알림 발송 스킵")
         return
