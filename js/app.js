@@ -178,10 +178,10 @@ function renderSkeletons() {
 function renderCard(deal) {
   const disc     = pct(deal.originalPrice, deal.salePrice);
   const savings  = deal.originalPrice - deal.salePrice;
-  const tLeft    = timeLeft(deal.expiresAt);
   const { href, isAffiliate } = resolveLink(deal);
   const isWished = state.wishlist.includes(deal.id);
 
+  // ── 배지 ──
   const badgesHtml = [
     `<span class="badge badge-discount">${disc}% 할인</span>`,
     ...deal.tags.map(t => {
@@ -190,15 +190,34 @@ function renderCard(deal) {
     }),
   ].join('');
 
-  // 제휴링크 설정 시 소표시 (공정위 추천보증 심사지침 대응)
+  // ── 제휴 뱃지 ──
   const affiliateBadge = isAffiliate
     ? `<span class="meta-tag affiliate-tag" title="이 링크를 통해 구매 시 소정의 수수료를 받을 수 있습니다">🤝 파트너스</span>`
     : '';
 
-  const timerHtml = tLeft
-    ? `<div class="timer-wrap">
-         <span class="timer-icon">⏱️</span>
-         <span class="timer" data-expires="${deal.expiresAt}">${tLeft}</span>
+  // ── 업데이트 날짜 뱃지 (expiresAt - 7일 = 수집일) ──
+  const updateHtml = (() => {
+    if (!deal.expiresAt) return '';
+    const d = new Date(new Date(deal.expiresAt) - 7 * 24 * 3600 * 1000);
+    const mm = d.getMonth() + 1;
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `<div class="update-badge">📅 ${mm}.${dd} 업데이트</div>`;
+  })();
+
+  // ── 이미지 호버 툴팁 ──
+  const tooltipHtml = `
+    <div class="img-tooltip" aria-hidden="true">
+      <div class="img-tooltip-disc">${disc}% 할인</div>
+      <div class="img-tooltip-row">💰 ${fmt(savings)} 절약</div>
+      <div class="img-tooltip-row">🏪 ${deal.store}</div>
+      ${deal.freeShipping ? '<div class="img-tooltip-tag">🚚 무료배송</div>' : ''}
+    </div>`;
+
+  // ── 별점: 실제 리뷰 데이터 있을 때만 표시 ──
+  const ratingHtml = deal.reviewCount > 0
+    ? `<div class="deal-rating">
+         <span class="stars">${starsHtml(deal.rating)}</span>
+         <span>(${deal.reviewCount.toLocaleString()})</span>
        </div>`
     : '';
 
@@ -208,7 +227,8 @@ function renderCard(deal) {
         <img class="deal-img" src="${deal.image}" alt="${deal.name}" loading="lazy"
              onerror="this.src='https://placehold.co/400x300/f1f3f5/adb5bd?text=이미지없음'">
         <div class="deal-badges">${badgesHtml}</div>
-        ${timerHtml}
+        ${tooltipHtml}
+        ${updateHtml}
         <div class="card-actions">
           <button class="btn-wish ${isWished ? 'active' : ''}" data-id="${deal.id}"
                   onclick="toggleWish(${deal.id}, event)"
@@ -225,10 +245,7 @@ function renderCard(deal) {
       <div class="deal-body">
         <div class="deal-store-row">
           <span class="store-badge">${deal.store}</span>
-          <div class="deal-rating">
-            <span class="stars">${starsHtml(deal.rating)}</span>
-            <span>(${deal.reviewCount.toLocaleString()})</span>
-          </div>
+          ${ratingHtml}
         </div>
         <p class="deal-name">${deal.name}</p>
         <div class="deal-prices">
@@ -245,7 +262,6 @@ function renderCard(deal) {
         <div class="deal-footer">
           <div class="deal-meta">
             ${deal.freeShipping ? '<span class="meta-tag">🚚 무료배송</span>' : ''}
-            ${deal.inStock ? '<span class="meta-tag">✅ 재고있음</span>' : '<span class="meta-tag">❌ 품절</span>'}
             <span class="meta-tag savings">💰 ${fmt(savings)} 절약</span>
             ${affiliateBadge}
           </div>
@@ -604,7 +620,6 @@ async function init() {
   updateHeroStats();
   document.getElementById('live-count').textContent = state.deals.length;
   applyFilters();
-  setInterval(updateTimers, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', init);

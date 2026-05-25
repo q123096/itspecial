@@ -742,13 +742,20 @@ def refresh_or_duplicate(new_deal: dict, existing_deals: list[dict], expire_days
 
 
 def remove_expired(deals: list[dict], keep_days: int = 1) -> tuple[list[dict], int]:
-    """만료된 딜 제거 (keep_days 유예기간 적용)"""
+    """만료된 딜 제거 (keep_days 유예기간 적용).
+    pinned: true 딜은 만료와 무관하게 영구 보존 (수동 입력 브랜드 딜 등).
+    """
     now     = datetime.now(timezone.utc)
     cutoff  = now - timedelta(days=keep_days)
     active  = []
     removed = 0
 
     for d in deals:
+        # 고정 딜(pinned)은 만료 무시
+        if d.get("pinned"):
+            active.append(d)
+            continue
+
         exp = d.get("expiresAt")
         if exp:
             try:
@@ -799,7 +806,8 @@ def main():
         return round((op - d.get("salePrice", 0)) / op * 100) if op else 0
     deals = [
         d for d in deals
-        if d.get("store") == "쿠팡"
+        if d.get("pinned")                  # pinned 딜은 소급 제거 예외
+        or d.get("store") == "쿠팡"
         or d.get("priceType") == "hprice"   # 타사 최고가 기반 → 50%까지 허용
         or _disc(d) <= 40
     ]
