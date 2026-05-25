@@ -116,3 +116,38 @@ jobs:
           else
             echo "변경사항 없음 — 커밋 스킵"
           fi
+
+  # ════════════════════════════════════════
+  # 3단계: 제품 스펙 자동 보강
+  #   - Icecat 공식 카탈로그에서 스펙 조회
+  #   - 없으면 Naver Shopping API 폴백
+  #   - 결과를 Supabase products 테이블에 저장
+  #   - 이미 있는 제품은 스킵 (1회만 조회)
+  # ════════════════════════════════════════
+  enrich-products:
+    runs-on: ubuntu-latest
+    needs: affiliate-links
+    if: always()            # affiliate-links 실패해도 실행
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+
+      - name: 제품 스펙 보강 실행
+        env:
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ICECAT_USERNAME:      ${{ secrets.ICECAT_USERNAME }}
+          ICECAT_API_KEY:       ${{ secrets.ICECAT_API_KEY }}
+          NAVER_CLIENT_ID:      ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET:  ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: python scripts/enrich_products.py
