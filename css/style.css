@@ -278,6 +278,62 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   gap: 4px;
 }
+
+/* ===== Card action buttons (wish ❤️ + share) ===== */
+.card-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 2;
+}
+.deal-card:hover .card-actions,
+.card-actions:focus-within { opacity: 1; transform: translateY(0); }
+
+.btn-wish,
+.btn-share {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+  transition: background 0.15s ease, transform 0.15s ease;
+  line-height: 1;
+}
+.btn-wish:hover  { background: #ffe4e4; transform: scale(1.12); }
+.btn-share:hover { background: #e8f0ff; transform: scale(1.12); }
+.btn-wish:active, .btn-share:active { transform: scale(0.95); }
+.btn-wish.active { color: #e63946; }
+.btn-share svg   { display: block; color: #495057; }
+
+/* ===== Wish badge on category tab ===== */
+.wish-badge {
+  display: inline-block;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
 .badge {
   display: inline-flex;
   align-items: center;
@@ -645,6 +701,11 @@ img { display: block; max-width: 100%; }
   .toolbar { flex-direction: column; align-items: flex-start; }
   .footer-top { flex-direction: column; gap: 24px; }
   .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* 터치 디바이스: hover 없으므로 액션 버튼 항상 표시 */
+@media (hover: none) {
+  .card-actions { opacity: 1; transform: translateY(0); }
 }
 
 /* ── 모바일 (≤480px) — 2열, 카드 내부 레이아웃 보정 ── */

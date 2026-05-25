@@ -1,7 +1,11 @@
 /* ===== TechDeal KR — Main App ===== */
 
+// ── Kakao 공유 키 (kakao.com/developers → 내 애플리케이션 → JavaScript 키)
+const KAKAO_JS_KEY = ''; // TODO: 카카오 개발자 콘솔에서 JavaScript 키 입력
+
 const CATEGORIES = [
   { id: 'all',        label: '전체',        icon: '🏷️' },
+  { id: 'wish',       label: '찜 목록',     icon: '❤️' },
   { id: 'smartphone', label: '스마트폰',     icon: '📱' },
   { id: 'laptop',     label: '노트북',       icon: '💻' },
   { id: 'desktop',    label: '데스크탑/PC',  icon: '🖥️' },
@@ -31,7 +35,89 @@ const state = {
   minDiscount: 0,
   maxPrice: Infinity,
   query: '',
+  wishlist: JSON.parse(localStorage.getItem('tdkr_wishlist') || '[]'),
 };
+
+function saveWishlist() {
+  localStorage.setItem('tdkr_wishlist', JSON.stringify(state.wishlist));
+}
+
+function toggleWish(dealId, e) {
+  e.preventDefault(); e.stopPropagation();
+  const idx = state.wishlist.indexOf(dealId);
+  if (idx === -1) {
+    state.wishlist.push(dealId);
+    showToast('❤️ 찜 목록에 추가했어요!', 'success');
+  } else {
+    state.wishlist.splice(idx, 1);
+    showToast('찜 목록에서 제거했어요', 'info');
+  }
+  saveWishlist();
+  // 카드 하트 아이콘만 업데이트 (전체 리렌더 없이)
+  const btn = document.querySelector(`.btn-wish[data-id="${dealId}"]`);
+  if (btn) {
+    const active = state.wishlist.includes(dealId);
+    btn.classList.toggle('active', active);
+    btn.innerHTML = active ? '❤️' : '🤍';
+    btn.title = active ? '찜 해제' : '찜하기';
+  }
+  // 찜 탭 뱃지 갱신
+  updateWishBadge();
+  // 현재 찜 탭이면 목록 갱신
+  if (state.category === 'wish') applyFilters();
+}
+window.toggleWish = toggleWish;
+
+function updateWishBadge() {
+  const badge = document.querySelector('.wish-badge');
+  if (badge) {
+    badge.textContent = state.wishlist.length || '';
+    badge.style.display = state.wishlist.length ? 'inline-block' : 'none';
+  }
+}
+
+async function shareDeal(dealId, e) {
+  e.preventDefault(); e.stopPropagation();
+  const deal = state.deals.find(d => d.id === dealId);
+  if (!deal) return;
+  const { href } = resolveLink(deal);
+  const disc = pct(deal.originalPrice, deal.salePrice);
+  const title = `🔥 ${disc}% 할인! ${deal.name}`;
+  const text  = `${deal.name}\n${fmt(deal.originalPrice)} → ${fmt(deal.salePrice)} (${disc}% 할인)\n\nITSpecial에서 더 많은 특가 확인하기`;
+
+  // 1순위: 카카오톡 SDK (JS 키 설정 시)
+  if (KAKAO_JS_KEY && window.Kakao?.isInitialized()) {
+    window.Kakao.Share.sendDefault({
+      objectType: 'commerce',
+      content: {
+        title: deal.name,
+        imageUrl: deal.image,
+        link: { mobileWebUrl: href, webUrl: href },
+        description: `${disc}% 할인 · ${fmt(deal.salePrice)} · ${deal.store}`,
+      },
+      commerce: {
+        productName: deal.name,
+        regularPrice: deal.originalPrice,
+        salePrice:    deal.salePrice,
+        discountRate: disc,
+      },
+      buttons: [{ title: '구매하러 가기', link: { mobileWebUrl: href, webUrl: href } }],
+    });
+    return;
+  }
+  // 2순위: Web Share API (모바일 — 카카오톡 포함)
+  if (navigator.share) {
+    try { await navigator.share({ title, text, url: href }); return; } catch {}
+  }
+  // 3순위: 클립보드 복사 (데스크탑)
+  try {
+    await navigator.clipboard.writeText(`${title}\n${href}`);
+    showToast('🔗 링크가 복사되었습니다!', 'success');
+  } catch {
+    showToast('공유를 지원하지 않는 브라우저예요', 'warn');
+  }
+}
+window.shareDeal = shareDeal;
 
 /* ─── DOM refs ─── */
 const $grid     = document.getElementById('deals-grid');
@@ -88,10 +174,11 @@ function renderSkeletons() {
 }
 
 function renderCard(deal) {
-  const disc    = pct(deal.originalPrice, deal.salePrice);
-  const savings = deal.originalPrice - deal.salePrice;
-  const tLeft   = timeLeft(deal.expiresAt);
+  const disc     = pct(deal.originalPrice, deal.salePrice);
+  const savings  = deal.originalPrice - deal.salePrice;
+  const tLeft    = timeLeft(deal.expiresAt);
   const { href, isAffiliate } = resolveLink(deal);
+  const isWished = state.wishlist.includes(deal.id);
 
   const badgesHtml = [
     `<span class="badge badge-discount">${disc}% 할인</span>`,
@@ -120,6 +207,18 @@ function renderCard(deal) {
              onerror="this.src='https://placehold.co/400x300/f1f3f5/adb5bd?text=이미지없음'">
         <div class="deal-badges">${badgesHtml}</div>
         ${timerHtml}
+        <div class="card-actions">
+          <button class="btn-wish ${isWished ? 'active' : ''}" data-id="${deal.id}"
+                  onclick="toggleWish(${deal.id}, event)"
+                  title="${isWished ? '찜 해제' : '찜하기'}">${isWished ? '❤️' : '🤍'}</button>
+          <button class="btn-share" onclick="shareDeal(${deal.id}, event)" title="공유">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <div class="deal-body">
         <div class="deal-store-row">
@@ -178,8 +277,11 @@ function render() {
 /* ─── Filter & Sort ─── */
 function applyFilters() {
   let list = [...state.deals];
-  if (state.category !== 'all')
+  if (state.category === 'wish') {
+    list = list.filter(d => state.wishlist.includes(d.id));
+  } else if (state.category !== 'all') {
     list = list.filter(d => d.category === state.category);
+  }
   if (state.query) {
     const q = state.query.toLowerCase();
     list = list.filter(d => d.name.toLowerCase().includes(q) || d.store.toLowerCase().includes(q));
@@ -202,10 +304,13 @@ function applyFilters() {
 
 /* ─── Category tabs ─── */
 function renderCategories() {
-  $cats.innerHTML = CATEGORIES.map(c => `
-    <button class="cat-btn ${c.id === state.category ? 'active' : ''}" data-cat="${c.id}">
-      ${c.icon} ${c.label}
-    </button>`).join('');
+  $cats.innerHTML = CATEGORIES.map(c => {
+    const badge = c.id === 'wish' && state.wishlist.length
+      ? `<span class="wish-badge">${state.wishlist.length}</span>` : '';
+    return `<button class="cat-btn ${c.id === state.category ? 'active' : ''}" data-cat="${c.id}">
+      ${c.icon} ${c.label}${badge}
+    </button>`;
+  }).join('');
 
   $cats.querySelectorAll('.cat-btn').forEach(btn =>
     btn.addEventListener('click', () => {
@@ -396,6 +501,23 @@ window.selectCat = function(id) {
 
 /* ─── Init ─── */
 async function init() {
+  // GA4 초기화
+  if (window.GA_ID) {
+    const s = document.createElement('script');
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+
+  // Kakao SDK 초기화
+  if (KAKAO_JS_KEY && window.Kakao && !Kakao.isInitialized()) {
+    Kakao.init(KAKAO_JS_KEY);
+  }
+
   renderSkeletons();
   renderCategories();
   try {
