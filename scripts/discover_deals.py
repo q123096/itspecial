@@ -108,6 +108,35 @@ def save_price_history(history: dict) -> None:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
 
+def save_prices_to_supabase(records: list[dict]) -> None:
+    """
+    네이버 상품별 가격 이력 배치 저장 → Supabase price_history 테이블
+    productId 단위 저장이므로 키워드가 바뀌어도 상품별 추적이 연속됨.
+    records: [{"naver_id": str, "name": str, "keyword": str,
+                "lprice": int, "hprice": int|None}]
+    """
+    if not records or not SUPABASE_URL or not SUPABASE_SERVICE_KEY:
+        return
+    try:
+        r = requests.post(
+            f"{SUPABASE_URL}/rest/v1/price_history",
+            headers={
+                "apikey":         SUPABASE_SERVICE_KEY,
+                "Authorization": f"Bearer {SUPABASE_SERVICE_KEY}",
+                "Content-Type":  "application/json",
+                "Prefer":        "return=minimal",
+            },
+            json=records,
+            timeout=15,
+        )
+        if r.status_code in (200, 201):
+            print(f"  ☁️  Supabase 가격 저장: {len(records)}개 상품")
+        else:
+            print(f"  ⚠️  Supabase 저장 실패 [{r.status_code}]: {r.text[:120]}")
+    except Exception as e:
+        print(f"  ⚠️  Supabase 저장 예외 (딜 수집은 계속): {e}")
+
+
 # ─── Resend 딜 알림 이메일 ───────────────────────────────────────
 CAT_LABEL = {
     "smartphone": "스마트폰", "laptop": "노트북",   "desktop": "데스크탑/PC",
@@ -386,14 +415,16 @@ NAVER_SHOP_URL = "https://openapi.naver.com/v1/search/shop.json"
 
 
 def search_naver_products(keyword: str, client_id: str, client_secret: str,
-                          display: int = 10, min_price: int = 30000) -> list[dict]:
+                          display: int = 10, min_price: int = 30000,
+                          sort: str = "sim") -> list[dict]:
     """
     네이버 쇼핑 검색 API
     - 가입: https://developers.naver.com/apps/#/register
     - 무료: 하루 25,000건
-    - 반환: lprice(최저가), hprice(최고가), mallName, image, link, title
+    - 반환: lprice(최저가), hprice(최고가), mallName, image, link, title, productId
     - min_price: config의 min_price 필드로 가격대 필터 (기본 3만원)
                  "게이밍 완본체"처럼 광범위한 키워드에 700000 걸면 잡동사니 차단
+    - sort: "sim"(정확도순, 기본) | "date"(신제품 탐색용) | "asc"(낮은가격) | "dsc"(높은가격)
     """
     try:
         r = requests.get(
@@ -405,8 +436,8 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str,
             params={
                 "query":   keyword,
                 "display": display,
-                "sort":    "sim",                        # 정확도순
-                "filter":  f"minPrice:{min_price}",      # 가격 하한 필터
+                "sort":    sort,
+                "filter":  f"minPrice:{min_price}",
             },
             timeout=10,
         )
@@ -783,6 +814,8 @@ def main():
     if access and secret:
         print(f"\n🔍 쿠팡 파트너스 키워드 검색 시작 ({len(config['search_keywords'])}개 키워드)...")
         for kw_cfg in sorted(config["search_keywords"], key=lambda x: x.get("priority", 9)):
+            if "keyword" not in kw_cfg or "category" not in kw_cfg:
+                continue
             keyword  = kw_cfg["keyword"]
             category = kw_cfg["category"]
             print(f"\n  🔎 [{category}] '{keyword}' 검색 중...")
@@ -837,12 +870,17 @@ def main():
         price_history = load_price_history()
 
         for kw_cfg in config["search_keywords"]:
+            # _group / _scan 등 주석용 항목은 스킵
+            if "keyword" not in kw_cfg or "category" not in kw_cfg:
+                continue
             keyword   = kw_cfg["keyword"]
             category  = kw_cfg["category"]
             min_price = kw_cfg.get("min_price", 30000)
-            products  = search_naver_products(keyword, naver_id, naver_secret, display=10, min_price=min_price)
+            sort      = kw_cfg.get("sort", "sim")   # "sim"(기본) | "date"(신제품 탐색)
+            products  = search_naver_products(keyword, naver_id, naver_secret,
+                                              display=10, min_price=min_price, sort=sort)
 
-            # 오늘 최저가 기록 → 7일 평균 업데이트
+            # ── ① 키워드 레벨 가격 이력 (기존, fallback용) ────────────
             if products:
                 min_lp = min(
                     (int(p.get("lprice") or 0) for p in products if p.get("lprice")),
@@ -851,7 +889,25 @@ def main():
                 if min_lp >= 30000:
                     update_price_history(price_history, keyword, min_lp)
 
-            # 7일 평균가 (5일 이상 축적 시 Case 4 fallback으로 활용)
+            # ── ② 상품(productId) 레벨 가격 → Supabase 배치 저장 ────
+            sb_records = []
+            for p in products:
+                pid = str(p.get("productId", "")).strip()
+                lp  = int(p.get("lprice") or 0)
+                hp  = int(p.get("hprice") or 0)
+                if pid and lp >= 30000:
+                    name = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()[:100]
+                    sb_records.append({
+                        "naver_id": pid,
+                        "name":     name,
+                        "keyword":  keyword,
+                        "lprice":   lp,
+                        "hprice":   hp if hp > 0 else None,
+                    })
+            if sb_records:
+                save_prices_to_supabase(sb_records)
+
+            # ── ③ 7일 평균가 (현재: 키워드 레벨 / 7일 후: 상품 레벨 전환) ──
             hist_entry = price_history.get(keyword, {})
             hist_days  = hist_entry.get("days", 0)
             avg_7d     = hist_entry.get("avg_7d", 0)
