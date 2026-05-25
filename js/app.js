@@ -206,13 +206,28 @@ function renderCard(deal) {
     return `<div class="update-badge">📅 ${mm}.${dd} 업데이트</div>`;
   })();
 
-  // ── 이미지 호버 툴팁 ──
+  // ── 이미지 호버 툴팁 (상세 요약) ──
+  const tagBadges = (deal.tags || []).slice(0, 2).map(t => {
+    const info = TAG_MAP[t];
+    return info ? `<span class="img-tooltip-tag">${info.icon} ${t}</span>` : '';
+  }).join('');
+
   const tooltipHtml = `
     <div class="img-tooltip" aria-hidden="true">
-      <div class="img-tooltip-disc">${disc}% 할인</div>
-      <div class="img-tooltip-row">💰 ${fmt(savings)} 절약</div>
-      <div class="img-tooltip-row">🏪 ${deal.store}</div>
-      ${deal.freeShipping ? '<div class="img-tooltip-tag">🚚 무료배송</div>' : ''}
+      <div class="img-tooltip-header">
+        <span class="img-tooltip-disc">${disc}% 할인</span>
+        ${tagBadges}
+      </div>
+      <div class="img-tooltip-name">${deal.name}</div>
+      <div class="img-tooltip-prices">
+        <div class="img-tooltip-orig">${fmt(deal.originalPrice)}</div>
+        <div class="img-tooltip-sale">${fmt(deal.salePrice)}</div>
+      </div>
+      <div class="img-tooltip-meta">
+        <span>🏪 ${deal.store}</span>
+        ${deal.freeShipping ? '<span>🚚 무료배송</span>' : ''}
+        <span>💰 ${fmt(savings)} 절약</span>
+      </div>
     </div>`;
 
   // ── 별점: 실제 리뷰 데이터 있을 때만 표시 ──

@@ -281,41 +281,88 @@ img { display: block; max-width: 100%; }
   z-index: 3;   /* 툴팁 위에 표시 */
 }
 
-/* ===== 이미지 호버 툴팁 ===== */
+/* ===== 이미지 호버 툴팁 (상세 정보) ===== */
 .img-tooltip {
   position: absolute;
   inset: 0;
-  background: rgba(20, 20, 40, 0.82);
-  backdrop-filter: blur(3px);
+  background: rgba(15, 15, 30, 0.88);
+  backdrop-filter: blur(4px);
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 0;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.22s ease;
   z-index: 1;
-  padding: 14px;
-  text-align: center;
+  padding: 12px 13px;
+  text-align: left;
 }
 .deal-card:hover .img-tooltip { opacity: 1; }
-.img-tooltip-row {
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.4;
+
+/* 상단: 할인율 + 태그 배지 */
+.img-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
 }
 .img-tooltip-disc {
-  font-size: 22px;
+  font-size: 15px;
+  font-weight: 900;
+  color: #FF6B6B;
+  background: rgba(255,107,107,0.18);
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: -0.3px;
+}
+.img-tooltip-tag {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.13);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+/* 중단: 상품명 */
+.img-tooltip-name {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 7px 0;
+  opacity: 0.95;
+}
+
+/* 하단: 가격 비교 + 메타 */
+.img-tooltip-prices { width: 100%; }
+.img-tooltip-orig {
+  font-size: 11px;
+  text-decoration: line-through;
+  opacity: 0.55;
+  margin-bottom: 1px;
+}
+.img-tooltip-sale {
+  font-size: 19px;
   font-weight: 900;
   color: #FF6B6B;
   letter-spacing: -0.5px;
+  line-height: 1.2;
 }
-.img-tooltip-tag {
+.img-tooltip-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
   font-size: 11px;
-  background: rgba(255,255,255,0.15);
-  padding: 2px 10px;
-  border-radius: 999px;
+  font-weight: 600;
+  opacity: 0.8;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.12);
 }
 
 /* ===== 업데이트 날짜 뱃지 (구 타이머 대체) ===== */
