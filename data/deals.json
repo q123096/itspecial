@@ -68,13 +68,13 @@
     "salePrice": 765000,
     "store": "쿠팡",
     "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=6889043030&ctag=6889043030&lptag=l649281442669&itemId=46219466489&vendorItemId=91971812723&spec=10305197",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://link.coupang.com/a/d2cYgtYp7A",
     "expiresAt": "2026-06-01T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
@@ -398,7 +398,7 @@
     "salePrice": 530000,
     "store": "쿠팡",
     "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=9221808652&ctag=9221808652&lptag=I27251244345&itemId=27251244345&vendorItemId=95454293241&spec=10305199",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://link.coupang.com/a/d2c2dZ88xp",
     "expiresAt": "2026-05-31T23:59:00",
     "tags": [
       "핫딜"
@@ -512,7 +512,7 @@
     "salePrice": 286670,
     "store": "쿠팡",
     "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=1180582270&ctag=1180582270&lptag=l725741193721&itemId=39271171547&vendorItemId=90230341917&spec=10305197",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://link.coupang.com/a/d2cRxFmyDQ",
     "expiresAt": "2026-05-31T23:59:00",
     "tags": [
       "핫딜"
@@ -555,7 +555,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
@@ -726,7 +726,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
