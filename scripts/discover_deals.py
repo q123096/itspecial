@@ -488,18 +488,23 @@ def naver_product_to_deal(p: dict, category: str, next_id: int, min_disc: int, m
             lp   = sale
             disc = round((orig - sale) / orig * 100) if orig > sale else 0
 
-    # Case 4: config의 msrp를 기준가로 사용 (네이버 API가 hprice를 안 줄 때 핵심 fallback)
+    # Case 4: config의 msrp/7일평균을 기준가로 사용 (네이버 API가 hprice를 안 줄 때 핵심 fallback)
+    msrp_used = False
     if orig == 0 and msrp > 0:
         if lp < msrp:
             disc = round((msrp - lp) / msrp * 100)
             orig = msrp
+            msrp_used = True
         # lp >= msrp이면 할인 없음 → orig=0 유지 → 아래에서 필터
 
     if disc < min_disc or orig == 0:
         return None
 
-    # 과도한 할인율 필터: 55% 초과는 중고·오류 가능성 높음
-    if disc > 55:
+    # 할인율 상한 필터
+    # - hprice 기반(Case 1): 실제 최고가 대비 50% 초과면 비정상
+    # - MSRP/평균가 fallback(Case 4): 40% 초과는 MSRP 과대설정 가능성 → 차단
+    max_disc = 40 if msrp_used else 50
+    if disc > max_disc:
         return None
 
     tags = []
@@ -713,6 +718,20 @@ def main():
     # ── 만료 딜 제거 ──
     deals, expired_count = remove_expired(deals, keep_days)
     print(f"\n🗑️  만료 딜 {expired_count}개 제거")
+
+    # ── MSRP 부풀리기 소급 제거 ──
+    # 쿠팡 외 딜 중 할인율 40% 초과는 MSRP fallback 오류 가능성이 높음
+    # (쿠팡은 실제 originalPrice 제공, 네이버는 hprice 없으면 MSRP 사용)
+    before = len(deals)
+    deals = [
+        d for d in deals
+        if d.get("store") == "쿠팡"
+        or d.get("originalPrice", 0) == 0
+        or round((d["originalPrice"] - d["salePrice"]) / d["originalPrice"] * 100) <= 40
+    ]
+    cleaned = before - len(deals)
+    if cleaned:
+        print(f"🔧 MSRP 부풀리기 의심 딜 {cleaned}개 소급 제거 (비쿠팡 할인율 40% 초과)")
 
     new_deals  = []
     next_id    = max((d["id"] for d in deals), default=0) + 1
