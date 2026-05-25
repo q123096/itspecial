@@ -721,7 +721,7 @@
     "salePrice": 580000,
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4741610761&sub-id=1003&service-code=10000003&lcd=100000056",
-    "affiliateUrl": "",
+    "affiliateUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4741610761&sub-id=1003&service-code=10000003&lcd=100000056&partner=itspecial&trackingCode=itspecial",
     "expiresAt": "2026-06-01T23:59:00",
     "tags": [
       "핫딜"
