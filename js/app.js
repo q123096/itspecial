@@ -83,7 +83,7 @@ async function shareDeal(dealId, e) {
   const { href } = resolveLink(deal);
   const disc = pct(deal.originalPrice, deal.salePrice);
   const title = `🔥 ${disc}% 할인! ${deal.name}`;
-  const text  = `${deal.name}\n${fmt(deal.originalPrice)} → ${fmt(deal.salePrice)} (${disc}% 할인)\n\nITSpecial에서 더 많은 특가 확인하기`;
+  const text  = `${fmt(deal.originalPrice)} → ${fmt(deal.salePrice)} (${disc}% 할인)\n\nITSpecial에서 더 많은 특가 확인하기`;
 
   // 1순위: 카카오톡 SDK (JS 키 설정 + 도메인 등록 시)
   if (KAKAO_JS_KEY && window.Kakao?.isInitialized()) {
