@@ -309,6 +309,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 5px;
   flex-wrap: wrap;
+  padding-right: 44px; /* 찜·공유 버튼(34px) + 여백 — 텍스트가 버튼 아래로 파고들지 않도록 */
 }
 .img-tooltip-disc {
   font-size: 15px;
@@ -339,6 +340,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   margin: 7px 0;
   opacity: 0.95;
+  padding-right: 44px; /* 찜·공유 버튼 겹침 방지 */
 }
 
 /* 하단: 가격 비교 + 메타 */
