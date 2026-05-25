@@ -669,15 +669,43 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
 
 # ─── 중복/만료 관리 ──────────────────────────────────────────────
 def is_duplicate(new_deal: dict, existing: list[dict]) -> bool:
-    """이름 유사도 또는 productUrl 기준 중복 체크"""
+    """이름 유사도 또는 productUrl 기준 중복 체크 (같은 실행 내 new_deals 전용)"""
     new_url  = new_deal.get("productUrl", "")
     new_name = new_deal.get("name", "").lower()
 
     for d in existing:
         if new_url and d.get("productUrl") == new_url:
             return True
-        # 이름 앞 10글자가 같으면 중복으로 간주
         if new_name[:10] and d.get("name", "").lower().startswith(new_name[:10]):
+            return True
+    return False
+
+
+def refresh_or_duplicate(new_deal: dict, existing_deals: list[dict], expire_days: int = 7) -> bool:
+    """
+    기존 deals.json에 동일 상품이 있으면:
+      - expiresAt 갱신 (딜 유효기간 연장)
+      - salePrice / originalPrice 업데이트 (가격 변동 반영)
+      - affiliateUrl 은 절대 건드리지 않음 (수기 입력 보존)
+    Returns True(중복이므로 new_deals에 추가 불필요) / False(진짜 신규)
+    """
+    new_url   = new_deal.get("productUrl", "")
+    new_name  = new_deal.get("name", "").lower()
+    new_sale  = new_deal.get("salePrice", 0)
+    new_orig  = new_deal.get("originalPrice", 0)
+    new_exp   = (datetime.now(timezone.utc) + timedelta(days=expire_days)).strftime("%Y-%m-%dT23:59:00")
+
+    for d in existing_deals:
+        matched = (new_url and d.get("productUrl") == new_url) or \
+                  (new_name[:10] and d.get("name", "").lower().startswith(new_name[:10]))
+        if matched:
+            d["expiresAt"] = new_exp                     # 유효기간 갱신
+            if new_sale and new_sale != d.get("salePrice"):
+                d["salePrice"] = new_sale                # 가격 변동 반영
+                if new_orig:
+                    d["originalPrice"] = new_orig
+                print(f"    🔄 가격 갱신: {d['name'][:30]} → {new_sale:,}원")
+            # affiliateUrl 은 건드리지 않음 → 수기 입력 보존
             return True
     return False
 
@@ -768,7 +796,7 @@ def main():
                     continue
 
                 deal = coupang_product_to_deal(p, category, next_id)
-                if deal and not is_duplicate(deal, deals + new_deals):
+                if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     added += 1
@@ -791,7 +819,7 @@ def main():
                 if disc < min_disc:
                     continue
                 deal = coupang_product_to_deal(p, cat_cfg["category"], next_id)
-                if deal and not is_duplicate(deal, deals + new_deals):
+                if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     print(f"  ✅ [{disc}%][{cat_cfg['name']}] {deal['name'][:35]}")
@@ -840,7 +868,7 @@ def main():
                     p, category, next_id, min_disc,
                     avg_7d=avg_7d, hist_days=hist_days,
                 )
-                if deal and not is_duplicate(deal, deals + new_deals):
+                if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     new_deals.append(deal)
                     next_id += 1
                     passed += 1
@@ -866,7 +894,7 @@ def main():
                 category = kw_cfg["category"]
                 break
         deal = ppomppu_candidate_to_deal(c, category, next_id)
-        if not is_duplicate(deal, deals + new_deals):
+        if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
             new_deals.append(deal)
             next_id += 1
 
