@@ -1,7 +1,7 @@
 /* ===== TechDeal KR — Main App ===== */
 
 // ── Kakao 공유 키 (kakao.com/developers → 내 애플리케이션 → JavaScript 키)
-const KAKAO_JS_KEY = ''; // TODO: 카카오 개발자 콘솔에서 JavaScript 키 입력
+const KAKAO_JS_KEY = 'db4206611cd19ecfa9ae35fff67039d8';
 
 const CATEGORIES = [
   { id: 'all',        label: '전체',        icon: '🏷️' },
