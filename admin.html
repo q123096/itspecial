@@ -1364,9 +1364,16 @@ async function autoFill() {
   }
 }
 
+/** 쓸모없는 설명 패턴 (봇 차단, 리다이렉트, 오류 페이지 등) */
+const BAD_DESC_RE = /security verification|보안 확인|접근할 수 있는 권한|서비스로 이동 중|서비스 접속이 일시적|@@description|enable JavaScript|페이지를 찾을 수 없|로그인이 필요|잠시만 기다려|please wait|access denied|error 4\d\d/i;
+
 // ─── Supabase 설명 저장 (upsert) ───
 async function saveDescriptionToSupabase(key, description) {
   if (!key || !description || productsDB[key]?.description) return;
+  if (BAD_DESC_RE.test(description)) {
+    console.warn(`[설명 필터] 불량 설명 차단: "${description.slice(0, 40)}..."`);
+    return;
+  }
   productsDB[key] = { description }; // 로컬 캐시 즉시 반영
   try {
     await fetch(`${SUPABASE_URL}/rest/v1/products`, {
