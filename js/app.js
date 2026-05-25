@@ -247,8 +247,8 @@ function updateHeroStats() {
 // ── 구독자 저장 백엔드 ──────────────────────────────────────────
 // Supabase 설정 후 아래 두 값을 채우면 모달 → Supabase 자동 저장
 // (anon key는 RLS가 INSERT만 허용하므로 공개 커밋 OK)
-const SUPABASE_URL      = ''; // 예) https://xyzxyzxyz.supabase.co
-const SUPABASE_ANON_KEY = ''; // Supabase → Settings → API → anon public
+const SUPABASE_URL      = 'https://dcwxomhlezoqyliexatv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjd3hvbWhsZXpvcXlsaWV4YXR2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODE2MzQsImV4cCI6MjA5NTI1NzYzNH0.VcB0ivWpzynM7QnbqRtPLZ3fGJONFuUykUB-Gr1lSzU';
 
 // Formspree: contact.html 연락처 폼 전용 유지 (Supabase 미설정 시 알림모달 폴백)
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjrbjwn';
