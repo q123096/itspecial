@@ -308,10 +308,15 @@ async function submitAlertForm() {
           'Content-Type':  'application/json',
           'apikey':         SUPABASE_ANON_KEY,
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Prefer':         'resolution=merge-duplicates', // 동일 이메일 재구독 시 카테고리 갱신
         },
-        body: JSON.stringify({ email, categories: cats, updated_at: new Date().toISOString() }),
+        body: JSON.stringify({ email, categories: cats }),
       });
+      if (res.status === 409) {
+        // 이미 구독 중인 이메일 — 성공으로 처리
+        closeAlertModal();
+        showToast('✅ 이미 구독 중입니다! 알림이 계속 발송됩니다.', 'success');
+        return;
+      }
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
         throw new Error(err.message || `HTTP ${res.status}`);
