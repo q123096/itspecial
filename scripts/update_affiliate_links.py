@@ -86,22 +86,9 @@ def get_11st_affiliate_link(product_url: str, api_key: str) -> str:
     return ""
 
 
-# ─── G마켓/옥션 (Linkprice 정식 연동 전 UTM 추적) ────────────────
-STORE_AFFILIATE_PARAM = {
-    "gmarket.co.kr": "partner=itspecial&trackingCode=itspecial",
-    "auction.co.kr": "partner=itspecial&trackingCode=itspecial",
-}
-
-def get_generic_affiliate_link(product_url: str, store: str) -> str:
-    """
-    G마켓, 옥션 — UTM 파라미터 기반 추적 (Linkprice 정식 연동 전 임시)
-    실제 수수료 발생은 Linkprice 연동 후 가능
-    """
-    for domain, param in STORE_AFFILIATE_PARAM.items():
-        if domain in product_url:
-            sep = "&" if "?" in product_url else "?"
-            return product_url + sep + param
-    return ""
+# ─── G마켓/옥션: Linkprice 정식 연동 전까지 제휴링크 생성 안 함 ──
+# 가입: https://linkprice.com → 승인 후 아래 주석 해제
+# LINKPRICE_PID = os.environ.get("LINKPRICE_PID", "")
 
 
 # ─── 메인 로직 ────────────────────────────────────────────────────
@@ -149,9 +136,9 @@ def main():
         elif "11st.co.kr" in product_url and st11_key:
             affiliate_url = get_11st_affiliate_link(product_url, st11_key)
 
-        # G마켓 / 옥션
-        elif any(d in product_url for d in STORE_AFFILIATE_PARAM):
-            affiliate_url = get_generic_affiliate_link(product_url, store)
+        # G마켓 / 옥션 — Linkprice 정식 연동 전까지 스킵
+        # elif "gmarket.co.kr" in product_url or "auction.co.kr" in product_url:
+        #     affiliate_url = get_linkprice_affiliate_link(product_url)
 
         if affiliate_url:
             deal["affiliateUrl"] = affiliate_url
