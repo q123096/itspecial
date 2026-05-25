@@ -43,6 +43,7 @@ jobs:
           COUPANG_SECRET_KEY:   ${{ secrets.COUPANG_SECRET_KEY }}
           NAVER_CLIENT_ID:      ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET:  ${{ secrets.NAVER_CLIENT_SECRET }}
+          RESEND_API_KEY:       ${{ secrets.RESEND_API_KEY }}
         run: python scripts/discover_deals.py
 
       - id: check

@@ -37,6 +37,10 @@ ROOT               = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEALS_PATH         = os.path.join(ROOT, "data", "deals.json")
 CONFIG_PATH        = os.path.join(ROOT, "config", "search_config.json")
 PRICE_HISTORY_PATH = os.path.join(ROOT, "data", "price_history.json")
+SUBSCRIBERS_PATH   = os.path.join(ROOT, "data", "subscribers.json")
+
+SITE_URL           = "https://q123096.github.io/itspecial"
+FROM_EMAIL         = "ITSpecial <no-reply@itspecial.co.kr>"
 
 
 # ─── 7일 평균가 시스템 ───────────────────────────────────────────
@@ -96,6 +100,165 @@ def get_reference_price(history: dict, keyword: str, msrp: int) -> int:
 def save_price_history(history: dict) -> None:
     with open(PRICE_HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
+
+
+# ─── Resend 딜 알림 이메일 ───────────────────────────────────────
+CAT_LABEL = {
+    "smartphone": "스마트폰", "laptop": "노트북",   "desktop": "데스크탑/PC",
+    "tablet":     "태블릿",   "audio":  "이어폰/헤드폰", "monitor": "모니터",
+    "camera":     "카메라",   "gaming": "게이밍",   "wearable": "웨어러블",
+    "accessory":  "주변기기",
+}
+
+
+def _deal_card_html(deal: dict) -> str:
+    disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
+    savings = deal["originalPrice"] - deal["salePrice"]
+    href = deal.get("affiliateUrl") or deal.get("productUrl", "#")
+    return f"""
+    <div style="border:1.5px solid #e9ecef;border-radius:12px;overflow:hidden;margin-bottom:16px;font-family:sans-serif;">
+      <div style="position:relative;">
+        <img src="{deal['image']}" alt="{deal['name']}"
+             style="width:100%;height:180px;object-fit:cover;display:block;"
+             onerror="this.style.display='none'">
+        <span style="position:absolute;top:10px;left:10px;background:#FF4136;color:#fff;
+                     font-weight:700;font-size:13px;padding:4px 10px;border-radius:6px;">
+          {disc}% 할인
+        </span>
+      </div>
+      <div style="padding:14px;">
+        <div style="font-size:11px;color:#868e96;margin-bottom:4px;">{deal['store']}</div>
+        <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;
+                    line-height:1.4;">{deal['name'][:55]}</div>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:12px;color:#adb5bd;text-decoration:line-through;">
+            {deal['originalPrice']:,}원
+          </span>
+          <span style="font-size:20px;font-weight:800;color:#FF4136;margin-left:6px;">
+            {deal['salePrice']:,}원
+          </span>
+        </div>
+        <div style="font-size:11px;color:#868e96;margin-bottom:12px;">
+          💰 {savings:,}원 절약
+        </div>
+        <a href="{href}"
+           style="display:block;text-align:center;background:#FF4136;color:#fff;
+                  font-weight:700;font-size:13px;padding:10px;border-radius:8px;
+                  text-decoration:none;">
+          구매하러 가기 →
+        </a>
+      </div>
+    </div>"""
+
+
+def _build_email_html(deals: list[dict], categories: list[str]) -> str:
+    cat_names = " · ".join(CAT_LABEL.get(c, c) for c in categories)
+    cards = "".join(_deal_card_html(d) for d in deals[:5])  # 최대 5개
+    return f"""
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#f8f9fa;font-family:'Apple SD Gothic Neo',sans-serif;">
+  <div style="max-width:560px;margin:0 auto;padding:20px;">
+
+    <!-- 헤더 -->
+    <div style="background:linear-gradient(135deg,#1A1A2E,#0F3460);border-radius:14px;
+                padding:28px 24px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:26px;font-weight:800;color:#fff;letter-spacing:-0.5px;">
+        ⚡ <span style="color:#FF4136;">IT</span>Special
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:6px;">
+        카테고리별 특가 알림 · {cat_names}
+      </div>
+    </div>
+
+    <!-- 소개 -->
+    <div style="background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:16px;
+                border:1px solid #e9ecef;font-size:14px;color:#495057;line-height:1.7;">
+      새로운 특가 상품 <strong>{len(deals)}개</strong>가 발견됐습니다.
+      지금 바로 확인하고 놓치지 마세요! 🔥
+    </div>
+
+    <!-- 딜 카드 -->
+    {cards}
+
+    <!-- 더보기 버튼 -->
+    <div style="text-align:center;margin:20px 0;">
+      <a href="{SITE_URL}"
+         style="display:inline-block;background:#1a1a2e;color:#fff;font-weight:700;
+                font-size:14px;padding:12px 32px;border-radius:999px;text-decoration:none;">
+        전체 특가 보러가기
+      </a>
+    </div>
+
+    <!-- 푸터 -->
+    <div style="text-align:center;font-size:11px;color:#adb5bd;margin-top:20px;line-height:1.8;">
+      이 메일은 ITSpecial 특가 알림을 신청하셨기 때문에 발송됩니다.<br>
+      이 메일은 <a href="mailto:no-reply@itspecial.co.kr"
+                  style="color:#adb5bd;">no-reply@itspecial.co.kr</a>에서 발송되었습니다.<br>
+      © 2025 ITSpecial · 개인정보는 알림 발송 목적으로만 사용됩니다.
+    </div>
+  </div>
+</body>
+</html>"""
+
+
+def send_deal_alerts(new_deals: list[dict], api_key: str) -> None:
+    """
+    새로 발굴된 딜을 카테고리별 구독자에게 Resend로 발송.
+    subscribers.json 구조:
+      [{"email": "user@example.com", "categories": ["smartphone", "audio"]}, ...]
+    """
+    if not api_key or not new_deals:
+        return
+    if not os.path.exists(SUBSCRIBERS_PATH):
+        return
+
+    with open(SUBSCRIBERS_PATH, encoding="utf-8") as f:
+        subscribers = json.load(f)
+
+    if not subscribers:
+        print("  📭 구독자 없음 — 알림 발송 스킵")
+        return
+
+    # 카테고리별 새 딜 인덱스
+    deals_by_cat: dict[str, list] = {}
+    for d in new_deals:
+        cat = d.get("category", "")
+        deals_by_cat.setdefault(cat, []).append(d)
+
+    sent = skipped = 0
+    for sub in subscribers:
+        email = sub.get("email", "").strip()
+        cats  = sub.get("categories", [])
+        if not email or not cats:
+            continue
+
+        matching = [d for c in cats for d in deals_by_cat.get(c, [])]
+        if not matching:
+            skipped += 1
+            continue
+
+        html    = _build_email_html(matching, cats)
+        subject = f"🔥 {len(matching)}개 특가 발견! ({', '.join(CAT_LABEL.get(c,c) for c in cats[:2])})"
+
+        try:
+            res = requests.post(
+                "https://api.resend.com/emails",
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json={"from": FROM_EMAIL, "to": [email], "subject": subject, "html": html},
+                timeout=15,
+            )
+            if res.status_code == 200:
+                sent += 1
+                print(f"  ✉️  발송 완료: {email} ({len(matching)}개 딜)")
+            else:
+                print(f"  ⚠️  발송 실패 [{res.status_code}]: {email} — {res.text[:100]}")
+        except Exception as e:
+            print(f"  ❌ 발송 오류: {email} — {e}")
+
+    print(f"  📬 알림 발송 완료: {sent}명 발송 | {skipped}명 해당 딜 없음")
+
 
 # ─── 쿠팡 파트너스 API 인증 ──────────────────────────────────────
 COUPANG_HOST = "https://api-gateway.coupang.com"
@@ -494,6 +657,7 @@ def main():
     secret       = os.environ.get("COUPANG_SECRET_KEY", "")
     naver_id     = os.environ.get("NAVER_CLIENT_ID", "")
     naver_secret = os.environ.get("NAVER_CLIENT_SECRET", "")
+    resend_key   = os.environ.get("RESEND_API_KEY", "")
 
     with open(CONFIG_PATH, encoding="utf-8") as f:
         config = json.load(f)
@@ -647,6 +811,13 @@ def main():
     print(f"\n{'='*55}")
     print(f"✅ 기존 {len(deals)}개 | 신규 {len(new_deals)}개 추가 | 최종 {len(all_deals)}개 딜")
     print(f"{'='*55}\n")
+
+    # ── 구독자 딜 알림 발송 ──
+    if new_deals:
+        print(f"\n📨 구독자 알림 발송 중...")
+        send_deal_alerts(new_deals, resend_key)
+    else:
+        print("\n📭 신규 딜 없음 — 알림 발송 스킵")
 
 
 if __name__ == "__main__":

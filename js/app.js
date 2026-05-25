@@ -244,7 +244,7 @@ function updateHeroStats() {
 /* ───────────────────────────────────────────
    ALERT MODAL — 카테고리별 특가 알림 구독
 ─────────────────────────────────────────── */
-const FORMSPREE_ENDPOINT = ''; // TODO: https://formspree.io/f/XXXXXX 에서 발급 후 입력
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjrbjwn'; // 알림 신청 수집용
 
 function openAlertModal(preselectedCat) {
   const modal = document.getElementById('alert-modal');
