@@ -533,6 +533,7 @@ def coupang_product_to_deal(p: dict, category: str, next_id: int) -> dict | None
         "name":          p.get("productName", ""),
         "category":      category,
         "image":         p.get("productImage", ""),
+        "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": int(orig),
         "salePrice":     int(sale),
         "store":         "쿠팡",
@@ -707,9 +708,10 @@ def naver_product_to_deal(
         "name":          title[:60],
         "category":      category,
         "image":         image,
+        "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": orig,
         "salePrice":     lp,
-        "priceType":     price_type,   # "hprice" | "avg7d" | "store" | "" (쿠팡은 필드 없음)
+        "priceType":     price_type,   # "msrp" | "hprice" | "avg7d" | "store" | ""
         "store":         mall,
         "productUrl":    link,
         "affiliateUrl":  "",
@@ -832,6 +834,7 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
         "name":          c["title"][:60],
         "category":      category,
         "image":         "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
+        "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": c["originalPrice"],
         "salePrice":     c["salePrice"],
         "store":         "뽐뿌 핫딜",
@@ -955,29 +958,65 @@ def is_duplicate(new_deal: dict, existing: list[dict]) -> bool:
 def refresh_or_duplicate(new_deal: dict, existing_deals: list[dict], expire_days: int = 7) -> bool:
     """
     기존 deals.json에 동일 상품이 있으면:
-      - expiresAt 갱신 (딜 유효기간 연장)
       - salePrice / originalPrice 업데이트 (가격 변동 반영)
+      - expiresAt 갱신은 addedAt 기준 3일 이내만 허용
+        → 오래된 딜(3일+)은 자연 만료되어 새 딜이 들어올 자리를 만듦
       - affiliateUrl 은 절대 건드리지 않음 (수기 입력 보존)
     Returns True(중복이므로 new_deals에 추가 불필요) / False(진짜 신규)
     """
+    now       = datetime.now(timezone.utc)
     new_url   = new_deal.get("productUrl", "")
     new_name  = new_deal.get("name", "").lower()
     new_sale  = new_deal.get("salePrice", 0)
     new_orig  = new_deal.get("originalPrice", 0)
-    new_exp   = (datetime.now(timezone.utc) + timedelta(days=expire_days)).strftime("%Y-%m-%dT23:59:00")
 
     for d in existing_deals:
         matched = (new_url and d.get("productUrl") == new_url) or \
                   (new_name[:10] and d.get("name", "").lower().startswith(new_name[:10]))
-        if matched:
-            d["expiresAt"] = new_exp                     # 유효기간 갱신
-            if new_sale and new_sale != d.get("salePrice"):
-                d["salePrice"] = new_sale                # 가격 변동 반영
-                if new_orig:
-                    d["originalPrice"] = new_orig
-                print(f"    🔄 가격 갱신: {d['name'][:30]} → {new_sale:,}원")
-            # affiliateUrl 은 건드리지 않음 → 수기 입력 보존
-            return True
+        if not matched:
+            continue
+
+        # ── 딜 나이(age) 계산 ──────────────────────────────────────
+        # addedAt이 있으면 그걸 기준으로, 없으면 expiresAt - expire_days로 역산
+        age_days = 99  # 기본: 오래된 것으로 간주 (안전)
+        added_str = d.get("addedAt")
+        if added_str:
+            try:
+                added_dt = datetime.fromisoformat(added_str.replace("Z", "+00:00"))
+                if added_dt.tzinfo is None:
+                    added_dt = added_dt.replace(tzinfo=timezone.utc)
+                age_days = (now - added_dt).days
+            except ValueError:
+                pass
+        else:
+            # addedAt 없는 기존 딜: expiresAt - expire_days로 추정
+            exp_str = d.get("expiresAt", "")
+            if exp_str:
+                try:
+                    exp_dt = datetime.fromisoformat(exp_str.replace("Z", "+00:00"))
+                    if exp_dt.tzinfo is None:
+                        exp_dt = exp_dt.replace(tzinfo=timezone.utc)
+                    added_dt = exp_dt - timedelta(days=expire_days)
+                    age_days = max(0, (now - added_dt).days)
+                except ValueError:
+                    pass
+
+        # ── 3일 이내 딜만 expiresAt 갱신 ──────────────────────────
+        # 3일 넘은 딜은 자연 만료 → 새 딜이 들어올 자리 확보
+        if age_days < 3:
+            new_exp = (now + timedelta(days=expire_days)).strftime("%Y-%m-%dT23:59:00")
+            d["expiresAt"] = new_exp
+
+        # ── 가격은 항상 최신값으로 업데이트 ────────────────────────
+        if new_sale and new_sale != d.get("salePrice"):
+            d["salePrice"] = new_sale
+            if new_orig:
+                d["originalPrice"] = new_orig
+            print(f"    🔄 가격 갱신: {d['name'][:30]} → {new_sale:,}원")
+
+        # affiliateUrl 은 건드리지 않음 → 수기 입력 보존
+        return True
+
     return False
 
 

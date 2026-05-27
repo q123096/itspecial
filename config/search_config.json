@@ -10,7 +10,8 @@
     "min_discount_pct": 15,
     "max_deals_total": 50,
     "deals_per_keyword": 3,
-    "expire_days_default": 7,
+    "expire_days_default": 4,
+    "_comment_expire": "4일 만료 (만료 연장은 addedAt 기준 3일 이내만) → 매 4-5일마다 딜 자연 순환",
     "keep_expired_days": 1
   },
 
