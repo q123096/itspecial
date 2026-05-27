@@ -515,7 +515,8 @@ def get_coupang_bestsellers(category_id: str, access: str, secret: str, limit: i
     return data.get("data", {}).get("productData", [])
 
 
-def coupang_product_to_deal(p: dict, category: str, next_id: int) -> dict | None:
+def coupang_product_to_deal(p: dict, category: str, next_id: int,
+                            expire_days: int = 4) -> dict | None:
     """쿠팡 API 상품 데이터 → deals.json 포맷 변환"""
     orig = p.get("originalPrice") or p.get("basePrice", 0)
     sale = p.get("salePrice") or p.get("price", 0)
@@ -538,8 +539,8 @@ def coupang_product_to_deal(p: dict, category: str, next_id: int) -> dict | None
         "salePrice":     int(sale),
         "store":         "쿠팡",
         "productUrl":    p.get("productUrl", ""),
-        "affiliateUrl":  p.get("shortenUrl", ""),   # 검색 결과에 링크 포함 시 바로 사용
-        "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=7)).strftime("%Y-%m-%dT23:59:00"),
+        "affiliateUrl":  p.get("shortenUrl", ""),
+        "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=expire_days)).strftime("%Y-%m-%dT23:59:00"),
         "tags":          tags if tags else ["핫딜"],
         "rating":        round(float(p.get("productRating", 4.0)), 1),
         "reviewCount":   int(p.get("reviewCount", 0)),
@@ -590,6 +591,7 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str,
 def naver_product_to_deal(
     p: dict, category: str, next_id: int, min_disc: int,
     avg_7d: int = 0, hist_days: int = 0, msrp: int = 0,
+    expire_days: int = 4,
 ) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
@@ -715,7 +717,7 @@ def naver_product_to_deal(
         "store":         mall,
         "productUrl":    link,
         "affiliateUrl":  "",
-        "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=7)).strftime("%Y-%m-%dT23:59:00"),
+        "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=expire_days)).strftime("%Y-%m-%dT23:59:00"),
         "tags":          tags,
         "rating":        4.0,
         "reviewCount":   int(p.get("reviewCount") or 0),
@@ -814,6 +816,8 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                     m = re.search(r'(\d+)\s*%\s*할인', title)
                     if m:
                         disc_pct = int(m.group(1))
+                        if not (0 < disc_pct < 100):   # ZeroDivisionError 방지
+                            continue
                         sale = prices[0]
                         orig = round(sale / (1 - disc_pct / 100))
                     else:
@@ -897,6 +901,8 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                     m = re.search(r'(\d+)\s*%\s*할인', title)
                     if m:
                         disc_pct = int(m.group(1))
+                        if not (0 < disc_pct < 100):   # ZeroDivisionError 방지
+                            continue
                         sale = prices[0]
                         orig = round(sale / (1 - disc_pct / 100))
                     else:
@@ -1020,6 +1026,8 @@ def fetch_clien_deals(config: dict) -> list[dict]:
                 m = re.search(r'(\d+)\s*%\s*할인', title)
                 if m and len(prices) == 1:
                     disc_pct = int(m.group(1))
+                    if not (0 < disc_pct < 100):   # ZeroDivisionError 방지
+                        continue
                     sale = prices[0]
                     orig = round(sale / (1 - disc_pct / 100))
                 else:
@@ -1210,6 +1218,7 @@ def main():
     max_total      = settings["max_deals_total"]
     per_keyword    = settings["deals_per_keyword"]
     keep_days      = settings.get("keep_expired_days", 1)
+    expire_days    = settings.get("expire_days_default", 4)   # 딜 만료일 (기본 4일)
 
     # ── 만료 딜 제거 ──
     deals, expired_count = remove_expired(deals, keep_days)
@@ -1258,7 +1267,7 @@ def main():
                 if disc < min_disc:
                     continue
 
-                deal = coupang_product_to_deal(p, category, next_id)
+                deal = coupang_product_to_deal(p, category, next_id, expire_days=expire_days)
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     new_deals.append(deal)
                     next_id += 1
@@ -1281,7 +1290,7 @@ def main():
                 disc = round((orig - sale) / orig * 100)
                 if disc < min_disc:
                     continue
-                deal = coupang_product_to_deal(p, cat_cfg["category"], next_id)
+                deal = coupang_product_to_deal(p, cat_cfg["category"], next_id, expire_days=expire_days)
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     new_deals.append(deal)
                     next_id += 1
@@ -1363,6 +1372,7 @@ def main():
                 deal = naver_product_to_deal(
                     p, category, next_id, min_disc,
                     avg_7d=avg_7d, hist_days=hist_days, msrp=kw_msrp,
+                    expire_days=expire_days,
                 )
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     # 가격 히스토리 임베드 (최근 7일, UI 스파크라인용)
