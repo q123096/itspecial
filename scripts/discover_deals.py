@@ -727,41 +727,131 @@ def naver_product_to_deal(
 # ─── 뽐뿌 RSS 파싱 ───────────────────────────────────────────────
 def fetch_ppomppu_deals(config: dict) -> list[dict]:
     """
-    뽐뿌 메인 핫딜 RSS에서 테크 딜 수집.
+    뽐뿌 핫딜 수집 — 두 단계로 운영:
 
-    필터 우선순위:
-      1순위 — 카테고리 매칭: RSS <category> 요소 또는 description에
-               '컴퓨터'/'디지털' 포함 → 키워드 불필요, 100% 테크 딜
-      2순위 — 키워드 매칭: 카테고리 정보 없을 때 tech_keywords로 폴백
+    1단계 (HTML 직접 파싱): 컴퓨터(category=4) · 디지털(category=5) 페이지를
+      직접 스크래핑 → 카테고리 자체가 테크 필터이므로 키워드 불필요.
+      RSS는 ?category 파라미터를 무시하고 <category> 요소도 없음 → HTML이 유일한 방법.
 
-    참고: ppomppu_computer / ppomppu_phone 별도 게시판은 Q&A 토론용이라
-          딜 게시글이 없음. 메인 핫딜 게시판(id=ppomppu) 내 카테고리 필터가 정답.
+    2단계 (RSS 키워드 폴백): HTML 파싱 실패 시 또는 추가 신호로,
+      RSS 전체 피드에서 tech_keywords 매칭 딜을 보충.
     """
     rss_cfg = config.get("ppomppu_rss", {})
     if not rss_cfg.get("enabled"):
         return []
 
+    min_disc  = config["settings"]["min_discount_pct"]
+    candidates = []
+    seen_nos   = set()   # 게시글 번호로 중복 방지
+
+    HEADERS = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                      "AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/124.0.0.0 Safari/537.36",
+        "Accept-Language": "ko-KR,ko;q=0.9",
+        "Referer":         "https://www.ppomppu.co.kr/",
+    }
+
+    # ── 1단계: 컴퓨터(4) · 디지털(5) HTML 직접 파싱 ────────────────
+    html_cats = rss_cfg.get("html_categories", [
+        {"id": "4", "name": "컴퓨터"},
+        {"id": "5", "name": "디지털"},
+    ])
+    print(f"\n📡 뽐뿌 HTML 파싱 중... (카테고리: {', '.join(c['name'] for c in html_cats)})")
+
+    for cat in html_cats:
+        url = f"https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu&category={cat['id']}"
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=12)
+            r.encoding = "euc-kr"   # 뽐뿌는 EUC-KR 인코딩
+            html = r.text
+
+            # 게시글 링크 추출 — 형식: view.php?id=ppomppu&...&no=XXXXX
+            # 제목은 a 태그 텍스트로 직접 포함 (nested 태그 없음)
+            # 제목 패턴: "[쇼핑몰] 제품명 (가격원/배송)" → [ 로 시작, 최소 15자
+            link_title_re = re.compile(
+                r'href="[^"]*view\.php\?id=ppomppu[^"]*&(?:amp;)?no=(\d+)"[^>]*>'
+                r'\s*(\[[^\]]{1,20}\][^<]{5,120})</a>',
+                re.IGNORECASE,
+            )
+            matches = link_title_re.findall(html)
+            found = 0
+
+            for no, raw_title in matches:
+                if no in seen_nos:
+                    continue
+                seen_nos.add(no)
+
+                # HTML 엔티티 디코딩
+                title = (raw_title
+                         .strip()
+                         .replace("&amp;", "&")
+                         .replace("&lt;", "<")
+                         .replace("&gt;", ">")
+                         .replace("&nbsp;", " ")
+                         .replace("&#039;", "'"))
+
+                link = f"https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no={no}"
+
+                # 가격 추출
+                raw_prices = re.findall(r"[\d,]+(?=원)", title)
+                prices = []
+                for rp in raw_prices:
+                    v = int(rp.replace(",", ""))
+                    if 1000 < v < 10_000_000:
+                        prices.append(v)
+
+                if len(prices) >= 2:
+                    orig, sale = max(prices), min(prices)
+                elif len(prices) == 1:
+                    m = re.search(r'(\d+)\s*%\s*할인', title)
+                    if m:
+                        disc_pct = int(m.group(1))
+                        sale = prices[0]
+                        orig = round(sale / (1 - disc_pct / 100))
+                    else:
+                        continue
+                else:
+                    continue
+
+                if sale >= orig or orig <= 0:
+                    continue
+
+                disc = round((orig - sale) / orig * 100)
+                if disc < min_disc:
+                    continue
+
+                candidates.append({
+                    "_source": f"ppomppu_{cat['name']}",
+                    "_match":  "카테고리",
+                    "title":   title,
+                    "link":    link,
+                    "originalPrice": orig,
+                    "salePrice":     sale,
+                    "discount":      disc,
+                })
+                found += 1
+                print(f"  📌 [{cat['name']}][{disc}%] {title[:55]}")
+
+            print(f"  → {cat['name']}: {len(matches)}개 링크 중 {found}개 딜 포착")
+            time.sleep(0.5)
+
+        except Exception as e:
+            print(f"  ❌ [{cat['name']}] HTML 파싱 오류: {e}")
+
+    # ── 2단계: RSS 키워드 폴백 (카테고리 외 테크 딜 보충) ─────────────
     tech_kw   = rss_cfg.get("tech_keywords", [])
-    tech_cats = rss_cfg.get("tech_categories", ["컴퓨터", "디지털"])
     max_posts = rss_cfg.get("max_posts", 50)
-    # 단일 url 또는 urls 배열 모두 지원
     urls = rss_cfg.get("urls") or ([rss_cfg["url"]] if rss_cfg.get("url") else [])
 
-    print(f"\n📡 뽐뿌 RSS 파싱 중... ({len(urls)}개 URL | 카테고리 우선: {', '.join(tech_cats)})")
-    candidates = []
-    seen_links = set()
-    cat_hit = 0   # 카테고리 매칭 카운터 (통계용)
-    kw_hit  = 0   # 키워드 매칭 카운터
+    print(f"\n📡 뽐뿌 RSS 키워드 폴백 파싱 중...")
+    kw_hit = 0
 
     for url in urls:
         try:
-            req = urllib.request.Request(
-                url,
-                headers={"User-Agent": "Mozilla/5.0 (compatible; ITSpecialBot/1.0)"}
-            )
+            req = urllib.request.Request(url, headers={"User-Agent": HEADERS["User-Agent"]})
             with urllib.request.urlopen(req, timeout=10) as resp:
                 raw = resp.read()
-            # ppomppu는 EUC-KR 인코딩 사용 — UTF-8 실패 시 EUC-KR로 재시도
             try:
                 xml_data = raw.decode("utf-8")
             except UnicodeDecodeError:
@@ -769,33 +859,24 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
 
             root  = ET.fromstring(xml_data)
             items = root.findall(".//item")[:max_posts]
-            board_name = url.split('id=')[-1].split('&')[0]
-            print(f"  📂 [{board_name}] {len(items)}개 포스팅 수신")
 
             for item in items:
                 title = (item.findtext("title") or "").strip()
                 link  = (item.findtext("link") or "").strip()
                 desc  = (item.findtext("description") or "").strip()
 
-                if link in seen_links:
-                    continue
-                seen_links.add(link)
+                # 게시글 번호 추출해 중복 방지
+                no_m = re.search(r'no=(\d+)', link)
+                if no_m:
+                    no = no_m.group(1)
+                    if no in seen_nos:
+                        continue    # HTML 파싱에서 이미 가져온 딜
+                    seen_nos.add(no)
 
                 combined = title + " " + desc
-
-                # ── 1순위: 카테고리 매칭 ─────────────────────────────
-                # RSS <category> 요소에 카테고리명이 있거나
-                # description에 카테고리명이 포함된 경우 키워드 체크 없이 포함
-                item_cat = (item.findtext("category") or "").strip()
-                cat_match = any(tc in item_cat or tc in desc for tc in tech_cats)
-
-                # ── 2순위: 키워드 폴백 ──────────────────────────────
-                kw_match = (not cat_match) and any(kw in combined for kw in tech_kw)
-
-                if not cat_match and not kw_match:
+                if not any(kw in combined for kw in tech_kw):
                     continue
 
-                # 가격 추출
                 raw_prices = re.findall(r"[\d,]+(?=원)", combined)
                 prices = []
                 for rp in raw_prices:
@@ -805,44 +886,41 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
 
                 if len(prices) >= 2:
                     orig, sale = max(prices), min(prices)
-                else:
-                    # 가격 1개뿐: 제목에서 할인율 파싱 시도
+                elif len(prices) == 1:
                     m = re.search(r'(\d+)\s*%\s*할인', title)
-                    if m and len(prices) == 1:
+                    if m:
                         disc_pct = int(m.group(1))
                         sale = prices[0]
                         orig = round(sale / (1 - disc_pct / 100))
                     else:
                         continue
+                else:
+                    continue
 
                 if sale >= orig or orig <= 0:
                     continue
 
                 disc = round((orig - sale) / orig * 100)
-                if disc < config["settings"]["min_discount_pct"]:
+                if disc < min_disc:
                     continue
 
-                match_type = "카테고리" if cat_match else "키워드"
-                if cat_match:
-                    cat_hit += 1
-                else:
-                    kw_hit += 1
-
+                kw_hit += 1
                 candidates.append({
-                    "_source":    "ppomppu",
-                    "_match":     match_type,
-                    "title":      title,
-                    "link":       link,
+                    "_source": "ppomppu_rss",
+                    "_match":  "키워드",
+                    "title":   title,
+                    "link":    link,
                     "originalPrice": orig,
                     "salePrice":     sale,
                     "discount":      disc,
                 })
-                print(f"  📌 [{match_type}][{disc}%] {title[:50]}")
+                print(f"  📌 [RSS키워드][{disc}%] {title[:55]}")
 
         except Exception as e:
-            print(f"  ❌ {url} 오류: {e}")
+            print(f"  ❌ RSS 오류: {e}")
 
-    print(f"  → 뽐뿌 합계 {len(candidates)}개 (카테고리 {cat_hit}개 + 키워드 {kw_hit}개)")
+    html_hit = len(candidates) - kw_hit
+    print(f"  → 뽐뿌 합계 {len(candidates)}개 (HTML카테고리 {html_hit}개 + RSS키워드 {kw_hit}개)")
     return candidates
 
 
@@ -1309,13 +1387,13 @@ def main():
                 return kw_cfg.get("category", "accessory")
         return "accessory"
 
-    # 4a. 뽐뿌
+    # 4a. 뽐뿌 (HTML 카테고리 파싱 + RSS 키워드 폴백 통합)
     ppomppu_candidates = fetch_ppomppu_deals(config)
-    # 카테고리 매칭 딜 우선 정렬 (할인율 동점 시 카테고리 > 키워드)
+    # HTML 카테고리 딜 우선, 같은 순위면 할인율 내림차순
     ppomppu_candidates.sort(
         key=lambda c: (0 if c.get("_match") == "카테고리" else 1, -c["discount"])
     )
-    for c in ppomppu_candidates[:10]:  # 뽐뿌 최대 10개 (카테고리 필터로 정밀도↑)
+    for c in ppomppu_candidates[:12]:  # 뽐뿌 최대 12개 (HTML+RSS 합산)
         category = _auto_category(c["title"])
         deal     = ppomppu_candidate_to_deal(c, category, next_id)
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):

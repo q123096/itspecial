@@ -116,32 +116,41 @@
 
   "ppomppu_rss": {
     "enabled": true,
+
+    "_comment_html": "★ 1단계 HTML 직접 파싱 — RSS ?category= 파라미터가 무시되고 <category> 요소도 없어서 HTML 스크래핑이 유일한 카테고리 필터 방법.",
+    "html_categories": [
+      { "id": "4", "name": "컴퓨터" },
+      { "id": "5", "name": "디지털" }
+    ],
+
+    "_comment_rss": "★ 2단계 RSS 키워드 폴백 — HTML로 못 잡은 테크 딜 보충. 컴퓨터·디지털 외 카테고리(가전/가구 등)의 테크 딜도 포착.",
     "urls": [
       "https://www.ppomppu.co.kr/rss.php?id=ppomppu"
     ],
-    "_comment_urls": "메인 핫딜 게시판 전체 RSS. computer/phone 별도게시판은 Q&A 토론용이라 딜 없음.",
-    "tech_categories": ["컴퓨터", "디지털"],
-    "_comment_cats": "RSS <category> 요소 또는 description에 카테고리명이 포함된 포스팅은 키워드 체크 없이 바로 포함(100% 테크). 그 외는 tech_keywords 폴백.",
     "tech_keywords": [
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
       "키보드", "마우스", "SSD", "CPU", "GPU", "RTX", "애플",
       "맥미니", "아이맥", "데스크탑", "조립PC", "그래픽카드", "램", "메모리",
       "AMD", "라이젠", "파워서플라이", "쿨러", "케이스",
-      "미니PC", "완본체", "게이밍PC", "한성", "컴퓨존", "MINISFORUM", "Beelink", "GMKtec", "씽크센터"
+      "미니PC", "완본체", "게이밍PC", "한성", "컴퓨존", "MINISFORUM", "Beelink", "GMKtec", "씽크센터",
+      "스피커", "충전기", "보조배터리", "웹캠", "허브", "HDMI", "C타입", "NVMe",
+      "로지텍", "커세어", "레이저", "앱코", "한성", "MSI", "ASUS", "Gigabyte"
     ],
     "max_posts": 50
   },
 
   "clien_rss": {
     "enabled": true,
-    "_comment": "클리앙 핫딜 게시판 RSS. 뽐뿌보다 IT 제품 비율이 높고 신뢰도 있는 딜이 많음.",
+    "_comment": "클리앙 핫딜(hotdeal) 게시판 RSS. 뽐뿌보다 IT 비율이 높고 신뢰도 있는 딜이 많음.",
+    "_comment_jirum": "jirum(알뜰구매) 게시판의 상품정보(1000236) 카테고리는 식품·게임·앱 등이 섞여있어 비적합. hotdeal 유지.",
     "url": "https://www.clien.net/service/board/hotdeal/rss",
     "tech_keywords": [
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
       "키보드", "마우스", "SSD", "GPU", "RTX", "애플", "완본체", "미니PC",
-      "AMD", "라이젠", "그래픽카드", "맥미니", "MINISFORUM", "Beelink"
+      "AMD", "라이젠", "그래픽카드", "맥미니", "MINISFORUM", "Beelink",
+      "스피커", "충전기", "허브", "로지텍", "MSI", "ASUS"
     ],
     "max_posts": 20
   }
