@@ -59,21 +59,32 @@ def load_price_history() -> dict:
     return {}
 
 
-def update_price_history(history: dict, keyword: str, lprice: int) -> None:
+def update_price_history(history: dict, keyword: str, lprice: int, hprice: int = 0) -> None:
     """
-    키워드별 오늘 최저가 기록 → 7일치만 유지 → 7일 평균 재계산
-    하루 3회 실행 시 그날의 최솟값으로 갱신
+    키워드별 오늘 최저가/최고가 기록 → 7일치만 유지 → 7일 평균 재계산.
+    하루 3회 실행 시 그날의 최솟값(lprice)으로 갱신.
+    hprice: 타사 최고가 (출고가 추정용). 최초 기록값 = 출고가에 가장 근접.
     """
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     if keyword not in history:
-        history[keyword] = {"history": [], "avg_7d": 0, "days": 0}
+        history[keyword] = {"history": [], "avg_7d": 0, "days": 0, "first_hprice": 0}
 
     entries = history[keyword]["history"]
     today_entry = next((e for e in entries if e["date"] == today), None)
     if today_entry:
         today_entry["lprice"] = min(today_entry["lprice"], lprice)
+        # hprice: 오늘 최고값으로 갱신 (최초 등록 시 시장 최고가 추적)
+        if hprice > today_entry.get("hprice", 0):
+            today_entry["hprice"] = hprice
     else:
-        entries.append({"date": today, "lprice": lprice})
+        entry = {"date": today, "lprice": lprice}
+        if hprice:
+            entry["hprice"] = hprice
+        entries.append(entry)
+
+    # first_hprice: 최초 기록된 hprice (출고가 추정치 — 변경하지 않음)
+    if hprice and not history[keyword].get("first_hprice"):
+        history[keyword]["first_hprice"] = hprice
 
     # 7일 이전 데이터 제거
     cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
@@ -107,6 +118,131 @@ def get_reference_price(history: dict, keyword: str, msrp: int) -> int:
 def save_price_history(history: dict) -> None:
     with open(PRICE_HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
+
+
+# ─── MSRP 자동 수집 ──────────────────────────────────────────────
+def fetch_msrp_from_news(keyword: str, naver_id: str, naver_secret: str) -> int | None:
+    """
+    네이버 뉴스 API로 '{keyword} 출고가' 검색 → 공식 출고가 추출.
+
+    뉴스에서 "갤럭시 S25 출고가 1,099,000원" 같은 형태를 파싱.
+    여러 기사에서 추출된 금액의 최빈값(또는 중앙값)을 사용해 이상치 제거.
+    """
+    if not naver_id or not naver_secret:
+        return None
+    try:
+        r = requests.get(
+            "https://openapi.naver.com/v1/search/news.json",
+            headers={
+                "X-Naver-Client-Id":     naver_id,
+                "X-Naver-Client-Secret": naver_secret,
+            },
+            params={"query": f"{keyword} 출고가", "display": 10, "sort": "date"},
+            timeout=8,
+        )
+        if not r.ok:
+            return None
+
+        # 뉴스 제목+본문에서 금액 추출
+        price_candidates = []
+        for item in r.json().get("items", []):
+            text = re.sub(r"<[^>]+>", "", item.get("title", "") + " " + item.get("description", ""))
+            # 패턴: "1,099,000원", "109만9천원", "1099000원"
+            matches = re.findall(r"([\d,]+)원", text)
+            for m in matches:
+                v = int(m.replace(",", ""))
+                # 합리적 출고가 범위: 5만원 ~ 500만원
+                if 50_000 <= v <= 5_000_000:
+                    price_candidates.append(v)
+
+        if not price_candidates:
+            return None
+
+        # 최빈값 (같은 가격이 여러 기사에서 반복 → 신뢰도 높음)
+        from collections import Counter
+        count = Counter(price_candidates)
+        most_common = count.most_common(1)[0]
+        price, freq = most_common
+
+        # 최소 2개 이상 기사에서 같은 가격이 나와야 신뢰
+        if freq >= 2:
+            return price
+
+        # 빈도 1인 경우: 중앙값 사용 (이상치 제거)
+        sorted_prices = sorted(price_candidates)
+        median = sorted_prices[len(sorted_prices) // 2]
+        # 중앙값이 합리적 범위인지 재확인
+        if 50_000 <= median <= 5_000_000:
+            return median
+
+        return None
+
+    except Exception as e:
+        print(f"    [MSRP 뉴스 조회 오류] {keyword}: {e}")
+        return None
+
+
+def fetch_msrp_from_hprice(keyword_history: dict) -> int | None:
+    """
+    Supabase price_history에서 키워드의 최초 hprice를 출고가 추정치로 사용.
+    최초 기록 시점 hprice ≈ 출시 초기 시장 최고가 ≈ 출고가.
+
+    하지만 이미 데이터가 2일치 뿐이라서 hprice 히스토리가 없음.
+    → 현재 price_history.json의 구조에서 hprice를 별도로 저장하지 않으므로
+      네이버 뉴스 조회가 더 신뢰성 있음.
+    """
+    # price_history.json은 lprice만 저장 → 별도 hprice 추적 없음
+    # 향후 price_history 구조에 hprice 추가 시 활용 가능
+    return None
+
+
+def auto_fill_msrp(msrp_data: dict, keywords: list[str],
+                   naver_id: str, naver_secret: str,
+                   price_history: dict | None = None) -> dict:
+    """
+    msrp.json에 없는 키워드들의 출고가를 자동 조회:
+      1순위: 네이버 뉴스 '{keyword} 출고가' 검색 (가장 정확)
+      2순위: price_history의 first_hprice (출시 초기 시장 최고가 ≈ 출고가)
+    이미 있는 키워드는 스킵 (수동 설정값 보존).
+    Returns: 새로 추가된 키워드 딕셔너리
+    """
+    newly_added = {}
+    for keyword in keywords:
+        if keyword in msrp_data or keyword.startswith("_"):
+            continue   # 이미 있으면 스킵
+
+        print(f"  🔍 MSRP 조회: {keyword}", end="")
+
+        # 1순위: 네이버 뉴스
+        price = fetch_msrp_from_news(keyword, naver_id, naver_secret)
+        if price:
+            source = "뉴스"
+        else:
+            # 2순위: price_history first_hprice
+            first_hp = (price_history or {}).get(keyword, {}).get("first_hprice", 0)
+            if first_hp >= 30_000:
+                price  = first_hp
+                source = "hprice 최초값"
+            else:
+                print(" → 정보 없음")
+                time.sleep(0.2)
+                continue
+
+        msrp_data[keyword] = price
+        newly_added[keyword] = price
+        print(f" → ✅ {price:,}원 ({source})")
+        time.sleep(0.3)   # API 속도 제한
+
+    return newly_added
+
+
+def save_msrp(msrp_data: dict) -> None:
+    """msrp.json 저장 (주석 항목 유지)"""
+    # _comment 키는 보존
+    out = {k: v for k, v in msrp_data.items() if k.startswith("_")}
+    out.update({k: v for k, v in msrp_data.items() if not k.startswith("_")})
+    with open(MSRP_PATH, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
 
 
 def save_prices_to_supabase(records: list[dict]) -> None:
@@ -902,6 +1038,26 @@ def main():
         except Exception as e:
             print(f"  ⚠️  msrp.json 로드 실패: {e}")
 
+    # ── MSRP 자동 수집 (msrp.json에 없는 키워드만) ──
+    # 네이버 API 가용 시, 네이버 뉴스에서 공식 출고가 자동 조회
+    if naver_id and naver_secret:
+        all_keywords = [
+            kw["keyword"] for kw in config.get("search_keywords", [])
+            if "keyword" in kw and "category" in kw
+        ]
+        missing_msrp = [k for k in all_keywords if k not in msrp_data]
+        if missing_msrp:
+            print(f"\n💰 출고가 자동 조회 중... ({len(missing_msrp)}개 키워드 미설정)")
+            # price_history는 아직 로드 전 → None 전달 (첫 실행 시 뉴스 기반으로만)
+            # 2회차 이후 실행부터는 price_history가 쌓여서 hprice 폴백도 동작
+            ph_for_msrp = load_price_history()
+            newly_added = auto_fill_msrp(
+                msrp_data, missing_msrp, naver_id, naver_secret, ph_for_msrp
+            )
+            if newly_added:
+                save_msrp(msrp_data)
+                print(f"  ✅ 출고가 자동 추가: {len(newly_added)}개 → msrp.json 저장")
+
     settings       = config["settings"]
     min_disc       = settings["min_discount_pct"]
     max_total      = settings["max_deals_total"]
@@ -1004,14 +1160,19 @@ def main():
             products  = search_naver_products(keyword, naver_id, naver_secret,
                                               display=10, min_price=min_price, sort=sort)
 
-            # ── ① 키워드 레벨 가격 이력 (기존, fallback용) ────────────
+            # ── ① 키워드 레벨 가격 이력 (lprice + hprice 모두 기록) ──
             if products:
                 min_lp = min(
                     (int(p.get("lprice") or 0) for p in products if p.get("lprice")),
                     default=0,
                 )
+                # hprice: 여러 상품 중 최대 hprice (출고가 추정에 가장 유리)
+                max_hp = max(
+                    (int(p.get("hprice") or 0) for p in products if p.get("hprice")),
+                    default=0,
+                )
                 if min_lp >= 30000:
-                    update_price_history(price_history, keyword, min_lp)
+                    update_price_history(price_history, keyword, min_lp, hprice=max_hp)
 
             # ── ② 상품(productId) 레벨 가격 → Supabase 배치 저장 ────
             sb_records = []

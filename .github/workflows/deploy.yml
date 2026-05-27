@@ -58,12 +58,12 @@ jobs:
 
       - id: check
         run: |
-          if git diff --quiet data/deals.json data/price_history.json; then
+          if git diff --quiet data/deals.json data/price_history.json data/msrp.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "변경사항:"
-            git diff --stat data/deals.json data/price_history.json
+            git diff --stat data/deals.json data/price_history.json data/msrp.json
           fi
 
       - name: 변경된 데이터 파일 커밋 & 푸시
@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/deals.json data/price_history.json
+          git add data/deals.json data/price_history.json data/msrp.json
           git commit -m "🤖 딜 자동 발굴 $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
           git push
 
