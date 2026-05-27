@@ -727,21 +727,31 @@ def naver_product_to_deal(
 # ─── 뽐뿌 RSS 파싱 ───────────────────────────────────────────────
 def fetch_ppomppu_deals(config: dict) -> list[dict]:
     """
-    뽐뿌 RSS 여러 게시판에서 테크 핫딜 수집.
-    - ppomppu (핫딜 통합), computer (PC/부품), phone (스마트폰)
+    뽐뿌 메인 핫딜 RSS에서 테크 딜 수집.
+
+    필터 우선순위:
+      1순위 — 카테고리 매칭: RSS <category> 요소 또는 description에
+               '컴퓨터'/'디지털' 포함 → 키워드 불필요, 100% 테크 딜
+      2순위 — 키워드 매칭: 카테고리 정보 없을 때 tech_keywords로 폴백
+
+    참고: ppomppu_computer / ppomppu_phone 별도 게시판은 Q&A 토론용이라
+          딜 게시글이 없음. 메인 핫딜 게시판(id=ppomppu) 내 카테고리 필터가 정답.
     """
     rss_cfg = config.get("ppomppu_rss", {})
     if not rss_cfg.get("enabled"):
         return []
 
     tech_kw   = rss_cfg.get("tech_keywords", [])
-    max_posts = rss_cfg.get("max_posts", 30)
+    tech_cats = rss_cfg.get("tech_categories", ["컴퓨터", "디지털"])
+    max_posts = rss_cfg.get("max_posts", 50)
     # 단일 url 또는 urls 배열 모두 지원
     urls = rss_cfg.get("urls") or ([rss_cfg["url"]] if rss_cfg.get("url") else [])
 
-    print(f"\n📡 뽐뿌 RSS 파싱 중... ({len(urls)}개 게시판)")
+    print(f"\n📡 뽐뿌 RSS 파싱 중... ({len(urls)}개 URL | 카테고리 우선: {', '.join(tech_cats)})")
     candidates = []
     seen_links = set()
+    cat_hit = 0   # 카테고리 매칭 카운터 (통계용)
+    kw_hit  = 0   # 키워드 매칭 카운터
 
     for url in urls:
         try:
@@ -759,11 +769,8 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
 
             root  = ET.fromstring(xml_data)
             items = root.findall(".//item")[:max_posts]
-            board_name = url.split('id=')[-1]
-            print(f"  📂 {board_name} 게시판: {len(items)}개 포스팅")
-            # 첫 3개 제목 출력 (디버그)
-            for dbg in items[:3]:
-                print(f"    └ {(dbg.findtext('title') or '')[:60]}")
+            board_name = url.split('id=')[-1].split('&')[0]
+            print(f"  📂 [{board_name}] {len(items)}개 포스팅 수신")
 
             for item in items:
                 title = (item.findtext("title") or "").strip()
@@ -774,9 +781,18 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                     continue
                 seen_links.add(link)
 
-                # 테크 키워드 포함 여부
                 combined = title + " " + desc
-                if not any(kw in combined for kw in tech_kw):
+
+                # ── 1순위: 카테고리 매칭 ─────────────────────────────
+                # RSS <category> 요소에 카테고리명이 있거나
+                # description에 카테고리명이 포함된 경우 키워드 체크 없이 포함
+                item_cat = (item.findtext("category") or "").strip()
+                cat_match = any(tc in item_cat or tc in desc for tc in tech_cats)
+
+                # ── 2순위: 키워드 폴백 ──────────────────────────────
+                kw_match = (not cat_match) and any(kw in combined for kw in tech_kw)
+
+                if not cat_match and not kw_match:
                     continue
 
                 # 가격 추출
@@ -806,20 +822,27 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                 if disc < config["settings"]["min_discount_pct"]:
                     continue
 
+                match_type = "카테고리" if cat_match else "키워드"
+                if cat_match:
+                    cat_hit += 1
+                else:
+                    kw_hit += 1
+
                 candidates.append({
-                    "_source": "ppomppu",
-                    "title":   title,
-                    "link":    link,
+                    "_source":    "ppomppu",
+                    "_match":     match_type,
+                    "title":      title,
+                    "link":       link,
                     "originalPrice": orig,
                     "salePrice":     sale,
                     "discount":      disc,
                 })
-                print(f"  📌 [{disc}%할인] {title[:50]}")
+                print(f"  📌 [{match_type}][{disc}%] {title[:50]}")
 
         except Exception as e:
             print(f"  ❌ {url} 오류: {e}")
 
-    print(f"  → 뽐뿌 합계 {len(candidates)}개 테크 딜 감지")
+    print(f"  → 뽐뿌 합계 {len(candidates)}개 (카테고리 {cat_hit}개 + 키워드 {kw_hit}개)")
     return candidates
 
 
@@ -1288,7 +1311,11 @@ def main():
 
     # 4a. 뽐뿌
     ppomppu_candidates = fetch_ppomppu_deals(config)
-    for c in ppomppu_candidates[:5]:   # 뽐뿌에서 최대 5개
+    # 카테고리 매칭 딜 우선 정렬 (할인율 동점 시 카테고리 > 키워드)
+    ppomppu_candidates.sort(
+        key=lambda c: (0 if c.get("_match") == "카테고리" else 1, -c["discount"])
+    )
+    for c in ppomppu_candidates[:10]:  # 뽐뿌 최대 10개 (카테고리 필터로 정밀도↑)
         category = _auto_category(c["title"])
         deal     = ppomppu_candidate_to_deal(c, category, next_id)
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
@@ -1297,7 +1324,7 @@ def main():
 
     # 4b. 클리앙
     clien_candidates = fetch_clien_deals(config)
-    for c in clien_candidates[:5]:     # 클리앙에서 최대 5개
+    for c in clien_candidates[:8]:     # 클리앙 최대 8개
         category = _auto_category(c["title"])
         # 클리앙은 ppomppu_candidate_to_deal 재활용 (구조 동일)
         deal = ppomppu_candidate_to_deal(c, category, next_id)

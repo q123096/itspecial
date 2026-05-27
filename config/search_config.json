@@ -119,7 +119,9 @@
     "urls": [
       "https://www.ppomppu.co.kr/rss.php?id=ppomppu"
     ],
-    "_comment_urls": "computer·phone 게시판은 Q&A 토론 게시판이라 딜 게시글이 없음 — 메인 핫딜 게시판만 사용",
+    "_comment_urls": "메인 핫딜 게시판 전체 RSS. computer/phone 별도게시판은 Q&A 토론용이라 딜 없음.",
+    "tech_categories": ["컴퓨터", "디지털"],
+    "_comment_cats": "RSS <category> 요소 또는 description에 카테고리명이 포함된 포스팅은 키워드 체크 없이 바로 포함(100% 테크). 그 외는 tech_keywords 폴백.",
     "tech_keywords": [
       "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
       "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
@@ -128,7 +130,7 @@
       "AMD", "라이젠", "파워서플라이", "쿨러", "케이스",
       "미니PC", "완본체", "게이밍PC", "한성", "컴퓨존", "MINISFORUM", "Beelink", "GMKtec", "씽크센터"
     ],
-    "max_posts": 30
+    "max_posts": 50
   },
 
   "clien_rss": {
