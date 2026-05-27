@@ -763,14 +763,21 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
         url = f"https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu&category={cat['id']}"
         try:
             r = requests.get(url, headers=HEADERS, timeout=12)
+            if r.status_code != 200:
+                print(f"  ⚠️  [{cat['name']}] HTTP {r.status_code} → RSS 폴백으로 대체")
+                continue
             r.encoding = "euc-kr"   # 뽐뿌는 EUC-KR 인코딩
             html = r.text
 
             # 게시글 링크 추출 — 형식: view.php?id=ppomppu&...&no=XXXXX
-            # 제목은 a 태그 텍스트로 직접 포함 (nested 태그 없음)
-            # 제목 패턴: "[쇼핑몰] 제품명 (가격원/배송)" → [ 로 시작, 최소 15자
+            # 실제 HTML 특성:
+            #   - href 내 & → &amp; 로 인코딩 (표준 HTML)
+            #   - &&amp; 이중 앰퍼샌드 케이스도 존재 → (?:&amp;|&)+ 로 처리
+            #   - 제목은 a 태그 직접 포함 텍스트 (b/span 등 중첩 태그 없음 — 확인됨)
+            #   - 제목 패턴: "[쇼핑몰] 제품명 (가격원/배송)"
+            # robots.txt: /zboard/zboard.php?id=ppomppu — Disallow 없음, 스크래핑 허용
             link_title_re = re.compile(
-                r'href="[^"]*view\.php\?id=ppomppu[^"]*&(?:amp;)?no=(\d+)"[^>]*>'
+                r'href="[^"]*view\.php\?id=ppomppu[^"]*?(?:&amp;|&)+no=(\d+)"[^>]*>'
                 r'\s*(\[[^\]]{1,20}\][^<]{5,120})</a>',
                 re.IGNORECASE,
             )
