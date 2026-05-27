@@ -240,6 +240,7 @@ function renderCard(deal) {
         ${deal.freeShipping ? '<span>🚚 무료배송</span>' : ''}
         <span>💰 ${fmt(savings)} 절약</span>
       </div>
+      ${deal.priceHistory?.length >= 2 ? makeSparkline(deal.priceHistory) : ''}
     </div>`;
 
   // ── 별점: 실제 리뷰 데이터 있을 때만 표시 ──
@@ -279,11 +280,13 @@ function renderCard(deal) {
         <p class="deal-name">${deal.name}</p>
         <div class="deal-prices">
           <span class="original-price">
-            ${deal.priceType === 'hprice'
-              ? '<span class="price-type-label">타사 최고가</span>'
-              : deal.priceType === 'avg7d'
-                ? '<span class="price-type-label">7일 평균가</span>'
-                : ''}
+            ${deal.priceType === 'msrp'
+              ? '<span class="price-type-label">출고가</span>'
+              : deal.priceType === 'hprice'
+                ? '<span class="price-type-label">타사 최고가</span>'
+                : deal.priceType === 'avg7d'
+                  ? '<span class="price-type-label">7일 평균가</span>'
+                  : ''}
             ${fmt(deal.originalPrice)}
           </span>
           <span class="sale-price">${fmt(deal.salePrice)}</span>
@@ -450,10 +453,41 @@ function updateTimers() {
   });
 }
 
+/* ─── Price Sparkline (SVG 인라인 — 외부 라이브러리 불필요) ─── */
+function makeSparkline(history) {
+  if (!history || history.length < 2) return '';
+  const prices = history.map(h => h.lprice).filter(Boolean);
+  if (prices.length < 2) return '';
+  const min   = Math.min(...prices);
+  const max   = Math.max(...prices);
+  const range = max - min || 1;
+  const W = 72, H = 22;
+  const points = prices.map((p, i) => {
+    const x = (i / (prices.length - 1)) * W;
+    const y = H - ((p - min) / range) * (H - 4) - 2;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  // 마지막 가격이 첫 가격보다 낮으면 초록(하락), 높으면 빨강(상승)
+  const trend = prices[prices.length - 1] <= prices[0] ? '#4ADE80' : '#F87171';
+  const lastX = W;
+  const lastY = (H - ((prices[prices.length - 1] - min) / range) * (H - 4) - 2).toFixed(1);
+  const minPrice = Math.min(...prices).toLocaleString('ko-KR') + '원';
+  const maxPrice = Math.max(...prices).toLocaleString('ko-KR') + '원';
+  return `<div class="sparkline-wrap" title="${history.length}일 가격 추이 · 최저 ${minPrice} · 최고 ${maxPrice}">
+    <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" overflow="visible">
+      <polyline points="${points}" fill="none" stroke="${trend}" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="${lastX}" cy="${lastY}" r="2.5" fill="${trend}"/>
+    </svg>
+    <span class="sparkline-days">${history.length}일</span>
+  </div>`;
+}
+
 /* ─── Affiliate click tracking ─── */
 function trackClick(dealId, isAffiliate) {
   const deal = state.deals.find(d => d.id === dealId);
   if (!deal) return;
+
   // Google Analytics 이벤트 (GA 연동 시 활성화)
   if (window.gtag) {
     window.gtag('event', 'affiliate_click', {
@@ -462,6 +496,27 @@ function trackClick(dealId, isAffiliate) {
       price: deal.salePrice,
       is_affiliate: isAffiliate,
     });
+  }
+
+  // Supabase 클릭 로그 (fire-and-forget — UI 블로킹 없음)
+  if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+    fetch(`${SUPABASE_URL}/rest/v1/click_logs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        'apikey':         SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer':        'return=minimal',
+      },
+      body: JSON.stringify({
+        deal_id:      deal.id,
+        deal_name:    deal.name.slice(0, 100),
+        category:     deal.category,
+        store:        deal.store,
+        sale_price:   deal.salePrice,
+        is_affiliate: isAffiliate,
+      }),
+    }).catch(() => {});  // 실패해도 무시
   }
 }
 window.trackClick = trackClick;

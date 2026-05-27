@@ -383,6 +383,23 @@ img { display: block; max-width: 100%; }
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 
+/* ===== 스파크라인 (가격 추이 미니 차트) ===== */
+.sparkline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  opacity: 0.9;
+}
+.sparkline-days {
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 /* ===== 업데이트 날짜 뱃지 (구 타이머 대체) ===== */
 .update-badge {
   position: absolute;

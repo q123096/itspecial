@@ -37,6 +37,7 @@ ROOT               = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEALS_PATH         = os.path.join(ROOT, "data", "deals.json")
 CONFIG_PATH        = os.path.join(ROOT, "config", "search_config.json")
 PRICE_HISTORY_PATH = os.path.join(ROOT, "data", "price_history.json")
+MSRP_PATH          = os.path.join(ROOT, "data", "msrp.json")
 SUBSCRIBERS_PATH   = os.path.join(ROOT, "data", "subscribers.json")
 
 SITE_URL           = "https://q123096.github.io/itspecial"
@@ -451,7 +452,7 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str,
 
 def naver_product_to_deal(
     p: dict, category: str, next_id: int, min_disc: int,
-    avg_7d: int = 0, hist_days: int = 0,
+    avg_7d: int = 0, hist_days: int = 0, msrp: int = 0,
 ) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
@@ -506,22 +507,32 @@ def naver_product_to_deal(
     sale       = lp
     price_type = ""   # 가격 근거 출처 → UI 라벨 결정
 
+    # Case 0: 관리자 설정 출고가 (msrp.json) — 가장 신뢰
+    # lp < msrp 이고 할인율 60% 이내인 경우만 사용
+    if msrp > 0 and lp < msrp:
+        _disc_msrp = round((msrp - lp) / msrp * 100)
+        if 5 <= _disc_msrp <= 60:
+            disc       = _disc_msrp
+            orig       = msrp
+            price_type = "msrp"
+
     # Case 1: hprice(타사 최고가)가 있고 lprice보다 클 때
     # → 동일 상품을 파는 여러 쇼핑몰 중 최고가 대비 최저가 비교 (신뢰 높음)
-    if hp > lp:
+    # msrp가 이미 설정된 경우 건너뜀
+    if orig == 0 and hp > lp:
         disc       = round((hp - lp) / hp * 100)
         orig       = hp
         price_type = "hprice"
 
     # Case 2: 제목에서 할인율 파싱 (예: "30% 할인", "[20%↓]")
-    elif re.search(r'(\d+)\s*%\s*할인|(\d+)%↓|(\d+)%\s*off', title, re.IGNORECASE):
+    elif orig == 0 and re.search(r'(\d+)\s*%\s*할인|(\d+)%↓|(\d+)%\s*off', title, re.IGNORECASE):
         m          = re.search(r'(\d+)\s*%', title)
         disc       = int(m.group(1)) if m else 0
         orig       = round(lp / (1 - disc / 100)) if disc < 100 else lp
         price_type = "store"
 
     # Case 3: 제목에서 두 가격 파싱 (예: "89,000원→59,000원")
-    elif re.search(r'[\d,]+원\s*[→\-]\s*[\d,]+원', title):
+    elif orig == 0 and re.search(r'[\d,]+원\s*[→\-]\s*[\d,]+원', title):
         prices = [int(x.replace(",", "")) for x in re.findall(r'([\d,]+)원', title)]
         if len(prices) >= 2:
             orig       = max(prices)
@@ -531,7 +542,7 @@ def naver_product_to_deal(
             price_type = "store"
 
     # Case 4: 7일 평균가 (5일 이상 축적 + 30% 이내만 허용)
-    # MSRP는 절대 originalPrice로 사용하지 않음 → 신뢰도 원칙
+    # MSRP/hprice/store 우선 적용 후 orig가 없을 때만 사용
     if orig == 0 and avg_7d > 0 and hist_days >= 5 and lp < avg_7d:
         disc = round((avg_7d - lp) / avg_7d * 100)
         if disc <= 30:
@@ -543,9 +554,10 @@ def naver_product_to_deal(
         return None
 
     # 할인율 상한
-    # - hprice 기반(Case 1): 50% 이하 (실제 시장가 비교)
+    # - msrp(출고가): 60% 이하 (공식가 대비 최대 할인)
+    # - hprice(타사 최고가): 50% 이하 (실제 시장가 비교)
     # - 제목·7일평균(Case 2·3·4): 35% 이하 (파싱 오류·신뢰도 보정)
-    max_disc = 50 if price_type == "hprice" else 35
+    max_disc = 60 if price_type == "msrp" else (50 if price_type == "hprice" else 35)
     if disc > max_disc:
         return None
 
@@ -787,6 +799,17 @@ def main():
     with open(DEALS_PATH, encoding="utf-8") as f:
         deals = json.load(f)
 
+    # ── MSRP 출고가 로드 (msrp.json) ──
+    msrp_data: dict[str, int] = {}
+    if os.path.exists(MSRP_PATH):
+        try:
+            with open(MSRP_PATH, encoding="utf-8") as f:
+                raw = json.load(f)
+            msrp_data = {k: int(v) for k, v in raw.items() if not k.startswith("_") and isinstance(v, (int, float))}
+            print(f"  💰 MSRP 출고가 로드: {len(msrp_data)}개 제품")
+        except Exception as e:
+            print(f"  ⚠️  msrp.json 로드 실패: {e}")
+
     settings       = config["settings"]
     min_disc       = settings["min_discount_pct"]
     max_total      = settings["max_deals_total"]
@@ -929,20 +952,31 @@ def main():
                 src = f"hprice={hp0:,}" if hp0 > lp0 else (f"7일평균={avg_7d:,}({hist_days}일)" if avg_7d else "기준가없음")
                 print(f"  [DEBUG] lprice={lp0:,} {src} | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
 
+            # MSRP 출고가 (msrp.json에서 키워드 기준 조회)
+            kw_msrp = msrp_data.get(keyword, 0)
+
+            # 7일 가격 히스토리 (스파크라인용 — deals.json에 임베드)
+            kw_history = price_history.get(keyword, {}).get("history", [])
+
             passed = 0
             for p in products:
                 deal = naver_product_to_deal(
                     p, category, next_id, min_disc,
-                    avg_7d=avg_7d, hist_days=hist_days,
+                    avg_7d=avg_7d, hist_days=hist_days, msrp=kw_msrp,
                 )
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
+                    # 가격 히스토리 임베드 (최근 7일, UI 스파크라인용)
+                    if kw_history:
+                        deal["priceHistory"] = kw_history[-7:]
                     new_deals.append(deal)
                     next_id += 1
                     passed += 1
                     disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100)
-                    print(f"  ✅ [{disc}%][{deal['store']}] {deal['name'][:35]}")
-            avg_info = f"7일평균 {avg_7d:,}원({hist_days}일)" if avg_7d else "기준가없음(MSRP 미사용)"
-            print(f"  → [{keyword}] API {len(products)}개 수신, 필터 통과 {passed}개 | {avg_info}")
+                    src_label = f"[{deal.get('priceType','?')}]" if deal.get('priceType') else ""
+                    print(f"  ✅ [{disc}%]{src_label}[{deal['store']}] {deal['name'][:35]}")
+            msrp_info = f"출고가 {kw_msrp:,}원" if kw_msrp else ""
+            avg_info  = f"7일평균 {avg_7d:,}원({hist_days}일)" if avg_7d else "기준가없음"
+            print(f"  → [{keyword}] {len(products)}개 수신, {passed}개 통과 | {msrp_info or avg_info}")
             time.sleep(0.3)
 
         save_price_history(price_history)

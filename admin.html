@@ -244,6 +244,33 @@
     .pin-toggle-desc strong { display: block; font-size: 13px; color: var(--text); }
     .pin-toggle-desc span { font-size: 11px; color: var(--muted); }
 
+    /* ─── MSRP 항목 카드 ─── */
+    .msrp-card {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 10px 12px;
+    }
+    .msrp-card-key { flex: 1; font-size: 13px; font-weight: 600; }
+    .msrp-card-val {
+      width: 120px; padding: 5px 8px; border: 1.5px solid var(--border);
+      border-radius: 6px; font: inherit; font-size: 13px; outline: none;
+      text-align: right;
+    }
+    .msrp-card-val:focus { border-color: var(--primary); }
+    .btn-del-msrp {
+      background: #fff0f0; border: 1px solid #ffc9c9;
+      border-radius: 6px; color: var(--primary); padding: 4px 8px;
+      cursor: pointer; font-size: 13px;
+    }
+    .btn-del-msrp:hover { background: #ffe0e0; }
+
+    /* ─── Click stats badge ─── */
+    .click-badge {
+      display: inline-block; background: #e8f4fd; color: #0074D9;
+      border-radius: 6px; padding: 2px 8px; font-size: 12px; font-weight: 700;
+    }
+    .click-badge.aff { background: #e8f5e9; color: #2ECC40; }
+
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
       .admin-header h1 { font-size: 14px; }
@@ -303,6 +330,7 @@
     <a href="index.html" class="btn-sm btn-outline">← 사이트 보기</a>
     <button class="btn-sm btn-success" onclick="saveAll()">전체 저장</button>
     <button id="btn-bulk-desc" class="btn-sm" style="background:#17a2b8;color:white;" onclick="bulkEnrichDescriptions()">📝 설명 자동 보강</button>
+    <button class="btn-sm" style="background:#6f42c1;color:white;" onclick="document.getElementById('click-stats-section').scrollIntoView({behavior:'smooth'})">📊 클릭 통계</button>
     <button id="btn-gh-push" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub에 저장</button>
   </nav>
 </header>
@@ -574,6 +602,70 @@
     <div class="form-actions">
       <button class="btn-sm btn-primary" onclick="addDeal()">➕ 딜 추가</button>
       <button class="btn-sm btn-outline" style="color:var(--muted);border-color:var(--border);" onclick="clearForm()">초기화</button>
+    </div>
+  </div>
+
+  <!-- ═══ 클릭 통계 ═══ -->
+  <div class="export-section" id="click-stats-section">
+    <h2>📊 클릭 통계 <small style="font-size:12px;font-weight:400;color:var(--muted);margin-left:8px;">구매 버튼 클릭 추적</small></h2>
+    <div id="click-stats-loading" style="color:var(--muted);font-size:13px;margin-bottom:12px;">불러오는 중...</div>
+    <div id="click-stats-cards" class="stats-bar" style="display:none;"></div>
+    <div id="click-stats-table-wrap" class="table-wrap" style="display:none;margin-top:12px;">
+      <table>
+        <thead>
+          <tr>
+            <th>상품명</th>
+            <th>카테고리</th>
+            <th>판매처</th>
+            <th>판매가</th>
+            <th>파트너스</th>
+            <th>클릭 수</th>
+            <th>최근 클릭</th>
+          </tr>
+        </thead>
+        <tbody id="click-stats-tbody"></tbody>
+      </table>
+    </div>
+    <div class="export-actions" style="margin-top:12px;">
+      <button class="btn-sm btn-primary" onclick="loadClickStats()">🔄 새로고침</button>
+      <button class="btn-sm btn-success" onclick="exportClickCSV()">📥 CSV 다운로드</button>
+    </div>
+    <details style="margin-top:16px;">
+      <summary style="cursor:pointer;font-size:12px;color:var(--muted);font-weight:600;">⚙️ Supabase click_logs 테이블 생성 SQL</summary>
+      <pre style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:8px;font-size:11px;margin-top:8px;overflow-x:auto;white-space:pre;">CREATE TABLE IF NOT EXISTS click_logs (
+  id           BIGSERIAL PRIMARY KEY,
+  deal_id      INTEGER,
+  deal_name    TEXT,
+  category     TEXT,
+  store        TEXT,
+  sale_price   INTEGER,
+  is_affiliate BOOLEAN DEFAULT FALSE,
+  clicked_at   TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE click_logs ENABLE ROW LEVEL SECURITY;
+-- 누구나 INSERT 가능 (방문자 클릭 기록용)
+CREATE POLICY "anon_insert" ON click_logs FOR INSERT TO anon WITH CHECK (true);
+-- 누구나 SELECT 가능 (어드민 통계 조회용 — anon key 사용)
+CREATE POLICY "anon_select" ON click_logs FOR SELECT TO anon USING (true);</pre>
+    </details>
+  </div>
+
+  <!-- ═══ MSRP 출고가 관리 ═══ -->
+  <div class="export-section" id="msrp-section">
+    <h2>💰 MSRP 출고가 설정 <small style="font-size:12px;font-weight:400;color:var(--muted);margin-left:8px;">키워드별 공식 출고가 지정</small></h2>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">
+      search_config.json의 keyword와 동일한 이름으로 출고가를 설정하면<br>
+      GitHub Actions 발굴 시 <code style="background:#f1f3f5;padding:1px 5px;border-radius:4px;">priceType: "msrp"</code>로 기준가가 사용됩니다.
+    </p>
+    <div id="msrp-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:16px;"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+      <input id="msrp-new-key" class="search-admin" style="max-width:260px;" placeholder="키워드 (예: 갤럭시 S26 자급제)">
+      <input id="msrp-new-val" class="search-admin" style="max-width:150px;" type="number" placeholder="출고가 (원)">
+      <button class="btn-sm btn-success" onclick="addMsrpEntry()">+ 추가</button>
+    </div>
+    <div class="export-actions">
+      <button class="btn-sm btn-push" onclick="saveMsrpToGitHub()">🚀 msrp.json GitHub 저장</button>
+      <button class="btn-sm btn-primary" onclick="exportMsrpJSON()">JSON 보기</button>
     </div>
   </div>
 
@@ -1457,6 +1549,182 @@ async function bulkEnrichDescriptions() {
 }
 
 // ─── Load data ───
+// ─── 클릭 통계 ──────────────────────────────────────────────────
+let clickRawData = [];   // 원본 데이터 (CSV 내보내기용)
+
+async function loadClickStats() {
+  const loadEl = document.getElementById('click-stats-loading');
+  const cardsEl = document.getElementById('click-stats-cards');
+  const tableWrap = document.getElementById('click-stats-table-wrap');
+
+  loadEl.style.display = 'block';
+  loadEl.textContent = '클릭 통계 불러오는 중...';
+  cardsEl.style.display = 'none';
+  tableWrap.style.display = 'none';
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/click_logs?select=deal_id,deal_name,category,store,sale_price,is_affiliate,clicked_at&order=clicked_at.desc&limit=500`,
+      { headers: SB_HEADERS }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    clickRawData = await res.json();
+  } catch (e) {
+    loadEl.textContent = `❌ 불러오기 실패: ${e.message}. Supabase click_logs 테이블이 없을 수 있습니다.`;
+    return;
+  }
+
+  if (!clickRawData.length) {
+    loadEl.textContent = '📭 클릭 데이터 없음 (아직 아무도 구매 버튼을 클릭하지 않았습니다)';
+    return;
+  }
+
+  // 집계
+  const total   = clickRawData.length;
+  const affCount = clickRawData.filter(r => r.is_affiliate).length;
+  const catCount = [...new Set(clickRawData.map(r => r.category))].length;
+  const today    = new Date().toISOString().slice(0, 10);
+  const todayClicks = clickRawData.filter(r => r.clicked_at?.slice(0, 10) === today).length;
+
+  // 상품별 집계
+  const byDeal = {};
+  for (const r of clickRawData) {
+    const k = r.deal_name || `딜 #${r.deal_id}`;
+    if (!byDeal[k]) byDeal[k] = { name: k, cat: r.category, store: r.store, price: r.sale_price, aff: 0, total: 0, lastAt: r.clicked_at };
+    byDeal[k].total++;
+    if (r.is_affiliate) byDeal[k].aff++;
+    if (r.clicked_at > byDeal[k].lastAt) byDeal[k].lastAt = r.clicked_at;
+  }
+  const rows = Object.values(byDeal).sort((a, b) => b.total - a.total).slice(0, 50);
+
+  // 요약 카드
+  cardsEl.innerHTML = `
+    <div class="stat-card"><div class="stat-num">${total}</div><div class="stat-label">총 클릭 수</div></div>
+    <div class="stat-card"><div class="stat-num">${todayClicks}</div><div class="stat-label">오늘 클릭</div></div>
+    <div class="stat-card"><div class="stat-num ${affCount ? '' : 'warn'}">${affCount}</div><div class="stat-label">파트너스 클릭</div></div>
+    <div class="stat-card"><div class="stat-num">${catCount}</div><div class="stat-label">카테고리 종류</div></div>`;
+  cardsEl.style.display = 'flex';
+
+  // 상세 테이블
+  const CAT_LABELS = { smartphone:'📱', laptop:'💻', desktop:'🖥️', tablet:'📲', audio:'🎧', monitor:'📺', camera:'📷', gaming:'🎮', wearable:'⌚', accessory:'🖱️', wish:'❤️' };
+  document.getElementById('click-stats-tbody').innerHTML = rows.map(r => `
+    <tr>
+      <td><div class="product-name">${r.name.slice(0, 45)}</div></td>
+      <td>${CAT_LABELS[r.cat] || ''} ${r.cat || '-'}</td>
+      <td>${r.store || '-'}</td>
+      <td>${r.price ? r.price.toLocaleString('ko-KR') + '원' : '-'}</td>
+      <td>${r.aff ? `<span class="click-badge aff">✅ ${r.aff}</span>` : '<span style="color:var(--muted)">-</span>'}</td>
+      <td><strong>${r.total}</strong></td>
+      <td style="font-size:11px;color:var(--muted)">${r.lastAt ? r.lastAt.slice(0, 16).replace('T', ' ') : '-'}</td>
+    </tr>`).join('');
+  tableWrap.style.display = 'block';
+  loadEl.style.display = 'none';
+}
+
+function exportClickCSV() {
+  if (!clickRawData.length) { toast('데이터 없음 — 먼저 새로고침하세요', 'warn'); return; }
+  const header = ['deal_id', 'deal_name', 'category', 'store', 'sale_price', 'is_affiliate', 'clicked_at'];
+  const rows = clickRawData.map(r => header.map(k => JSON.stringify(r[k] ?? '')).join(','));
+  const csv  = [header.join(','), ...rows].join('\n');
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `click_logs_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('✅ CSV 다운로드 완료', 'success');
+}
+
+// ─── MSRP 출고가 관리 ────────────────────────────────────────────
+let msrpData = {};   // { keyword: price }
+
+async function loadMsrp() {
+  try {
+    const res = await fetch('./data/msrp.json?v=' + Date.now());
+    if (res.ok) {
+      const raw = await res.json();
+      msrpData = {};
+      for (const [k, v] of Object.entries(raw)) {
+        if (!k.startsWith('_') && typeof v === 'number') msrpData[k] = v;
+      }
+    }
+  } catch {}
+  renderMsrpList();
+}
+
+function renderMsrpList() {
+  const el = document.getElementById('msrp-list');
+  if (!el) return;
+  const entries = Object.entries(msrpData);
+  if (!entries.length) {
+    el.innerHTML = '<p style="color:var(--muted);font-size:13px;">등록된 MSRP 없음</p>';
+    return;
+  }
+  el.innerHTML = entries.map(([k, v]) => `
+    <div class="msrp-card">
+      <div class="msrp-card-key">${k}</div>
+      <input class="msrp-card-val" type="number" value="${v}"
+             onchange="msrpData[${JSON.stringify(k)}] = parseInt(this.value) || 0" step="1000">
+      <button class="btn-del-msrp" onclick="deleteMsrpEntry(${JSON.stringify(k)})">✕</button>
+    </div>`).join('');
+}
+
+function addMsrpEntry() {
+  const k = document.getElementById('msrp-new-key').value.trim();
+  const v = parseInt(document.getElementById('msrp-new-val').value);
+  if (!k) { toast('키워드를 입력하세요', 'warn'); return; }
+  if (!v || v < 1000) { toast('유효한 가격을 입력하세요', 'warn'); return; }
+  msrpData[k] = v;
+  document.getElementById('msrp-new-key').value = '';
+  document.getElementById('msrp-new-val').value = '';
+  renderMsrpList();
+  toast(`✅ "${k}" MSRP 추가됨`, 'success');
+}
+
+function deleteMsrpEntry(key) {
+  delete msrpData[key];
+  renderMsrpList();
+}
+
+function exportMsrpJSON() {
+  const json = JSON.stringify({
+    "_comment": "출고가(MSRP) 수동 설정. 키 = search_config.json의 keyword 값과 동일하게.",
+    ...msrpData
+  }, null, 2);
+  document.getElementById('json-output').textContent = json;
+  document.querySelector('.export-section:last-child').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function saveMsrpToGitHub() {
+  const token = getGHToken();
+  if (!token) { toast('GitHub 토큰을 먼저 설정하세요', 'warn'); return; }
+
+  // 현재 입력값 반영 (포커스 밖 아직 안 저장된 것들)
+  document.querySelectorAll('.msrp-card').forEach(card => {
+    const key = card.querySelector('.msrp-card-key').textContent.trim();
+    const val = parseInt(card.querySelector('.msrp-card-val').value);
+    if (key && val > 0) msrpData[key] = val;
+  });
+
+  const json    = JSON.stringify({ "_comment": "출고가(MSRP) 수동 설정", ...msrpData }, null, 2);
+  const content = btoa(unescape(encodeURIComponent(json)));
+  const headers = { Authorization: `token ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
+
+  try {
+    const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/msrp.json`, { headers });
+    const sha    = getRes.ok ? (await getRes.json()).sha : undefined;
+    const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/data/msrp.json`, {
+      method: 'PUT', headers,
+      body: JSON.stringify({ message: '💰 MSRP 출고가 업데이트', content, ...(sha ? { sha } : {}) }),
+    });
+    if (!putRes.ok) throw new Error((await putRes.json()).message);
+    toast('✅ msrp.json GitHub 저장 완료!', 'success');
+  } catch (e) {
+    toast(`❌ 저장 실패: ${e.message}`, 'warn');
+  }
+}
+
 async function init() {
   // GitHub 토큰 상태 표시
   if (getGHToken()) {
@@ -1484,6 +1752,10 @@ async function init() {
   } catch {}
   updateStats();
   renderTable();
+
+  // MSRP + 클릭 통계 비동기 로드 (메인 렌더 블로킹 없음)
+  loadMsrp();
+  loadClickStats();
 }
 
 // init()는 인증 완료 후에만 실행 (아래 비밀번호 게이트에서 호출)

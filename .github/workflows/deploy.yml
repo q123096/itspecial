@@ -151,3 +151,9 @@ jobs:
           NAVER_CLIENT_ID:      ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET:  ${{ secrets.NAVER_CLIENT_SECRET }}
         run: python scripts/enrich_products.py
+
+  # ════════════════════════════════════════
+  # GitHub Pages 배포 트리거
+  #   - main 브랜치 push 시 자동 배포됨
+  #   - 별도 설정 불필요 (GitHub Pages가 처리)
+  # ════════════════════════════════════════
