@@ -49,6 +49,13 @@
   </script>
   <!-- Schema Markup: Product/Offer (동적 — app.js가 딜 로드 후 주입) -->
 
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ITSpecial">
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 
@@ -245,6 +252,17 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="js/app.js"></script>
 <!-- selectCat은 app.js에 window.selectCat으로 이미 정의됨 -->
+
+<!-- PWA Service Worker 등록 -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then(reg => console.log('[PWA] SW 등록 완료:', reg.scope))
+      .catch(err => console.warn('[PWA] SW 등록 실패:', err));
+  });
+}
+</script>
 
 </body>
 </html>

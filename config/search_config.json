@@ -128,5 +128,18 @@
       "미니PC", "완본체", "게이밍PC", "한성", "컴퓨존", "MINISFORUM", "Beelink", "GMKtec", "씽크센터"
     ],
     "max_posts": 30
+  },
+
+  "clien_rss": {
+    "enabled": true,
+    "_comment": "클리앙 핫딜 게시판 RSS. 뽐뿌보다 IT 제품 비율이 높고 신뢰도 있는 딜이 많음.",
+    "url": "https://www.clien.net/service/board/hotdeal/rss",
+    "tech_keywords": [
+      "갤럭시", "아이폰", "맥북", "에어팟", "소니", "LG", "삼성", "닌텐도", "PS5",
+      "워치", "버즈", "그램", "아이패드", "노트북", "이어폰", "헤드폰", "모니터",
+      "키보드", "마우스", "SSD", "GPU", "RTX", "애플", "완본체", "미니PC",
+      "AMD", "라이젠", "그래픽카드", "맥미니", "MINISFORUM", "Beelink"
+    ],
+    "max_posts": 20
   }
 }

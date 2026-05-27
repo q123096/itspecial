@@ -710,6 +710,98 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
     }
 
 
+# ─── 클리앙 핫딜 RSS ─────────────────────────────────────────────
+def fetch_clien_deals(config: dict) -> list[dict]:
+    """
+    클리앙 핫딜 게시판 RSS 파싱.
+    뽐뿌와 동일 구조이나 클리앙은 UTF-8 + 가격 형식이 다를 수 있음.
+    """
+    cfg = config.get("clien_rss", {})
+    if not cfg.get("enabled"):
+        return []
+
+    url       = cfg.get("url", "https://www.clien.net/service/board/hotdeal/rss")
+    tech_kw   = cfg.get("tech_keywords", [])
+    max_posts = cfg.get("max_posts", 20)
+
+    print(f"\n📡 클리앙 핫딜 RSS 파싱 중... ({url})")
+    candidates = []
+    seen_links = set()
+
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; ITSpecialBot/1.0)"}
+        )
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            raw = resp.read()
+        try:
+            xml_data = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            xml_data = raw.decode("euc-kr", errors="replace")
+
+        root  = ET.fromstring(xml_data)
+        items = root.findall(".//item")[:max_posts]
+        print(f"  📂 클리앙 핫딜: {len(items)}개 포스팅")
+        for dbg in items[:3]:
+            print(f"    └ {(dbg.findtext('title') or '')[:60]}")
+
+        for item in items:
+            title = (item.findtext("title") or "").strip()
+            link  = (item.findtext("link") or "").strip()
+            desc  = (item.findtext("description") or "").strip()
+
+            if link in seen_links:
+                continue
+            seen_links.add(link)
+
+            combined = title + " " + desc
+            if not any(kw in combined for kw in tech_kw):
+                continue
+
+            # 가격 추출
+            raw_prices = re.findall(r"[\d,]+(?=원)", combined)
+            prices = []
+            for rp in raw_prices:
+                v = int(rp.replace(",", ""))
+                if 1000 < v < 10_000_000:
+                    prices.append(v)
+
+            if len(prices) >= 2:
+                orig, sale = max(prices), min(prices)
+            else:
+                m = re.search(r'(\d+)\s*%\s*할인', title)
+                if m and len(prices) == 1:
+                    disc_pct = int(m.group(1))
+                    sale = prices[0]
+                    orig = round(sale / (1 - disc_pct / 100))
+                else:
+                    continue
+
+            if sale >= orig or orig <= 0:
+                continue
+
+            disc = round((orig - sale) / orig * 100)
+            if disc < config["settings"]["min_discount_pct"]:
+                continue
+
+            candidates.append({
+                "_source": "clien",
+                "title":   title,
+                "link":    link,
+                "originalPrice": orig,
+                "salePrice":     sale,
+                "discount":      disc,
+            })
+            print(f"  📌 [{disc}%할인] {title[:50]}")
+
+    except Exception as e:
+        print(f"  ❌ 클리앙 RSS 오류: {e}")
+
+    print(f"  → 클리앙 합계 {len(candidates)}개 테크 딜 감지")
+    return candidates
+
+
 # ─── 중복/만료 관리 ──────────────────────────────────────────────
 def is_duplicate(new_deal: dict, existing: list[dict]) -> bool:
     """이름 유사도 또는 productUrl 기준 중복 체크 (같은 실행 내 new_deals 전용)"""
@@ -984,17 +1076,32 @@ def main():
     else:
         print("\n⚠️  NAVER_CLIENT_ID 없음 — 네이버 검색 스킵")
 
-    # ── 4. 뽐뿌 RSS ──
+    # ── 4. 커뮤니티 핫딜 RSS (뽐뿌 + 클리앙) ──
+    def _auto_category(title: str) -> str:
+        """제목에서 카테고리 자동 추정"""
+        for kw_cfg in config["search_keywords"]:
+            if "keyword" not in kw_cfg:
+                continue
+            if any(w in title for w in kw_cfg["keyword"].split()):
+                return kw_cfg.get("category", "accessory")
+        return "accessory"
+
+    # 4a. 뽐뿌
     ppomppu_candidates = fetch_ppomppu_deals(config)
     for c in ppomppu_candidates[:5]:   # 뽐뿌에서 최대 5개
-        # 카테고리 자동 추정
-        title_lower = c["title"].lower()
-        category = "accessory"
-        for kw_cfg in config["search_keywords"]:
-            if any(w in c["title"] for w in kw_cfg["keyword"].split()):
-                category = kw_cfg["category"]
-                break
+        category = _auto_category(c["title"])
+        deal     = ppomppu_candidate_to_deal(c, category, next_id)
+        if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
+            new_deals.append(deal)
+            next_id += 1
+
+    # 4b. 클리앙
+    clien_candidates = fetch_clien_deals(config)
+    for c in clien_candidates[:5]:     # 클리앙에서 최대 5개
+        category = _auto_category(c["title"])
+        # 클리앙은 ppomppu_candidate_to_deal 재활용 (구조 동일)
         deal = ppomppu_candidate_to_deal(c, category, next_id)
+        deal["store"] = "클리앙 핫딜"
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
             new_deals.append(deal)
             next_id += 1
