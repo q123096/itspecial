@@ -161,146 +161,11 @@
   },
   {
     "id": 9,
-    "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
-    "originalPrice": 1049000,
-    "salePrice": 675340,
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8989846237&tid=1000000061",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 10,
-    "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
-    "originalPrice": 449000,
-    "salePrice": 291900,
-    "store": "아메리칸직구",
-    "productUrl": "https://smartstore.naver.com/main/products/13426622062",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 11,
-    "name": "게이밍 조립 컴퓨터 세트 조립PC 롤 발로란트 오버워치 배그 바른컴퓨터 본체 풀세트F11",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8370082/83700825505.4.jpg",
-    "originalPrice": 1200000,
-    "salePrice": 799000,
-    "store": "바른컴퓨터KOREA",
-    "productUrl": "https://smartstore.naver.com/main/products/6156326017",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 12,
-    "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
-    "originalPrice": 279000,
-    "salePrice": 186500,
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53508451505",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 13,
-    "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
-    "originalPrice": 189000,
-    "salePrice": 128000,
-    "store": "DELESHOP",
-    "productUrl": "https://smartstore.naver.com/main/products/7050537094",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 14,
-    "name": "조립 PC 컴퓨터 본체 게임용 고사양 데스크탑 롤 서든 오버워치 배그 발로란트 게이밍03",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8319513/83195131633.22.jpg",
-    "originalPrice": 1200000,
-    "salePrice": 820000,
-    "store": "서민컴퓨터",
-    "productUrl": "https://smartstore.naver.com/main/products/5650634329",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 15,
-    "name": "소니 WH-1000XM5",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
-    "originalPrice": 449000,
-    "salePrice": 309000,
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53509045307",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 16,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "originalPrice": 359000,
-    "salePrice": 247900,
+    "salePrice": 230390,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
@@ -329,12 +194,109 @@
     ]
   },
   {
-    "id": 17,
+    "id": 10,
+    "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
+    "originalPrice": 1049000,
+    "salePrice": 675340,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8989846237&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 11,
+    "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
+    "originalPrice": 449000,
+    "salePrice": 291900,
+    "store": "아메리칸직구",
+    "productUrl": "https://smartstore.naver.com/main/products/13426622062",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 12,
+    "name": "게이밍 조립 컴퓨터 세트 조립PC 롤 발로란트 오버워치 배그 바른컴퓨터 본체 풀세트F11",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8370082/83700825505.4.jpg",
+    "originalPrice": 1200000,
+    "salePrice": 799000,
+    "store": "바른컴퓨터KOREA",
+    "productUrl": "https://smartstore.naver.com/main/products/6156326017",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 13,
+    "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
+    "originalPrice": 279000,
+    "salePrice": 186500,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53508451505",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 14,
+    "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
+    "originalPrice": 189000,
+    "salePrice": 128000,
+    "store": "DELESHOP",
+    "productUrl": "https://smartstore.naver.com/main/products/7050537094",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 15,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
     "originalPrice": 1590000,
-    "salePrice": 1098000,
+    "salePrice": 1079000,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
@@ -361,6 +323,44 @@
         "lprice": 1098000
       }
     ]
+  },
+  {
+    "id": 16,
+    "name": "조립 PC 컴퓨터 본체 게임용 고사양 데스크탑 롤 서든 오버워치 배그 발로란트 게이밍03",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8319513/83195131633.22.jpg",
+    "originalPrice": 1200000,
+    "salePrice": 820000,
+    "store": "서민컴퓨터",
+    "productUrl": "https://smartstore.naver.com/main/products/5650634329",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 17,
+    "name": "소니 WH-1000XM5",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
+    "originalPrice": 449000,
+    "salePrice": 309000,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53509045307",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
   },
   {
     "id": 18,
