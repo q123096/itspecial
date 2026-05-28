@@ -775,30 +775,37 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
             # 실제 HTML 특성:
             #   - href 내 & → &amp; 로 인코딩 (표준 HTML)
             #   - &&amp; 이중 앰퍼샌드 케이스도 존재 → (?:&amp;|&)+ 로 처리
-            #   - 제목은 a 태그 직접 포함 텍스트 (b/span 등 중첩 태그 없음 — 확인됨)
-            #   - 제목 패턴: "[쇼핑몰] 제품명 (가격원/배송)"
+            #   - <a> 내부에 <b>/<span> 등 중첩 태그가 있을 수 있음 → re.DOTALL + strip
+            #   - 제목 패턴: "[쇼핑몰] 제품명 (가격원/배송)" 또는 태그 없는 순수 텍스트
             # robots.txt: /zboard/zboard.php?id=ppomppu — Disallow 없음, 스크래핑 허용
-            link_title_re = re.compile(
+            anchor_re = re.compile(
                 r'href="[^"]*view\.php\?id=ppomppu[^"]*?(?:&amp;|&)+no=(\d+)"[^>]*>'
-                r'\s*(\[[^\]]{1,20}\][^<]{5,120})</a>',
-                re.IGNORECASE,
+                r'(.+?)'
+                r'</a>',
+                re.IGNORECASE | re.DOTALL,
             )
-            matches = link_title_re.findall(html)
+            matches = anchor_re.findall(html)
             found = 0
 
-            for no, raw_title in matches:
+            for no, raw_inner in matches:
                 if no in seen_nos:
                     continue
-                seen_nos.add(no)
 
-                # HTML 엔티티 디코딩
-                title = (raw_title
-                         .strip()
+                # HTML 태그 제거 → 순수 텍스트 추출
+                title = re.sub(r'<[^>]+>', ' ', raw_inner)
+                title = re.sub(r'\s+', ' ', title).strip()
+                title = (title
                          .replace("&amp;", "&")
                          .replace("&lt;", "<")
                          .replace("&gt;", ">")
                          .replace("&nbsp;", " ")
                          .replace("&#039;", "'"))
+
+                # 너무 짧거나 숫자/기호만 있는 건 네비게이션 링크 → 스킵
+                if len(title) < 8:
+                    continue
+
+                seen_nos.add(no)
 
                 link = f"https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no={no}"
 
