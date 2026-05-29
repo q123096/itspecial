@@ -14,7 +14,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -305,7 +305,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -515,26 +515,6 @@
     "freeShipping": false
   },
   {
-    "id": 26,
-    "name": "[네이버] 자전거 가방 (3,900원/3,000원)",
-    "category": "accessory",
-    "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-05-28T12:52:46",
-    "originalPrice": 3900,
-    "salePrice": 3000,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=706324",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
     "id": 27,
     "name": "소니 WF 1000XM5 이어폰 무선 블루투스 노이즈캔슬링",
     "category": "audio",
@@ -588,7 +568,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -706,7 +686,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -817,7 +797,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -954,7 +934,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -1007,7 +987,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
