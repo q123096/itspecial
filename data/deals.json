@@ -1,20 +1,348 @@
 [
   {
     "id": 1,
+    "name": "Samsung 갤럭시 워치 7 크림 40mm",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5890444/58904444255.1.jpg",
+    "originalPrice": 369000,
+    "salePrice": 221660,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F481888804&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
+    "name": "애플 미국정품 에어팟 프로 2세대 Apple 에어팟 프로 2세대 정품/USB-C 지원",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5595320/55953206062.3.jpg",
+    "originalPrice": 359000,
+    "salePrice": 216290,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F290182991&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
+    "name": "Mate Mini-A 맥 미니 M4 도크, 80Gbps 썬더볼트 5 알루미늄 합금 스탠드",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9073031/90730311029.jpg",
+    "originalPrice": 899000,
+    "salePrice": 542710,
+    "store": "블루3",
+    "productUrl": "https://smartstore.naver.com/main/products/13185799932",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 4,
+    "name": "Apple 아이폰 16e 자급제",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5905521/59055219299.2.jpg",
+    "originalPrice": 1250000,
+    "salePrice": 765000,
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=6889043030&ctag=6889043030&lptag=l649281442669&itemId=46219466489&vendorItemId=91971812723&spec=10305197",
+    "affiliateUrl": "https://link.coupang.com/a/d2cYgtYp7A",
+    "expiresAt": "2026-06-01T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 5,
+    "name": "조립PC 게임용컴퓨터 롤 배그 오버워치 고사양 데스크탑 본체01번",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_1007618/10076181031.64.jpg",
+    "originalPrice": 1200000,
+    "salePrice": 740000,
+    "store": "야인컴퓨터",
+    "productUrl": "https://smartstore.naver.com/main/products/445612217",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 6,
+    "name": "갤럭시탭 s10 fe 128GB wifi SM-X520 s펜+북커버포함-그레이",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_9041284/90412840719.jpg",
+    "originalPrice": 799000,
+    "salePrice": 501340,
+    "store": "해외구매대행전문일상컴퍼니",
+    "productUrl": "https://smartstore.naver.com/main/products/12868329727",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 7,
+    "name": "삼성 갤럭시 워치 7 40MM 크림",
+    "category": "wearable",
+    "image": "https://shopping-phinf.pstatic.net/main_5974814/59748149244.1.jpg",
+    "originalPrice": 369000,
+    "salePrice": 231540,
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F541620357&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 8,
+    "name": "게이밍 데스크탑 조립컴퓨터 본체 고사양 게임용PC 완본체",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9096473/90964737817.jpg",
+    "originalPrice": 1800000,
+    "salePrice": 1130850,
+    "store": "정구니마트",
+    "productUrl": "https://smartstore.naver.com/main/products/13420227481",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 9,
+    "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
+    "originalPrice": 1049000,
+    "salePrice": 675340,
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8989846237&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 10,
+    "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
+    "originalPrice": 449000,
+    "salePrice": 291900,
+    "store": "아메리칸직구",
+    "productUrl": "https://smartstore.naver.com/main/products/13426622062",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 11,
+    "name": "게이밍 조립 컴퓨터 세트 조립PC 롤 발로란트 오버워치 배그 바른컴퓨터 본체 풀세트F11",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8370082/83700825505.4.jpg",
+    "originalPrice": 1200000,
+    "salePrice": 799000,
+    "store": "바른컴퓨터KOREA",
+    "productUrl": "https://smartstore.naver.com/main/products/6156326017",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 12,
+    "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
+    "originalPrice": 279000,
+    "salePrice": 186500,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53508451505",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 13,
+    "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
+    "originalPrice": 189000,
+    "salePrice": 128000,
+    "store": "DELESHOP",
+    "productUrl": "https://smartstore.naver.com/main/products/7050537094",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 14,
+    "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
+    "originalPrice": 1590000,
+    "salePrice": 1079000,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-06T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 1079000
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 1079000
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 1098000
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "조립 PC 컴퓨터 본체 게임용 고사양 데스크탑 롤 서든 오버워치 배그 발로란트 게이밍03",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8319513/83195131633.22.jpg",
+    "originalPrice": 1200000,
+    "salePrice": 820000,
+    "store": "서민컴퓨터",
+    "productUrl": "https://smartstore.naver.com/main/products/5650634329",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 16,
+    "name": "소니 WH-1000XM5",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
+    "originalPrice": 449000,
+    "salePrice": 309000,
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53509045307",
+    "affiliateUrl": "",
+    "expiresAt": "2026-05-31T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 17,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-05-29T12:27:33",
+    "addedAt": "2026-05-30T01:58:37",
     "originalPrice": 359000,
-    "salePrice": 198990,
+    "salePrice": 248290,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
+    "expiresAt": "2026-06-03T23:59:00",
     "tags": [
-      "핫딜",
-      "역대최저"
+      "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
@@ -40,337 +368,12 @@
       {
         "date": "2026-05-29",
         "lprice": 35060
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Samsung 갤럭시 워치 7 크림 40mm",
-    "category": "wearable",
-    "image": "https://shopping-phinf.pstatic.net/main_5890444/58904444255.1.jpg",
-    "originalPrice": 369000,
-    "salePrice": 221660,
-    "store": "옥션",
-    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F481888804&sub-id=1&service-code=10000003",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
-    "name": "애플 미국정품 에어팟 프로 2세대 Apple 에어팟 프로 2세대 정품/USB-C 지원",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5595320/55953206062.3.jpg",
-    "originalPrice": 359000,
-    "salePrice": 216290,
-    "store": "옥션",
-    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F290182991&sub-id=1&service-code=10000003",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 4,
-    "name": "Mate Mini-A 맥 미니 M4 도크, 80Gbps 썬더볼트 5 알루미늄 합금 스탠드",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_9073031/90730311029.jpg",
-    "originalPrice": 899000,
-    "salePrice": 542710,
-    "store": "블루3",
-    "productUrl": "https://smartstore.naver.com/main/products/13185799932",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 5,
-    "name": "Apple 아이폰 16e 자급제",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5905521/59055219299.2.jpg",
-    "originalPrice": 1250000,
-    "salePrice": 765000,
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=6889043030&ctag=6889043030&lptag=l649281442669&itemId=46219466489&vendorItemId=91971812723&spec=10305197",
-    "affiliateUrl": "https://link.coupang.com/a/d2cYgtYp7A",
-    "expiresAt": "2026-06-01T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 6,
-    "name": "조립PC 게임용컴퓨터 롤 배그 오버워치 고사양 데스크탑 본체01번",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_1007618/10076181031.64.jpg",
-    "originalPrice": 1200000,
-    "salePrice": 740000,
-    "store": "야인컴퓨터",
-    "productUrl": "https://smartstore.naver.com/main/products/445612217",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 7,
-    "name": "갤럭시탭 s10 fe 128GB wifi SM-X520 s펜+북커버포함-그레이",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_9041284/90412840719.jpg",
-    "originalPrice": 799000,
-    "salePrice": 501340,
-    "store": "해외구매대행전문일상컴퍼니",
-    "productUrl": "https://smartstore.naver.com/main/products/12868329727",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 8,
-    "name": "삼성 갤럭시 워치 7 40MM 크림",
-    "category": "wearable",
-    "image": "https://shopping-phinf.pstatic.net/main_5974814/59748149244.1.jpg",
-    "originalPrice": 369000,
-    "salePrice": 231540,
-    "store": "옥션",
-    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F541620357&sub-id=1&service-code=10000003",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 9,
-    "name": "게이밍 데스크탑 조립컴퓨터 본체 고사양 게임용PC 완본체",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_9096473/90964737817.jpg",
-    "originalPrice": 1800000,
-    "salePrice": 1130850,
-    "store": "정구니마트",
-    "productUrl": "https://smartstore.naver.com/main/products/13420227481",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 10,
-    "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
-    "originalPrice": 1049000,
-    "salePrice": 675340,
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8989846237&tid=1000000061",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 11,
-    "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
-    "originalPrice": 449000,
-    "salePrice": 291900,
-    "store": "아메리칸직구",
-    "productUrl": "https://smartstore.naver.com/main/products/13426622062",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 12,
-    "name": "게이밍 조립 컴퓨터 세트 조립PC 롤 발로란트 오버워치 배그 바른컴퓨터 본체 풀세트F11",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8370082/83700825505.4.jpg",
-    "originalPrice": 1200000,
-    "salePrice": 799000,
-    "store": "바른컴퓨터KOREA",
-    "productUrl": "https://smartstore.naver.com/main/products/6156326017",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 13,
-    "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
-    "originalPrice": 279000,
-    "salePrice": 186500,
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53508451505",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 14,
-    "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
-    "originalPrice": 189000,
-    "salePrice": 128000,
-    "store": "DELESHOP",
-    "productUrl": "https://smartstore.naver.com/main/products/7050537094",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 15,
-    "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
-    "originalPrice": 1590000,
-    "salePrice": 1079000,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-25",
-        "lprice": 1079000
       },
       {
-        "date": "2026-05-26",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 1098000
+        "date": "2026-05-30",
+        "lprice": 35060
       }
     ]
-  },
-  {
-    "id": 16,
-    "name": "조립 PC 컴퓨터 본체 게임용 고사양 데스크탑 롤 서든 오버워치 배그 발로란트 게이밍03",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8319513/83195131633.22.jpg",
-    "originalPrice": 1200000,
-    "salePrice": 820000,
-    "store": "서민컴퓨터",
-    "productUrl": "https://smartstore.naver.com/main/products/5650634329",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 17,
-    "name": "소니 WH-1000XM5",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
-    "originalPrice": 449000,
-    "salePrice": 309000,
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53509045307",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
   },
   {
     "id": 18,
@@ -535,7 +538,7 @@
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=706324",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
+    "expiresAt": "2026-06-06T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -712,7 +715,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/59386976050",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
+    "expiresAt": "2026-06-06T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -1003,7 +1006,7 @@
     "store": "Link",
     "productUrl": "https://smartstore.naver.com/main/products/2305562910",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-05T23:59:00",
+    "expiresAt": "2026-06-06T23:59:00",
     "tags": [
       "핫딜"
     ],
