@@ -254,9 +254,16 @@ def main():
             affiliate_url = get_11st_affiliate_link(product_url, st11_key)
 
         # ── 네이버 쇼핑 딜 → 11번가 교차 연결 ───────────────────────
-        # 네이버 API에서 가져온 딜은 개별 쇼핑몰 URL이라 직접 제휴 불가.
-        # 11번가 검색 API로 동일 상품을 찾아 11번가 제휴링크로 대체.
-        elif st11_key and store in ("네이버", "네이버쇼핑") and name:
+        # 네이버 API 딜: store명이 "네이버" 또는 실제 판매자명(트렌드바잉스 등)으로 저장됨.
+        # URL 패턴으로 Naver Shopping 출처 감지:
+        #   - smartstore.naver.com (스마트스토어 판매자)
+        #   - shopping.naver.com (네이버쇼핑 검색 경유)
+        #   - link.*.co.kr (Naver Shopping 파트너 리다이렉트 — auction/gmarket 제외)
+        elif st11_key and name and (
+            store in ("네이버", "네이버쇼핑")
+            or "smartstore.naver.com" in product_url
+            or "shopping.naver.com" in product_url
+        ):
             print(f"\n      → 11번가 교차 검색 중...", end=" ")
             affiliate_url = make_11st_affiliate_from_search(name, st11_key)
 
