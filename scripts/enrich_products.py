@@ -18,14 +18,15 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 # ── 환경변수 ────────────────────────────────────────────────────
-SUPABASE_URL        = os.environ["SUPABASE_URL"]
-SUPABASE_KEY        = os.environ["SUPABASE_SERVICE_KEY"]
-ICECAT_USERNAME     = os.environ["ICECAT_USERNAME"]
-ICECAT_API_KEY      = os.environ["ICECAT_API_KEY"]
-NAVER_CLIENT_ID     = os.environ["NAVER_CLIENT_ID"]
-NAVER_CLIENT_SECRET = os.environ["NAVER_CLIENT_SECRET"]
+SUPABASE_URL        = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY        = os.environ.get("SUPABASE_SERVICE_KEY", "")
+# Icecat: 선택적 — 미설정 시 fetch_icecat()이 즉시 None 반환하고 Naver로 폴백
+ICECAT_USERNAME     = os.environ.get("ICECAT_USERNAME", "")
+ICECAT_API_KEY      = os.environ.get("ICECAT_API_KEY", "")
+NAVER_CLIENT_ID     = os.environ.get("NAVER_CLIENT_ID", "")
+NAVER_CLIENT_SECRET = os.environ.get("NAVER_CLIENT_SECRET", "")
 
-ICECAT_AUTH = HTTPBasicAuth(ICECAT_USERNAME, ICECAT_API_KEY)
+ICECAT_AUTH = HTTPBasicAuth(ICECAT_USERNAME, ICECAT_API_KEY) if ICECAT_USERNAME else None
 
 SB_READ_HEADERS = {
     "apikey":        SUPABASE_KEY,
@@ -224,8 +225,8 @@ def _extract_specs(product: dict, category: str) -> str | None:
 
 
 def fetch_icecat(name: str, category: str) -> str | None:
-    # 완본체(desktop)는 Icecat 스킵 — 조립 제품이라 카탈로그 없음
-    if category == "desktop":
+    # 완본체(desktop) 또는 자격증명 없으면 Icecat 스킵
+    if category == "desktop" or not ICECAT_AUTH:
         return None
 
     # 한국어 → 영문 변환 (Icecat은 영문 제품명만 인식)
@@ -337,6 +338,12 @@ def save_to_supabase(key: str, description: str) -> bool:
 
 # ── Main ─────────────────────────────────────────────────────────
 def main() -> None:
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        print("⚠️  SUPABASE_URL / SUPABASE_SERVICE_KEY 미설정 — 스킵")
+        return
+    if not NAVER_CLIENT_ID:
+        print("⚠️  NAVER_CLIENT_ID 미설정 — Naver 폴백 불가")
+
     with open("data/deals.json", encoding="utf-8") as f:
         deals = json.load(f)
     print(f"[시작] 딜 {len(deals)}개 로드")

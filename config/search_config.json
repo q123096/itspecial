@@ -275,15 +275,6 @@
       "min_price": 500000
     },
     {
-      "keyword": "애플 사이 서드존 공략 올해에도 신제품을 잇달아",
-      "category": "tablet",
-      "priority": 3,
-      "sort": "date",
-      "_auto": true,
-      "_source": "naver_news",
-      "_added": "2026-05-28"
-    },
-    {
       "_group": "=== 모니터 ==="
     },
     {
@@ -355,15 +346,6 @@
       "priority": 3,
       "sort": "date",
       "min_price": 200000
-    },
-    {
-      "keyword": "애플 제쳤다",
-      "category": "wearable",
-      "priority": 3,
-      "sort": "date",
-      "_auto": true,
-      "_source": "naver_news",
-      "_added": "2026-05-28"
     },
     {
       "_group": "=== 데스크탑/PC ==="

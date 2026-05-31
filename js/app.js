@@ -137,8 +137,8 @@ const $cats     = document.getElementById('cat-tabs');
 const $toast    = document.getElementById('toast');
 
 /* ─── Utils ─── */
-// fmt: NaN·undefined·Infinity 방어
-const fmt = n => (isFinite(n) && n != null ? Math.round(n).toLocaleString('ko-KR') : 0) + '원';
+// fmt: 유효하지 않거나 0 이하 가격 → '-' 표시 (0원·NaN 방지)
+const fmt = n => (isFinite(n) && n > 0 ? Math.round(n).toLocaleString('ko-KR') + '원' : '-');
 // pct: 정가 0 방어 (division by zero → 0%)
 const pct = (o, s) => (o > 0 ? Math.round((o - s) / o * 100) : 0);
 
@@ -406,7 +406,26 @@ function applyFilters() {
   }
   if (state.query) {
     const q = state.query.toLowerCase();
-    list = list.filter(d => d.name.toLowerCase().includes(q) || d.store.toLowerCase().includes(q));
+    // 한영 동시 검색: "iPhone" → 아이폰도 매칭, "갤럭시" → Galaxy도 매칭
+    const SEARCH_ALIAS = {
+      'iphone': '아이폰', '아이폰': 'iphone',
+      'galaxy': '갤럭시', '갤럭시': 'galaxy',
+      'airpods': '에어팟', '에어팟': 'airpods',
+      'macbook': '맥북',  '맥북': 'macbook',
+      'ipad': '아이패드', '아이패드': 'ipad',
+      'apple watch': '애플워치', '애플워치': 'apple watch',
+      'galaxy buds': '갤럭시버즈', '갤럭시버즈': 'galaxy buds',
+      'galaxy watch': '갤럭시워치', '갤럭시워치': 'galaxy watch',
+      'galaxy tab': '갤럭시탭', '갤럭시탭': 'galaxy tab',
+      'lg gram': '그램', '그램': 'lg gram',
+      'nintendo switch': '닌텐도', '닌텐도': 'nintendo',
+    };
+    const alias = SEARCH_ALIAS[q] || '';
+    list = list.filter(d => {
+      const name = d.name.toLowerCase();
+      return name.includes(q) || d.store.toLowerCase().includes(q)
+        || (alias && name.includes(alias));
+    });
   }
   if (state.minDiscount > 0)
     list = list.filter(d => pct(d.originalPrice, d.salePrice) >= state.minDiscount);

@@ -292,6 +292,30 @@ def add_new_keywords(config: dict, candidates: list[dict], existing: set[str]) -
         if not kw or len(kw) < 4 or normalized in existing:
             continue
 
+        # ── 품질 검증: 뉴스 헤드라인/동사문 키워드 차단 ──────────────
+        # 길이 초과: 16자 이상은 제품명이 아닌 문장일 가능성 높음
+        if len(kw) > 15:
+            print(f"  🚫 [품질 거부] 너무 긴 키워드: {kw}")
+            continue
+        # 동사 어미 패턴: "제쳤다", "잇달아", "공략", "출시된" 등 뉴스 헤드라인 특징
+        _BAD_ENDINGS = ("다", "야", "어", "아", "죠", "네", "요", "군", "구나",
+                        "는지", "겠다", "한다", "됩니다", "습니다", "공략", "잇달아")
+        if any(kw.endswith(e) for e in _BAD_ENDINGS):
+            print(f"  🚫 [품질 거부] 동사/헤드라인 패턴: {kw}")
+            continue
+        # 제품명 필수 토큰: 브랜드명 또는 모델 번호가 하나 이상 있어야 함
+        _PRODUCT_TOKENS = (
+            "갤럭시", "아이폰", "아이패드", "맥북", "에어팟", "애플워치",
+            "Galaxy", "iPhone", "iPad", "MacBook", "AirPods",
+            "그램", "갤럭시북", "갤럭시탭", "갤럭시워치", "갤럭시버즈",
+            "소니", "Sony", "보스", "Bose", "로지텍",
+            "LG", "삼성", "레노버", "ASUS", "MSI", "닌텐도",
+            "RTX", "SSD", "NVMe", "워치", "버즈", "스위치", "PS5",
+        )
+        if not any(tok in kw for tok in _PRODUCT_TOKENS):
+            print(f"  🚫 [품질 거부] 제품 토큰 없음: {kw}")
+            continue
+
         existing.add(normalized)
 
         new_entry = {

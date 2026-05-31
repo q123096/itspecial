@@ -624,14 +624,15 @@ def naver_product_to_deal(
     if re.search(r'중고|B급|리퍼|리퍼비시|반품|A급|S급|최상급|판매완료', title):
         return None
 
-    # 스마트폰 카테고리: 자급제 / 공기계 표기 없으면 전부 차단
-    if category == 'smartphone':
-        # ① 화이트리스트: 제목에 자급제·공기계 표기가 없으면 통신사 개통폰으로 간주
-        #    (Naver sort=sim이 "자급제" 검색에도 통신사 폰을 반환하는 문제 대응)
-        if not any(kw in title for kw in ['자급제', '공기계']):
-            return None
+    # 통신사 약정 상품 차단 (스마트폰·태블릿 공통)
+    if category in ('smartphone', 'tablet'):
+        # ① 화이트리스트 (스마트폰만): 자급제·공기계 표기 없으면 통신사 개통폰
+        #    태블릿은 Wi-Fi 모델이 많아 화이트리스트 미적용
+        if category == 'smartphone':
+            if not any(kw in title for kw in ['자급제', '공기계']):
+                return None
 
-        # ② 블랙리스트: 자급제 표기가 있어도 개통 관련 키워드 있으면 제외
+        # ② 블랙리스트: 개통·약정 키워드 있으면 차단 (스마트폰·태블릿 공통)
         carrier_title_kw = [
             '개통', '약정', '공시지원금', '선택약정', '번호이동',
             '기기변경', '신규가입', '통신사', '유심',
@@ -639,7 +640,7 @@ def naver_product_to_deal(
         if any(kw in title for kw in carrier_title_kw):
             return None
 
-        # ③ 통신사 공식몰 블랙리스트 (쇼핑몰명 기준)
+        # ③ 통신사 공식몰 블랙리스트 (쇼핑몰명 기준, 스마트폰·태블릿 공통)
         carrier_mall_kw = [
             '텔레콤', '유플러스', 'lgu', 'kt공식', 'sk공식',
             'olleh', '브로드밴드', '티플', '엔텔레콤',
