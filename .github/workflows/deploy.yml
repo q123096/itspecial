@@ -114,6 +114,7 @@ jobs:
           COUPANG_ACCESS_KEY: ${{ secrets.COUPANG_ACCESS_KEY }}
           COUPANG_SECRET_KEY: ${{ secrets.COUPANG_SECRET_KEY }}
           ST11_API_KEY:       ${{ secrets.ST11_API_KEY }}
+          LINKPRICE_PID:      ${{ secrets.LINKPRICE_PID }}
         run: python scripts/update_affiliate_links.py
 
       - name: 변경사항 커밋 & 푸시

@@ -142,9 +142,69 @@ def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
     return ""
 
 
-# ─── G마켓/옥션: Linkprice 정식 연동 전까지 제휴링크 생성 안 함 ──
-# 가입: https://linkprice.com → 승인 후 아래 주석 해제
-# LINKPRICE_PID = os.environ.get("LINKPRICE_PID", "")
+# ─── Linkprice 제휴링크 (G마켓 · 옥션 · 추후 11번가) ─────────────
+# 매체 코드(PID)는 GitHub Secret LINKPRICE_PID 에 저장
+# Linkprice 대시보드 → 제휴 현황에서 승인된 광고주 코드 확인
+
+# Linkprice 광고주 코드 매핑
+# 승인된 쇼핑몰만 활성화 (미승인 = 주석 처리)
+LINKPRICE_MERCHANTS: dict[str, str] = {
+    "auction.co.kr": "auction",    # 옥션 — 승인 완료
+    "gmarket.co.kr": "gmarket",    # G마켓 — 승인 완료
+    # "11st.co.kr":  "11st",       # 11번가 — Linkprice 승인 후 주석 해제
+}
+
+
+def _to_direct_url(product_url: str) -> str:
+    """
+    Naver Shopping 경유 URL → 실제 쇼핑몰 직링크 변환.
+    Linkprice는 실제 쇼핑몰 URL을 감싸야 정확한 추적 가능.
+
+    지원 형식:
+      link.auction.co.kr/gate/pcs?item-no=F481888804 → auction.co.kr/Item?itemno=F481888804
+      link.gmarket.co.kr/gate/pcs?item-no=12345678   → item.gmarket.co.kr/Item?goodscode=12345678
+    """
+    try:
+        parsed = urllib.parse.urlparse(product_url)
+        params = urllib.parse.parse_qs(parsed.query)
+
+        if "auction" in parsed.hostname:
+            item_no = (params.get("item-no") or [""])[0]
+            if item_no:
+                return f"https://www.auction.co.kr/Item?itemno={item_no}"
+
+        if "gmarket" in parsed.hostname:
+            item_no = (params.get("item-no") or params.get("goodscode") or [""])[0]
+            if item_no:
+                return f"https://item.gmarket.co.kr/Item?goodscode={item_no}"
+    except Exception:
+        pass
+    return product_url   # 변환 불가 시 원본 반환
+
+
+def get_linkprice_link(product_url: str, pid: str) -> str:
+    """
+    상품 URL → Linkprice 제휴링크 생성.
+    형식: https://click.linkprice.com/click.php?m={merchant}&a={pid}&l={encoded_url}
+    """
+    try:
+        parsed = urllib.parse.urlparse(product_url)
+        hostname = parsed.hostname or ""
+
+        merchant_code = ""
+        for domain, code in LINKPRICE_MERCHANTS.items():
+            if domain in hostname:
+                merchant_code = code
+                break
+        if not merchant_code:
+            return ""
+
+        direct_url = _to_direct_url(product_url)
+        encoded    = urllib.parse.quote(direct_url, safe="")
+        return f"https://click.linkprice.com/click.php?m={merchant_code}&a={pid}&l={encoded}"
+    except Exception as e:
+        print(f"    ⚠️  Linkprice 링크 생성 오류: {e}")
+        return ""
 
 
 # ─── 메인 로직 ────────────────────────────────────────────────────
@@ -152,6 +212,7 @@ def main():
     coupang_key    = os.environ.get("COUPANG_ACCESS_KEY", "")
     coupang_secret = os.environ.get("COUPANG_SECRET_KEY", "")
     st11_key       = os.environ.get("ST11_API_KEY", "")
+    linkprice_pid  = os.environ.get("LINKPRICE_PID", "")
 
     if not coupang_key or not coupang_secret:
         print("⚠️  COUPANG_ACCESS_KEY / COUPANG_SECRET_KEY 환경변수가 없습니다.")
@@ -199,9 +260,9 @@ def main():
             print(f"\n      → 11번가 교차 검색 중...", end=" ")
             affiliate_url = make_11st_affiliate_from_search(name, st11_key)
 
-        # G마켓 / 옥션 — Linkprice 정식 연동 전까지 스킵
-        # elif "gmarket.co.kr" in product_url or "auction.co.kr" in product_url:
-        #     affiliate_url = get_linkprice_affiliate_link(product_url)
+        # ── Linkprice: G마켓 · 옥션 (승인 완료) ─────────────────────
+        elif linkprice_pid and any(d in product_url for d in LINKPRICE_MERCHANTS):
+            affiliate_url = get_linkprice_link(product_url, linkprice_pid)
 
         if affiliate_url:
             deal["affiliateUrl"] = affiliate_url
