@@ -199,11 +199,12 @@
       },
       {
         "date": "2026-05-31",
-        "lprice": 257910
+        "lprice": 257900
       }
     ],
-    "avg_7d": 257306,
-    "days": 8
+    "avg_7d": 257305,
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "LG 울트라기어 모니터": {
     "history": [
@@ -241,7 +242,8 @@
       }
     ],
     "avg_7d": 136950,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "갤럭시 워치 7": {
     "history": [
@@ -371,7 +373,8 @@
       }
     ],
     "avg_7d": 349000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "WD Black SN850X 1TB": {
     "history": [
@@ -437,7 +440,8 @@
       }
     ],
     "avg_7d": 583650,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "Beelink 미니PC": {
     "history": [
@@ -475,7 +479,8 @@
       }
     ],
     "avg_7d": 103400,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "GMKtec 미니PC": {
     "history": [
@@ -523,7 +528,8 @@
       }
     ],
     "avg_7d": 1823710,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "레노버 씽크센터": {
     "history": [
@@ -635,7 +641,8 @@
       }
     ],
     "avg_7d": 274000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "고사양 게이밍 완본체": {
     "history": [
@@ -673,7 +680,8 @@
       }
     ],
     "avg_7d": 375130,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "미니PC 완본체": {
     "history": [
@@ -711,7 +719,8 @@
       }
     ],
     "avg_7d": 409000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "RTX 5070 완본체": {
     "history": [
@@ -749,7 +758,8 @@
       }
     ],
     "avg_7d": 2399000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "RTX 5060 완본체": {
     "history": [
@@ -787,7 +797,8 @@
       }
     ],
     "avg_7d": 1360000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "RTX 5080 완본체": {
     "history": [
@@ -825,7 +836,8 @@
       }
     ],
     "avg_7d": 4049000,
-    "days": 8
+    "days": 8,
+    "avg_hprice_7d": 0
   },
   "갤럭시 S 자급제": {
     "history": [
@@ -881,7 +893,8 @@
       }
     ],
     "avg_7d": 539000,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "갤럭시 Z 플립 자급제": {
     "history": [
@@ -915,7 +928,8 @@
       }
     ],
     "avg_7d": 217127,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "갤럭시 A 자급제": {
     "history": [
@@ -949,7 +963,8 @@
       }
     ],
     "avg_7d": 89994,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "아이폰 자급제": {
     "history": [
@@ -1023,7 +1038,8 @@
       }
     ],
     "avg_7d": 154377,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "에어팟 프로": {
     "history": [
@@ -1057,7 +1073,8 @@
       }
     ],
     "avg_7d": 35060,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "갤럭시 버즈": {
     "history": [
@@ -1091,7 +1108,8 @@
       }
     ],
     "avg_7d": 52830,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "소니 WH-1000XM": {
     "history": [
@@ -1125,7 +1143,8 @@
       }
     ],
     "avg_7d": 206143,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "소니 WF-1000XM": {
     "history": [
@@ -1159,7 +1178,8 @@
       }
     ],
     "avg_7d": 39600,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "맥북 에어": {
     "history": [
@@ -1193,7 +1213,8 @@
       }
     ],
     "avg_7d": 1081714,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "맥북 프로": {
     "history": [
@@ -1227,7 +1248,8 @@
       }
     ],
     "avg_7d": 1980429,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "LG 그램": {
     "history": [
@@ -1261,7 +1283,8 @@
       }
     ],
     "avg_7d": 1350000,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "삼성 갤럭시북": {
     "history": [
@@ -1295,7 +1318,8 @@
       }
     ],
     "avg_7d": 464714,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "레노버 요가": {
     "history": [
@@ -1329,7 +1353,8 @@
       }
     ],
     "avg_7d": 1735497,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "ASUS 젠북": {
     "history": [
@@ -1363,7 +1388,8 @@
       }
     ],
     "avg_7d": 1030000,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "애플 맥북": {
     "history": [
@@ -1423,7 +1449,8 @@
       }
     ],
     "avg_7d": 789869,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "아이패드 프로": {
     "history": [
@@ -1457,7 +1484,8 @@
       }
     ],
     "avg_7d": 303714,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "갤럭시탭 S": {
     "history": [
@@ -1491,7 +1519,8 @@
       }
     ],
     "avg_7d": 434003,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "애플 아이패드": {
     "history": [
@@ -1539,7 +1568,8 @@
       }
     ],
     "avg_7d": 239410,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "삼성 스마트 모니터": {
     "history": [
@@ -1569,11 +1599,12 @@
       },
       {
         "date": "2026-05-31",
-        "lprice": 278000
+        "lprice": 277990
       }
     ],
-    "avg_7d": 277966,
-    "days": 7
+    "avg_7d": 277964,
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "Xbox 시리즈": {
     "history": [
@@ -1629,7 +1660,8 @@
       }
     ],
     "avg_7d": 264000,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "애플워치": {
     "history": [
@@ -1663,7 +1695,8 @@
       }
     ],
     "avg_7d": 350550,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "맥 미니": {
     "history": [
@@ -1689,7 +1722,8 @@
       }
     ],
     "avg_7d": 49000,
-    "days": 5
+    "days": 5,
+    "avg_hprice_7d": 0
   },
   "로지텍 MX Keys": {
     "history": [
@@ -1751,7 +1785,8 @@
       }
     ],
     "avg_7d": 64600,
-    "days": 7
+    "days": 7,
+    "avg_hprice_7d": 0
   },
   "삼성 갤럭시 워치": {
     "history": [
@@ -1784,10 +1819,15 @@
       {
         "date": "2026-05-29",
         "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 33800
       }
     ],
-    "avg_7d": 40236,
-    "days": 5
+    "avg_7d": 39163,
+    "days": 6,
+    "avg_hprice_7d": 0
   },
   "애플 첫 폴더블 아이폰": {
     "history": [
@@ -1810,7 +1850,8 @@
     ],
     "avg_7d": 46712,
     "days": 4,
-    "first_hprice": 0
+    "first_hprice": 0,
+    "avg_hprice_7d": 0
   },
   "갤럭시 S26": {
     "history": [
@@ -1851,6 +1892,19 @@
     ],
     "avg_7d": 96987,
     "days": 3,
-    "first_hprice": 0
+    "first_hprice": 0,
+    "avg_hprice_7d": 0
+  },
+  "애플 신제품": {
+    "history": [
+      {
+        "date": "2026-05-31",
+        "lprice": 38100
+      }
+    ],
+    "avg_7d": 38100,
+    "days": 1,
+    "first_hprice": 0,
+    "avg_hprice_7d": 0
   }
 }
