@@ -277,7 +277,7 @@ function renderCard(deal) {
           <span class="store-badge">${deal.store}</span>
           ${ratingHtml}
         </div>
-        <p class="deal-name">${deal.name}</p>
+        <a class="deal-name-link" href="/deals/${deal.id}.html">${deal.name}</a>
         <div class="deal-prices">
           <span class="original-price">
             ${deal.priceType === 'msrp'

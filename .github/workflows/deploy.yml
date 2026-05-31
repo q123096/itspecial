@@ -153,6 +153,44 @@ jobs:
         run: python scripts/enrich_products.py
 
   # ════════════════════════════════════════
+  # 4단계: 딜 상세 정적 HTML + sitemap.xml 생성
+  #   - 딜별 /deals/{id}.html → SEO 롱테일 키워드 크롤링
+  #   - sitemap.xml 자동 갱신 (메인 + 딜 전체 URL)
+  # ════════════════════════════════════════
+  generate-pages:
+    runs-on: ubuntu-latest
+    needs: affiliate-links
+    if: always()
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+
+      - name: 딜 상세 페이지 + sitemap 생성
+        run: python scripts/generate_deal_pages.py
+
+      - name: 변경사항 커밋 & 푸시
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add deals/ sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "🤖 딜 상세 페이지 + sitemap 갱신 $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
+            git push
+          else
+            echo "변경사항 없음 — 커밋 스킵"
+          fi
+
+  # ════════════════════════════════════════
   # GitHub Pages 배포 트리거
   #   - main 브랜치 push 시 자동 배포됨
   #   - 별도 설정 불필요 (GitHub Pages가 처리)

@@ -598,6 +598,7 @@ def naver_product_to_deal(
     p: dict, category: str, next_id: int, min_disc: int,
     avg_7d: int = 0, hist_days: int = 0, msrp: int = 0,
     expire_days: int = 4, avg_hprice_7d: int = 0,
+    hist_min_price: int = 0,
 ) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
@@ -711,9 +712,18 @@ def naver_product_to_deal(
         return None
 
     tags = []
-    if disc >= 20: tags.append("핫딜")
-    if disc >= 35: tags.append("역대최저")
-    if not tags:   tags = ["핫딜"]
+    if disc >= 15: tags.append("핫딜")
+
+    # 역대최저 판정: 실제 가격 히스토리 5일 이상 있으면 히스토리 기반
+    # 없으면 할인율 35% 이상 기준 폴백 (초기 부트스트랩)
+    if hist_min_price > 0 and hist_days >= 5:
+        # 현재가가 7일 히스토리 최저가의 102% 이내 → 역대최저 인정
+        if lp <= hist_min_price * 1.02:
+            tags.append("역대최저")
+    elif disc >= 35:
+        tags.append("역대최저")
+
+    if not tags: tags = ["핫딜"]
 
     return {
         "id":            next_id,
@@ -1389,6 +1399,12 @@ def main():
             hist_days     = hist_entry.get("days", 0)
             avg_7d        = hist_entry.get("avg_7d", 0)
             avg_hprice_7d = hist_entry.get("avg_hprice_7d", 0)
+            # 역대최저 판정용: 히스토리 전체의 lprice 최솟값
+            _hist_lprices = [
+                e.get("lprice", 0) for e in hist_entry.get("history", [])
+                if e.get("lprice", 0) > 30000
+            ]
+            hist_min_price = min(_hist_lprices) if _hist_lprices else 0
 
             # 첫 결과 디버그
             if products:
@@ -1411,6 +1427,7 @@ def main():
                     p, category, next_id, min_disc,
                     avg_7d=avg_7d, hist_days=hist_days, msrp=kw_msrp,
                     expire_days=expire_days, avg_hprice_7d=avg_hprice_7d,
+                    hist_min_price=hist_min_price,
                 )
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     # 가격 히스토리 임베드 (최근 7일, UI 스파크라인용)
