@@ -62,27 +62,83 @@ def get_coupang_affiliate_link(product_url: str, access_key: str, secret_key: st
 
 
 # ─── 11번가 API ────────────────────────────────────────────────────
-def get_11st_affiliate_link(product_url: str, api_key: str) -> str:
+def _extract_11st_prd_no(product_url: str) -> str:
     """
-    11번가 상품 URL → 제휴 링크 변환
-    11번가 오픈 API를 통한 링크 생성
+    11번가 URL에서 상품 번호(prdNo) 추출.
+    지원 형식:
+      - /products/XXXXXX
+      - Gateway.tmall?prdNo=XXXXXX  (Naver Shopping 경유 링크)
     """
-    # 11번가는 URL에 appKey 파라미터 추가 방식
     try:
         parsed = urllib.parse.urlparse(product_url)
-        product_id = ""
-        # /products/XXXXXXX 형태에서 ID 추출
-        parts = parsed.path.split("/")
+        # 1) Query param: ?prdNo=XXXXXX
+        params = urllib.parse.parse_qs(parsed.query)
+        if "prdNo" in params:
+            return params["prdNo"][0]
+        # 2) Path: /products/XXXXXX
+        parts = parsed.path.rstrip("/").split("/")
         for i, p in enumerate(parts):
             if p in ("products", "product") and i + 1 < len(parts):
-                product_id = parts[i + 1]
-                break
+                pid = parts[i + 1].split("?")[0]
+                if pid.isdigit():
+                    return pid
+    except Exception:
+        pass
+    return ""
 
-        if product_id:
-            # 11번가 제휴 링크 포맷
-            return f"https://www.11st.co.kr/products/{product_id}?trTypeCd=PW&trCtgrNo=585021&appKey={api_key}"
+
+def get_11st_affiliate_link(product_url: str, api_key: str) -> str:
+    """11번가 상품 URL → 제휴 링크 (appKey 추적 파라미터 추가)"""
+    prd_no = _extract_11st_prd_no(product_url)
+    if prd_no:
+        return (f"https://www.11st.co.kr/products/{prd_no}"
+                f"?trTypeCd=PW&trCtgrNo=585021&appKey={api_key}")
+    return ""
+
+
+def search_11st_by_keyword(keyword: str, api_key: str, max_results: int = 3) -> list[dict]:
+    """
+    11번가 오픈 API로 키워드 검색 → 상품 목록 반환.
+    네이버/기타 소스 딜을 11번가 제휴링크로 교차 연결할 때 사용.
+    API: https://openapi.11st.co.kr/openapi/OpenApiService.tmall
+    """
+    try:
+        resp = requests.get(
+            "https://openapi.11st.co.kr/openapi/OpenApiService.tmall",
+            params={
+                "method":  "getProductSearch",
+                "appKey":  api_key,
+                "keyword": keyword,
+                "display": max_results,
+                "format":  "json",
+            },
+            timeout=8,
+        )
+        if not resp.ok:
+            return []
+        data = resp.json()
+        items = (data.get("ProductSearchResponse") or {}).get("Products") or {}
+        return items.get("Product", []) if isinstance(items, dict) else []
     except Exception as e:
-        print(f"  ❌ 11번가 링크 생성 예외: {e}")
+        print(f"    ⚠️  11번가 검색 오류: {e}")
+        return []
+
+
+def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
+    """
+    딜 이름으로 11번가 검색 → 가장 유사한 상품의 제휴링크 반환.
+    네이버 쇼핑 딜 등 11번가 직링크가 없는 경우 교차 연결용.
+    """
+    # 너무 긴 이름은 핵심 키워드만 추출 (앞 20자)
+    keyword = deal_name[:40].strip()
+    products = search_11st_by_keyword(keyword, api_key, max_results=1)
+    if not products:
+        return ""
+    prd = products[0]
+    prd_no = str(prd.get("productId") or prd.get("prdNo") or "")
+    if prd_no:
+        return (f"https://www.11st.co.kr/products/{prd_no}"
+                f"?trTypeCd=PW&trCtgrNo=585021&appKey={api_key}")
     return ""
 
 
@@ -128,13 +184,20 @@ def main():
         print(f"  🔄 [{store}] {name[:30]}...", end=" ")
         affiliate_url = ""
 
-        # 쿠팡
+        # ── 쿠팡 직링크 ──────────────────────────────────────────────
         if "coupang.com" in product_url and coupang_key:
             affiliate_url = get_coupang_affiliate_link(product_url, coupang_key, coupang_secret)
 
-        # 11번가
+        # ── 11번가 직링크 ─────────────────────────────────────────────
         elif "11st.co.kr" in product_url and st11_key:
             affiliate_url = get_11st_affiliate_link(product_url, st11_key)
+
+        # ── 네이버 쇼핑 딜 → 11번가 교차 연결 ───────────────────────
+        # 네이버 API에서 가져온 딜은 개별 쇼핑몰 URL이라 직접 제휴 불가.
+        # 11번가 검색 API로 동일 상품을 찾아 11번가 제휴링크로 대체.
+        elif st11_key and store in ("네이버", "네이버쇼핑") and name:
+            print(f"\n      → 11번가 교차 검색 중...", end=" ")
+            affiliate_url = make_11st_affiliate_from_search(name, st11_key)
 
         # G마켓 / 옥션 — Linkprice 정식 연동 전까지 스킵
         # elif "gmarket.co.kr" in product_url or "auction.co.kr" in product_url:
