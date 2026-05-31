@@ -144,64 +144,111 @@ def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
 
 # ─── Linkprice 제휴링크 (G마켓 · 옥션 · 추후 11번가) ─────────────
 # 매체 코드(PID)는 GitHub Secret LINKPRICE_PID 에 저장
-# Linkprice 대시보드 → 제휴 현황에서 승인된 광고주 코드 확인
+# click_url 포맷: https://click.linkprice.com/click.php?m={merchant_id}&a={pid}&l={url}&l_cd1=B&l_cd2=1
+# → Linkprice API로 승인된 광고주 조회 후 click_url 템플릿 동적 로드
 
-# Linkprice 광고주 코드 매핑
-# 승인된 쇼핑몰만 활성화 (미승인 = 주석 처리)
-LINKPRICE_MERCHANTS: dict[str, str] = {
-    "auction.co.kr": "auction",    # 옥션 — 승인 완료
-    "gmarket.co.kr": "gmarket",    # G마켓 — 승인 완료
-    # "11st.co.kr":  "11st",       # 11번가 — Linkprice 승인 후 주석 해제
+# 쇼핑몰 도메인 → Linkprice merchant_id 매핑 (폴백용)
+# 실제 click_url은 fetch_linkprice_merchants()로 API 조회해서 사용
+_LP_DOMAIN_MAP: dict[str, str] = {
+    "auction.co.kr": "auction",
+    "gmarket.co.kr": "gmarket",
+    "11st.co.kr":    "11st",      # 11번가 Linkprice 승인 후 자동 활성화
 }
+
+# click_url 캐시 (merchant_id → click_url_template)
+# 형식: {"auction": "https://click.linkprice.com/...?m=auction&a=A...&l=0000&l_cd1=B&l_cd2=1"}
+_lp_click_urls: dict[str, str] = {}
+
+
+def fetch_linkprice_merchants(pid: str) -> dict[str, str]:
+    """
+    Linkprice API → 승인된 광고주 목록 조회.
+    반환: {merchant_id: click_url_template}
+    click_url 안의 l=0000 을 실제 상품 URL로 교체해서 사용.
+
+    API: http://api.linkprice.com/ci/service/all_merchant/{PID}/apr/cps
+    """
+    try:
+        url = f"http://api.linkprice.com/ci/service/all_merchant/{pid}/apr/cps"
+        resp = requests.get(url, timeout=10)
+        if not resp.ok:
+            print(f"  ⚠️  Linkprice 광고주 조회 실패: HTTP {resp.status_code}")
+            return {}
+        merchants = resp.json()
+        result = {}
+        for m in merchants:
+            mid  = m.get("merchant_id", "")
+            curl = m.get("click_url", "")
+            dyn  = m.get("deeplink_yn", "N")
+            if mid and curl and dyn == "Y":
+                result[mid] = curl
+                print(f"  📋 Linkprice 광고주 로드: {m.get('merchant_name',mid)} (deeplink=Y)")
+        return result
+    except Exception as e:
+        print(f"  ⚠️  Linkprice API 오류: {e}")
+        return {}
 
 
 def _to_direct_url(product_url: str) -> str:
     """
     Naver Shopping 경유 URL → 실제 쇼핑몰 직링크 변환.
-    Linkprice는 실제 쇼핑몰 URL을 감싸야 정확한 추적 가능.
+    Linkprice deeplink은 실제 쇼핑몰 URL이어야 추적 가능.
 
-    지원 형식:
-      link.auction.co.kr/gate/pcs?item-no=F481888804 → auction.co.kr/Item?itemno=F481888804
-      link.gmarket.co.kr/gate/pcs?item-no=12345678   → item.gmarket.co.kr/Item?goodscode=12345678
+    link.auction.co.kr/gate/pcs?item-no=F481888804 → auction.co.kr/Item?itemno=F481888804
+    link.gmarket.co.kr/gate/pcs?item-no=12345678   → item.gmarket.co.kr/Item?goodscode=12345678
     """
     try:
         parsed = urllib.parse.urlparse(product_url)
         params = urllib.parse.parse_qs(parsed.query)
+        hostname = parsed.hostname or ""
 
-        if "auction" in parsed.hostname:
+        if "auction" in hostname:
             item_no = (params.get("item-no") or [""])[0]
             if item_no:
                 return f"https://www.auction.co.kr/Item?itemno={item_no}"
 
-        if "gmarket" in parsed.hostname:
+        if "gmarket" in hostname:
             item_no = (params.get("item-no") or params.get("goodscode") or [""])[0]
             if item_no:
                 return f"https://item.gmarket.co.kr/Item?goodscode={item_no}"
     except Exception:
         pass
-    return product_url   # 변환 불가 시 원본 반환
+    return product_url
 
 
 def get_linkprice_link(product_url: str, pid: str) -> str:
     """
     상품 URL → Linkprice 제휴링크 생성.
-    형식: https://click.linkprice.com/click.php?m={merchant}&a={pid}&l={encoded_url}
+
+    우선순위:
+      1) API로 받은 click_url 템플릿에서 l=0000 교체 (정확한 포맷 보장)
+      2) 폴백: 도메인 매핑으로 click_url 직접 조합
     """
     try:
-        parsed = urllib.parse.urlparse(product_url)
+        parsed  = urllib.parse.urlparse(product_url)
         hostname = parsed.hostname or ""
 
-        merchant_code = ""
-        for domain, code in LINKPRICE_MERCHANTS.items():
+        # 어느 쇼핑몰인지 파악
+        merchant_id = ""
+        for domain, mid in _LP_DOMAIN_MAP.items():
             if domain in hostname:
-                merchant_code = code
+                merchant_id = mid
                 break
-        if not merchant_code:
+        if not merchant_id:
             return ""
 
         direct_url = _to_direct_url(product_url)
         encoded    = urllib.parse.quote(direct_url, safe="")
-        return f"https://click.linkprice.com/click.php?m={merchant_code}&a={pid}&l={encoded}"
+
+        # 1순위: API로 받은 정확한 click_url 템플릿 사용
+        if merchant_id in _lp_click_urls:
+            # l=0000 → 실제 상품 URL 교체
+            return _lp_click_urls[merchant_id].replace("l=0000", f"l={encoded}")
+
+        # 2순위: 폴백 포맷 (l_cd1, l_cd2 포함)
+        return (f"https://click.linkprice.com/click.php"
+                f"?m={merchant_id}&a={pid}&l={encoded}&l_cd1=B&l_cd2=1")
+
     except Exception as e:
         print(f"    ⚠️  Linkprice 링크 생성 오류: {e}")
         return ""
@@ -218,6 +265,14 @@ def main():
         print("⚠️  COUPANG_ACCESS_KEY / COUPANG_SECRET_KEY 환경변수가 없습니다.")
         print("   GitHub Secrets에 추가하거나 로컬에서 직접 설정하세요.\n")
         print("   로컬 테스트: $env:COUPANG_ACCESS_KEY='키'; $env:COUPANG_SECRET_KEY='시크릿'")
+
+    # Linkprice 승인 광고주 로드 (click_url 정확한 포맷 확보)
+    if linkprice_pid:
+        print("\n🔗 Linkprice 승인 광고주 조회 중...")
+        loaded = fetch_linkprice_merchants(linkprice_pid)
+        _lp_click_urls.update(loaded)
+        if not loaded:
+            print("  ⚠️  광고주 정보 없음 — 폴백 포맷 사용")
 
     deals_path = os.path.join(os.path.dirname(__file__), "..", "data", "deals.json")
     with open(deals_path, encoding="utf-8") as f:
@@ -267,8 +322,8 @@ def main():
             print(f"\n      → 11번가 교차 검색 중...", end=" ")
             affiliate_url = make_11st_affiliate_from_search(name, st11_key)
 
-        # ── Linkprice: G마켓 · 옥션 (승인 완료) ─────────────────────
-        elif linkprice_pid and any(d in product_url for d in LINKPRICE_MERCHANTS):
+        # ── Linkprice: G마켓 · 옥션 · 추후 11번가 ────────────────────
+        elif linkprice_pid and any(d in product_url for d in _LP_DOMAIN_MAP):
             affiliate_url = get_linkprice_link(product_url, linkprice_pid)
 
         if affiliate_url:
