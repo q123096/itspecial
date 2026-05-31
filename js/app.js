@@ -165,10 +165,17 @@ function starsHtml(r) {
 }
 
 /* ─── Affiliate link resolution ─── */
-// affiliateUrl 이 비어있으면 productUrl 사용 (제휴링크 미설정 상태)
 function resolveLink(deal) {
-  const url = deal.affiliateUrl?.trim();
-  return { href: url || deal.productUrl, isAffiliate: !!url };
+  const affUrl = deal.affiliateUrl?.trim();
+  const prodUrl = deal.productUrl || '';
+
+  // Linkprice (click.linkprice.com?l=0000): 메인 랜딩이라 상품 직링크 불가
+  // → 사용자는 productUrl(실제 상품)로, Linkprice 추적은 백그라운드 픽셀로
+  if (affUrl && affUrl.includes('click.linkprice.com') && prodUrl) {
+    return { href: prodUrl, isAffiliate: true, trackingUrl: affUrl };
+  }
+
+  return { href: affUrl || prodUrl, isAffiliate: !!affUrl, trackingUrl: null };
 }
 
 /* ─── Render ─── */
@@ -188,7 +195,7 @@ function renderSkeletons() {
 function renderCard(deal) {
   const disc    = Math.max(0, pct(deal.originalPrice, deal.salePrice));
   const savings = Math.max(0, (deal.originalPrice || 0) - (deal.salePrice || 0));
-  const { href, isAffiliate } = resolveLink(deal);
+  const { href, isAffiliate, trackingUrl } = resolveLink(deal);
   const isWished = state.wishlist.includes(deal.id);
 
   // ── 배지 ──
@@ -301,7 +308,7 @@ function renderCard(deal) {
              target="_blank"
              rel="noopener ${isAffiliate ? 'sponsored' : ''}"
              class="btn-buy"
-             onclick="trackClick(${deal.id}, ${isAffiliate})">
+             onclick="trackClick(${deal.id}, ${isAffiliate}, ${trackingUrl ? JSON.stringify(trackingUrl) : 'null'})">
             구매 →
           </a>
         </div>
@@ -503,9 +510,15 @@ function makeSparkline(history) {
 }
 
 /* ─── Affiliate click tracking ─── */
-function trackClick(dealId, isAffiliate) {
+function trackClick(dealId, isAffiliate, trackingUrl) {
   const deal = state.deals.find(d => d.id === dealId);
   if (!deal) return;
+
+  // Linkprice 백그라운드 추적 픽셀
+  // (l=0000 메인랜딩 대신 productUrl 직접 사용 시 쿠키 설정용)
+  if (trackingUrl) {
+    try { new Image().src = trackingUrl; } catch (e) {}
+  }
 
   // Google Analytics 이벤트 (GA 연동 시 활성화)
   if (window.gtag) {
