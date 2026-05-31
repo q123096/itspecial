@@ -49,28 +49,104 @@ def fmt_price(n: int) -> str:
         return "-"
 
 
-def make_sparkline_svg(history: list, width: int = 300, height: int = 80) -> str:
-    """가격 히스토리 → 인라인 SVG 스파크라인"""
-    prices = [(h.get("lprice") or h.get("hprice") or 0) for h in history]
-    prices = [p for p in prices if p > 0]
-    if len(prices) < 2:
-        return ""
-    mn, mx = min(prices), max(prices)
-    rng    = mx - mn or 1
-    pts    = []
-    for i, p in enumerate(prices):
-        x = round(i / (len(prices) - 1) * width, 1)
-        y = round(height - (p - mn) / rng * (height - 12) - 6, 1)
-        pts.append(f"{x},{y}")
-    trend = "#4ADE80" if prices[-1] <= prices[0] else "#F87171"
-    lx, ly = pts[-1].split(",")
-    return (
-        f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" style="display:block">'
-        f'<polyline points="{" ".join(pts)}" fill="none" stroke="{trend}" stroke-width="2.5"'
-        f' stroke-linecap="round" stroke-linejoin="round"/>'
-        f'<circle cx="{lx}" cy="{ly}" r="4" fill="{trend}"/>'
-        f"</svg>"
+def make_price_chart(deal: dict) -> tuple[str, str]:
+    """
+    Chart.js 가격 추이 풀 차트 생성.
+    Returns (section_html, script_html) — script는 </body> 직전에 삽입.
+
+    포함 요소:
+      - lprice 라인 (파란색, 최저가)
+      - hprice 라인 (회색 점선, 최고가 — 데이터 있을 때만)
+      - 현재 특가 가격 수평 점선 (주황색)
+      - X축: 날짜 / Y축: 만원 단위
+    """
+    ph = deal.get("priceHistory") or []
+    if len(ph) < 2:
+        return "", ""
+
+    dates    = [h.get("date", "")[:10] for h in ph]
+    lprices  = [h.get("lprice") or 0 for h in ph]
+    hprices  = [h.get("hprice") or 0 for h in ph]
+    has_hp   = any(h > 0 for h in hprices)
+    sale     = deal.get("salePrice", 0)
+    deal_id  = deal["id"]
+
+    valid_l  = [p for p in lprices if p > 0]
+    hist_min = min(valid_l) if valid_l else 0
+    hist_max = max(valid_l) if valid_l else 0
+
+    # ── HTML 섹션 ────────────────────────────────────────────────
+    section = (
+        '\n  <section class="dp-history">'
+        '\n    <h2>가격 추이 (' + str(len(ph)) + '일)</h2>'
+        '\n    <div class="dp-chart-wrap">'
+        '\n      <canvas id="pc' + str(deal_id) + '" height="220"></canvas>'
+        '\n    </div>'
+        '\n    <div class="dp-chart-meta">'
+        + (('\n      <span class="dp-cm-low">최저 <strong>' + fmt_price(hist_min) + '</strong></span>') if hist_min else "")
+        + (('\n      <span class="dp-cm-high">최고 <strong>' + fmt_price(hist_max) + '</strong></span>') if hist_max else "")
+        + (('\n      <span class="dp-cm-sale">현재특가 <strong>' + fmt_price(sale) + '</strong></span>') if sale else "")
+        + '\n    </div>'
+        '\n  </section>'
     )
+
+    # ── Chart.js 초기화 스크립트 ─────────────────────────────────
+    # Python f-string 대신 문자열 연결로 JS 중괄호 충돌 방지
+    script = (
+        '\n<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>'
+        '\n<script>'
+        '\n(function(){'
+        '\n  var el=document.getElementById("pc' + str(deal_id) + '");'
+        '\n  if(!el)return;'
+        '\n  var D=' + json.dumps(dates) + ';'
+        '\n  var L=' + json.dumps(lprices) + ';'
+        '\n  var H=' + json.dumps(hprices) + ';'
+        '\n  var hasH=' + ("true" if has_hp else "false") + ';'
+        '\n  var sp=' + str(sale) + ';'
+        '\n  var ds=[{label:"최저가",data:L,borderColor:"#5B6BF8",'
+        'backgroundColor:"rgba(91,107,248,0.08)",tension:0.3,fill:true,'
+        'pointRadius:4,pointHoverRadius:6,pointBackgroundColor:"#5B6BF8"}];'
+        '\n  if(hasH)ds.push({label:"최고가",data:H,borderColor:"#adb5bd",'
+        'borderDash:[5,5],tension:0.3,fill:false,pointRadius:2,pointHoverRadius:4});'
+        # 현재 특가 수평선 플러그인
+        '\n  var saleLine={id:"sl",afterDraw:function(c){'
+        '\n    var ys=c.scales.y,xs=c.scales.x;'
+        '\n    if(!ys||sp<=0)return;'
+        '\n    var y=ys.getPixelForValue(sp),cx=c.ctx;'
+        '\n    cx.save();cx.beginPath();cx.setLineDash([6,4]);'
+        '\n    cx.strokeStyle="#FF6B35";cx.lineWidth=1.5;'
+        '\n    cx.moveTo(xs.left,y);cx.lineTo(xs.right,y);cx.stroke();'
+        '\n    cx.fillStyle="#FF6B35";cx.font="bold 11px sans-serif";'
+        '\n    cx.fillText("현재특가",xs.right-56,y-4);'
+        '\n    cx.restore();'
+        '\n  }};'
+        '\n  new Chart(el,{'
+        '\n    type:"line",'
+        '\n    data:{labels:D,datasets:ds},'
+        '\n    options:{'
+        '\n      responsive:true,'
+        '\n      interaction:{mode:"index",intersect:false},'
+        '\n      plugins:{'
+        '\n        legend:{display:hasH,position:"top",labels:{font:{size:12}}},'
+        '\n        tooltip:{callbacks:{label:function(c){'
+        '\n          if(!c.parsed.y)return null;'
+        '\n          return c.dataset.label+": "+c.parsed.y.toLocaleString("ko-KR")+"원";'
+        '\n        }}}'
+        '\n      },'
+        '\n      scales:{'
+        '\n        x:{ticks:{font:{size:11},maxRotation:30,maxTicksLimit:7}},'
+        '\n        y:{ticks:{callback:function(v){'
+        '\n          return v>=10000?(v/10000).toFixed(1)+"만":v.toLocaleString("ko-KR");'
+        '\n        },font:{size:11}}}'
+        '\n      }'
+        '\n    },'
+        '\n    plugins:[saleLine]'
+        '\n  });'
+        '\n})();'
+        '\n</script>'
+    )
+
+    return section, script
 
 
 def make_schema(deal: dict) -> str:
@@ -111,19 +187,8 @@ def make_deal_page(deal: dict) -> str:
     deal_id   = deal["id"]
     savings   = orig - sale
 
-    # 가격 히스토리 섹션
-    hist_section = ""
-    ph = deal.get("priceHistory") or []
-    if len(ph) >= 2:
-        svg = make_sparkline_svg(ph)
-        valid_p = [(h.get("lprice") or h.get("hprice") or 0) for h in ph if (h.get("lprice") or h.get("hprice") or 0) > 0]
-        hist_min = min(valid_p) if valid_p else 0
-        hist_section = f"""
-  <section class="dp-history">
-    <h2>최근 가격 추이 ({len(ph)}일)</h2>
-    {svg}
-    {"<p class='dp-hist-min'>최근 최저가 <strong>" + fmt_price(hist_min) + "</strong></p>" if hist_min else ""}
-  </section>"""
+    # 가격 히스토리 — Chart.js 풀 차트
+    hist_section, chart_script = make_price_chart(deal)
 
     # 태그
     tag_html = " ".join(
@@ -190,7 +255,9 @@ def make_deal_page(deal: dict) -> str:
     .dp-notice{{font-size:12px;color:#adb5bd;text-align:center;margin-bottom:24px}}
     .dp-history{{background:#f8f9fa;border-radius:14px;padding:18px;margin-bottom:20px}}
     .dp-history h2{{font-size:14px;font-weight:700;margin:0 0 14px;color:#495057}}
-    .dp-hist-min{{font-size:13px;color:#6C757D;margin-top:10px}}
+    .dp-chart-wrap{{position:relative;width:100%}}
+    .dp-chart-meta{{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:12px}}
+    .dp-cm-low{{color:#5B6BF8}}.dp-cm-high{{color:#6C757D}}.dp-cm-sale{{color:#FF6B35}}
     .dp-cat-link{{display:inline-flex;align-items:center;gap:6px;color:#5B6BF8;text-decoration:none;font-size:14px;font-weight:600;border:1.5px solid #5B6BF8;border-radius:10px;padding:10px 18px;transition:all .15s}}
     .dp-cat-link:hover{{background:#5B6BF8;color:#fff}}
   </style>
@@ -223,6 +290,7 @@ def make_deal_page(deal: dict) -> str:
   <a class="dp-cat-link" href="/?cat={category}">
     🔍 {cat_label} 특가 더보기
   </a>
+{chart_script}
 </body>
 </html>"""
 

@@ -45,7 +45,9 @@
     .dp-notice{font-size:12px;color:#adb5bd;text-align:center;margin-bottom:24px}
     .dp-history{background:#f8f9fa;border-radius:14px;padding:18px;margin-bottom:20px}
     .dp-history h2{font-size:14px;font-weight:700;margin:0 0 14px;color:#495057}
-    .dp-hist-min{font-size:13px;color:#6C757D;margin-top:10px}
+    .dp-chart-wrap{position:relative;width:100%}
+    .dp-chart-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:12px}
+    .dp-cm-low{color:#5B6BF8}.dp-cm-high{color:#6C757D}.dp-cm-sale{color:#FF6B35}
     .dp-cat-link{display:inline-flex;align-items:center;gap:6px;color:#5B6BF8;text-decoration:none;font-size:14px;font-weight:600;border:1.5px solid #5B6BF8;border-radius:10px;padding:10px 18px;transition:all .15s}
     .dp-cat-link:hover{background:#5B6BF8;color:#fff}
   </style>
@@ -75,13 +77,67 @@
 
   
   <section class="dp-history">
-    <h2>최근 가격 추이 (5일)</h2>
-    <svg width="300" height="80" viewBox="0 0 300 80" style="display:block"><polyline points="0.0,42.2 75.0,74.0 150.0,37.6 225.0,6.0 300.0,72.4" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="300.0" cy="72.4" r="4" fill="#4ADE80"/></svg>
-    <p class='dp-hist-min'>최근 최저가 <strong>30,530원</strong></p>
+    <h2>가격 추이 (5일)</h2>
+    <div class="dp-chart-wrap">
+      <canvas id="pc36" height="220"></canvas>
+    </div>
+    <div class="dp-chart-meta">
+      <span class="dp-cm-low">최저 <strong>30,530원</strong></span>
+      <span class="dp-cm-high">최고 <strong>54,490원</strong></span>
+      <span class="dp-cm-sale">현재특가 <strong>31,080원</strong></span>
+    </div>
   </section>
 
   <a class="dp-cat-link" href="/?cat=audio">
     🔍 이어폰/헤드폰 특가 더보기
   </a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+  var el=document.getElementById("pc36");
+  if(!el)return;
+  var D=["2026-05-25", "2026-05-26", "2026-05-27", "2026-05-28", "2026-05-29"];
+  var L=[41720, 30530, 43360, 54490, 31080];
+  var H=[0, 0, 0, 0, 0];
+  var hasH=false;
+  var sp=31080;
+  var ds=[{label:"최저가",data:L,borderColor:"#5B6BF8",backgroundColor:"rgba(91,107,248,0.08)",tension:0.3,fill:true,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:"#5B6BF8"}];
+  if(hasH)ds.push({label:"최고가",data:H,borderColor:"#adb5bd",borderDash:[5,5],tension:0.3,fill:false,pointRadius:2,pointHoverRadius:4});
+  var saleLine={id:"sl",afterDraw:function(c){
+    var ys=c.scales.y,xs=c.scales.x;
+    if(!ys||sp<=0)return;
+    var y=ys.getPixelForValue(sp),cx=c.ctx;
+    cx.save();cx.beginPath();cx.setLineDash([6,4]);
+    cx.strokeStyle="#FF6B35";cx.lineWidth=1.5;
+    cx.moveTo(xs.left,y);cx.lineTo(xs.right,y);cx.stroke();
+    cx.fillStyle="#FF6B35";cx.font="bold 11px sans-serif";
+    cx.fillText("현재특가",xs.right-56,y-4);
+    cx.restore();
+  }};
+  new Chart(el,{
+    type:"line",
+    data:{labels:D,datasets:ds},
+    options:{
+      responsive:true,
+      interaction:{mode:"index",intersect:false},
+      plugins:{
+        legend:{display:hasH,position:"top",labels:{font:{size:12}}},
+        tooltip:{callbacks:{label:function(c){
+          if(!c.parsed.y)return null;
+          return c.dataset.label+": "+c.parsed.y.toLocaleString("ko-KR")+"원";
+        }}}
+      },
+      scales:{
+        x:{ticks:{font:{size:11},maxRotation:30,maxTicksLimit:7}},
+        y:{ticks:{callback:function(v){
+          return v>=10000?(v/10000).toFixed(1)+"만":v.toLocaleString("ko-KR");
+        },font:{size:11}}}
+      }
+    },
+    plugins:[saleLine]
+  });
+})();
+</script>
 </body>
 </html>
