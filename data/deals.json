@@ -4,7 +4,7 @@
     "name": "[추가링크][플레이스위치]인생게임 44,800원 배송비 2,500원",
     "category": "gaming",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-05-31T04:54:23",
+    "addedAt": "2026-05-31T05:13:40",
     "originalPrice": 44800,
     "salePrice": 2500,
     "store": "추가링크",
@@ -25,7 +25,7 @@
     "name": "[네이버] 에어릿 프로쿨 맥스 냉각 휴대용 선풍기 4000mAh (8,400원/2,500원)",
     "category": "smartphone",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-05-31T04:54:21",
+    "addedAt": "2026-05-31T05:13:39",
     "originalPrice": 8400,
     "salePrice": 2500,
     "store": "뽐뿌 핫딜",
@@ -1078,6 +1078,54 @@
   },
   {
     "id": 43,
+    "name": "무선 이어버드 블루투스 5.4 헤드폰 4 ENC 노이즈 캔슬링 마이크 새로운 이어폰 하이파이 스테레오 딥 베",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9115043/91150433709.jpg",
+    "addedAt": "2026-05-31T05:12:48",
+    "originalPrice": 38640,
+    "salePrice": 30660,
+    "priceType": "avg7d",
+    "store": "클레버브릿지",
+    "productUrl": "https://smartstore.naver.com/main/products/13605923296",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-04T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 41720
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 30530
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 43360
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      }
+    ]
+  },
+  {
+    "id": 44,
     "name": "BEELINK EQ12 인텔 N100 12세대 미니PC 준시스템 네이비블루",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8995120/89951205177.jpg",
@@ -1096,7 +1144,7 @@
     "freeShipping": false
   },
   {
-    "id": 44,
+    "id": 45,
     "name": "[리뷰이벤트+강화유리필름] 삼성전자 갤럭시워치7 44mm 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5994504/59945040278.7.jpg",
@@ -1115,7 +1163,7 @@
     "freeShipping": false
   },
   {
-    "id": 45,
+    "id": 46,
     "name": "LG전자 울트라기어 27GP750 68~69cm(27인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5261176/52611765708.20250123103415.jpg",
@@ -1134,7 +1182,7 @@
     "freeShipping": false
   },
   {
-    "id": 46,
+    "id": 47,
     "name": "LG전자 LG그램 14ZD95U-GX56K RAM 16GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5848818/58488180590.20260416154654.jpg",
@@ -1153,7 +1201,7 @@
     "freeShipping": false
   },
   {
-    "id": 47,
+    "id": 48,
     "name": "비트 파워비츠 프로 2 / 무선 노이즈 캔슬링 운동 이어버드용 허미셸 하드 트래블 케이스 (블랙) Black",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9113462/91134620676.jpg",
@@ -1196,7 +1244,7 @@
     ]
   },
   {
-    "id": 48,
+    "id": 49,
     "name": "LG그램 2026 노트북 인텔 팬서레이크 Ultra5 16GB 256GB 사무용 인강용",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8663600/86636005031.8.jpg",
@@ -1215,7 +1263,7 @@
     "freeShipping": false
   },
   {
-    "id": 49,
+    "id": 50,
     "name": "삼성전자 갤럭시 갤럭시버즈3 프로 R630 블루투스 이어폰",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5557762/55577622642.20250701121718.jpg",
@@ -1232,48 +1280,5 @@
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
-  },
-  {
-    "id": 50,
-    "name": "ASHATA 비즈니스 이어폰 180도 회전 노이즈캔슬링 블루투스",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_9114526/91145268585.jpg",
-    "addedAt": "2026-05-30T13:01:38",
-    "originalPrice": 40236,
-    "salePrice": 32620,
-    "priceType": "avg7d",
-    "store": "라운즈마켓",
-    "productUrl": "https://smartstore.naver.com/main/products/13600758173",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-03T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-25",
-        "lprice": 41720
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 30530
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 43360
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 54490
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 31080
-      }
-    ]
   }
 ]
