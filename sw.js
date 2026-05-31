@@ -96,6 +96,42 @@ async function cacheFirstWithNetwork(request) {
 }
 
 
+// ── Push: 웹 푸시 알림 수신 ──────────────────────────────────────
+self.addEventListener('push', event => {
+  let data = { title: 'ITSpecial 특가 알림', body: '새 특가가 등록됐어요! 확인해보세요 🔥', url: '/' };
+  try { if (event.data) data = { ...data, ...event.data.json() }; } catch {}
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body:    data.body,
+      icon:    '/og-image.png',
+      badge:   '/og-image.png',
+      tag:     data.tag || 'itspecial-deal',    // 같은 tag면 덮어쓰기 (알림 스팸 방지)
+      renotify: true,
+      data:    { url: data.url },
+      actions: [
+        { action: 'open',    title: '특가 보기' },
+        { action: 'dismiss', title: '닫기' },
+      ],
+    })
+  );
+});
+
+// ── Notification Click: 알림 클릭 시 사이트 열기 ─────────────────
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  if (event.action === 'dismiss') return;
+  const url = event.notification.data?.url || '/';
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+      const existing = list.find(c => c.url.includes(self.location.origin));
+      if (existing) { existing.focus(); existing.navigate(url); }
+      else           { clients.openWindow(url); }
+    })
+  );
+});
+
+
 // Network-first: 네트워크 시도 → 실패 시 캐시 반환
 async function networkFirstWithCache(request, cacheName) {
   const cache = await caches.open(cacheName);

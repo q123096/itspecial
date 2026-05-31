@@ -75,6 +75,17 @@ jobs:
           git commit -m "🤖 딜 자동 발굴 $(TZ='Asia/Seoul' date +'%Y-%m-%d %H:%M KST')"
           git push
 
+      - name: 신규 딜 웹 푸시 발송
+        if: steps.check.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VAPID_PUBLIC_KEY:     ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY:    ${{ secrets.VAPID_PRIVATE_KEY }}
+          VAPID_MAILTO:         ${{ secrets.VAPID_MAILTO }}
+        run: python scripts/send_push_notifications.py
+
   # ════════════════════════════════════════
   # 2단계: 파트너스 링크 자동 생성
   #   - affiliateUrl 비어있는 딜에 링크 삽입

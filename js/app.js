@@ -550,6 +550,58 @@ function updateHeroStats() {
    ALERT MODAL — 카테고리별 특가 알림 구독
 ─────────────────────────────────────────── */
 // ── 구독자 저장 백엔드 ──────────────────────────────────────────
+// ── Web Push VAPID 공개키 (private key는 GitHub Secret VAPID_PRIVATE_KEY) ──
+const VAPID_PUBLIC_KEY = 'BAINi54MJSirm_eO9dGq9e-HI3Tg36T-YIWR_q-MbhE1wicBj24KDNNCI-eOviDppxDK_PSBcotL8G4P6_a8O2E';
+
+/** base64url → Uint8Array 변환 (PushManager.subscribe 용) */
+function urlBase64ToUint8Array(b64) {
+  const pad  = '='.repeat((4 - b64.length % 4) % 4);
+  const raw  = atob((b64 + pad).replace(/-/g, '+').replace(/_/g, '/'));
+  return Uint8Array.from([...raw].map(c => c.charCodeAt(0)));
+}
+
+/** 웹 푸시 구독 — Service Worker 통해 브라우저 구독 엔드포인트 획득 */
+async function getPushSubscription() {
+  if (!('PushManager' in window) || !('serviceWorker' in navigator)) return null;
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    // 이미 구독돼 있으면 기존 것 반환
+    const existing = await reg.pushManager.getSubscription();
+    if (existing) return existing;
+    // 새로 구독 (브라우저가 사용자에게 알림 권한 요청)
+    return await reg.pushManager.subscribe({
+      userVisibleOnly:      true,
+      applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+    });
+  } catch (e) {
+    console.warn('[Push] 구독 실패:', e);
+    return null;
+  }
+}
+
+/** Supabase push_subscriptions 테이블에 저장 */
+async function savePushSubscription(sub, email, categories) {
+  if (!sub || !SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+  const key = sub.getKey('p256dh');
+  const auth = sub.getKey('auth');
+  await fetch(`${SUPABASE_URL}/rest/v1/push_subscriptions`, {
+    method:  'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey':        SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Prefer':        'resolution=merge-duplicates',
+    },
+    body: JSON.stringify({
+      endpoint:   sub.endpoint,
+      p256dh:     btoa(String.fromCharCode(...new Uint8Array(key))),
+      auth:       btoa(String.fromCharCode(...new Uint8Array(auth))),
+      email:      email || null,
+      categories: categories || [],
+    }),
+  }).catch(e => console.warn('[Push] Supabase 저장 실패:', e));
+}
+
 // Supabase 설정 후 아래 두 값을 채우면 모달 → Supabase 자동 저장
 // (anon key는 RLS가 INSERT만 허용하므로 공개 커밋 OK)
 const SUPABASE_URL      = 'https://dcwxomhlezoqyliexatv.supabase.co';
@@ -595,11 +647,37 @@ function closeAlertModal() {
 }
 
 async function submitAlertForm() {
-  const email = document.getElementById('alert-email')?.value?.trim();
-  const cats  = [...document.querySelectorAll('.cat-checkbox input:checked')].map(cb => cb.value);
+  const email    = document.getElementById('alert-email')?.value?.trim();
+  const cats     = [...document.querySelectorAll('.cat-checkbox input:checked')].map(cb => cb.value);
+  const wantPush = document.getElementById('push-toggle')?.checked ?? true;
 
-  if (!email || !email.includes('@')) { showToast('유효한 이메일을 입력해주세요', 'warn'); return; }
-  if (!cats.length)                   { showToast('카테고리를 하나 이상 선택해주세요', 'warn'); return; }
+  // 이메일 OR 푸시 중 하나 이상 선택해야 함
+  if (!wantPush && (!email || !email.includes('@'))) {
+    showToast('이메일을 입력하거나 브라우저 푸시 알림을 활성화해주세요', 'warn'); return;
+  }
+  if (email && !email.includes('@')) { showToast('유효한 이메일 주소를 입력해주세요', 'warn'); return; }
+  if (!cats.length) { showToast('카테고리를 하나 이상 선택해주세요', 'warn'); return; }
+
+  // 웹 푸시 구독 처리 (이메일 저장과 병렬)
+  if (wantPush) {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      const sub = await getPushSubscription();
+      if (sub) {
+        await savePushSubscription(sub, email || null, cats);
+        console.log('[Push] 구독 완료');
+      }
+    } else {
+      showToast('브라우저 알림 권한이 거부됐습니다. 브라우저 설정에서 허용해주세요.', 'warn');
+    }
+  }
+
+  // 이메일 없으면 이메일 저장 단계 스킵 (푸시만 구독한 경우)
+  if (!email || !email.includes('@')) {
+    closeAlertModal();
+    showToast('✅ 브라우저 푸시 알림이 등록됐습니다!', 'success');
+    return;
+  }
 
   // 로컬스토리지 저장 (재방문 시 복원용)
   localStorage.setItem('tdkr_subscription', JSON.stringify({ email, categories: cats }));

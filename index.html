@@ -23,6 +23,10 @@
   <meta name="twitter:description" content="스마트폰·노트북·이어폰 최저가를 한눈에. 하루 3회 자동 업데이트.">
   <meta name="twitter:image"       content="https://itspecial.co.kr/og-image.png">
 
+  <!-- Google Search Console 소유권 인증 -->
+  <!-- Search Console → 속성추가 → HTML 태그 → content 값을 아래에 붙여넣기 -->
+  <meta name="google-site-verification" content="여기에_발급받은_코드_붙여넣기">
+
   <!-- Google Analytics 4 -->
   <script>window.GA_ID = 'G-8DWD095RS4';</script>
   <title>ITSpecial — 테크 특가 모음 🔥</title>
@@ -228,7 +232,17 @@
     <p>알림 받을 카테고리를 선택하고 이메일을 입력해주세요.<br>해당 카테고리에 특가가 등록되면 바로 알려드려요.</p>
     <div class="modal-section-label">카테고리 선택 (복수 선택 가능)</div>
     <div id="modal-cat-grid" class="modal-cat-grid"></div>
-    <div class="modal-section-label" style="margin-top:16px">이메일 주소</div>
+    <!-- 웹 푸시 알림 토글 -->
+    <div id="push-opt" class="modal-push-wrap" style="margin-top:14px">
+      <label class="push-toggle-label">
+        <input type="checkbox" id="push-toggle" checked>
+        <span class="push-toggle-text">
+          🔔 <strong>브라우저 푸시 알림</strong>도 받기
+          <small style="display:block;color:#6C757D;font-size:11px;margin-top:2px">이메일 없이도 새 특가 즉시 알림</small>
+        </span>
+      </label>
+    </div>
+    <div class="modal-section-label" style="margin-top:14px">이메일 주소 <span style="color:#6C757D;font-size:11px">(선택)</span></div>
     <input id="alert-email" type="email" class="modal-input" placeholder="example@email.com">
     <div class="modal-actions">
       <button id="modal-submit" class="btn-modal-submit">알림 신청하기 →</button>

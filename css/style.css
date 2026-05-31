@@ -697,6 +697,12 @@ a.deal-name-link:hover { color: var(--primary); text-decoration: underline; }
   border-color: var(--primary);
   color: white;
 }
+/* 웹 푸시 토글 */
+.modal-push-wrap { border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; background: var(--surface); }
+.push-toggle-label { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+.push-toggle-label input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); flex-shrink: 0; }
+.push-toggle-text { font-size: 14px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+
 .modal-notice {
   font-size: 11px;
   color: var(--text-muted);
