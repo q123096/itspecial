@@ -220,12 +220,13 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
     """
     상품 URL → Linkprice 제휴링크 생성.
 
-    우선순위:
-      1) API로 받은 click_url 템플릿에서 l=0000 교체 (정확한 포맷 보장)
-      2) 폴백: 도메인 매핑으로 click_url 직접 조합
+    검증 결과: Linkprice는 l=0000 (메인 랜딩)만 허용하고,
+    외부에서 l=실제URL 형태로 딥링크를 주입하면 '링크 코드가 잘못되었습니다' 에러.
+    → l=0000 그대로 사용: 옥션/G마켓 메인으로 이동, 쿠키로 실적 추적.
+    (사용자가 메인 도착 후 구매하면 커미션 인정됨)
     """
     try:
-        parsed  = urllib.parse.urlparse(product_url)
+        parsed   = urllib.parse.urlparse(product_url)
         hostname = parsed.hostname or ""
 
         # 어느 쇼핑몰인지 파악
@@ -237,17 +238,13 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
         if not merchant_id:
             return ""
 
-        direct_url = _to_direct_url(product_url)
-        encoded    = urllib.parse.quote(direct_url, safe="")
-
-        # 1순위: API로 받은 정확한 click_url 템플릿 사용
+        # API로 받은 click_url 그대로 사용 (l=0000 유지 — 딥링크 주입 불가)
         if merchant_id in _lp_click_urls:
-            # l=0000 → 실제 상품 URL 교체
-            return _lp_click_urls[merchant_id].replace("l=0000", f"l={encoded}")
+            return _lp_click_urls[merchant_id]   # l=0000 그대로
 
-        # 2순위: 폴백 포맷 (l_cd1, l_cd2 포함)
+        # 2순위: 폴백 (API 없을 때) — l=0000 사용
         return (f"https://click.linkprice.com/click.php"
-                f"?m={merchant_id}&a={pid}&l={encoded}&l_cd1=B&l_cd2=1")
+                f"?m={merchant_id}&a={pid}&l=0000&l_cd1=B&l_cd2=1")
 
     except Exception as e:
         print(f"    ⚠️  Linkprice 링크 생성 오류: {e}")
