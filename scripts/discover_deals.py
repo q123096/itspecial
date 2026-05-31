@@ -1084,6 +1084,121 @@ def fetch_clien_deals(config: dict) -> list[dict]:
     return candidates
 
 
+# ─── 루리웹 핫딜 RSS ─────────────────────────────────────────────
+def fetch_ruliweb_deals(config: dict) -> list[dict]:
+    """
+    루리웹 핫딜 게시판 RSS 파싱.
+    RSS에 <category> 태그가 있어 카테고리 기반 필터링 가능.
+      - PC/가전, 게임H/W  → 직접 포함 (이미 IT 카테고리)
+      - 게임S/W           → tech_keywords 매칭 시만 포함 (삼성 MicroSD 등)
+      - 음식·상품권 등     → 스킵
+    """
+    ruli_cfg = config.get("ruliweb_rss", {})
+    if not ruli_cfg.get("enabled"):
+        return []
+
+    url          = ruli_cfg.get("url", "https://bbs.ruliweb.com/market/board/1020/rss")
+    tech_kw      = ruli_cfg.get("tech_keywords", [])
+    max_posts    = ruli_cfg.get("max_posts", 30)
+    direct_cats  = set(ruli_cfg.get("direct_categories", ["PC/가전", "게임H/W"]))
+    kw_cats      = set(ruli_cfg.get("keyword_categories", ["게임S/W"]))
+    min_disc     = config["settings"]["min_discount_pct"]
+
+    candidates: list[dict] = []
+    print(f"\n📡 루리웹 핫딜 RSS 파싱 중...")
+
+    try:
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (compatible; ITSpecialBot/1.0)"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            raw = resp.read()
+        xml_data = raw.decode("utf-8", errors="replace")
+
+        root  = ET.fromstring(xml_data)
+        items = root.findall(".//item")[:max_posts]
+
+        for item in items:
+            title    = (item.findtext("title") or "").strip()
+            link     = (item.findtext("link") or "").strip()
+            category = (item.findtext("category") or "").strip()
+
+            # ── 카테고리 필터 ────────────────────────────────────────
+            if category in direct_cats:
+                pass                                    # PC/가전·게임H/W → 무조건 처리
+            elif category in kw_cats:
+                if not any(kw in title for kw in tech_kw):
+                    continue                             # 게임S/W인데 IT 키워드 없음 → 스킵
+            else:
+                continue                                 # 음식·상품권·생활용품 등 → 스킵
+
+            # ── 가격 추출 ────────────────────────────────────────────
+            # 루리웹 제목 예시:
+            #   "[하이마트] LG TV 1,135,200원"
+            #   "[카카오] 로지텍 헤드셋 (185,490원/무료)"
+            #   "[지마켓] 삼성 MicroSD 26,530"  ← 원 없는 형태
+            prices_with_won = [
+                int(p.replace(",", ""))
+                for p in re.findall(r"([\d,]+)원", title)
+                if 1_000 < int(p.replace(",", "")) < 10_000_000
+            ]
+
+            if len(prices_with_won) >= 2:
+                orig, sale = max(prices_with_won), min(prices_with_won)
+            elif len(prices_with_won) == 1:
+                # 단일 가격 + 할인율 조합
+                m = re.search(r'(\d+)\s*%\s*할인|(\d+)%↓', title)
+                if m:
+                    disc_pct = int((m.group(1) or m.group(2)))
+                    if not (0 < disc_pct < 100):
+                        continue
+                    sale = prices_with_won[0]
+                    orig = round(sale / (1 - disc_pct / 100))
+                else:
+                    continue
+            else:
+                # 원 없는 숫자 폴백 (예: "26,530")
+                bare_prices = [
+                    int(p.replace(",", ""))
+                    for p in re.findall(r"\b([\d,]{4,})\b", title)
+                    if 1_000 < int(p.replace(",", "")) < 10_000_000
+                ]
+                if len(bare_prices) >= 2:
+                    orig, sale = max(bare_prices), min(bare_prices)
+                else:
+                    continue
+
+            if sale >= orig or orig <= 0:
+                continue
+
+            disc = round((orig - sale) / orig * 100)
+            if disc < min_disc:
+                continue
+
+            # 쇼핑몰명 추출 ("[네이버] ..." → "네이버")
+            store_m = re.match(r'\[([^\]]{1,15})\]', title)
+            store   = store_m.group(1) if store_m else "루리웹 핫딜"
+
+            candidates.append({
+                "_source":       "ruliweb",
+                "_match":        category,
+                "title":         title,
+                "link":          link,
+                "store":         store,
+                "originalPrice": orig,
+                "salePrice":     sale,
+                "discount":      disc,
+            })
+            print(f"  📌 [{category}][{disc}%] {title[:55]}")
+
+    except Exception as e:
+        print(f"  ❌ 루리웹 RSS 오류: {e}")
+
+    print(f"  → 루리웹 {len(candidates)}개 테크 딜 감지")
+    return candidates
+
+
 # ─── 중복/만료 관리 ──────────────────────────────────────────────
 _DEDUP_NOISE_RE = re.compile(
     r'\d+\s*(?:gb|tb)|블루|화이트|블랙|실버|그레이|골드|핑크|퍼플|그린|티타늄|자급제|공기계',
@@ -1479,6 +1594,16 @@ def main():
         # 클리앙은 ppomppu_candidate_to_deal 재활용 (구조 동일)
         deal = ppomppu_candidate_to_deal(c, category, next_id)
         deal["store"] = "클리앙 핫딜"
+        if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
+            new_deals.append(deal)
+            next_id += 1
+
+    # 4c. 루리웹
+    ruliweb_candidates = fetch_ruliweb_deals(config)
+    for c in ruliweb_candidates[:8]:   # 루리웹 최대 8개
+        category = _auto_category(c["title"])
+        deal     = ppomppu_candidate_to_deal(c, category, next_id)
+        deal["store"] = c.get("store", "루리웹 핫딜")   # 쇼핑몰명 보존
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
             new_deals.append(deal)
             next_id += 1
