@@ -95,6 +95,12 @@ def update_price_history(history: dict, keyword: str, lprice: int, hprice: int =
     history[keyword]["avg_7d"] = round(sum(valid) / len(valid)) if valid else 0
     history[keyword]["days"]   = len(valid)
 
+    # avg_hprice_7d: hprice(최고가) 기준 7일 평균 → 기준가로 사용
+    # lprice avg는 할인이 지속되면 세일가 수준까지 내려가지만,
+    # hprice avg는 다른 판매자의 정상가가 포함되어 더 안정적인 "정상가" 기준이 됨
+    valid_hp = [e.get("hprice", 0) for e in history[keyword]["history"] if e.get("hprice", 0) >= 30000]
+    history[keyword]["avg_hprice_7d"] = round(sum(valid_hp) / len(valid_hp)) if valid_hp else 0
+
 
 def get_reference_price(history: dict, keyword: str, msrp: int) -> int:
     """
@@ -591,7 +597,7 @@ def search_naver_products(keyword: str, client_id: str, client_secret: str,
 def naver_product_to_deal(
     p: dict, category: str, next_id: int, min_disc: int,
     avg_7d: int = 0, hist_days: int = 0, msrp: int = 0,
-    expire_days: int = 4,
+    expire_days: int = 4, avg_hprice_7d: int = 0,
 ) -> dict | None:
     """
     네이버 쇼핑 API 상품 → deals.json 포맷
@@ -680,12 +686,15 @@ def naver_product_to_deal(
             disc       = round((orig - sale) / orig * 100) if orig > sale else 0
             price_type = "store"
 
-    # Case 4: 7일 평균가 (5일 이상 축적 + 30% 이내만 허용)
+    # Case 4: 7일 hprice 평균가 기준 (5일 이상 + 30% 이내만 허용)
+    # - avg_hprice_7d: hprice(최고가) 7일 평균 — 할인 지속돼도 정상가 수준 유지
+    # - avg_7d(lprice avg)는 일주일 세일이 이어지면 세일가 수준으로 내려가므로 사용 안 함
     # MSRP/hprice/store 우선 적용 후 orig가 없을 때만 사용
-    if orig == 0 and avg_7d > 0 and hist_days >= 5 and lp < avg_7d:
-        disc = round((avg_7d - lp) / avg_7d * 100)
+    ref_avg = avg_hprice_7d if avg_hprice_7d > 0 else avg_7d   # hprice avg 우선
+    if orig == 0 and ref_avg > 0 and hist_days >= 5 and lp < ref_avg:
+        disc = round((ref_avg - lp) / ref_avg * 100)
         if disc <= 30:
-            orig       = avg_7d
+            orig       = ref_avg
             price_type = "avg7d"
 
     # 가격 근거 없으면 제외 (MSRP 추정 불허)
@@ -1356,16 +1365,18 @@ def main():
                 save_prices_to_supabase(sb_records)
 
             # ── ③ 7일 평균가 (현재: 키워드 레벨 / 7일 후: 상품 레벨 전환) ──
-            hist_entry = price_history.get(keyword, {})
-            hist_days  = hist_entry.get("days", 0)
-            avg_7d     = hist_entry.get("avg_7d", 0)
+            hist_entry    = price_history.get(keyword, {})
+            hist_days     = hist_entry.get("days", 0)
+            avg_7d        = hist_entry.get("avg_7d", 0)
+            avg_hprice_7d = hist_entry.get("avg_hprice_7d", 0)
 
             # 첫 결과 디버그
             if products:
                 p0  = products[0]
                 lp0 = int(p0.get("lprice") or 0)
                 hp0 = int(p0.get("hprice") or 0)
-                src = f"hprice={hp0:,}" if hp0 > lp0 else (f"7일평균={avg_7d:,}({hist_days}일)" if avg_7d else "기준가없음")
+                ref_dbg = avg_hprice_7d or avg_7d
+                src = f"hprice={hp0:,}" if hp0 > lp0 else (f"7일평균={ref_dbg:,}({hist_days}일)" if ref_dbg else "기준가없음")
                 print(f"  [DEBUG] lprice={lp0:,} {src} | {re.sub(r'<[^>]+>','',p0.get('title',''))[:30]}")
 
             # MSRP 출고가 (msrp.json에서 키워드 기준 조회)
@@ -1379,7 +1390,7 @@ def main():
                 deal = naver_product_to_deal(
                     p, category, next_id, min_disc,
                     avg_7d=avg_7d, hist_days=hist_days, msrp=kw_msrp,
-                    expire_days=expire_days,
+                    expire_days=expire_days, avg_hprice_7d=avg_hprice_7d,
                 )
                 if deal and not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
                     # 가격 히스토리 임베드 (최근 7일, UI 스파크라인용)

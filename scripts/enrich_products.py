@@ -116,6 +116,79 @@ SPEC_PRIORITY = {
 }
 
 
+# ── 한국어 → Icecat 영문 쿼리 변환 ──────────────────────────────────
+# Icecat은 국제 카탈로그라 영문 제품명만 인식. 한글 검색 시 결과 0개.
+_KO_EN: list[tuple[str, str]] = [
+    # 브랜드 (긴 것 먼저 — 짧은 것이 먼저 매칭되면 "갤럭시" → "Galaxy"만 치환되어 "Galaxy Book" 못 씀)
+    ("삼성전자", "Samsung"), ("삼성", "Samsung"),
+    ("갤럭시북",  "Galaxy Book"),
+    ("갤럭시탭",  "Galaxy Tab"),
+    ("갤럭시워치","Galaxy Watch"),
+    ("갤럭시버즈","Galaxy Buds"),
+    ("갤럭시",   "Galaxy"),
+    ("아이폰",   "iPhone"),
+    ("아이패드",  "iPad"),
+    ("에어팟",   "AirPods"),
+    ("맥북에어",  "MacBook Air"),
+    ("맥북프로",  "MacBook Pro"),
+    ("맥북",    "MacBook"),
+    ("맥미니",   "Mac Mini"),
+    ("아이맥",   "iMac"),
+    ("애플워치",  "Apple Watch"),
+    ("애플",    "Apple"),
+    ("LG전자",  "LG"),
+    ("울트라기어", "UltraGear"),
+    ("그램",    "Gram"),
+    ("갤럭시북",  "Galaxy Book"),
+    ("소니",    "Sony"),
+    ("보스",    "Bose"),
+    ("레노버",   "Lenovo"),
+    ("씽크패드",  "ThinkPad"),
+    ("아수스",   "ASUS"),
+    ("젠북",    "ZenBook"),
+    ("비보북",   "VivoBook"),
+    ("닌텐도스위치", "Nintendo Switch"),
+    ("닌텐도",   "Nintendo"),
+    # 제품 수식어
+    ("울트라",   "Ultra"),
+    ("프로",    "Pro"),
+    ("에어",    "Air"),
+    ("미니",    "Mini"),
+    ("플러스",   "Plus"),
+    ("맥스",    "Max"),
+    ("라이트",   "Lite"),
+]
+_KO_NOISE_RE = re.compile(
+    r"자급제|공기계|\d+GB|\d+TB|\d+형|\d+인치|Wi[-\s]?Fi|5G|4G|LTE|자급제|"
+    r"블루|화이트|블랙|실버|그레이|골드|핑크|퍼플|그린|티타늄|크림|미드나잇|"
+    r"스타라이트|스페이스그레이|딥퍼플|옐로우|코랄|라벤더",
+    re.IGNORECASE,
+)
+_HANGUL_RE = re.compile(r"[가-힣ㄱ-ㅎㅏ-ㅣ]+")
+
+
+def ko_to_en_query(name: str) -> str:
+    """
+    한국어 제품명 → Icecat 검색용 영문 쿼리 변환.
+
+    전략:
+      1. 노이즈(자급제·색상·용량 등) 제거
+      2. 한국어 브랜드/제품명 → 영문 치환
+      3. 나머지 한글 제거 → 영숫자·모델번호·영문 브랜드만 남김
+
+    예) "삼성전자 갤럭시 S25 울트라 자급제 SM-S938N" → "Samsung Galaxy S25 Ultra"
+        "소니 WH-1000XM6 블루투스 헤드폰"          → "Sony WH-1000XM6"
+        "Apple 에어팟 프로 4세대"                   → "Apple AirPods Pro"
+        "LG전자 그램 Pro 16ZD90SP"                 → "LG Gram Pro 16ZD90SP"
+    """
+    q = _KO_NOISE_RE.sub(" ", name)
+    for ko, en in _KO_EN:
+        q = q.replace(ko, en)
+    q = _HANGUL_RE.sub(" ", q)            # 남은 한글 제거
+    q = re.sub(r"\s+", " ", q).strip()
+    return q[:60]
+
+
 # ── Icecat ────────────────────────────────────────────────────────
 def _extract_specs(product: dict, category: str) -> str | None:
     """Icecat 제품 JSON → 핵심 스펙 한줄 ("A · B · C")"""
@@ -154,11 +227,19 @@ def fetch_icecat(name: str, category: str) -> str | None:
     # 완본체(desktop)는 Icecat 스킵 — 조립 제품이라 카탈로그 없음
     if category == "desktop":
         return None
+
+    # 한국어 → 영문 변환 (Icecat은 영문 제품명만 인식)
+    en_query = ko_to_en_query(name)
+    if not en_query or len(en_query) < 4:
+        print(f"    [Icecat] 영문 변환 결과 없음 → 스킵")
+        return None
+    print(f"    [Icecat] 검색: '{en_query}'")
+
     try:
         # 1) 검색
         r = requests.get(
             "https://icecat.us/search.html",
-            params={"q": name, "lang": "ko", "format": "json", "limit": 3},
+            params={"q": en_query, "lang": "en", "format": "json", "limit": 3},
             auth=ICECAT_AUTH,
             timeout=12,
         )
