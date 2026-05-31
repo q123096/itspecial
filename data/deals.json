@@ -4,13 +4,13 @@
     "name": "[네이버] 에어릿 프로쿨 맥스 냉각 휴대용 선풍기 4000mAh (8,400원/2,500원)",
     "category": "smartphone",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-05-30T13:02:31",
+    "addedAt": "2026-05-31T02:15:12",
     "originalPrice": 8400,
     "salePrice": 2500,
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=707906",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-02T23:59:00",
+    "expiresAt": "2026-06-03T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -92,7 +92,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-06T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -335,7 +335,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-06T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -408,7 +408,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53598141889",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-03T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -826,7 +826,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/59386976050",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-06T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -1051,6 +1051,49 @@
   },
   {
     "id": 46,
+    "name": "무선 이어버드 블루투스 5.4 6 마이크 ENC 노이즈 캔슬링 클리어 콜 딥 베이스 하이 Blackish G",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9114941/91149410232.jpg",
+    "addedAt": "2026-05-31T02:14:10",
+    "originalPrice": 40236,
+    "salePrice": 33200,
+    "priceType": "avg7d",
+    "store": "원더커머스1",
+    "productUrl": "https://smartstore.naver.com/main/products/13604899820",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-04T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 41720
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 30530
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 43360
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      }
+    ]
+  },
+  {
+    "id": 47,
     "name": "삼성전자 갤럭시탭 S10 FE WiFi전용, 128GB, 그레이",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5392010/53920107147.20250407160502.jpg",
@@ -1069,7 +1112,7 @@
     "freeShipping": false
   },
   {
-    "id": 47,
+    "id": 48,
     "name": "애플 아이패드 에어 6세대 11인치 WiFi 128GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_8785082/87850821670.jpg",
@@ -1088,7 +1131,7 @@
     "freeShipping": false
   },
   {
-    "id": 48,
+    "id": 49,
     "name": "삼성전자 삼성 갤럭시 S24 FE 공기계 특S등급",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5984522/59845226407.jpg",
@@ -1107,7 +1150,7 @@
     "freeShipping": false
   },
   {
-    "id": 49,
+    "id": 50,
     "name": "블루투스 보이는 미니 노이즈캔슬링 음악감상 안 이어폰 쌀알",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9113855/91138559893.jpg",
@@ -1146,40 +1189,6 @@
       {
         "date": "2026-05-29",
         "lprice": 31080
-      }
-    ]
-  },
-  {
-    "id": 50,
-    "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
-    "originalPrice": 1299000,
-    "salePrice": 1090000,
-    "priceType": "msrp",
-    "store": "Link",
-    "productUrl": "https://smartstore.naver.com/main/products/2305562910",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-06T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-25",
-        "lprice": 878000
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 1098000
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 30000
       }
     ]
   }
