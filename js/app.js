@@ -475,7 +475,7 @@ function updateTimers() {
 /* ─── Price Sparkline (SVG 인라인 — 외부 라이브러리 불필요) ─── */
 function makeSparkline(history) {
   if (!history || history.length < 2) return '';
-  const prices = history.map(h => h.lprice).filter(Boolean);
+  const prices = history.map(h => h.lprice || h.hprice).filter(Boolean);
   if (prices.length < 2) return '';
   const min   = Math.min(...prices);
   const max   = Math.max(...prices);
@@ -617,9 +617,40 @@ async function submitAlertForm() {
         body: JSON.stringify({ email, categories: cats }),
       });
       if (res.status === 409) {
-        // 이미 구독 중인 이메일 — 성공으로 처리
-        closeAlertModal();
-        showToast('✅ 이미 구독 중입니다! 알림이 계속 발송됩니다.', 'success');
+        // 이미 구독 중 → 기존 카테고리와 병합(union) 후 PATCH
+        try {
+          const getRes = await fetch(
+            `${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}&select=categories`,
+            { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+          );
+          const rows = getRes.ok ? await getRes.json() : [];
+          const existing = rows[0]?.categories || [];
+          // 기존 + 신규 카테고리 합집합
+          const merged = [...new Set([...existing, ...cats])];
+          await fetch(
+            `${SUPABASE_URL}/rest/v1/subscribers?email=eq.${encodeURIComponent(email)}`,
+            {
+              method:  'PATCH',
+              headers: {
+                'Content-Type':  'application/json',
+                'apikey':         SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              },
+              body: JSON.stringify({ categories: merged }),
+            }
+          );
+          const added = cats.filter(c => !existing.includes(c));
+          closeAlertModal();
+          showToast(
+            added.length
+              ? `✅ ${added.length}개 카테고리가 추가되었습니다!`
+              : '✅ 이미 모든 카테고리를 구독 중입니다.',
+            'success'
+          );
+        } catch {
+          closeAlertModal();
+          showToast('✅ 이미 구독 중입니다!', 'success');
+        }
         return;
       }
       if (!res.ok) {

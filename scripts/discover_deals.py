@@ -1075,15 +1075,33 @@ def fetch_clien_deals(config: dict) -> list[dict]:
 
 
 # ─── 중복/만료 관리 ──────────────────────────────────────────────
+_DEDUP_NOISE_RE = re.compile(
+    r'\d+\s*(?:gb|tb)|블루|화이트|블랙|실버|그레이|골드|핑크|퍼플|그린|티타늄|자급제|공기계',
+    re.IGNORECASE,
+)
+
+def _name_key(name: str) -> str:
+    """
+    중복 감지용 정규화 키:
+      - 색상·용량 제거 (같은 모델 다른 옵션은 동일 딜로 처리)
+      - 소문자·연속공백 정리 후 앞 20자
+    예) "갤럭시 S25 울트라 자급제 256GB 블루" → "갤럭시 s25 울트라 "
+        "갤럭시 S25 울트라 자급제 512GB 레드" → "갤럭시 s25 울트라 "  (동일 → 중복)
+        "갤럭시 S25 자급제"                  → "갤럭시 s25 "         (다름 → 별도 딜)
+    """
+    n = _DEDUP_NOISE_RE.sub("", name.lower())
+    return re.sub(r"\s+", " ", n).strip()[:20]
+
+
 def is_duplicate(new_deal: dict, existing: list[dict]) -> bool:
     """이름 유사도 또는 productUrl 기준 중복 체크 (같은 실행 내 new_deals 전용)"""
-    new_url  = new_deal.get("productUrl", "")
-    new_name = new_deal.get("name", "").lower()
+    new_url = new_deal.get("productUrl", "")
+    new_key = _name_key(new_deal.get("name", ""))
 
     for d in existing:
         if new_url and d.get("productUrl") == new_url:
             return True
-        if new_name[:10] and d.get("name", "").lower().startswith(new_name[:10]):
+        if len(new_key) >= 6 and new_key == _name_key(d.get("name", "")):
             return True
     return False
 
@@ -1103,9 +1121,10 @@ def refresh_or_duplicate(new_deal: dict, existing_deals: list[dict], expire_days
     new_sale  = new_deal.get("salePrice", 0)
     new_orig  = new_deal.get("originalPrice", 0)
 
+    new_key = _name_key(new_name)
     for d in existing_deals:
         matched = (new_url and d.get("productUrl") == new_url) or \
-                  (new_name[:10] and d.get("name", "").lower().startswith(new_name[:10]))
+                  (len(new_key) >= 6 and new_key == _name_key(d.get("name", "")))
         if not matched:
             continue
 
