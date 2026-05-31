@@ -4,7 +4,7 @@
     "name": "[네이버] 에어릿 프로쿨 맥스 냉각 휴대용 선풍기 4000mAh (8,400원/2,500원)",
     "category": "smartphone",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-05-31T04:06:54",
+    "addedAt": "2026-05-31T04:20:27",
     "originalPrice": 8400,
     "salePrice": 2500,
     "store": "뽐뿌 핫딜",
@@ -92,7 +92,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-04T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -234,6 +234,57 @@
   },
   {
     "id": 11,
+    "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450229.20250715142328.jpg",
+    "addedAt": "2026-05-31T04:19:30",
+    "originalPrice": 2099000,
+    "salePrice": 1340420,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/55727450229",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-04T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 539000
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 539000
+      }
+    ]
+  },
+  {
+    "id": 12,
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
@@ -244,7 +295,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56454050696",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-04T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -285,7 +336,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "아이패드 에어 6세대 11인치 wifi 128GB c -선호색상기재",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5837407/58374074517.jpg",
@@ -305,7 +356,7 @@
     "freeShipping": false
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "소니 WH1000XM5 무선 노이즈캔슬링 헤드셋 미드나잇 블루",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9097113/90971132398.jpg",
@@ -325,7 +376,7 @@
     "freeShipping": false
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "게이밍 조립 컴퓨터 세트 조립PC 롤 발로란트 오버워치 배그 바른컴퓨터 본체 풀세트F11",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8370082/83700825505.4.jpg",
@@ -344,7 +395,7 @@
     "freeShipping": false
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "삼성전자 갤럭시 버즈3 프로 SM-R630N",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5350845/53508451505.20250512182009.jpg",
@@ -363,7 +414,7 @@
     "freeShipping": false
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "로지텍 무선마우스 MX Master 3S 무선 블루투스 마우스 유무선 사무용 미개봉품 병행",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_8459503/84595037416.3.jpg",
@@ -382,7 +433,7 @@
     "freeShipping": false
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
@@ -393,7 +444,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/52820784037",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-04T23:59:00",
+    "expiresAt": "2026-06-07T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -433,7 +484,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "조립 PC 컴퓨터 본체 게임용 고사양 데스크탑 롤 서든 오버워치 배그 발로란트 게이밍03",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8319513/83195131633.22.jpg",
@@ -452,7 +503,7 @@
     "freeShipping": false
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "소니 WH-1000XM5",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5350904/53509045307.20250627140705.jpg",
@@ -471,7 +522,7 @@
     "freeShipping": false
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -505,7 +556,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -552,7 +603,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "삼성전자 갤럭시Z 플립5 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359814/53598141889.20250317145817.jpg",
@@ -599,7 +650,7 @@
     ]
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "애플 맥북에어 13인치 M3 8C 8C 8G 256G 미드나이트 애플케어플러스 적용",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9098785/90987855309.jpg",
@@ -618,7 +669,7 @@
     "freeShipping": false
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "삼성 갤럭시 워치7 (강화유리 2매 포함 패키지) 그린, 44mm, 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_8930820/89308208131.122.jpg",
@@ -637,7 +688,7 @@
     "freeShipping": false
   },
   {
-    "id": 25,
+    "id": 26,
     "name": "로지텍 MX MASTER 3S 정품, 그래파이트",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_5559432/55594320931.20250702110906.jpg",
@@ -656,7 +707,7 @@
     "freeShipping": false
   },
   {
-    "id": 26,
+    "id": 27,
     "name": "게이밍 미니 PC 완본체 고사양 게임용 조립 컴퓨터",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9086502/90865022362.jpg",
@@ -675,7 +726,7 @@
     "freeShipping": false
   },
   {
-    "id": 27,
+    "id": 28,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -694,7 +745,7 @@
     "freeShipping": false
   },
   {
-    "id": 28,
+    "id": 29,
     "name": "갤럭시 S 24 FE 자급제  256GB  그레이",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5805805/58058050816.1.jpg",
@@ -713,7 +764,7 @@
     "freeShipping": false
   },
   {
-    "id": 29,
+    "id": 30,
     "name": "미니PC 인텔I5 사무용PC 고성능 AMD 라이젠8845HS 영상편집 게이밍 컴퓨터 본체",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8894633/88946332523.5.jpg",
@@ -732,7 +783,7 @@
     "freeShipping": false
   },
   {
-    "id": 30,
+    "id": 31,
     "name": "삼성 갤럭시 탭 S10 FE 회색 128GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5997021/59970216201.1.jpg",
@@ -751,7 +802,7 @@
     "freeShipping": false
   },
   {
-    "id": 31,
+    "id": 32,
     "name": "[네이버] 자전거 가방 (3,900원/3,000원)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
@@ -771,7 +822,7 @@
     "freeShipping": false
   },
   {
-    "id": 32,
+    "id": 33,
     "name": "소니 WF 1000XM5 이어폰 무선 블루투스 노이즈캔슬링",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5961844/59618441344.jpg",
@@ -790,7 +841,7 @@
     "freeShipping": false
   },
   {
-    "id": 33,
+    "id": 34,
     "name": "삼성전자 오디세이 G5 LS32FG500 80~81cm(32인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5785495/57854950469.20251121150455.jpg",
@@ -809,7 +860,7 @@
     "freeShipping": false
   },
   {
-    "id": 34,
+    "id": 35,
     "name": "카라비너 클립 충격 방지 이어버드 보관함이 장착된 비트용 2CREA 하드 케이스 - 무선 노이즈 캔슬링 이어",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9113462/91134621561.jpg",
@@ -852,7 +903,7 @@
     ]
   },
   {
-    "id": 35,
+    "id": 36,
     "name": "삼성전자 갤럭시 워치7 알루미늄 실버, 44mm, 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5425752/54257526116.20250417180309.jpg",
@@ -871,7 +922,7 @@
     "freeShipping": false
   },
   {
-    "id": 36,
+    "id": 37,
     "name": "삼성전자 갤럭시워치7",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5529031/55290312583.jpg",
@@ -890,7 +941,7 @@
     "freeShipping": false
   },
   {
-    "id": 37,
+    "id": 38,
     "name": "[브랜드위크]삼성전자 갤럭시 S25 FE 256GB 자급제 SM-S731N AI폰",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_8982611/89826110066.1.jpg",
@@ -909,7 +960,7 @@
     "freeShipping": false
   },
   {
-    "id": 38,
+    "id": 39,
     "name": "삼성전자 갤럭시 S25 FE 256GB 자급제폰 SM-S731N",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_8982514/89825149636.1.jpg",
@@ -928,7 +979,7 @@
     "freeShipping": false
   },
   {
-    "id": 39,
+    "id": 40,
     "name": "GOWENIC 무선 블루투스 이어폰 싱글이어 LED표시 노이즈캔슬링 충전케이스",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9114531/91145312950.jpg",
@@ -971,7 +1022,7 @@
     ]
   },
   {
-    "id": 40,
+    "id": 41,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -1005,7 +1056,7 @@
     ]
   },
   {
-    "id": 41,
+    "id": 42,
     "name": "BEELINK EQ12 인텔 N100 12세대 미니PC 준시스템 네이비블루",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8995120/89951205177.jpg",
@@ -1024,7 +1075,7 @@
     "freeShipping": false
   },
   {
-    "id": 42,
+    "id": 43,
     "name": "[리뷰이벤트+강화유리필름] 삼성전자 갤럭시워치7 44mm 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5994504/59945040278.7.jpg",
@@ -1043,7 +1094,7 @@
     "freeShipping": false
   },
   {
-    "id": 43,
+    "id": 44,
     "name": "LG전자 울트라기어 27GP750 68~69cm(27인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5261176/52611765708.20250123103415.jpg",
@@ -1062,7 +1113,7 @@
     "freeShipping": false
   },
   {
-    "id": 44,
+    "id": 45,
     "name": "LG전자 LG그램 14ZD95U-GX56K RAM 16GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5848818/58488180590.20260416154654.jpg",
@@ -1081,7 +1132,7 @@
     "freeShipping": false
   },
   {
-    "id": 45,
+    "id": 46,
     "name": "비트 파워비츠 프로 2 / 무선 노이즈 캔슬링 운동 이어버드용 허미셸 하드 트래블 케이스 (블랙) Black",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9113462/91134620676.jpg",
@@ -1124,7 +1175,7 @@
     ]
   },
   {
-    "id": 46,
+    "id": 47,
     "name": "LG그램 2026 노트북 인텔 팬서레이크 Ultra5 16GB 256GB 사무용 인강용",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8663600/86636005031.8.jpg",
@@ -1143,7 +1194,7 @@
     "freeShipping": false
   },
   {
-    "id": 47,
+    "id": 48,
     "name": "삼성전자 갤럭시 갤럭시버즈3 프로 R630 블루투스 이어폰",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5557762/55577622642.20250701121718.jpg",
@@ -1162,7 +1213,7 @@
     "freeShipping": false
   },
   {
-    "id": 48,
+    "id": 49,
     "name": "ASHATA 비즈니스 이어폰 180도 회전 노이즈캔슬링 블루투스",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9114526/91145268585.jpg",
@@ -1205,7 +1256,7 @@
     ]
   },
   {
-    "id": 49,
+    "id": 50,
     "name": "무선 이어버드 블루투스 5.4 6 마이크 ENC 노이즈 캔슬링 클리어 콜 딥 베이스 하이 Blackish G",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9114941/91149410232.jpg",
@@ -1246,24 +1297,5 @@
         "lprice": 31080
       }
     ]
-  },
-  {
-    "id": 50,
-    "name": "삼성전자 갤럭시탭 S10 FE WiFi전용, 128GB, 그레이",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5392010/53920107147.20250407160502.jpg",
-    "originalPrice": 799000,
-    "salePrice": 661990,
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53920107147",
-    "affiliateUrl": "",
-    "expiresAt": "2026-05-31T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
   }
 ]
