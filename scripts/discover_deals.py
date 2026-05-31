@@ -829,8 +829,12 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
 
                 link = f"https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no={no}"
 
-                # 가격 추출
-                raw_prices = re.findall(r"[\d,]+(?=원)", title)
+                # 비IT 제품 제외 (선풍기, 음식, 의류 등)
+                if _is_non_it(title):
+                    continue
+
+                # 가격 추출 (배송비 먼저 제거)
+                raw_prices = re.findall(r"[\d,]+(?=원)", _strip_shipping_cost(title))
                 prices = []
                 for rp in raw_prices:
                     v = int(rp.replace(",", ""))
@@ -914,8 +918,10 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
                 combined = title + " " + desc
                 if not any(kw in combined for kw in tech_kw):
                     continue
+                if _is_non_it(title):
+                    continue
 
-                raw_prices = re.findall(r"[\d,]+(?=원)", combined)
+                raw_prices = re.findall(r"[\d,]+(?=원)", _strip_shipping_cost(combined))
                 prices = []
                 for rp in raw_prices:
                     v = int(rp.replace(",", ""))
@@ -1038,9 +1044,11 @@ def fetch_clien_deals(config: dict) -> list[dict]:
             combined = title + " " + desc
             if not any(kw in combined for kw in tech_kw):
                 continue
+            if _is_non_it(title):
+                continue
 
-            # 가격 추출
-            raw_prices = re.findall(r"[\d,]+(?=원)", combined)
+            # 가격 추출 (배송비 먼저 제거)
+            raw_prices = re.findall(r"[\d,]+(?=원)", _strip_shipping_cost(combined))
             prices = []
             for rp in raw_prices:
                 v = int(rp.replace(",", ""))
@@ -1133,14 +1141,15 @@ def fetch_ruliweb_deals(config: dict) -> list[dict]:
             else:
                 continue                                 # 음식·상품권·생활용품 등 → 스킵
 
-            # ── 가격 추출 ────────────────────────────────────────────
-            # 루리웹 제목 예시:
-            #   "[하이마트] LG TV 1,135,200원"
-            #   "[카카오] 로지텍 헤드셋 (185,490원/무료)"
-            #   "[지마켓] 삼성 MicroSD 26,530"  ← 원 없는 형태
+            # 비IT 제품 추가 제외
+            if _is_non_it(title):
+                continue
+
+            # ── 가격 추출 (배송비 제거 후) ───────────────────────────
+            title_clean = _strip_shipping_cost(title)
             prices_with_won = [
                 int(p.replace(",", ""))
-                for p in re.findall(r"([\d,]+)원", title)
+                for p in re.findall(r"([\d,]+)원", title_clean)
                 if 1_000 < int(p.replace(",", "")) < 10_000_000
             ]
 
@@ -1197,6 +1206,46 @@ def fetch_ruliweb_deals(config: dict) -> list[dict]:
 
     print(f"  → 루리웹 {len(candidates)}개 테크 딜 감지")
     return candidates
+
+
+# ─── 커뮤니티 딜 가격 파싱 유틸 ─────────────────────────────────
+def _strip_shipping_cost(title: str) -> str:
+    """
+    뽐뿌/루리웹/클리앙 제목에서 배송비 금액 제거.
+    배송비를 할인가로 오인하는 파싱 버그 방지.
+
+    처리 사례:
+      "44,800원 배송비 2,500원"  → "44,800원 "
+      "8,400원/2,500원"          → "8,400원"  (슬래시 뒤 5,000원 미만은 배송비)
+      "(44,800원/무료배송)"       → "(44,800원/무료배송)"  (무료배송은 유지)
+    """
+    t = title
+    # "배송비 N원", "배송 N원" 명시적 제거
+    t = re.sub(r'배송비?\s*[\d,]+원', '', t)
+    # "N원/M원" 에서 M이 5,000 미만이면 배송비로 간주하여 제거
+    def _rm_small(m: re.Match) -> str:
+        second = int(m.group(2).replace(",", ""))
+        return m.group(1) + "원" if second < 5_000 else m.group(0)
+    t = re.sub(r'([\d,]+)원\s*/\s*([\d,]+)원', _rm_small, t)
+    return t
+
+
+# 비IT 제품 명시적 제외 키워드 (커뮤니티 딜 필터용)
+_NON_IT_KEYWORDS: tuple[str, ...] = (
+    "선풍기", "냉방", "에어컨", "세탁기", "냉장고", "청소기", "공기청정",
+    "음식", "식품", "과자", "라면", "음료", "커피", "주방", "조리",
+    "의류", "패션", "신발", "가방", "지갑", "시계", "쥬얼리",
+    "화장품", "뷰티", "스킨케어", "헤어케어",
+    "가구", "침구", "소파", "책상", "의자",
+    "장난감", "완구", "인형",
+    "자전거", "킥보드",
+    "도서", "책",
+)
+
+
+def _is_non_it(title: str) -> bool:
+    """커뮤니티 딜 제목이 비IT 제품이면 True"""
+    return any(kw in title for kw in _NON_IT_KEYWORDS)
 
 
 # ─── 중복/만료 관리 ──────────────────────────────────────────────
