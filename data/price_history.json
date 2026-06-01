@@ -199,10 +199,10 @@
       },
       {
         "date": "2026-06-01",
-        "lprice": 257790
+        "lprice": 257770
       }
     ],
-    "avg_7d": 257494,
+    "avg_7d": 257491,
     "days": 8,
     "avg_hprice_7d": 0
   },
@@ -1983,11 +1983,16 @@
       {
         "date": "2026-05-29",
         "lprice": 32340
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 48240
       }
     ],
-    "avg_7d": 32340,
-    "days": 1,
-    "first_hprice": 0
+    "avg_7d": 40290,
+    "days": 2,
+    "first_hprice": 0,
+    "avg_hprice_7d": 0
   },
   "삼성 노트북": {
     "history": [
