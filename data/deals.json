@@ -4,7 +4,7 @@
     "name": "[스팀] 어쌔신 크리드 섀도우스 50% 할인 (39,500원/무료)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-02T10:02:57",
+    "addedAt": "2026-06-02T15:58:11",
     "originalPrice": 79000,
     "salePrice": 39500,
     "store": "뽐뿌 핫딜",
@@ -25,13 +25,13 @@
     "name": "Apple 에어팟 프로 3세대 블루투스 이어폰 MFHP4KHIA",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6012682/60126824191.1.jpg",
-    "addedAt": "2026-06-02T10:01:49",
+    "addedAt": "2026-06-02T15:57:12",
     "originalPrice": 359000,
     "salePrice": 206060,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9370679120&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9370679120?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-06-06T23:59:00",
     "tags": [
       "핫딜"
@@ -889,6 +889,54 @@
   },
   {
     "id": 22,
+    "name": "Macbook Pro Air 미니 노트북 태블릿 PC iPad Bluetooth 5.0 무선 마우스 용 AP",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_6027910/60279105566.jpg",
+    "addedAt": "2026-06-02T15:57:28",
+    "originalPrice": 37243,
+    "salePrice": 30970,
+    "priceType": "avg7d",
+    "store": "G마켓",
+    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4770242560&sub-id=1003&service-code=10000003&lcd=100000055",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-06T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 31400
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 48020
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 32240
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      }
+    ]
+  },
+  {
+    "id": 23,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
