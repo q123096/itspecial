@@ -5,6 +5,7 @@ const KAKAO_JS_KEY = 'db4206611cd19ecfa9ae35fff67039d8';
 
 const CATEGORIES = [
   { id: 'all',        label: '전체',        icon: '🏷️' },
+  { id: 'lowest',     label: '역대최저',    icon: '📉' },
   { id: 'wish',       label: '찜 목록',     icon: '❤️' },
   { id: 'smartphone', label: '스마트폰',     icon: '📱' },
   { id: 'laptop',     label: '노트북',       icon: '💻' },
@@ -50,17 +51,43 @@ function saveWishlist() {
   localStorage.setItem('tdkr_wishlist', JSON.stringify(state.wishlist));
 }
 
+/** 찜한 딜의 상품명 키를 Supabase push_subscriptions에 동기화
+ *  → 서버에서 가격 하락 감지 후 해당 구독자에게만 알림 발송 */
+async function syncWishlistToPush() {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+  try {
+    const reg = await navigator.serviceWorker?.ready;
+    if (!reg) return;
+    const sub = await reg.pushManager?.getSubscription();
+    if (!sub) return;
+    const wishlisted_keys = state.wishlist
+      .map(id => state.deals.find(d => d.id === id))
+      .filter(Boolean)
+      .map(d => makeProductKey(d.name));
+    await fetch(`${SUPABASE_URL}/rest/v1/push_subscriptions?endpoint=eq.${encodeURIComponent(sub.endpoint)}`, {
+      method:  'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':        SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify({ wishlisted_keys }),
+    }).catch(() => {});
+  } catch (_) {}
+}
+
 function toggleWish(dealId, e) {
   e.preventDefault(); e.stopPropagation();
   const idx = state.wishlist.indexOf(dealId);
   if (idx === -1) {
     state.wishlist.push(dealId);
-    showToast('❤️ 찜 목록에 추가했어요!', 'success');
+    showToast('❤️ 찜 목록에 추가했어요! 가격 하락 시 알림을 받으려면 알림 신청을 해주세요.', 'success');
   } else {
     state.wishlist.splice(idx, 1);
     showToast('찜 목록에서 제거했어요', 'info');
   }
   saveWishlist();
+  syncWishlistToPush();
   // 카드 하트 아이콘만 업데이트 (전체 리렌더 없이)
   const btn = document.querySelector(`.btn-wish[data-id="${dealId}"]`);
   if (btn) {
@@ -408,6 +435,8 @@ function applyFilters() {
   let list = [...state.deals];
   if (state.category === 'wish') {
     list = list.filter(d => state.wishlist.includes(d.id));
+  } else if (state.category === 'lowest') {
+    list = list.filter(d => (d.tags || []).includes('역대최저'));
   } else if (state.category !== 'all') {
     list = list.filter(d => d.category === state.category);
   }
@@ -798,6 +827,60 @@ $search?.addEventListener('input', e => {
   state.query = e.target.value.trim();
   applyFilters();
 });
+
+/* ─── 제보 모달 ─── */
+function openReportModal() {
+  document.getElementById('report-modal').classList.add('open');
+  document.getElementById('report-url').focus();
+}
+function closeReportModal() {
+  document.getElementById('report-modal').classList.remove('open');
+}
+async function submitReport() {
+  const url  = document.getElementById('report-url').value.trim();
+  const name = document.getElementById('report-name').value.trim();
+  const sale = parseInt(document.getElementById('report-sale').value) || 0;
+  const orig = parseInt(document.getElementById('report-orig').value) || 0;
+  const note = document.getElementById('report-note').value.trim();
+
+  if (!url || !name || !sale) {
+    showToast('URL, 상품명, 특가는 필수 입력입니다.', 'error'); return;
+  }
+  try { new URL(url); } catch { showToast('올바른 URL을 입력해주세요.', 'error'); return; }
+
+  const btn = document.getElementById('report-submit');
+  btn.disabled = true; btn.textContent = '전송 중...';
+
+  try {
+    if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+      await fetch(`${SUPABASE_URL}/rest/v1/deal_reports`, {
+        method:  'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey':        SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer':        'return=minimal',
+        },
+        body: JSON.stringify({ url, name, sale_price: sale, original_price: orig || null, note: note || null }),
+      });
+    }
+    showToast('✅ 제보가 접수됐어요! 검토 후 반영할게요 🙏', 'success');
+    closeReportModal();
+    ['report-url','report-name','report-orig','report-sale','report-note'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+  } catch (e) {
+    showToast('전송 중 오류가 발생했어요. 잠시 후 다시 시도해주세요.', 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = '제보 전송 →';
+  }
+}
+document.getElementById('report-modal')?.addEventListener('click', e => {
+  if (e.target.id === 'report-modal') closeReportModal();
+});
+window.openReportModal  = openReportModal;
+window.closeReportModal = closeReportModal;
+window.submitReport     = submitReport;
 
 /* ─── Modal wiring ─── */
 document.getElementById('btn-alert')?.addEventListener('click', () => openAlertModal(null));

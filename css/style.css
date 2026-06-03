@@ -629,6 +629,24 @@ a.deal-name-link:hover { color: var(--primary); text-decoration: underline; }
 }
 .btn-admin:hover { background: var(--border); border-color: var(--text-muted); }
 
+.btn-report {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: #fff8e1;
+  border: 1.5px solid #ffe082;
+  color: #f57f17;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  white-space: nowrap;
+}
+.btn-report:hover { background: #fff3cd; border-color: #ffc107; }
+
 /* ===== Affiliate unset badge ===== */
 .affiliate-unset-badge {
   display: inline-flex;

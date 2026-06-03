@@ -108,6 +108,42 @@ def update_price_history(history: dict, keyword: str, lprice: int, hprice: int =
     history[keyword]["avg_hprice_7d"] = round(sum(valid_hp) / len(valid_hp)) if valid_hp else 0
 
 
+def sanitize_price_history(price_history: dict, msrp_data: dict) -> int:
+    """
+    price_history에서 MSRP 대비 오염된 avg_7d를 자동 감지·초기화.
+    실행할 때마다 케이스·액세서리 가격이 누적된 키워드를 정리해 기준가 오염 방지.
+
+    오염 판단 기준:
+      - MSRP가 있는 키워드: avg_7d < msrp / 3  (예: 에어팟 프로 msrp=359000, avg_7d=35000)
+      - 히스토리의 lprice가 모두 동일값으로 고착 + avg_7d <= 100,000 (케이스 단가 수준)
+    """
+    cleaned = 0
+    # ① MSRP 기반 정합성 검사
+    for kw, msrp_val in msrp_data.items():
+        if kw not in price_history or msrp_val < 300_000:
+            continue
+        avg7d = price_history[kw].get("avg_7d", 0)
+        if avg7d > 0 and avg7d < msrp_val / 3:
+            price_history[kw].update({"history": [], "avg_7d": 0, "avg_hprice_7d": 0, "days": 0})
+            cleaned += 1
+
+    # ② 반복 고착값 감지 (같은 lprice가 3회 이상 + 10만원 이하)
+    for kw, data in price_history.items():
+        avg7d = data.get("avg_7d", 0)
+        if avg7d == 0 or avg7d > 100_000:
+            continue
+        hist = data.get("history", [])
+        if len(hist) >= 3:
+            lprices = [h.get("lprice", 0) for h in hist]
+            if len(set(lprices)) == 1:   # 모든 날 동일값 → 케이스 고착
+                data.update({"history": [], "avg_7d": 0, "avg_hprice_7d": 0, "days": 0})
+                cleaned += 1
+
+    if cleaned:
+        print(f"  🧹 price_history 정합성 검사: {cleaned}개 오염 키워드 초기화")
+    return cleaned
+
+
 def get_reference_price(history: dict, keyword: str, msrp: int) -> int:
     """
     기준가 결정:
@@ -977,6 +1013,52 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
 
     html_hit = len(candidates) - kw_hit
     print(f"  → 뽐뿌 합계 {len(candidates)}개 (HTML카테고리 {html_hit}개 + RSS키워드 {kw_hit}개)")
+
+    # ── 3단계: 뽐뿌 휴대폰 카테고리 RSS (phone) — 스마트폰·태블릿 딜 보강 ──
+    phone_rss_url = rss_cfg.get("phone_rss_url", "https://www.ppomppu.co.kr/rss.php?id=phone")
+    phone_tech_kw = tech_kw + ["아이패드", "갤럭시탭", "자급제", "스마트폰", "태블릿"]
+    try:
+        req = urllib.request.Request(phone_rss_url, headers={"User-Agent": "Mozilla/5.0 (compatible)"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            raw = resp.read()
+        root_phone = ET.fromstring(raw)
+        items_phone = root_phone.findall(".//item")
+        phone_hit = 0
+        for item in items_phone[:30]:
+            title = (item.findtext("title") or "").strip()
+            link  = (item.findtext("link") or "").strip()
+            if not title or not link or link in {c["link"] for c in candidates}:
+                continue
+            if not any(kw in title for kw in phone_tech_kw):
+                continue
+            if _is_non_it(title):
+                continue
+            raw_prices = re.findall(r"[\d,]+(?=원)", _strip_shipping_cost(title))
+            prices = [int(rp.replace(",", "")) for rp in raw_prices if 10000 < int(rp.replace(",", "")) < 10_000_000]
+            if len(prices) < 2:
+                continue
+            orig, sale = max(prices), min(prices)
+            if sale >= orig or orig <= 0:
+                continue
+            disc = round((orig - sale) / orig * 100)
+            if disc < min_disc:
+                continue
+            candidates.append({
+                "_source": "ppomppu_phone",
+                "_match":  "카테고리",
+                "title":   title,
+                "link":    link,
+                "originalPrice": orig,
+                "salePrice":     sale,
+                "discount":      disc,
+            })
+            print(f"  📱 [뽐뿌Phone][{disc}%] {title[:55]}")
+            phone_hit += 1
+        if phone_hit:
+            print(f"  → 뽐뿌 휴대폰 RSS: {phone_hit}개 추가")
+    except Exception as e:
+        print(f"  ⚠️  뽐뿌 휴대폰 RSS 오류: {e}")
+
     return candidates
 
 
@@ -1525,6 +1607,9 @@ def main():
         print(f"\n🛍️  네이버 쇼핑 검색 시작 ({len(config['search_keywords'])}개 키워드)...")
         price_history = load_price_history()
 
+        # price_history 정합성 검사 (케이스·액세서리 오염 자동 정리)
+        sanitize_price_history(price_history, msrp_data)
+
         for kw_cfg in config["search_keywords"]:
             # _group / _scan 등 주석용 항목은 스킵
             if "keyword" not in kw_cfg or "category" not in kw_cfg:
@@ -1535,6 +1620,18 @@ def main():
             sort      = kw_cfg.get("sort", "sim")   # "sim"(기본) | "date"(신제품 탐색)
             products  = search_naver_products(keyword, naver_id, naver_secret,
                                               display=10, min_price=min_price, sort=sort)
+
+            # ── 상품명 필터링: 키워드 핵심 토큰이 title에 없으면 오염 상품으로 제외 ──
+            # "에어팟 프로" 검색인데 "에어팟 프로 케이스"만 나오는 경우 방지
+            kw_tokens = [t for t in keyword.split() if len(t) >= 2]
+            if kw_tokens:
+                products = [
+                    p for p in products
+                    if any(
+                        tok in re.sub(r"<[^>]+>", "", p.get("title", ""))
+                        for tok in kw_tokens
+                    )
+                ]
 
             # ── ① 키워드 레벨 가격 이력 (lprice + hprice 모두 기록) ──
             if products:
@@ -1676,11 +1773,19 @@ def main():
     for i, d in enumerate(all_deals, start=1):
         d["id"] = i
 
+    # ── 딜 수 급감 감지 ──
+    prev_count = len(deals)
+    final_count = len(all_deals)
+    if prev_count >= 10 and final_count < prev_count * 0.7:
+        drop_pct = round((1 - final_count / prev_count) * 100)
+        print(f"\n⚠️  경고: 딜 수 급감 감지! {prev_count}개 → {final_count}개 ({drop_pct}% 감소)")
+        print("   원인 확인 필요: API 키 만료, RSS 차단, 만료 딜 대량 제거 등")
+
     with open(DEALS_PATH, "w", encoding="utf-8") as f:
         json.dump(all_deals, f, ensure_ascii=False, indent=2)
 
     print(f"\n{'='*55}")
-    print(f"✅ 기존 {len(deals)}개 | 신규 {len(new_deals)}개 추가 | 최종 {len(all_deals)}개 딜")
+    print(f"✅ 기존 {prev_count}개 | 신규 {len(new_deals)}개 추가 | 최종 {final_count}개 딜")
     print(f"{'='*55}\n")
 
     # ── 구독자 딜 알림 발송 ──

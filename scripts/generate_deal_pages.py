@@ -24,6 +24,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT         = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEALS_PATH   = os.path.join(ROOT, "data", "deals.json")
 DEALS_DIR    = os.path.join(ROOT, "deals")
+CATEGORY_DIR = os.path.join(ROOT, "category")
 SITEMAP_PATH = os.path.join(ROOT, "sitemap.xml")
 SITE_URL     = "https://itspecial.co.kr"
 
@@ -295,8 +296,107 @@ def make_deal_page(deal: dict) -> str:
 </html>"""
 
 
+# ── 카테고리별 SEO 정적 페이지 ────────────────────────────────────────
+def make_category_page(slug: str, label: str, deals: list) -> str:
+    """카테고리별 /category/{slug}.html 생성 — 롱테일 SEO 목적"""
+    today    = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    title    = html.escape(f"{label} 특가 모음 — ITSpecial")
+    desc     = html.escape(f"국내 최저가 {label} 특가를 모아드려요. 쿠팡, 11번가, 네이버 등 주요 쇼핑몰 {label} 할인 정보.")
+    canon    = f"{SITE_URL}/category/{slug}.html"
+
+    cards = []
+    for deal in deals[:20]:
+        name  = html.escape(deal["name"])
+        sale  = deal.get("salePrice", 0)
+        orig  = deal.get("originalPrice", 0)
+        disc  = round((orig - sale) / orig * 100) if orig > sale else 0
+        store = html.escape(deal.get("store", ""))
+        href  = html.escape(deal.get("affiliateUrl") or deal.get("productUrl") or "#")
+        img   = deal.get("image", "")
+        img_tag = f'<img src="{html.escape(img)}" alt="{name}" loading="lazy" style="width:80px;height:80px;object-fit:contain;border-radius:8px;flex-shrink:0">' \
+                  if img and "placehold" not in img else '<div style="width:80px;height:80px;background:#f0f0f0;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px">📦</div>'
+        cards.append(f"""  <a href="{href}" class="cat-deal-item" target="_blank" rel="noopener sponsored">
+    {img_tag}
+    <div class="cat-deal-body">
+      <div class="cat-deal-badge">{disc}% 할인</div>
+      <div class="cat-deal-name">{name}</div>
+      <div class="cat-deal-price"><strong style="color:#FF4136;font-size:1.1em">{fmt_price(sale)}</strong>
+        {"<span style='text-decoration:line-through;color:#aaa;font-size:0.85em;margin-left:6px'>"+fmt_price(orig)+"</span>" if orig else ""}
+      </div>
+      <div class="cat-deal-store">{store}</div>
+    </div>
+  </a>""")
+
+    items_html = "\n".join(cards) if cards else "<p style='color:#aaa;text-align:center;padding:40px'>현재 등록된 특가가 없습니다.</p>"
+
+    # Schema.org ItemList
+    schema_items = []
+    for i, deal in enumerate(deals[:10], 1):
+        href = deal.get("affiliateUrl") or deal.get("productUrl") or ""
+        if href:
+            schema_items.append(f'{{"@type":"ListItem","position":{i},"url":"{href}"}}')
+    schema_js = json.dumps({
+        "@context": "https://schema.org",
+        "@type":    "ItemList",
+        "name":     f"{label} 특가 모음",
+        "url":      canon,
+        "itemListElement": [json.loads(s) for s in schema_items],
+    }, ensure_ascii=False)
+
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content="{desc}">
+  <link rel="canonical" href="{canon}">
+  <meta property="og:title"       content="{title}">
+  <meta property="og:description" content="{desc}">
+  <meta property="og:url"         content="{canon}">
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="ITSpecial">
+  <script type="application/ld+json">{schema_js}</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f9fa;color:#212529}}
+    .page-header{{background:#fff;border-bottom:1px solid #e9ecef;padding:14px 20px;display:flex;align-items:center;gap:12px}}
+    .page-header a{{color:#FF4136;font-weight:700;font-size:18px;text-decoration:none}}
+    .page-header h1{{font-size:16px;color:#495057;font-weight:600}}
+    .container{{max-width:720px;margin:24px auto;padding:0 16px}}
+    .cat-deal-list{{display:flex;flex-direction:column;gap:12px}}
+    .cat-deal-item{{display:flex;gap:14px;background:#fff;border:1px solid #e9ecef;border-radius:12px;padding:14px;text-decoration:none;color:inherit;transition:box-shadow .15s}}
+    .cat-deal-item:hover{{box-shadow:0 4px 16px rgba(0,0,0,.1)}}
+    .cat-deal-body{{flex:1;display:flex;flex-direction:column;gap:4px;justify-content:center}}
+    .cat-deal-badge{{display:inline-block;background:#FF4136;color:#fff;border-radius:4px;font-size:11px;font-weight:700;padding:2px 7px;width:fit-content}}
+    .cat-deal-name{{font-size:14px;font-weight:500;color:#212529;line-height:1.4}}
+    .cat-deal-store{{font-size:12px;color:#6c757d}}
+    .cat-footer{{text-align:center;margin-top:24px;padding-bottom:32px}}
+    .cat-footer a{{display:inline-block;background:#FF4136;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700;text-decoration:none}}
+  </style>
+</head>
+<body>
+<header class="page-header">
+  <a href="{SITE_URL}/">⚡ ITSpecial</a>
+  <span style="color:#dee2e6">/</span>
+  <h1>{label} 특가</h1>
+</header>
+<div class="container">
+  <p style="margin-bottom:16px;color:#6c757d;font-size:13px">{today} 기준 · {len(deals)}개 특가</p>
+  <div class="cat-deal-list">
+{items_html}
+  </div>
+  <div class="cat-footer">
+    <a href="{SITE_URL}/">모든 특가 보기 →</a>
+  </div>
+</div>
+</body>
+</html>"""
+
+
 # ── sitemap.xml ───────────────────────────────────────────────────────
-def generate_sitemap(deals: list) -> str:
+def generate_sitemap(deals: list, categories: list[str]) -> str:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     parts = [
         f"  <url>\n"
@@ -306,6 +406,17 @@ def generate_sitemap(deals: list) -> str:
         f"    <priority>1.0</priority>\n"
         f"  </url>"
     ]
+    # 카테고리 페이지
+    for slug in categories:
+        parts.append(
+            f"  <url>\n"
+            f"    <loc>{SITE_URL}/category/{slug}.html</loc>\n"
+            f"    <lastmod>{today}</lastmod>\n"
+            f"    <changefreq>daily</changefreq>\n"
+            f"    <priority>0.9</priority>\n"
+            f"  </url>"
+        )
+    # 딜 상세 페이지
     for deal in deals:
         lastmod = (deal.get("addedAt") or today)[:10]
         parts.append(
@@ -345,11 +456,26 @@ def main() -> None:
 
     print(f"✅ 딜 상세 페이지 {generated}개 생성 → /deals/  (스킵: {skipped}개)")
 
+    # 카테고리별 SEO 정적 페이지 생성
+    os.makedirs(CATEGORY_DIR, exist_ok=True)
+    active_slugs = []
+    for slug, label in CATEGORY_LABELS.items():
+        cat_deals = [d for d in deals if d.get("category") == slug and d.get("salePrice") and d.get("originalPrice")]
+        if not cat_deals:
+            continue
+        cat_deals.sort(key=lambda d: (d.get("originalPrice", 0) - d.get("salePrice", 0)) / max(d.get("originalPrice", 1), 1), reverse=True)
+        cat_path = os.path.join(CATEGORY_DIR, f"{slug}.html")
+        with open(cat_path, "w", encoding="utf-8") as f:
+            f.write(make_category_page(slug, label, cat_deals))
+        active_slugs.append(slug)
+    print(f"✅ 카테고리 SEO 페이지 {len(active_slugs)}개 생성 → /category/")
+
     # sitemap.xml 갱신
-    sitemap = generate_sitemap(deals)
+    sitemap = generate_sitemap(deals, active_slugs)
     with open(SITEMAP_PATH, "w", encoding="utf-8") as f:
         f.write(sitemap)
-    print(f"✅ sitemap.xml 갱신 → {len(deals) + 1}개 URL (메인 1 + 딜 {len(deals)})")
+    total_urls = 1 + len(active_slugs) + len(deals)
+    print(f"✅ sitemap.xml 갱신 → {total_urls}개 URL (메인 1 + 카테고리 {len(active_slugs)} + 딜 {len(deals)})")
 
 
 if __name__ == "__main__":

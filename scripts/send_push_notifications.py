@@ -21,6 +21,8 @@ Supabase push_subscriptions 테이블 SQL (최초 1회 실행):
     updated_at  TIMESTAMPTZ DEFAULT NOW()
   );
   CREATE INDEX IF NOT EXISTS idx_push_cats ON push_subscriptions USING GIN (categories);
+  -- 찜 가격 하락 알림용: 구독자가 찜한 상품 정규화 키 목록
+  ALTER TABLE push_subscriptions ADD COLUMN IF NOT EXISTS wishlisted_keys TEXT[] DEFAULT '{}';
   -- RLS: anon INSERT, service_role SELECT/UPDATE/DELETE
   ALTER TABLE push_subscriptions ENABLE ROW LEVEL SECURITY;
   CREATE POLICY "anon_insert"  ON push_subscriptions FOR INSERT TO anon  WITH CHECK (true);
@@ -84,11 +86,11 @@ def get_new_deals() -> list[dict]:
 
 
 def get_subscriptions() -> list[dict]:
-    """Supabase push_subscriptions 테이블 전체 조회"""
+    """Supabase push_subscriptions 테이블 전체 조회 (wishlisted_keys 포함)"""
     if not SUPABASE_URL or not SUPABASE_SERVICE_KEY:
         return []
     r = requests.get(
-        f"{SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,p256dh,auth,categories",
+        f"{SUPABASE_URL}/rest/v1/push_subscriptions?select=endpoint,p256dh,auth,categories,wishlisted_keys",
         headers={
             "apikey":        SUPABASE_SERVICE_KEY,
             "Authorization": f"Bearer {SUPABASE_SERVICE_KEY}",
@@ -96,6 +98,51 @@ def get_subscriptions() -> list[dict]:
         timeout=10,
     )
     return r.json() if r.ok else []
+
+
+def make_product_key(name: str) -> str:
+    """색상·브랜드 접두어 제거 → 상품명 정규화 (app.js makeProductKey와 동일 로직)"""
+    import re
+    color_re  = r"\s*[,·]?\s*(?:블랙|화이트|실버|그레이|블루|레드|핑크|퍼플|골드|그린|베이지|티타늄|카키|네이비|코랄|민트|라벤더|크림|챠콜|미드나잇|스타라이트|아이보리|스카이블루|옐로우?|오렌지|브라운|팬텀블랙|팬텀화이트|아이스블루|에버그린)(?=\s|,|$)"
+    prefix_re = r"^\s*\[?(?:쿠팡|11번가|G마켓|옥션|SSG닷컴?|네이버쇼핑?|롯데온|다나와|에누리)\]?\s*[-_]?\s*"
+    name = re.sub(prefix_re, "", name, flags=re.IGNORECASE)
+    name = re.sub(color_re,  "", name, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", name).strip()
+
+
+def send_wishlist_drop_alerts(all_deals: list[dict], subscriptions: list[dict]) -> int:
+    """
+    찜한 상품이 현재 딜 목록에 있고 역대최저/핫딜 태그가 붙어있으면 알림 발송.
+    - wishlisted_keys: 구독자가 찜한 상품의 정규화된 이름 목록
+    - 이미 알림 받은 딜은 중복 발송 방지 (tag 기반)
+    """
+    sent_total = 0
+    deal_key_map = {make_product_key(d["name"]): d for d in all_deals}
+
+    for sub in subscriptions:
+        wk = sub.get("wishlisted_keys") or []
+        if not wk:
+            continue
+        for key in wk:
+            deal = deal_key_map.get(key)
+            if not deal:
+                continue
+            tags = deal.get("tags", [])
+            if not any(t in tags for t in ["역대최저", "핫딜"]):
+                continue
+            disc = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100) \
+                   if deal.get("originalPrice") else 0
+            payload = {
+                "title": f"📉 찜한 상품 가격 하락! {disc}% 할인",
+                "body":  f"{deal['name'][:50]}\n{deal['salePrice']:,}원",
+                "url":   f"{SITE_URL}/deals/{deal['id']}.html",
+                "tag":   f"wish-{deal['id']}",
+            }
+            if send_push(sub, payload):
+                sent_total += 1
+                print(f"    💌 찜 알림: {deal['name'][:40]}")
+
+    return sent_total
 
 
 def send_push(sub: dict, payload: dict) -> bool:
@@ -142,46 +189,49 @@ def main() -> None:
         print("⚠️  VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY 미설정 — 스킵")
         return
 
+    with open(DEALS_PATH, encoding="utf-8") as f:
+        all_deals = json.load(f)
+
     new_deals = get_new_deals()
-    if not new_deals:
-        print("신규 딜 없음 — 푸시 발송 스킵")
-        return
-
-    print(f"신규 딜 {len(new_deals)}개 감지 → 푸시 발송 준비")
-
     subscriptions = get_subscriptions()
     if not subscriptions:
         print("구독자 없음 — 스킵")
         return
 
     print(f"구독자 {len(subscriptions)}명")
-
     sent_total = 0
-    for deal in new_deals[:5]:   # 한 번에 최대 5개 딜 알림 (과도한 발송 방지)
-        cat      = deal.get("category", "")
-        cat_label = CATEGORY_LABELS.get(cat, cat)
-        disc     = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100) \
-                   if deal.get("originalPrice") and deal.get("salePrice") else 0
-        sale_fmt = f"{deal['salePrice']:,}원" if deal.get("salePrice") else ""
 
-        payload = {
-            "title": f"⚡ {cat_label} 특가 {disc}% 할인",
-            "body":  f"{deal['name'][:50]}\n{sale_fmt}",
-            "url":   f"{SITE_URL}/deals/{deal['id']}.html",
-            "tag":   f"deal-{deal['id']}",
-        }
+    # ── 1. 신규 딜 알림 ──
+    if new_deals:
+        print(f"\n신규 딜 {len(new_deals)}개 → 카테고리 구독자 알림")
+        for deal in new_deals[:5]:
+            cat       = deal.get("category", "")
+            cat_label = CATEGORY_LABELS.get(cat, cat)
+            disc      = round((deal["originalPrice"] - deal["salePrice"]) / deal["originalPrice"] * 100) \
+                        if deal.get("originalPrice") and deal.get("salePrice") else 0
+            payload = {
+                "title": f"⚡ {cat_label} 특가 {disc}% 할인",
+                "body":  f"{deal['name'][:50]}\n{deal['salePrice']:,}원",
+                "url":   f"{SITE_URL}/deals/{deal['id']}.html",
+                "tag":   f"deal-{deal['id']}",
+            }
+            sent = 0
+            for sub in subscriptions:
+                sub_cats = sub.get("categories") or []
+                if sub_cats and cat not in sub_cats:
+                    continue
+                if send_push(sub, payload):
+                    sent += 1
+            print(f"  [{disc}%][{cat_label}] {deal['name'][:40]} → {sent}명 발송")
+            sent_total += sent
+    else:
+        print("신규 딜 없음")
 
-        sent = 0
-        for sub in subscriptions:
-            # 카테고리 매칭: 구독자가 해당 카테고리 또는 전체 구독
-            sub_cats = sub.get("categories") or []
-            if sub_cats and cat not in sub_cats:
-                continue
-            if send_push(sub, payload):
-                sent += 1
-
-        print(f"  [{disc}%][{cat_label}] {deal['name'][:40]} → {sent}명 발송")
-        sent_total += sent
+    # ── 2. 찜 상품 가격 하락 알림 ──
+    wish_sent = send_wishlist_drop_alerts(all_deals, subscriptions)
+    if wish_sent:
+        print(f"\n💌 찜 가격 하락 알림 {wish_sent}건 발송")
+    sent_total += wish_sent
 
     print(f"\n✅ 총 {sent_total}건 푸시 발송 완료")
 

@@ -97,6 +97,7 @@
         </svg>
         <span>특가 알림 신청</span>
       </button>
+      <button id="report-btn" class="btn-report" title="특가 딜 제보하기" onclick="openReportModal()">💡 제보</button>
       <a href="admin.html" class="btn-admin" title="딜 관리 어드민">⚙️</a>
     </div>
   </div>
@@ -244,6 +245,35 @@
       <button id="modal-submit" class="btn-modal-submit">알림 신청하기 →</button>
     </div>
     <p class="modal-notice">개인정보는 알림 발송 목적으로만 사용되며 제3자에게 제공되지 않습니다.</p>
+  </div>
+</div>
+
+<!-- ===== REPORT MODAL ===== -->
+<div id="report-modal" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-x" aria-label="닫기" onclick="closeReportModal()">✕</button>
+    <h3>💡 특가 딜 제보하기</h3>
+    <p>발견하신 특가 딜을 알려주세요.<br>검토 후 사이트에 등록해 드립니다.</p>
+    <div class="modal-section-label">상품 URL <span style="color:#e74c3c">*</span></div>
+    <input id="report-url" type="url" class="modal-input" placeholder="https://www.coupang.com/...">
+    <div class="modal-section-label" style="margin-top:10px">상품명 <span style="color:#e74c3c">*</span></div>
+    <input id="report-name" type="text" class="modal-input" placeholder="예) 삼성 갤럭시 버즈3 프로">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+      <div>
+        <div class="modal-section-label">정가 (원)</div>
+        <input id="report-orig" type="number" class="modal-input" placeholder="예) 280000">
+      </div>
+      <div>
+        <div class="modal-section-label">특가 (원) <span style="color:#e74c3c">*</span></div>
+        <input id="report-sale" type="number" class="modal-input" placeholder="예) 189000">
+      </div>
+    </div>
+    <div class="modal-section-label" style="margin-top:10px">추가 정보 <span style="color:#6C757D;font-size:11px">(선택)</span></div>
+    <input id="report-note" type="text" class="modal-input" placeholder="쿠폰 코드, 종료 일시 등">
+    <div class="modal-actions">
+      <button id="report-submit" class="btn-modal-submit" onclick="submitReport()">제보 전송 →</button>
+    </div>
+    <p class="modal-notice">제보해 주신 딜은 검토 후 24시간 내 반영됩니다. 감사합니다! 🙏</p>
   </div>
 </div>
 
