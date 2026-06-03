@@ -4,7 +4,7 @@
     "name": "[스팀] 어쌔신 크리드 섀도우스 50% 할인 (39,500원/무료)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-03T07:40:04",
+    "addedAt": "2026-06-03T10:43:48",
     "originalPrice": 79000,
     "salePrice": 39500,
     "store": "뽐뿌 핫딜",
@@ -553,6 +553,57 @@
   },
   {
     "id": 13,
+    "name": "EDIFIER 에디파이어 EVO AIR 블루투스이어폰 트루 와이어리스 노이즈캔슬링 인이어 이어폰 25년신상",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_6029457/60294574554.jpg",
+    "addedAt": "2026-06-03T10:42:47",
+    "originalPrice": 41546,
+    "salePrice": 32320,
+    "priceType": "avg7d",
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F579227010&sub-id=1&service-code=10000003",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-07T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-27",
+        "lprice": 43360
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 43700
+      }
+    ]
+  },
+  {
+    "id": 14,
     "name": "GOWENIC 무선 블루투스 이어폰 싱글이어 LED표시 노이즈캔슬링 충전케이스",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9114531/91145312950.jpg",
@@ -595,7 +646,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -629,7 +680,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "무선 이어버드 블루투스 5.4 헤드폰 4 ENC 노이즈 캔슬링 마이크 새로운 이어폰 하이파이 스테레오 딥 베",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9115043/91150433709.jpg",
@@ -677,7 +728,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Beats Solo Buds-이어 헤드폰과 호환되는 트루 무선 노이즈 캔슬링 이어버드 투명 소프트 TPU 전",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027828/60278280063.jpg",
@@ -728,7 +779,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "아이리버 마카롱 버즈 MC50 ANC 노이즈 캔슬링 무선 블루투스 이어폰 항균처리 저지연",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027487/60274876456.jpg",
@@ -779,7 +830,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "아이리버 마카롱 버즈 ANC 노이즈 캔슬링 블루투스 이어폰 MC50 항균처리 저지연 무선 이어폰  MINT ",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027486/60274868009.jpg",
@@ -830,7 +881,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -882,7 +933,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "Macbook Pro Air 미니 노트북 태블릿 PC iPad Bluetooth 5.0 무선 마우스 용 AP",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_6027910/60279105566.jpg",
@@ -930,7 +981,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
