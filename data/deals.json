@@ -4,7 +4,7 @@
     "name": "[스팀] 어쌔신 크리드 섀도우스 50% 할인 (39,500원/무료)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-03T02:42:00",
+    "addedAt": "2026-06-03T07:16:47",
     "originalPrice": 79000,
     "salePrice": 39500,
     "store": "뽐뿌 핫딜",
@@ -136,7 +136,7 @@
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-07T23:59:00",
+    "expiresAt": "2026-06-10T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -831,6 +831,58 @@
   },
   {
     "id": 19,
+    "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
+    "addedAt": "2026-06-03T07:16:00",
+    "originalPrice": 227650,
+    "salePrice": 189000,
+    "priceType": "avg7d",
+    "store": "세디코",
+    "productUrl": "https://smartstore.naver.com/main/products/13000271153",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-07T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 189000
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 189000
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 189000
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 189000
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 335200
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 352000
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 189000
+      }
+    ]
+  },
+  {
+    "id": 20,
     "name": "Macbook Pro Air 미니 노트북 태블릿 PC iPad Bluetooth 5.0 무선 마우스 용 AP",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_6027910/60279105566.jpg",
@@ -878,7 +930,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",

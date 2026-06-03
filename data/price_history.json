@@ -167,10 +167,10 @@
       },
       {
         "date": "2026-06-03",
-        "lprice": 257680
+        "lprice": 257650
       }
     ],
-    "avg_7d": 257856,
+    "avg_7d": 257852,
     "days": 8,
     "avg_hprice_7d": 0
   },
@@ -819,15 +819,25 @@
     "avg_hprice_7d": 0
   },
   "갤럭시 Z 폴드 자급제": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 539000
+      }
+    ],
+    "avg_7d": 539000,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "갤럭시 Z 플립 자급제": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 154760
+      }
+    ],
+    "avg_7d": 154760,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "갤럭시 A 자급제": {
@@ -882,10 +892,6 @@
   "삼성 갤럭시 자급제": {
     "history": [
       {
-        "date": "2026-05-26",
-        "lprice": 34500
-      },
-      {
         "date": "2026-05-27",
         "lprice": 107430
       },
@@ -908,9 +914,13 @@
       {
         "date": "2026-06-02",
         "lprice": 31130
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 109500
       }
     ],
-    "avg_7d": 66934,
+    "avg_7d": 77649,
     "days": 7,
     "avg_hprice_7d": 0
   },
@@ -954,9 +964,14 @@
     "avg_hprice_7d": 0
   },
   "에어팟 프로": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 35060
+      }
+    ],
+    "avg_7d": 35060,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "갤럭시 버즈": {
@@ -1030,17 +1045,22 @@
       },
       {
         "date": "2026-06-03",
-        "lprice": 335200
+        "lprice": 189000
       }
     ],
-    "avg_7d": 245925,
+    "avg_7d": 227650,
     "days": 8,
     "avg_hprice_7d": 0
   },
   "소니 WF-1000XM": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 39600
+      }
+    ],
+    "avg_7d": 39600,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "맥북 에어": {
@@ -1348,9 +1368,14 @@
     "avg_hprice_7d": 0
   },
   "아이패드 프로": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 30000
+      }
+    ],
+    "avg_7d": 30000,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "갤럭시탭 S": {
@@ -1577,17 +1602,22 @@
       },
       {
         "date": "2026-06-03",
-        "lprice": 347040
+        "lprice": 346860
       }
     ],
-    "avg_7d": 349234,
+    "avg_7d": 349211,
     "days": 8,
     "avg_hprice_7d": 0
   },
   "맥 미니": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 49000
+      }
+    ],
+    "avg_7d": 49000,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "로지텍 MX Keys": {
@@ -1617,23 +1647,28 @@
     "avg_hprice_7d": 0
   },
   "캐논 미러리스": {
-    "history": [],
-    "avg_7d": 0,
-    "days": 0,
+    "history": [
+      {
+        "date": "2026-06-03",
+        "lprice": 64600
+      }
+    ],
+    "avg_7d": 64600,
+    "days": 1,
     "avg_hprice_7d": 0
   },
   "삼성 갤럭시 워치": {
     "history": [
       {
-        "date": "2026-05-25",
-        "lprice": 33840
-      },
-      {
         "date": "2026-06-01",
         "lprice": 33220
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 33520
       }
     ],
-    "avg_7d": 33530,
+    "avg_7d": 33370,
     "days": 2,
     "avg_hprice_7d": 0
   },
