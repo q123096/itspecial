@@ -546,8 +546,8 @@
     "max_posts": 30
   },
   "clien_rss": {
-    "enabled": true,
-    "_comment": "클리앙 핫딜(hotdeal) 게시판 RSS. 뽐뿌보다 IT 비율이 높고 신뢰도 있는 딜이 많음.",
+    "enabled": false,
+    "_comment": "클리앙 핫딜(hotdeal) 게시판 RSS. 2026-06 HTTP 400으로 차단됨 — 비활성화.",
     "_comment_jirum": "jirum(알뜰구매) 게시판의 상품정보(1000236) 카테고리는 식품·게임·앱 등이 섞여있어 비적합. hotdeal 유지.",
     "url": "https://www.clien.net/service/board/hotdeal/rss",
     "tech_keywords": [

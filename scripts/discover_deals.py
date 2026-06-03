@@ -91,7 +91,13 @@ def update_price_history(history: dict, keyword: str, lprice: int, hprice: int =
     history[keyword]["history"] = [e for e in entries if e["date"] >= cutoff]
 
     # 7일 평균 재계산
-    valid = [e["lprice"] for e in history[keyword]["history"] if e["lprice"] >= 30000]
+    # 이상값 필터: lprice가 기존 avg_7d의 1/5 미만이면 관련 없는 상품(케이스·액세서리)으로 판단해 제외
+    prev_avg = history[keyword].get("avg_7d", 0)
+    valid = [
+        e["lprice"] for e in history[keyword]["history"]
+        if e["lprice"] >= 30000
+        and (prev_avg == 0 or e["lprice"] >= prev_avg * 0.2)
+    ]
     history[keyword]["avg_7d"] = round(sum(valid) / len(valid)) if valid else 0
     history[keyword]["days"]   = len(valid)
 
@@ -693,6 +699,10 @@ def naver_product_to_deal(
     # - avg_7d(lprice avg)는 일주일 세일이 이어지면 세일가 수준으로 내려가므로 사용 안 함
     # MSRP/hprice/store 우선 적용 후 orig가 없을 때만 사용
     ref_avg = avg_hprice_7d if avg_hprice_7d > 0 else avg_7d   # hprice avg 우선
+    # 오염 감지: lprice가 ref_avg의 3배 이상이면 ref_avg가 케이스·액세서리 가격으로 오염된 것
+    # (예: 갤럭시 S26 lprice=124만원, avg_7d=24만원 → 액세서리 avg)
+    if ref_avg > 0 and lp > ref_avg * 3:
+        ref_avg = 0
     if orig == 0 and ref_avg > 0 and hist_days >= 5 and lp < ref_avg:
         disc = round((ref_avg - lp) / ref_avg * 100)
         if disc <= 30:
@@ -1629,7 +1639,7 @@ def main():
     ppomppu_candidates.sort(
         key=lambda c: (0 if c.get("_match") == "카테고리" else 1, -c["discount"])
     )
-    for c in ppomppu_candidates[:12]:  # 뽐뿌 최대 12개 (HTML+RSS 합산)
+    for c in ppomppu_candidates[:20]:  # 뽐뿌 최대 20개 (HTML+RSS 합산)
         category = _auto_category(c["title"])
         deal     = ppomppu_candidate_to_deal(c, category, next_id)
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
