@@ -4,7 +4,7 @@
     "name": "[스팀] 어쌔신 크리드 섀도우스 50% 할인 (39,500원/무료)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-04T09:43:27",
+    "addedAt": "2026-06-04T11:26:06",
     "originalPrice": 79000,
     "salePrice": 39500,
     "store": "뽐뿌 핫딜",
@@ -15,7 +15,28 @@
       "핫딜",
       "역대최저"
     ],
-    "rating": 4,
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
+    "name": "[11번가] 쉐이크쉑 버거 세트 42% 할인 (17,300원/무료)",
+    "category": "gaming",
+    "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
+    "addedAt": "2026-06-04T11:26:06",
+    "originalPrice": 29828,
+    "salePrice": 17300,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=708996",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-07T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
@@ -25,7 +46,7 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-04T09:42:27",
+    "addedAt": "2026-06-04T11:25:15",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
@@ -37,7 +58,7 @@
       "핫딜",
       "역대최저"
     ],
-    "rating": 4,
+    "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -793,6 +814,58 @@
   },
   {
     "id": 20,
+    "name": "무선 이어버드 블루투스 헤드폰 5.4 HiFi 스테레오 4 ENC 노이즈 캔슬링 마이크가 장착된 듀얼 LED",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_9116732/91167323581.jpg",
+    "addedAt": "2026-06-04T11:25:21",
+    "originalPrice": 37693,
+    "salePrice": 30030,
+    "priceType": "avg7d",
+    "store": "스냅판다스토어",
+    "productUrl": "https://smartstore.naver.com/main/products/13622813164",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-08T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 30060
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 30030
+      }
+    ]
+  },
+  {
+    "id": 21,
     "name": "MINISFORUM M1 Plus 미니PC 인텔 코어i5-12600H 게임/사무용 베어본",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9077803/90778030026.jpg",
@@ -844,7 +917,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "Beats Solo Buds-이어 헤드폰과 호환되는 트루 무선 노이즈 캔슬링 이어버드 투명 소프트 TPU 전",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027828/60278280063.jpg",
@@ -895,7 +968,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "아이리버 마카롱 버즈 MC50 ANC 노이즈 캔슬링 무선 블루투스 이어폰 항균처리 저지연",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027487/60274876456.jpg",
@@ -946,7 +1019,7 @@
     ]
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "아이리버 마카롱 버즈 ANC 노이즈 캔슬링 블루투스 이어폰 MC50 항균처리 저지연 무선 이어폰  MINT ",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6027486/60274868009.jpg",
@@ -997,7 +1070,7 @@
     ]
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -1049,7 +1122,7 @@
     ]
   },
   {
-    "id": 25,
+    "id": 26,
     "name": "Macbook Pro Air 미니 노트북 태블릿 PC iPad Bluetooth 5.0 무선 마우스 용 AP",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_6027910/60279105566.jpg",
@@ -1097,7 +1170,7 @@
     ]
   },
   {
-    "id": 26,
+    "id": 27,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -1148,7 +1221,7 @@
     ]
   },
   {
-    "id": 27,
+    "id": 28,
     "name": "WHCH520 노이즈 캔슬링 무선 폰용 EVA 하드 케이스 보호 운반 보관 가방 720N",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6030573/60305735748.jpg",
