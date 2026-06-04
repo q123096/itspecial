@@ -4,7 +4,7 @@
     "name": "[스팀] 어쌔신 크리드 섀도우스 50% 할인 (39,500원/무료)",
     "category": "accessory",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-04T02:37:28",
+    "addedAt": "2026-06-04T09:43:27",
     "originalPrice": 79000,
     "salePrice": 39500,
     "store": "뽐뿌 핫딜",
@@ -25,7 +25,7 @@
     "name": "[11번가] 쉐이크쉑 버거 세트 42% 할인 (17,300원/무료)",
     "category": "gaming",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-04T02:37:28",
+    "addedAt": "2026-06-04T09:43:27",
     "originalPrice": 29828,
     "salePrice": 17300,
     "store": "뽐뿌 핫딜",
@@ -46,14 +46,14 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-05-31T04:05:48",
+    "addedAt": "2026-06-04T09:42:27",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56454050696",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-10T23:59:00",
+    "expiresAt": "2026-06-08T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -64,31 +64,7 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-05-25",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-31",
+        "date": "2026-06-04",
         "lprice": 35060
       }
     ]
@@ -848,7 +824,7 @@
     "store": "UGO",
     "productUrl": "https://smartstore.naver.com/main/products/13233519695",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-08T23:59:00",
+    "expiresAt": "2026-06-11T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -1053,7 +1029,7 @@
     "store": "세디코",
     "productUrl": "https://smartstore.naver.com/main/products/13000271153",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-10T23:59:00",
+    "expiresAt": "2026-06-11T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -1189,6 +1165,57 @@
       {
         "date": "2026-05-31",
         "lprice": 30000
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "WHCH520 노이즈 캔슬링 무선 폰용 EVA 하드 케이스 보호 운반 보관 가방 720N",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_6030573/60305735748.jpg",
+    "addedAt": "2026-06-04T09:42:35",
+    "originalPrice": 38037,
+    "salePrice": 32440,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9403392649&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-08T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 30060
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 32440
       }
     ]
   }
