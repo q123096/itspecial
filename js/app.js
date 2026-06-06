@@ -497,6 +497,17 @@ function renderCategories() {
       applyFilters();
     })
   );
+
+  // 우측 페이드: 스크롤 끝에 도달하면 숨김
+  const wrap = $cats.closest('.categories');
+  function updateFade() {
+    if (!wrap) return;
+    const atEnd = $cats.scrollLeft + $cats.clientWidth >= $cats.scrollWidth - 4;
+    wrap.classList.toggle('scrolled-end', atEnd);
+  }
+  $cats.addEventListener('scroll', updateFade, { passive: true });
+  // 초기 상태 확인 (탭이 화면에 다 들어올 만큼 좁으면 바로 숨김)
+  requestAnimationFrame(updateFade);
 }
 
 /* ─── Timers ─── */

@@ -322,6 +322,71 @@ def save_prices_to_supabase(records: list[dict]) -> None:
         print(f"  ⚠️  Supabase 저장 예외 (딜 수집은 계속): {e}")
 
 
+# ─── 악세서리 재분류 & 품질 필터 ────────────────────────────────────
+# 이 키워드가 상품명에 포함되면 → category를 "accessory"(주변기기)로 재분류 (제외 X)
+ACCESSORY_RECLASSIFY_KEYWORDS = [
+    # 보호/케이스 류
+    "케이스", "파우치", "보관함", "커버", "스킨", "하드케이스", "클리어케이스",
+    "보호케이스", "TPU", "실리콘케이스", "가죽케이스", "범퍼케이스",
+    # 화면 보호
+    "보호필름", "액정보호", "강화유리", "강화필름", "글래스필름",
+    # 충전/연결
+    "충전케이블", "충전어댑터", "충전기", "케이블", "젠더", "OTG",
+    "USB허브", "USB 허브", "멀티포트", "C타입 케이블", "라이트닝 케이블",
+    # 거치/홀더
+    "거치대", "받침대", "스탠드", "홀더", "마운트", "도크", "핸드스트랩",
+    # 입력/주변
+    "마우스패드", "키스킨", "키보드 커버",
+    # 호환 표현
+    "호환 케이스", "전용 케이스",
+]
+
+# SEO 스팸 / 잘린 상품명 등 품질 기준 미달 → 제외
+SPAM_FILTER_PATTERNS = [
+    r'\s+용\s+',                        # 중간 "용" — "맥북 용 마우스"
+    r'호환되는\s',                       # "~에 호환되는 이어버드"
+    r'\b용\s+AP\b',                     # "iPad 용 AP" 스팸
+    r'[가-힣A-Za-z0-9]\s+[-–]\s*$',    # 잘린 상품명 "블루투스 이어버드 -"
+    r'(?:전|베|AP|용|바)\s*$',           # 끝이 이상하게 잘린 경우
+]
+
+# 카테고리별 최소 판매가 (재분류 후 적용)
+CATEGORY_MIN_PRICE = {
+    "smartphone":  200_000,
+    "laptop":      400_000,
+    "tablet":      150_000,
+    "audio":        50_000,
+    "monitor":      80_000,
+    "gaming":       30_000,
+    "wearable":     50_000,
+    "desktop":     300_000,
+    "camera":       80_000,
+    "accessory":    10_000,   # 충전케이블·케이스 등 저가 허용
+}
+
+
+def reclassify_to_accessory(title: str, category: str) -> str:
+    """
+    상품명에 악세서리 키워드가 포함되면 category를 "accessory"로 재분류.
+    - 이미 accessory / gaming인 경우는 유지.
+    - 케이스·충전케이블 등이 audio/laptop/smartphone 카테고리에 잘못 들어오는 현상 방지.
+    """
+    if category in ("accessory", "gaming"):
+        return category
+    for kw in ACCESSORY_RECLASSIFY_KEYWORDS:
+        if kw in title:
+            return "accessory"
+    return category
+
+
+def is_spam_title(title: str) -> bool:
+    """SEO 키워드 난사 / 잘린 상품명 감지 → True면 제외"""
+    for pattern in SPAM_FILTER_PATTERNS:
+        if re.search(pattern, title):
+            return True
+    return False
+
+
 # ─── Resend 딜 알림 이메일 ───────────────────────────────────────
 CAT_LABEL = {
     "smartphone": "스마트폰", "laptop": "노트북",   "desktop": "데스크탑/PC",
@@ -571,6 +636,20 @@ def coupang_product_to_deal(p: dict, category: str, next_id: int,
     if not orig or not sale or sale >= orig:
         return None
 
+    name = p.get("productName", "")
+
+    # SEO 스팸 / 잘린 상품명 제외
+    if is_spam_title(name):
+        return None
+
+    # 악세서리 키워드 포함 시 → 주변기기 카테고리로 재분류
+    category = reclassify_to_accessory(name, category)
+
+    # 카테고리별 최소 가격 적용 (재분류 후)
+    cat_min = CATEGORY_MIN_PRICE.get(category, 30_000)
+    if int(sale) < cat_min:
+        return None
+
     disc = round((orig - sale) / orig * 100)
 
     tags = []
@@ -579,7 +658,7 @@ def coupang_product_to_deal(p: dict, category: str, next_id: int,
 
     return {
         "id":            next_id,
-        "name":          p.get("productName", ""),
+        "name":          name,
         "category":      category,
         "image":         p.get("productImage", ""),
         "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
@@ -660,7 +739,16 @@ def naver_product_to_deal(
     link  = p.get("link", "")
     image = p.get("image", "")
 
-    if not lp or lp < 30000:   # 3만원 미만 제품 제외 (케이스·스티커 등 잡동사니)
+    # SEO 스팸 / 잘린 상품명 제외
+    if is_spam_title(title):
+        return None
+
+    # 악세서리 키워드 포함 시 → 주변기기 카테고리로 재분류 (제외하지 않음)
+    category = reclassify_to_accessory(title, category)
+
+    # 카테고리별 최소 가격 적용 (재분류 후)
+    cat_min = CATEGORY_MIN_PRICE.get(category, 30_000)
+    if not lp or lp < cat_min:
         return None
 
     # 중고 / 리퍼 제품 제외
@@ -1067,6 +1155,9 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
     disc = c["discount"]
     tags = ["핫딜"]
     if disc >= 30: tags.append("역대최저")
+
+    # 악세서리 키워드 포함 시 → 주변기기 카테고리로 재분류
+    category = reclassify_to_accessory(c["title"], category)
 
     return {
         "id":            next_id,
@@ -1721,14 +1812,37 @@ def main():
         print("\n⚠️  NAVER_CLIENT_ID 없음 — 네이버 검색 스킵")
 
     # ── 4. 커뮤니티 핫딜 RSS (뽐뿌 + 클리앙) ──
+    # 비IT 카테고리 — 뽐뿌/커뮤니티 딜 중 IT와 무관한 딜 제외
+    NON_TECH_KEYWORDS = [
+        "버거", "햄버거", "피자", "치킨", "커피", "카페", "음식", "음료",
+        "식품", "배달", "쿠폰", "스타벅스", "맥도날드", "쉐이크쉑", "bhc",
+        "교촌", "bbq", "롯데리아", "편의점", "마트", "의류", "패션",
+        "스킨케어", "화장품", "뷰티", "여행", "숙박", "항공", "호텔",
+        "보험", "금융", "청소기 (non-tech)",  # 가전은 허용
+    ]
+
+    def _is_non_tech(title: str) -> bool:
+        """IT/가전과 무관한 딜이면 True → 제외"""
+        tl = title.lower()
+        return any(kw in tl for kw in NON_TECH_KEYWORDS)
+
     def _auto_category(title: str) -> str:
         """제목에서 카테고리 자동 추정"""
+        tl = title
+
+        # 게임 플랫폼 명시 → gaming 우선 처리
+        if any(g in tl for g in ["[스팀]", "[Steam]", "[에픽]", "[Epic]", "[GOG]",
+                                  "[닌텐도]", "[플스]", "[PS4]", "[PS5]", "[Xbox]"]):
+            return "gaming"
+
         for kw_cfg in config["search_keywords"]:
             if "keyword" not in kw_cfg:
                 continue
-            if any(w in title for w in kw_cfg["keyword"].split()):
+            if any(w in tl for w in kw_cfg["keyword"].split()):
                 return kw_cfg.get("category", "accessory")
-        return "accessory"
+
+        # 악세서리 키워드 감지 → 주변기기로 분류 (모호한 제품 기본값 대신)
+        return reclassify_to_accessory(tl, "accessory")
 
     # 4a. 뽐뿌 (HTML 카테고리 파싱 + RSS 키워드 폴백 통합)
     ppomppu_candidates = fetch_ppomppu_deals(config)
@@ -1737,6 +1851,9 @@ def main():
         key=lambda c: (0 if c.get("_match") == "카테고리" else 1, -c["discount"])
     )
     for c in ppomppu_candidates[:20]:  # 뽐뿌 최대 20개 (HTML+RSS 합산)
+        if _is_non_tech(c["title"]):
+            print(f"  ⛔ 비IT 제외: {c['title'][:50]}")
+            continue
         category = _auto_category(c["title"])
         deal     = ppomppu_candidate_to_deal(c, category, next_id)
         if not refresh_or_duplicate(deal, deals) and not is_duplicate(deal, new_deals):
@@ -1746,6 +1863,9 @@ def main():
     # 4b. 클리앙
     clien_candidates = fetch_clien_deals(config)
     for c in clien_candidates[:8]:     # 클리앙 최대 8개
+        if _is_non_tech(c["title"]):
+            print(f"  ⛔ 비IT 제외: {c['title'][:50]}")
+            continue
         category = _auto_category(c["title"])
         # 클리앙은 ppomppu_candidate_to_deal 재활용 (구조 동일)
         deal = ppomppu_candidate_to_deal(c, category, next_id)
@@ -1757,6 +1877,9 @@ def main():
     # 4c. 루리웹
     ruliweb_candidates = fetch_ruliweb_deals(config)
     for c in ruliweb_candidates[:8]:   # 루리웹 최대 8개
+        if _is_non_tech(c["title"]):
+            print(f"  ⛔ 비IT 제외: {c['title'][:50]}")
+            continue
         category = _auto_category(c["title"])
         deal     = ppomppu_candidate_to_deal(c, category, next_id)
         deal["store"] = c.get("store", "루리웹 핫딜")   # 쇼핑몰명 보존

@@ -161,14 +161,33 @@ img { display: block; max-width: 100%; }
 .main { max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px; }
 
 /* ===== Category Tabs ===== */
-.categories { margin-bottom: 24px; }
+.categories {
+  position: relative;
+  margin-bottom: 24px;
+}
+/* 오른쪽 페이드 — 스크롤 가능함을 시각적으로 표시 */
+.categories::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 72px;
+  height: calc(100% - 4px);   /* padding-bottom 4px 제외 */
+  background: linear-gradient(to right, transparent, var(--bg) 80%);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.2s;
+}
+/* 끝까지 스크롤하면 페이드 숨김 — JS로 .scrolled-end 클래스 토글 */
+.categories.scrolled-end::after { opacity: 0; }
+
 .categories-scroll {
   display: flex;
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
-  padding-right: 20px;   /* 마지막 탭 잘림 방지 */
+  padding-right: 72px;   /* 페이드 너비만큼 여유 확보 → 마지막 탭 잘림 방지 */
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 .categories-scroll::-webkit-scrollbar { display: none; }
 .cat-btn {
@@ -184,6 +203,7 @@ img { display: block; max-width: 100%; }
   background: var(--surface);
   color: var(--text-secondary);
   transition: all var(--transition);
+  flex-shrink: 0;   /* 탭이 압축되지 않도록 고정 */
 }
 .cat-btn:hover { border-color: var(--primary); color: var(--primary); }
 .cat-btn.active {
