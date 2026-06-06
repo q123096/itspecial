@@ -4,7 +4,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-06T06:29:34",
+    "addedAt": "2026-06-06T08:24:09",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -56,7 +56,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-06T06:29:23",
+    "addedAt": "2026-06-06T08:23:57",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -108,7 +108,7 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-06T06:29:12",
+    "addedAt": "2026-06-06T08:23:47",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
@@ -472,6 +472,53 @@
   },
   {
     "id": 12,
+    "name": "Apple 에어팟 프로 3세대",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
+    "addedAt": "2026-05-30T01:58:37",
+    "originalPrice": 359000,
+    "salePrice": 248990,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-08T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 35060
+      }
+    ]
+  },
+  {
+    "id": 13,
     "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
@@ -515,7 +562,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Lenovo 레노버 요가 11s 11.6인치 컨버터블 2인치 1인치 터치스크린 울트라북실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9113534/91135343554.jpg",
@@ -563,53 +610,6 @@
       {
         "date": "2026-06-05",
         "lprice": 1094560
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "name": "Apple 에어팟 프로 3세대",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-05-30T01:58:37",
-    "originalPrice": 359000,
-    "salePrice": 265990,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-08T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-25",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 35060
       }
     ]
   },
@@ -856,8 +856,8 @@
     "category": "camera",
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
     "addedAt": "2026-06-06T02:03:18",
-    "originalPrice": 121762,
-    "salePrice": 96990,
+    "originalPrice": 121760,
+    "salePrice": 96980,
     "priceType": "avg7d",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53596694101",
