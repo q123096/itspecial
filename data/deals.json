@@ -4,7 +4,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-06T06:08:33",
+    "addedAt": "2026-06-06T02:02:47",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -56,7 +56,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-06T06:08:21",
+    "addedAt": "2026-06-06T02:02:39",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -104,11 +104,11 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-05-31T04:05:48",
+    "addedAt": "2026-06-06T02:02:32",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
@@ -126,47 +126,23 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-05-25",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-31",
+        "date": "2026-06-06",
         "lprice": 35060
       }
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "[스팀] 언레일드2: 백 온 트랙 1.0 버전 40% 할인 (24,880원/무료)",
     "category": "gaming",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
-    "addedAt": "2026-06-06T06:09:19",
+    "addedAt": "2026-06-05T14:24:10",
     "originalPrice": 41467,
     "salePrice": 24880,
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=709467",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-09T23:59:00",
+    "expiresAt": "2026-06-13T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -177,74 +153,50 @@
     "freeShipping": false
   },
   {
-    "id": 5,
-    "name": "Apple 에어팟 프로 2세대 (USB-C)",
+    "id": 6,
+    "name": "애플 미국정품 에어팟 프로 2세대 Apple 에어팟 프로 2세대 정품/USB-C 지원",
     "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-05-31T04:05:48",
+    "image": "https://shopping-phinf.pstatic.net/main_5595320/55953206062.3.jpg",
+    "addedAt": "2026-06-04T02:36:19",
     "originalPrice": 359000,
-    "salePrice": 220490,
+    "salePrice": 217600,
     "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
-    "affiliateUrl": "",
+    "store": "옥션",
+    "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F290182991&sub-id=1&service-code=10000003",
+    "affiliateUrl": "https://click.linkprice.com/click.php?m=auction&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
     "expiresAt": "2026-06-08T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-05-25",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 35060
-      },
-      {
-        "date": "2026-05-31",
+        "date": "2026-06-04",
         "lprice": 35060
       }
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
     "addedAt": "2026-06-03T02:40:52",
     "originalPrice": 359000,
-    "salePrice": 221800,
+    "salePrice": 219440,
     "priceType": "msrp",
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-10T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -280,7 +232,59 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
+    "name": "Apple 에어팟 프로 2세대 (USB-C)",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
+    "addedAt": "2026-05-31T04:05:48",
+    "originalPrice": 359000,
+    "salePrice": 220490,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-08T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-25",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-26",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-27",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 35060
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 35060
+      }
+    ]
+  },
+  {
+    "id": 9,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450229.20250715142328.jpg",
@@ -295,7 +299,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -331,7 +335,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 10,
     "name": "당일출고 에어팟 프로 3세대 USB-C 지원 MFHP4KH/A",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_6023173/60231730183.jpg",
@@ -346,7 +350,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -382,7 +386,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 12,
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
@@ -397,7 +401,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -433,7 +437,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 13,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -467,57 +471,13 @@
     ]
   },
   {
-    "id": 11,
-    "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
-    "addedAt": "2026-06-06T06:08:09",
-    "originalPrice": 44180,
-    "salePrice": 31000,
-    "priceType": "avg7d",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8587823753&ctag=8587823753&lptag=V95249595050&itemId=24897899057&vendorItemId=95249595050&spec=10305199",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-10T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-30",
-        "lprice": 45600
-      },
-      {
-        "date": "2026-05-31",
-        "lprice": 45600
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 67900
-      },
-      {
-        "date": "2026-06-05",
-        "lprice": 30900
-      },
-      {
-        "date": "2026-06-06",
-        "lprice": 30900
-      }
-    ]
-  },
-  {
-    "id": 12,
+    "id": 14,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-05-30T01:58:37",
     "originalPrice": 359000,
-    "salePrice": 265990,
+    "salePrice": 248290,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
@@ -526,7 +486,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -558,7 +518,111 @@
     ]
   },
   {
-    "id": 13,
+    "id": 15,
+    "name": "Lenovo 레노버 요가 11s 11.6인치 컨버터블 2인치 1인치 터치스크린 울트라북실버",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_9113534/91135343554.jpg",
+    "addedAt": "2026-06-05T02:11:23",
+    "originalPrice": 1491835,
+    "salePrice": 1094560,
+    "priceType": "avg7d",
+    "store": "플러스아울렛1",
+    "productUrl": "https://smartstore.naver.com/main/products/13590833142",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-12T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-30",
+        "lprice": 1619000
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 1795000
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 1619000
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 1999000
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 1094560
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 1094560
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 1094560
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "[아마존 공식]아이폰 16E 16 플러스 16 프로 맥스 16프로 17 에어 17 프로 맥스 17 15 플러",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6029531/60295312526.jpg",
+    "addedAt": "2026-06-03T16:15:08",
+    "originalPrice": 39597,
+    "salePrice": 30060,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=8588334704&tid=1000000061",
+    "affiliateUrl": "https://www.11st.co.kr/products/8588334704?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "expiresAt": "2026-06-07T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-27",
+        "lprice": 43360
+      },
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 30060
+      }
+    ]
+  },
+  {
+    "id": 18,
     "name": "Apple iPad Pro 12.9 4세대  스페이스 그레이  128GB  Wi-Fi",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5824158/58241580043.2.jpg",
@@ -574,7 +638,7 @@
       "핫딜",
       "역대최저"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -610,7 +674,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 20,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -620,7 +684,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/59386976050",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-10T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -644,11 +708,59 @@
     ]
   },
   {
-    "id": 15,
+    "id": 21,
+    "name": "텐바이텐 문자인쇄키스킨 애플 MAC02 MacBook Pro 13/15-inch Retina",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6031881/60318813111.jpg",
+    "addedAt": "2026-06-05T02:11:26",
+    "originalPrice": 38428,
+    "salePrice": 30360,
+    "priceType": "avg7d",
+    "store": "롯데ON",
+    "productUrl": "https://www.lotteon.com/p/product/LO2694321724?sitmNo=LO2694321724_2694321725&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-09T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 32240
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
+      }
+    ]
+  },
+  {
+    "id": 22,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
-    "addedAt": "2026-06-06T06:08:21",
+    "addedAt": "2026-06-06T02:02:39",
     "originalPrice": 1590000,
     "salePrice": 1259000,
     "priceType": "msrp",
@@ -695,11 +807,11 @@
     ]
   },
   {
-    "id": 16,
+    "id": 25,
     "name": "소니 A5000 렌즈미포함",
     "category": "camera",
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
-    "addedAt": "2026-06-06T06:09:12",
+    "addedAt": "2026-06-06T02:03:18",
     "originalPrice": 121762,
     "salePrice": 96990,
     "priceType": "avg7d",
@@ -743,30 +855,78 @@
     ]
   },
   {
-    "id": 17,
-    "name": "아이리버 마카롱 버즈 ANC 노이즈 캔슬링 블루투스 이어폰 MC50 항균처리 저지연 무선 이어폰  MINT ",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_6027486/60274868009.jpg",
-    "addedAt": "2026-06-02T02:34:25",
-    "originalPrice": 41014,
-    "salePrice": 33400,
+    "id": 27,
+    "name": "MINISFORUM M1 Plus 미니PC 인텔 코어i5-12600H 게임/사무용 베어본",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9077803/90778030026.jpg",
+    "addedAt": "2026-06-04T02:37:11",
+    "originalPrice": 566525,
+    "salePrice": 457900,
     "priceType": "avg7d",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8778535163&ctag=8778535163&lptag=V94556603877&itemId=25540731006&vendorItemId=94556603877&spec=10305197",
+    "store": "UGO",
+    "productUrl": "https://smartstore.naver.com/main/products/13233519695",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-06T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
-      "핫딜"
+      "핫딜",
+      "역대최저"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-05-25",
-        "lprice": 41720
+        "date": "2026-05-29",
+        "lprice": 579900
       },
+      {
+        "date": "2026-05-30",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 457900
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Beats Solo Buds-이어 헤드폰과 호환되는 트루 무선 노이즈 캔슬링 이어버드 투명 소프트 TPU 전",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6027828/60278280063.jpg",
+    "addedAt": "2026-06-02T10:01:59",
+    "originalPrice": 39664,
+    "salePrice": 32270,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9398549835&tid=1000000061",
+    "affiliateUrl": "https://www.11st.co.kr/products/9398549835?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "expiresAt": "2026-06-06T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
       {
         "date": "2026-05-26",
         "lprice": 30530
@@ -790,11 +950,62 @@
       {
         "date": "2026-06-01",
         "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
       }
     ]
   },
   {
-    "id": 18,
+    "id": 30,
+    "name": "텐바이텐 애플 맥북에어 13형 AG Nanovid 저반사 지문방지 액정보호필름",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6031868/60318689022.jpg",
+    "addedAt": "2026-06-05T02:11:26",
+    "originalPrice": 38428,
+    "salePrice": 31280,
+    "priceType": "avg7d",
+    "store": "롯데ON",
+    "productUrl": "https://www.lotteon.com/p/product/LO2694331367?sitmNo=LO2694331367_2694331368&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-09T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 32240
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
+      }
+    ]
+  },
+  {
+    "id": 33,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -805,12 +1016,12 @@
     "store": "세디코",
     "productUrl": "https://smartstore.naver.com/main/products/13000271153",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-07T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -846,7 +1057,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 35,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -861,7 +1072,7 @@
     "tags": [
       "핫딜"
     ],
-    "rating": 4.0,
+    "rating": 4,
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false,
@@ -893,6 +1104,104 @@
       {
         "date": "2026-05-31",
         "lprice": 30000
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "[아마존 공식]13인치 노트북 슬리브 13인치 커버 보호 케이스 애플 맥북 에어 13.3인치 맥 프로 M1 ",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6032508/60325081123.jpg",
+    "addedAt": "2026-06-05T14:23:32",
+    "originalPrice": 41665,
+    "salePrice": 35400,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=5531332547&tid=1000000061",
+    "affiliateUrl": "https://www.11st.co.kr/products/5531332547?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "expiresAt": "2026-06-09T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 51660
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "WHCH520 노이즈 캔슬링 무선 폰용 EVA 하드 케이스 보호 운반 보관 가방 720N",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6030573/60305735748.jpg",
+    "addedAt": "2026-06-04T09:42:35",
+    "originalPrice": 38037,
+    "salePrice": 32440,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9403392649&tid=1000000061",
+    "affiliateUrl": "https://www.11st.co.kr/products/9403392649?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "expiresAt": "2026-06-08T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-28",
+        "lprice": 54490
+      },
+      {
+        "date": "2026-05-29",
+        "lprice": 31080
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 30660
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 55260
+      },
+      {
+        "date": "2026-06-02",
+        "lprice": 32270
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 30060
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 32440
       }
     ]
   }
