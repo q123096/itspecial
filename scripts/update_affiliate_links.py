@@ -142,17 +142,20 @@ def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
     return ""
 
 
-# ─── Linkprice 제휴링크 (G마켓 · 옥션 · 추후 11번가) ─────────────
+# ─── Linkprice 제휴링크 (G마켓 · 옥션 · 이마트몰 · 추후 11번가) ─────────────
 # 매체 코드(PID)는 GitHub Secret LINKPRICE_PID 에 저장
 # click_url 포맷: https://click.linkprice.com/click.php?m={merchant_id}&a={pid}&l={url}&l_cd1=B&l_cd2=1
 # → Linkprice API로 승인된 광고주 조회 후 click_url 템플릿 동적 로드
 
 # 쇼핑몰 도메인 → Linkprice merchant_id 매핑 (폴백용)
 # 실제 click_url은 fetch_linkprice_merchants()로 API 조회해서 사용
+# ※ 이마트몰 merchant_id: Actions 로그의 "Linkprice 전체 광고주" 항목에서 확인
 _LP_DOMAIN_MAP: dict[str, str] = {
-    "auction.co.kr": "auction",
-    "gmarket.co.kr": "gmarket",
-    "11st.co.kr":    "11st",      # 11번가 Linkprice 승인 후 자동 활성화
+    "auction.co.kr":  "auction",
+    "gmarket.co.kr":  "gmarket",
+    "11st.co.kr":     "11st",        # 11번가 Linkprice 승인 후 자동 활성화
+    "emartmall.com":  "emartmall",   # 이마트몰 (merchant_id 확인 후 수정 필요)
+    "emart.com":      "emart",       # 이마트몰 대체 도메인
 }
 
 # click_url 캐시 (merchant_id → click_url_template)
@@ -164,8 +167,9 @@ def fetch_linkprice_merchants(pid: str) -> dict[str, str]:
     """
     Linkprice API → 승인된 광고주 목록 조회.
     반환: {merchant_id: click_url_template}
-    click_url 안의 l=0000 을 실제 상품 URL로 교체해서 사용.
 
+    - deeplink_yn=Y: 상품 URL을 click_url에 삽입 가능한 딥링크 방식
+    - deeplink_yn=N: l=0000 (메인 랜딩) 후 쿠키로 실적 추적 방식 — 둘 다 지원
     API: http://api.linkprice.com/ci/service/all_merchant/{PID}/apr/cps
     """
     try:
@@ -176,13 +180,30 @@ def fetch_linkprice_merchants(pid: str) -> dict[str, str]:
             return {}
         merchants = resp.json()
         result = {}
+
+        print(f"  📋 Linkprice 전체 승인 광고주 ({len(merchants)}개):")
         for m in merchants:
-            mid  = m.get("merchant_id", "")
-            curl = m.get("click_url", "")
-            dyn  = m.get("deeplink_yn", "N")
-            if mid and curl and dyn == "Y":
+            mid   = m.get("merchant_id", "")
+            mname = m.get("merchant_name", mid)
+            curl  = m.get("click_url", "")
+            dyn   = m.get("deeplink_yn", "N")
+            # 디버그: 모든 광고주 출력 (merchant_id 확인용)
+            print(f"    - {mname} | id={mid} | deeplink={dyn}")
+            if mid and curl:
                 result[mid] = curl
-                print(f"  📋 Linkprice 광고주 로드: {m.get('merchant_name',mid)} (deeplink=Y)")
+
+        # _LP_DOMAIN_MAP에 등록된 merchant_id와 일치하는 광고주 알림
+        known_mids = set(_LP_DOMAIN_MAP.values())
+        matched = {mid: name for m in merchants
+                   for mid, name in [(m.get("merchant_id",""), m.get("merchant_name",""))]
+                   if mid in known_mids}
+        if matched:
+            print(f"  ✅ 도메인 매핑 매칭: {matched}")
+        else:
+            print(f"  ⚠️  _LP_DOMAIN_MAP의 merchant_id와 매칭되는 광고주 없음")
+            print(f"     현재 매핑: {dict(_LP_DOMAIN_MAP)}")
+            print(f"     실제 merchant_id 확인 후 _LP_DOMAIN_MAP 수정 필요")
+
         return result
     except Exception as e:
         print(f"  ⚠️  Linkprice API 오류: {e}")
@@ -220,10 +241,11 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
     """
     상품 URL → Linkprice 제휴링크 생성.
 
-    검증 결과: Linkprice는 l=0000 (메인 랜딩)만 허용하고,
-    외부에서 l=실제URL 형태로 딥링크를 주입하면 '링크 코드가 잘못되었습니다' 에러.
-    → l=0000 그대로 사용: 옥션/G마켓 메인으로 이동, 쿠키로 실적 추적.
-    (사용자가 메인 도착 후 구매하면 커미션 인정됨)
+    현재 지원 방식: l=0000 쿠키 추적 (G마켓·옥션·이마트몰 공통)
+      → 쇼핑몰 메인/랜딩으로 이동, 이후 구매 시 쿠키로 실적 추적.
+
+    이마트몰 deeplink(deeplink_yn=Y) 여부는 Actions 로그로 확인 후
+    _LP_DEEPLINK_MERCHANTS 목록에 추가하면 상품 직링크 방식으로 전환됩니다.
     """
     try:
         parsed   = urllib.parse.urlparse(product_url)
@@ -238,11 +260,23 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
         if not merchant_id:
             return ""
 
-        # API로 받은 click_url 그대로 사용 (l=0000 유지 — 딥링크 주입 불가)
-        if merchant_id in _lp_click_urls:
-            return _lp_click_urls[merchant_id]   # l=0000 그대로
+        # deeplink 지원 광고주: l=실제URL 삽입 가능
+        # Actions 로그에서 deeplink_yn=Y 확인 후 아래 목록에 추가
+        DEEPLINK_MERCHANTS = set()  # 예: {"emartmall"} 확인 후 추가
 
-        # 2순위: 폴백 (API 없을 때) — l=0000 사용
+        if merchant_id in DEEPLINK_MERCHANTS:
+            # 딥링크: 실제 상품 URL을 l 파라미터에 삽입
+            encoded = urllib.parse.quote(product_url, safe="")
+            if merchant_id in _lp_click_urls:
+                return _lp_click_urls[merchant_id].replace("l=0000", f"l={encoded}")
+            return (f"https://click.linkprice.com/click.php"
+                    f"?m={merchant_id}&a={pid}&l={encoded}&l_cd1=B&l_cd2=1")
+
+        # 쿠키 추적 방식: API에서 받은 click_url 그대로 (l=0000)
+        if merchant_id in _lp_click_urls:
+            return _lp_click_urls[merchant_id]
+
+        # 폴백 (API 미사용 시)
         return (f"https://click.linkprice.com/click.php"
                 f"?m={merchant_id}&a={pid}&l=0000&l_cd1=B&l_cd2=1")
 
