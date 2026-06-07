@@ -156,6 +156,7 @@ _LP_DOMAIN_MAP: dict[str, str] = {
     "11st.co.kr":     "11st",        # 11번가 Linkprice 승인 후 자동 활성화
     "emartmall.com":  "emartmall",   # 이마트몰 (merchant_id 확인 후 수정 필요)
     "emart.com":      "emart",       # 이마트몰 대체 도메인
+    "lotteon.com":    "lotteon",     # 롯데온 (merchant_id 확인 필요 — Actions 로그에서 확인)
 }
 
 # click_url 캐시 (merchant_id → click_url_template)
