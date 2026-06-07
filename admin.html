@@ -271,6 +271,44 @@
     }
     .click-badge.aff { background: #e8f5e9; color: #2ECC40; }
 
+    /* ─── 제보 점수 배지 ─── */
+    .score-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 800; white-space: nowrap;
+    }
+    .score-auto   { background: #d4edda; color: #155724; border: 1.5px solid #c3e6cb; }
+    .score-review { background: #fff3cd; color: #856404; border: 1.5px solid #ffc107; }
+    .score-low    { background: #f8d7da; color: #721c24; border: 1.5px solid #f5c6cb; }
+
+    .report-status {
+      display: inline-block; padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 700;
+    }
+    .status-pending  { background: #fff3cd; color: #856404; }
+    .status-approved { background: #d4edda; color: #155724; }
+    .status-rejected { background: #f8d7da; color: #721c24; }
+
+    .btn-approve {
+      padding: 5px 12px; background: #2ECC40; color: white;
+      border-radius: 6px; font-size: 12px; font-weight: 700;
+      cursor: pointer; border: none; white-space: nowrap;
+    }
+    .btn-approve:hover { background: #27AE38; }
+    .btn-reject {
+      padding: 5px 8px; background: #fff0f0; color: var(--primary);
+      border-radius: 6px; font-size: 12px; font-weight: 700;
+      cursor: pointer; border: 1px solid #ffc9c9;
+    }
+    .btn-reject:hover { background: #ffe0e0; }
+    .report-filter-tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .report-tab {
+      padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      cursor: pointer; border: 1.5px solid var(--border); background: var(--surface);
+      transition: all .15s;
+    }
+    .report-tab.active { background: var(--text); color: white; border-color: var(--text); }
+
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
       .admin-header h1 { font-size: 14px; }
@@ -648,6 +686,87 @@ ALTER TABLE click_logs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "anon_insert" ON click_logs FOR INSERT TO anon WITH CHECK (true);
 -- 누구나 SELECT 가능 (어드민 통계 조회용 — anon key 사용)
 CREATE POLICY "anon_select" ON click_logs FOR SELECT TO anon USING (true);</pre>
+    </details>
+  </div>
+
+  <!-- ═══ 딜 제보 관리 ═══ -->
+  <div class="export-section" id="reports-section">
+    <h2>📬 딜 제보 관리
+      <small style="font-size:12px;font-weight:400;color:var(--muted);margin-left:8px;">사용자 제보 검토 및 승인</small>
+      <span id="reports-pending-badge" style="
+        display:none; margin-left:10px; background:var(--primary); color:white;
+        border-radius:999px; padding:2px 10px; font-size:12px; font-weight:800;
+      "></span>
+    </h2>
+
+    <!-- 점수 기준 안내 -->
+    <div style="background:#f0f8ff;border:1.5px solid #bee3f8;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;line-height:1.8;">
+      <strong style="color:#1a5276;">자동 점수 기준:</strong>
+      <span style="color:#1a5276;">할인율 40%↑ +40점 &nbsp;|&nbsp; 신뢰 쇼핑몰 +30점 &nbsp;|&nbsp; 가격 10만↑ +15점 &nbsp;|&nbsp; 상품명 품질 +15점</span>
+      <br>
+      <span style="background:#d4edda;color:#155724;padding:1px 8px;border-radius:4px;font-weight:700;font-size:12px;">★ 70점 이상</span> 자동승인 권장 &nbsp;
+      <span style="background:#fff3cd;color:#856404;padding:1px 8px;border-radius:4px;font-weight:700;font-size:12px;">50~69점</span> 검토 필요 &nbsp;
+      <span style="background:#f8d7da;color:#721c24;padding:1px 8px;border-radius:4px;font-weight:700;font-size:12px;">49점 이하</span> 낮은 품질
+    </div>
+
+    <!-- 필터 탭 -->
+    <div class="report-filter-tabs">
+      <button class="report-tab active" data-status="pending"  onclick="setReportTab('pending')">⏳ 대기중 <span id="cnt-pending"></span></button>
+      <button class="report-tab"        data-status="approved" onclick="setReportTab('approved')">✅ 승인됨 <span id="cnt-approved"></span></button>
+      <button class="report-tab"        data-status="rejected" onclick="setReportTab('rejected')">❌ 거부됨 <span id="cnt-rejected"></span></button>
+      <button class="report-tab"        data-status="all"      onclick="setReportTab('all')">전체</button>
+    </div>
+
+    <div id="reports-loading" style="color:var(--muted);font-size:13px;margin-bottom:12px;">불러오는 중...</div>
+
+    <div id="reports-table-wrap" class="table-wrap" style="display:none;">
+      <table>
+        <thead>
+          <tr>
+            <th>점수</th>
+            <th>상품명</th>
+            <th>특가</th>
+            <th>정가</th>
+            <th>URL</th>
+            <th>메모</th>
+            <th>제보일</th>
+            <th>상태</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+        <tbody id="reports-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="export-actions" style="margin-top:12px;">
+      <button class="btn-sm btn-primary" onclick="loadDealReports()">🔄 새로고침</button>
+    </div>
+
+    <!-- Supabase SQL 안내 -->
+    <details style="margin-top:16px;">
+      <summary style="cursor:pointer;font-size:12px;color:var(--muted);font-weight:600;">⚙️ deal_reports 테이블 업데이트 SQL (최초 1회)</summary>
+      <pre style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:8px;font-size:11px;margin-top:8px;overflow-x:auto;white-space:pre;">-- deal_reports 테이블에 컬럼 추가 (이미 있으면 무시됨)
+ALTER TABLE deal_reports
+  ADD COLUMN IF NOT EXISTS auto_score  INTEGER DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS status      TEXT    DEFAULT 'pending',
+  ADD COLUMN IF NOT EXISTS submitted_at TIMESTAMPTZ DEFAULT NOW();
+
+-- 없으면 테이블 새로 생성
+CREATE TABLE IF NOT EXISTS deal_reports (
+  id             BIGSERIAL PRIMARY KEY,
+  url            TEXT NOT NULL,
+  name           TEXT NOT NULL,
+  sale_price     INTEGER,
+  original_price INTEGER,
+  note           TEXT,
+  auto_score     INTEGER DEFAULT 0,
+  status         TEXT DEFAULT 'pending',
+  submitted_at   TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE deal_reports ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "anon_insert" ON deal_reports FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "anon_select" ON deal_reports FOR SELECT TO anon USING (true);
+CREATE POLICY "anon_update" ON deal_reports FOR UPDATE TO anon USING (true) WITH CHECK (true);</pre>
     </details>
   </div>
 
@@ -1828,6 +1947,250 @@ function exportClickCSV() {
   toast('✅ CSV 다운로드 완료', 'success');
 }
 
+// ══════════════════════════════════════════════════════════
+// 📬 딜 제보 관리
+// ══════════════════════════════════════════════════════════
+
+let allReports = [];
+let reportTab  = 'pending';
+
+/** 제보 점수 계산 (app.js의 calcReportScore와 동일) */
+function calcReportScore({ url = '', name = '', sale_price = 0, original_price = 0 }) {
+  let score = 0;
+  if (original_price > 0 && sale_price > 0 && original_price > sale_price) {
+    const disc = (original_price - sale_price) / original_price;
+    if      (disc >= 0.4) score += 40;
+    else if (disc >= 0.2) score += 25;
+    else if (disc >= 0.1) score += 10;
+  }
+  const TRUSTED = ['coupang.com','11st.co.kr','gmarket.co.kr','auction.co.kr','ssg.com','lotteon.com','emartmall.com'];
+  const SEMI    = ['smartstore.naver.com','brand.naver.com','danawa.com','shopping.naver.com'];
+  if      (TRUSTED.some(s => url.includes(s))) score += 30;
+  else if (SEMI.some(s => url.includes(s)))    score += 15;
+  else                                          score += 5;
+  if      (sale_price >= 100_000) score += 15;
+  else if (sale_price >= 30_000)  score += 10;
+  else if (sale_price >= 5_000)   score += 5;
+  if      (name.length >= 15) score += 15;
+  else if (name.length >= 8)  score += 8;
+  else if (name.length >= 4)  score += 3;
+  return Math.min(score, 100);
+}
+
+function scoreBadge(score) {
+  if (score >= 70) return `<span class="score-badge score-auto">★ ${score}점 자동승인 권장</span>`;
+  if (score >= 50) return `<span class="score-badge score-review">▲ ${score}점 검토 필요</span>`;
+  return             `<span class="score-badge score-low">▼ ${score}점 낮은 품질</span>`;
+}
+
+function detectCatFromName(name = '') {
+  const P = [
+    [/갤럭시\s*[SZA]\d|아이폰\s*\d|스마트폰|자급제/i,       'smartphone'],
+    [/맥북|노트북|그램\s*\d|갤럭시북|ThinkPad/i,             'laptop'],
+    [/아이패드|갤럭시\s*탭|태블릿/i,                         'tablet'],
+    [/이어폰|헤드폰|에어팟|버즈|WH-\d|WF-\d/i,              'audio'],
+    [/모니터|디스플레이|오디세이|울트라기어/i,                'monitor'],
+    [/완본체|RTX\s*\d|게이밍\s*PC|미니\s*PC/i,              'desktop'],
+    [/갤럭시\s*워치|애플워치|스마트워치/i,                   'wearable'],
+    [/미러리스|DSLR|카메라/i,                                'camera'],
+    [/닌텐도|PS5|Xbox|게이밍 컨트롤러/i,                    'gaming'],
+  ];
+  for (const [re, cat] of P) if (re.test(name)) return cat;
+  return 'accessory';
+}
+
+function detectStoreFromUrl(url = '') {
+  const M = [
+    ['coupang.com','쿠팡'], ['11st.co.kr','11번가'], ['gmarket.co.kr','G마켓'],
+    ['auction.co.kr','옥션'], ['ssg.com','SSG닷컴'], ['lotteon.com','롯데온'],
+    ['danawa.com','다나와'], ['emartmall.com','이마트몰'],
+    ['smartstore.naver.com','네이버쇼핑'], ['brand.naver.com','네이버쇼핑'],
+    ['shopping.naver.com','네이버쇼핑'],
+  ];
+  for (const [d, n] of M) if (url.includes(d)) return n;
+  return '기타';
+}
+
+async function loadDealReports() {
+  const loadEl    = document.getElementById('reports-loading');
+  const tableWrap = document.getElementById('reports-table-wrap');
+  if (loadEl) { loadEl.style.display = 'block'; loadEl.textContent = '불러오는 중...'; }
+  if (tableWrap) tableWrap.style.display = 'none';
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/deal_reports?select=*&order=submitted_at.desc&limit=200`,
+      { headers: SB_HEADERS }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    allReports = await res.json();
+
+    // auto_score가 0이거나 없으면 재계산
+    allReports = allReports.map(r => ({
+      ...r,
+      auto_score: r.auto_score || calcReportScore({
+        url:            r.url || '',
+        name:           r.name || '',
+        sale_price:     r.sale_price || 0,
+        original_price: r.original_price || 0,
+      }),
+    }));
+
+    renderReports();
+  } catch (e) {
+    if (loadEl) loadEl.textContent = `❌ 불러오기 실패: ${e.message}. Supabase deal_reports 테이블을 확인하세요.`;
+  }
+}
+
+function setReportTab(status) {
+  reportTab = status;
+  document.querySelectorAll('.report-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.status === status);
+  });
+  renderReports();
+}
+
+function renderReports() {
+  const pending  = allReports.filter(r => (r.status || 'pending') === 'pending');
+  const approved = allReports.filter(r => r.status === 'approved');
+  const rejected = allReports.filter(r => r.status === 'rejected');
+
+  // 탭 카운트 업데이트
+  const ce = id => { const el = document.getElementById(id); if (el) return el; return { textContent: '' }; };
+  ce('cnt-pending').textContent  = pending.length  ? `(${pending.length})` : '';
+  ce('cnt-approved').textContent = approved.length ? `(${approved.length})` : '';
+  ce('cnt-rejected').textContent = rejected.length ? `(${rejected.length})` : '';
+
+  // 헤더 배지 (대기중 제보 있으면 빨간 뱃지)
+  const badge = document.getElementById('reports-pending-badge');
+  if (badge) {
+    badge.style.display = pending.length ? 'inline-block' : 'none';
+    badge.textContent   = `대기 ${pending.length}건`;
+  }
+
+  const list = reportTab === 'all' ? allReports
+             : reportTab === 'pending'  ? pending
+             : reportTab === 'approved' ? approved
+             : rejected;
+
+  const loadEl    = document.getElementById('reports-loading');
+  const tableWrap = document.getElementById('reports-table-wrap');
+
+  if (!list.length) {
+    if (loadEl) { loadEl.style.display = 'block'; loadEl.textContent = '📭 해당 제보 없음'; }
+    if (tableWrap) tableWrap.style.display = 'none';
+    return;
+  }
+  if (loadEl) loadEl.style.display = 'none';
+  if (tableWrap) tableWrap.style.display = 'block';
+
+  const tbody = document.getElementById('reports-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = list.map(r => {
+    const score    = r.auto_score || 0;
+    const status   = r.status || 'pending';
+    const disc     = r.original_price && r.sale_price
+      ? Math.round((r.original_price - r.sale_price) / r.original_price * 100)
+      : null;
+    const dateStr  = r.submitted_at ? r.submitted_at.slice(0, 16).replace('T', ' ') : '-';
+    const shortUrl = (r.url || '').replace(/^https?:\/\/(www\.)?/i, '').slice(0, 30);
+
+    return `<tr style="${status !== 'pending' ? 'opacity:.6;' : ''}">
+      <td>${scoreBadge(score)}</td>
+      <td>
+        <div class="product-name" style="max-width:180px;">${r.name || '-'}</div>
+        ${disc !== null ? `<div style="font-size:11px;color:var(--primary);font-weight:700;">${disc}% 할인</div>` : ''}
+      </td>
+      <td style="font-weight:700;">${r.sale_price ? r.sale_price.toLocaleString('ko-KR') + '원' : '-'}</td>
+      <td style="color:var(--muted);text-decoration:line-through;font-size:12px;">${r.original_price ? r.original_price.toLocaleString('ko-KR') + '원' : '-'}</td>
+      <td>
+        <a href="${r.url || '#'}" target="_blank" rel="noopener"
+           style="font-size:11px;color:#0074D9;">${shortUrl}…</a>
+      </td>
+      <td style="font-size:12px;color:var(--muted);max-width:120px;">${r.note || '-'}</td>
+      <td style="font-size:11px;color:var(--muted);white-space:nowrap;">${dateStr}</td>
+      <td><span class="report-status status-${status}">${
+        status === 'pending' ? '⏳ 대기' : status === 'approved' ? '✅ 승인' : '❌ 거부'
+      }</span></td>
+      <td>
+        <div style="display:flex;gap:6px;">
+          ${status === 'pending' ? `
+            <button class="btn-approve" onclick="approveReport(${r.id})">✅ 승인</button>
+            <button class="btn-reject"  onclick="rejectReport(${r.id})">❌</button>
+          ` : `<span style="font-size:11px;color:var(--muted);">처리됨</span>`}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function approveReport(id) {
+  const report = allReports.find(r => r.id === id);
+  if (!report) return;
+
+  // 1) deals 테이블에 새 딜 생성
+  const maxId = deals.reduce((m, d) => Math.max(m, d.id || 0), 0);
+  const newDeal = {
+    id:             maxId + 1,
+    name:           report.name,
+    category:       detectCatFromName(report.name),
+    image:          'https://placehold.co/400x300/f1f3f5/adb5bd?text=이미지없음',
+    addedAt:        new Date().toISOString(),
+    originalPrice:  report.original_price || 0,
+    salePrice:      report.sale_price || 0,
+    priceType:      'regular',
+    store:          detectStoreFromUrl(report.url),
+    productUrl:     report.url,
+    affiliateUrl:   '',
+    expiresAt:      '',
+    tags:           ['핫딜', '제보'],
+    rating:         4.0,
+    reviewCount:    0,
+    inStock:        true,
+    freeShipping:   false,
+    priceHistory:   [],
+    pinned:         false,
+  };
+
+  // 2) Supabase deals 테이블에 저장
+  const dealOk = await saveDealToSupabase(newDeal);
+  if (!dealOk) { toast('❌ 딜 저장 실패 — Supabase 오류', 'warn'); return; }
+
+  // 3) 로컬 deals 배열에 추가 + 테이블 갱신
+  deals.push(newDeal);
+  updateStats();
+  renderTable();
+
+  // 4) deal_reports 상태 → approved
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/deal_reports?id=eq.${id}`, {
+      method:  'PATCH',
+      headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
+      body:    JSON.stringify({ status: 'approved' }),
+    });
+    allReports = allReports.map(r => r.id === id ? { ...r, status: 'approved' } : r);
+    renderReports();
+    toast(`✅ "${report.name.slice(0,20)}" 승인 완료 — 딜 #${newDeal.id} 추가됨`, 'success');
+  } catch (e) {
+    toast('⚠️ 딜은 추가됐지만 제보 상태 업데이트 실패', 'warn');
+  }
+}
+
+async function rejectReport(id) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/deal_reports?id=eq.${id}`, {
+      method:  'PATCH',
+      headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
+      body:    JSON.stringify({ status: 'rejected' }),
+    });
+    allReports = allReports.map(r => r.id === id ? { ...r, status: 'rejected' } : r);
+    renderReports();
+    toast('거부 처리되었습니다.', 'warn');
+  } catch (e) {
+    toast(`❌ 거부 처리 실패: ${e.message}`, 'warn');
+  }
+}
+
 // ─── MSRP 출고가 관리 ────────────────────────────────────────────
 let msrpData = {};   // { keyword: price }
 
@@ -1964,9 +2327,10 @@ async function init() {
   updateStats();
   renderTable();
 
-  // MSRP + 클릭 통계 비동기 로드 (메인 렌더 블로킹 없음)
+  // MSRP + 클릭 통계 + 제보 비동기 로드 (메인 렌더 블로킹 없음)
   loadMsrp();
   loadClickStats();
+  loadDealReports();
 }
 
 // init()는 인증 완료 후에만 실행 (아래 비밀번호 게이트에서 호출)

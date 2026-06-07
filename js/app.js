@@ -864,6 +864,38 @@ $search?.addEventListener('input', e => {
   applyFilters();
 });
 
+/* ─── 제보 자동 점수 계산 ─── */
+function calcReportScore({ url = '', name = '', sale_price = 0, original_price = 0 }) {
+  let score = 0;
+
+  // 1) 할인율 (최대 40점)
+  if (original_price > 0 && sale_price > 0 && original_price > sale_price) {
+    const disc = (original_price - sale_price) / original_price;
+    if      (disc >= 0.4) score += 40;
+    else if (disc >= 0.2) score += 25;
+    else if (disc >= 0.1) score += 10;
+  }
+
+  // 2) 쇼핑몰 신뢰도 (최대 30점)
+  const TRUSTED = ['coupang.com','11st.co.kr','gmarket.co.kr','auction.co.kr','ssg.com','lotteon.com','emartmall.com'];
+  const SEMI    = ['smartstore.naver.com','brand.naver.com','danawa.com','shopping.naver.com'];
+  if      (TRUSTED.some(s => url.includes(s))) score += 30;
+  else if (SEMI.some(s => url.includes(s)))    score += 15;
+  else                                          score += 5;
+
+  // 3) 가격 유효성 (최대 15점) — 저가 스팸 방지
+  if      (sale_price >= 100_000) score += 15;
+  else if (sale_price >= 30_000)  score += 10;
+  else if (sale_price >= 5_000)   score += 5;
+
+  // 4) 상품명 품질 (최대 15점)
+  if      (name.length >= 15) score += 15;
+  else if (name.length >= 8)  score += 8;
+  else if (name.length >= 4)  score += 3;
+
+  return Math.min(score, 100);
+}
+
 /* ─── 제보 모달 ─── */
 function openReportModal() {
   document.getElementById('report-modal').classList.add('open');
@@ -897,7 +929,14 @@ async function submitReport() {
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           'Prefer':        'return=minimal',
         },
-        body: JSON.stringify({ url, name, sale_price: sale, original_price: orig || null, note: note || null }),
+        body: JSON.stringify({
+          url,
+          name,
+          sale_price:     sale,
+          original_price: orig || null,
+          note:           note || null,
+          auto_score:     calcReportScore({ url, name, sale_price: sale, original_price: orig }),
+        }),
       });
     }
     showToast('✅ 제보가 접수됐어요! 검토 후 반영할게요 🙏', 'success');
