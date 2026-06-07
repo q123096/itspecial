@@ -151,13 +151,15 @@ def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
 # 실제 click_url은 fetch_linkprice_merchants()로 API 조회해서 사용
 # ※ 이마트몰 merchant_id: Actions 로그의 "Linkprice 전체 광고주" 항목에서 확인
 _LP_DOMAIN_MAP: dict[str, str] = {
-    "auction.co.kr":  "auction",
-    "gmarket.co.kr":  "gmarket",
-    "11st.co.kr":     "11st",        # 11번가 Linkprice
-    "emartmall.com":  "emartmall",   # 이마트몰 (merchant_id 추후 확인)
-    "emart.ssg.com":  "emart",       # 이마트인터넷쇼핑몰 (deeplink=Y 확인됨)
+    # ── 모두 deeplink=Y 확인됨 (2026-06-07 Actions 로그) ──
+    "auction.co.kr":  "auction",     # 옥션
+    "gmarket.co.kr":  "gmarket",     # G마켓
+    "11st.co.kr":     "11st",        # 11번가 (ST11 API 없을 때 폴백)
+    "emart.ssg.com":  "emart",       # 이마트인터넷쇼핑몰
     "emart.com":      "emart",       # 이마트 대체 도메인
-    "lotteon.com":    "lotteon",     # 롯데온 (merchant_id 확인 필요 — Actions 로그에서 확인)
+    "himart.co.kr":   "himart",      # 하이마트
+    "lenovo.com":     "lenovo",      # 레노버코리아
+    # emartmall.com, lotteon.com — Linkprice 미승인, 제거
 }
 
 # click_url 캐시 (merchant_id → click_url_template)
@@ -262,9 +264,9 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
         if not merchant_id:
             return ""
 
-        # deeplink 지원 광고주 (deeplink_yn=Y 확인된 것만 추가)
+        # deeplink=Y 확인된 광고주 전체 (2026-06-07 Actions 로그 기준)
         # → 상품 URL을 l= 파라미터에 직접 삽입해 상품 페이지로 바로 이동
-        DEEPLINK_MERCHANTS = {"emart"}  # 이마트인터넷쇼핑몰 deeplink=Y 확인됨
+        DEEPLINK_MERCHANTS = {"auction", "gmarket", "11st", "emart", "himart", "lenovo"}
 
         if merchant_id in DEEPLINK_MERCHANTS:
             # 딥링크: 실제 상품 URL을 l 파라미터에 삽입
