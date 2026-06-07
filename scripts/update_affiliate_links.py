@@ -159,7 +159,7 @@ _LP_DOMAIN_MAP: dict[str, str] = {
     "emart.com":      "emart",       # 이마트 대체 도메인
     "himart.co.kr":   "himart",      # 하이마트
     "lenovo.com":     "lenovo",      # 레노버코리아
-    # emartmall.com, lotteon.com — Linkprice 미승인, 제거
+    "lotteon.com":    "lotteon",     # 롯데온 (merchant_id·deeplink 다음 Actions 로그에서 확인)
 }
 
 # click_url 캐시 (merchant_id → click_url_template)
