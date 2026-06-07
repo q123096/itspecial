@@ -153,9 +153,10 @@ def make_11st_affiliate_from_search(deal_name: str, api_key: str) -> str:
 _LP_DOMAIN_MAP: dict[str, str] = {
     "auction.co.kr":  "auction",
     "gmarket.co.kr":  "gmarket",
-    "11st.co.kr":     "11st",        # 11번가 Linkprice 승인 후 자동 활성화
-    "emartmall.com":  "emartmall",   # 이마트몰 (merchant_id 확인 후 수정 필요)
-    "emart.com":      "emart",       # 이마트몰 대체 도메인
+    "11st.co.kr":     "11st",        # 11번가 Linkprice
+    "emartmall.com":  "emartmall",   # 이마트몰 (merchant_id 추후 확인)
+    "emart.ssg.com":  "emart",       # 이마트인터넷쇼핑몰 (deeplink=Y 확인됨)
+    "emart.com":      "emart",       # 이마트 대체 도메인
     "lotteon.com":    "lotteon",     # 롯데온 (merchant_id 확인 필요 — Actions 로그에서 확인)
 }
 
@@ -242,11 +243,11 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
     """
     상품 URL → Linkprice 제휴링크 생성.
 
-    현재 지원 방식: l=0000 쿠키 추적 (G마켓·옥션·이마트몰 공통)
-      → 쇼핑몰 메인/랜딩으로 이동, 이후 구매 시 쿠키로 실적 추적.
-
-    이마트몰 deeplink(deeplink_yn=Y) 여부는 Actions 로그로 확인 후
-    _LP_DEEPLINK_MERCHANTS 목록에 추가하면 상품 직링크 방식으로 전환됩니다.
+    지원 방식:
+    - deeplink(deeplink_yn=Y): 상품 URL을 l= 파라미터에 삽입 → 상품 페이지 직링크
+      현재: emart (이마트인터넷쇼핑몰)
+    - 쿠키 추적(deeplink_yn=N): l=0000 → 메인 랜딩 후 쿠키로 실적 추적
+      현재: auction, gmarket, 11st 등
     """
     try:
         parsed   = urllib.parse.urlparse(product_url)
@@ -261,9 +262,9 @@ def get_linkprice_link(product_url: str, pid: str) -> str:
         if not merchant_id:
             return ""
 
-        # deeplink 지원 광고주: l=실제URL 삽입 가능
-        # Actions 로그에서 deeplink_yn=Y 확인 후 아래 목록에 추가
-        DEEPLINK_MERCHANTS = set()  # 예: {"emartmall"} 확인 후 추가
+        # deeplink 지원 광고주 (deeplink_yn=Y 확인된 것만 추가)
+        # → 상품 URL을 l= 파라미터에 직접 삽입해 상품 페이지로 바로 이동
+        DEEPLINK_MERCHANTS = {"emart"}  # 이마트인터넷쇼핑몰 deeplink=Y 확인됨
 
         if merchant_id in DEEPLINK_MERCHANTS:
             # 딥링크: 실제 상품 URL을 l 파라미터에 삽입
