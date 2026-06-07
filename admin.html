@@ -912,7 +912,7 @@ async function deleteDeal(id) {
 }
 
 // ─── Add deal ───
-function addDeal() {
+async function addDeal() {
   const name = document.getElementById('new-name').value.trim();
   const orig = parseInt(document.getElementById('new-orig').value);
   const sale = parseInt(document.getElementById('new-sale').value);
