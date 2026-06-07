@@ -1655,15 +1655,36 @@ async function deleteDealFromSupabase(id) {
 
 /** deals.json → Supabase 일괄 마이그레이션 (최초 1회) */
 async function migrateDealJsonToSupabase() {
-  if (!confirm('deals.json의 모든 딜을 Supabase deals 테이블로 가져옵니다.\n이 작업은 최초 1회만 실행하세요. 계속할까요?')) return;
-
   const btn = document.getElementById('btn-migrate');
-  if (btn) { btn.disabled = true; btn.textContent = '⏳ 가져오는 중...'; }
+
+  // confirm() 대신 인라인 확인 모달 사용 (브라우저 팝업 차단 우회)
+  if (btn._confirmPending) {
+    // 두 번째 클릭 = 확인
+    btn._confirmPending = false;
+    btn.textContent = '⏳ 가져오는 중...';
+    btn.disabled = true;
+    btn.style.background = '#adb5bd';
+  } else {
+    // 첫 번째 클릭 = 안내 표시
+    btn._confirmPending = true;
+    btn.textContent = '⚠️ 한번 더 클릭 시 실행';
+    btn.style.background = '#dc3545';
+    toast('⚠️ 버튼을 한 번 더 누르면 현재 딜을 Supabase에 업로드합니다.', 'warn');
+    setTimeout(() => {
+      if (btn._confirmPending) {
+        btn._confirmPending = false;
+        btn.textContent = '📥 deals.json → Supabase';
+        btn.style.background = '#fd7e14';
+      }
+    }, 4000);
+    return;
+  }
 
   try {
-    // 현재 로드된 deals 사용 (이미 deals.json에서 로드된 상태)
     const toMigrate = deals;
-    if (!toMigrate.length) { toast('마이그레이션할 딜이 없습니다.', 'warn'); return; }
+    if (!toMigrate.length) { toast('마이그레이션할 딜이 없습니다. 먼저 페이지를 새로고침하세요.', 'warn'); return; }
+
+    toast(`📤 ${toMigrate.length}개 딜 업로드 시작...`, '');
 
     let ok = 0, fail = 0;
     for (let i = 0; i < toMigrate.length; i += 20) {
@@ -1673,23 +1694,32 @@ async function migrateDealJsonToSupabase() {
         headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
         body:    JSON.stringify(batch),
       });
-      if (res.ok) ok += batch.length;
-      else fail += batch.length;
-      if (btn) btn.textContent = `⏳ ${ok + fail}/${toMigrate.length}개 처리 중...`;
+      if (res.ok) {
+        ok += batch.length;
+      } else {
+        const errText = await res.text();
+        console.error(`Supabase 오류 ${res.status}:`, errText);
+        fail += batch.length;
+      }
+      if (btn) btn.textContent = `⏳ ${ok + fail}/${toMigrate.length}개...`;
     }
 
     toast(
       fail === 0
-        ? `✅ 마이그레이션 완료! ${ok}개 딜이 Supabase에 저장되었습니다.`
-        : `⚠️ ${ok}개 성공, ${fail}개 실패. Supabase 테이블 스키마를 확인하세요.`,
+        ? `✅ 완료! ${ok}개 딜이 Supabase에 저장되었습니다.`
+        : `⚠️ ${ok}개 성공, ${fail}개 실패 — 콘솔(F12)에서 오류 확인`,
       fail === 0 ? 'success' : 'warn'
     );
-    // 마이그레이션 후 Supabase에서 다시 로드
-    await reloadDealsFromSupabase();
+    if (ok > 0) await reloadDealsFromSupabase();
   } catch (e) {
+    console.error('[마이그레이션 오류]', e);
     toast(`❌ 마이그레이션 실패: ${e.message}`, 'warn');
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = '📥 deals.json → Supabase'; }
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = '📥 deals.json → Supabase';
+      btn.style.background = '#fd7e14';
+    }
   }
 }
 
