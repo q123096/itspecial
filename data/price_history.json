@@ -917,10 +917,10 @@
       },
       {
         "date": "2026-06-07",
-        "lprice": 49900
+        "lprice": 30780
       }
     ],
-    "avg_7d": 63273,
+    "avg_7d": 60541,
     "days": 7,
     "avg_hprice_7d": 0
   },
@@ -1821,10 +1821,10 @@
       },
       {
         "date": "2026-06-07",
-        "lprice": 96990
+        "lprice": 96980
       }
     ],
-    "avg_7d": 121762,
+    "avg_7d": 121760,
     "days": 6,
     "first_hprice": 0,
     "avg_hprice_7d": 0

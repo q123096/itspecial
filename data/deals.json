@@ -4,13 +4,13 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-07T08:44:22",
+    "addedAt": "2026-06-07T13:18:52",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "이마트몰",
     "productUrl": "http://emart.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6001&ckwhere=naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=emart&a=A100704947&l=http%3A%2F%2Femart.ssg.com%2Fitem%2FitemView.ssg%3FitemId%3D1000775485957%26siteNo%3D6001%26ckwhere%3Dnaver%26appPopYn%3Dn%26utm_medium%3DPCS%26utm_source%3Dnaver%26utm_campaign%3Dnaver_pcs&l_cd1=B&l_cd2=1",
+    "affiliateUrl": "",
     "expiresAt": "2026-06-11T23:59:00",
     "tags": [
       "핫딜",
@@ -56,7 +56,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-07T08:44:11",
+    "addedAt": "2026-06-07T13:18:42",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -108,7 +108,7 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-07T08:44:00",
+    "addedAt": "2026-06-07T13:18:33",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
@@ -616,6 +616,53 @@
   },
   {
     "id": 15,
+    "name": "2026년형 신형 맥북 네오 13인치 키보드 커버Apple A18Pro 칩A3404 13.0인치 A18 프로",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6034518/60345180669.jpg",
+    "addedAt": "2026-06-07T13:18:49",
+    "originalPrice": 41665,
+    "salePrice": 31670,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9410451853&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-11T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 51660
+      }
+    ]
+  },
+  {
+    "id": 16,
     "name": "Apple iPad Pro 12.9 4세대  스페이스 그레이  128GB  Wi-Fi",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5824158/58241580043.2.jpg",
@@ -667,7 +714,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -701,7 +748,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "텐바이텐 문자인쇄키스킨 애플 MAC02 MacBook Pro 13/15-inch Retina",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031881/60318813111.jpg",
@@ -749,7 +796,54 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
+    "name": "애플 맥북 에어 13인치 13.3인치 A19322018년 출시용 키보드 커버 프로텍터 플로럴 및 빅 레터 디",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6034515/60345152232.jpg",
+    "addedAt": "2026-06-07T13:18:49",
+    "originalPrice": 41665,
+    "salePrice": 32920,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9410469143&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-11T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-29",
+        "lprice": 30600
+      },
+      {
+        "date": "2026-05-30",
+        "lprice": 30400
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 51660
+      }
+    ]
+  },
+  {
+    "id": 20,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -800,13 +894,13 @@
     ]
   },
   {
-    "id": 19,
+    "id": 21,
     "name": "소니 A5000 렌즈미포함",
     "category": "camera",
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
     "addedAt": "2026-06-06T02:03:18",
-    "originalPrice": 121762,
-    "salePrice": 96990,
+    "originalPrice": 121760,
+    "salePrice": 96980,
     "priceType": "avg7d",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53596694101",
@@ -848,7 +942,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 22,
     "name": "MINISFORUM M1 Plus 미니PC 인텔 코어i5-12600H 게임/사무용 베어본",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9077803/90778030026.jpg",
@@ -900,7 +994,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 23,
     "name": "Beats Solo Buds-이어 헤드폰과 호환되는 트루 무선 노이즈 캔슬링 이어버드 투명 소프트 TPU 전",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6027828/60278280063.jpg",
@@ -951,7 +1045,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 24,
     "name": "텐바이텐 애플 맥북에어 13형 AG Nanovid 저반사 지문방지 액정보호필름",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031868/60318689022.jpg",
@@ -998,7 +1092,7 @@
     ]
   },
   {
-    "id": 23,
+    "id": 25,
     "name": "애플워치 케이스 범퍼 호환 커버 아이폰 워치 시리즈 10용 KZDOO 디펜더 프로텍터 러그드 유리 없음 슬림",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6033784/60337841120.jpg",
@@ -1049,7 +1143,7 @@
     ]
   },
   {
-    "id": 24,
+    "id": 26,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -1101,7 +1195,7 @@
     ]
   },
   {
-    "id": 25,
+    "id": 27,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -1152,7 +1246,7 @@
     ]
   },
   {
-    "id": 26,
+    "id": 28,
     "name": "[아마존 공식]13인치 노트북 슬리브 13인치 커버 보호 케이스 애플 맥북 에어 13.3인치 맥 프로 M1 ",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6032508/60325081123.jpg",
@@ -1199,7 +1293,7 @@
     ]
   },
   {
-    "id": 27,
+    "id": 29,
     "name": "WHCH520 노이즈 캔슬링 무선 폰용 EVA 하드 케이스 보호 운반 보관 가방 720N",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6030573/60305735748.jpg",
