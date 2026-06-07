@@ -378,6 +378,45 @@ def main():
         print("💡 COUPANG_ACCESS_KEY를 설정하면 쿠팡 딜 링크가 자동 생성됩니다.")
         print("   파트너스 가입: https://partners.coupang.com")
 
+    # ── Supabase affiliate_url 동기화 (파트너스 링크 반영) ──
+    if updated > 0:
+        supabase_url = os.environ.get("SUPABASE_URL", "").strip()
+        supabase_key = os.environ.get("SUPABASE_SERVICE_KEY", "").strip()
+        if supabase_url and supabase_key:
+            print("\n🗄️  Supabase deals 동기화 중 (파트너스 링크 반영)...")
+            _sync_affiliate_urls_to_supabase(deals, supabase_url, supabase_key)
+        else:
+            print("\nℹ️  SUPABASE_URL / SUPABASE_SERVICE_KEY 미설정 — Supabase 동기화 스킵")
+
+
+def _sync_affiliate_urls_to_supabase(deals: list, url: str, key: str) -> None:
+    """제휴링크만 Supabase deals 테이블에 PATCH (affiliate_url 필드만 업데이트)"""
+    import requests as _req
+    headers = {
+        "apikey":        key,
+        "Authorization": f"Bearer {key}",
+        "Content-Type":  "application/json",
+        "Prefer":        "return=minimal",
+    }
+    ok_count = 0
+    for d in deals:
+        if not d.get("affiliateUrl"):
+            continue
+        try:
+            resp = _req.patch(
+                f"{url}/rest/v1/deals?id=eq.{d['id']}",
+                headers=headers,
+                json={"affiliate_url": d["affiliateUrl"]},
+                timeout=10,
+            )
+            if resp.status_code in (200, 204):
+                ok_count += 1
+            else:
+                print(f"  ⚠️  id={d['id']} PATCH 실패 {resp.status_code}")
+        except Exception as e:
+            print(f"  ❌ id={d['id']} 요청 에러: {e}")
+    print(f"  ✅ Supabase affiliate_url 업데이트 {ok_count}개 완료")
+
 
 if __name__ == "__main__":
     main()

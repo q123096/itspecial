@@ -1561,6 +1561,78 @@ def remove_expired(deals: list[dict], keep_days: int = 1) -> tuple[list[dict], i
     return active, removed
 
 
+# ─── Supabase deals 동기화 ──────────────────────────────────────
+def upsert_deals_to_supabase(deals: list, url: str, key: str) -> None:
+    """deals 목록을 Supabase deals 테이블에 UPSERT (camelCase→snake_case 변환 포함)"""
+    endpoint = f"{url}/rest/v1/deals"
+    headers = {
+        "apikey":        key,
+        "Authorization": f"Bearer {key}",
+        "Content-Type":  "application/json",
+        "Prefer":        "resolution=merge-duplicates,return=minimal",
+    }
+
+    def to_row(d: dict) -> dict:
+        expires = d.get("expiresAt") or None
+        if expires == "":
+            expires = None
+        return {
+            "id":             d["id"],
+            "name":           d.get("name", ""),
+            "category":       d.get("category", "accessory"),
+            "image":          d.get("image", ""),
+            "added_at":       d.get("addedAt") or None,
+            "original_price": d.get("originalPrice", 0),
+            "sale_price":     d.get("salePrice", 0),
+            "price_type":     d.get("priceType", "regular"),
+            "store":          d.get("store", ""),
+            "product_url":    d.get("productUrl", ""),
+            "affiliate_url":  d.get("affiliateUrl", ""),
+            "expires_at":     expires,
+            "tags":           d.get("tags", ["핫딜"]),
+            "rating":         d.get("rating", 4.0),
+            "review_count":   d.get("reviewCount", 0),
+            "in_stock":       d.get("inStock", True),
+            "free_shipping":  d.get("freeShipping", False),
+            "price_history":  d.get("priceHistory", []),
+            "pinned":         d.get("pinned", False),
+        }
+
+    rows = [to_row(d) for d in deals]
+
+    # 배치 UPSERT (50개씩)
+    batch_size = 50
+    total_ok = 0
+    for i in range(0, len(rows), batch_size):
+        batch = rows[i:i + batch_size]
+        try:
+            resp = requests.post(endpoint, headers=headers, json=batch, timeout=15)
+            if resp.status_code in (200, 201):
+                total_ok += len(batch)
+                print(f"  ✅ Supabase UPSERT {len(batch)}개 (배치 {i // batch_size + 1})")
+            else:
+                print(f"  ⚠️  Supabase UPSERT 실패 {resp.status_code}: {resp.text[:200]}")
+        except Exception as e:
+            print(f"  ❌ Supabase 요청 에러: {e}")
+
+    if total_ok == len(rows):
+        print(f"  🗄️  Supabase 동기화 완료 — 총 {total_ok}개")
+
+    # 삭제된 딜 정리: 현재 ID 목록에 없고 pinned=false인 행 삭제
+    current_ids = ",".join(str(d["id"]) for d in deals)
+    try:
+        del_resp = requests.delete(
+            f"{endpoint}?id=not.in.({current_ids})&pinned=eq.false",
+            headers=headers, timeout=15
+        )
+        if del_resp.status_code in (200, 204):
+            print(f"  🗑️  만료된 비고정 딜 정리 완료")
+        else:
+            print(f"  ⚠️  정리 요청 {del_resp.status_code}: {del_resp.text[:100]}")
+    except Exception as e:
+        print(f"  ❌ 정리 에러: {e}")
+
+
 # ─── 메인 ────────────────────────────────────────────────────────
 def main():
     access       = os.environ.get("COUPANG_ACCESS_KEY", "")
@@ -1910,6 +1982,15 @@ def main():
     print(f"\n{'='*55}")
     print(f"✅ 기존 {prev_count}개 | 신규 {len(new_deals)}개 추가 | 최종 {final_count}개 딜")
     print(f"{'='*55}\n")
+
+    # ── Supabase deals 테이블 동기화 ──
+    supabase_url = os.environ.get("SUPABASE_URL", "").strip()
+    supabase_key = os.environ.get("SUPABASE_SERVICE_KEY", "").strip()
+    if supabase_url and supabase_key:
+        print("🗄️  Supabase deals 동기화 중...")
+        upsert_deals_to_supabase(all_deals, supabase_url, supabase_key)
+    else:
+        print("ℹ️  SUPABASE_URL / SUPABASE_SERVICE_KEY 미설정 — Supabase 동기화 스킵")
 
     # ── 구독자 딜 알림 발송 ──
     test_alert = os.environ.get("SEND_TEST_ALERT", "").lower() == "true"

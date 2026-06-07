@@ -663,6 +663,31 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Formspree: contact.html 연락처 폼 전용 유지 (Supabase 미설정 시 알림모달 폴백)
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjrbjwn';
 
+/** Supabase snake_case → camelCase 변환 (deals 테이블 전용) */
+function normalizeDeal(row) {
+  return {
+    id:            row.id,
+    name:          row.name,
+    category:      row.category,
+    image:         row.image,
+    addedAt:       row.added_at,
+    originalPrice: row.original_price,
+    salePrice:     row.sale_price,
+    priceType:     row.price_type,
+    store:         row.store,
+    productUrl:    row.product_url,
+    affiliateUrl:  row.affiliate_url,
+    expiresAt:     row.expires_at,
+    tags:          row.tags,
+    rating:        row.rating ? Number(row.rating) : 4.0,
+    reviewCount:   row.review_count,
+    inStock:       row.in_stock,
+    freeShipping:  row.free_shipping,
+    priceHistory:  row.price_history,
+    pinned:        row.pinned,
+  };
+}
+
 function openAlertModal(preselectedCat) {
   const modal = document.getElementById('alert-modal');
   if (!modal) return;
@@ -930,12 +955,24 @@ async function init() {
   renderSkeletons();
   renderCategories();
   try {
-    const res = await fetch('./data/deals.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    state.deals = await res.json();
-  } catch {
-    $grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚡</div><h3>데이터를 불러오는 중이에요</h3></div>`;
-    return;
+    // ── Supabase deals 테이블에서 로드 (git commit 없이 실시간 반영) ──
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/deals?select=*&order=pinned.desc,added_at.desc`,
+      { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    state.deals = (await res.json()).map(normalizeDeal);
+  } catch (sbErr) {
+    // Supabase 실패 시 deals.json 폴백 (테이블 미생성 상태 대비)
+    try {
+      const res2 = await fetch('./data/deals.json?v=' + Date.now());
+      if (!res2.ok) throw new Error();
+      state.deals = await res2.json();
+      console.warn('[deals] Supabase 실패, deals.json 폴백 사용:', sbErr.message);
+    } catch {
+      $grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚡</div><h3>데이터를 불러오는 중이에요</h3></div>`;
+      return;
+    }
   }
   // 상품 설명 DB — Supabase에서 로드 (실패 시 products.json 폴백)
   try {

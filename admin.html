@@ -328,10 +328,11 @@
   <h1>IT<span>Special</span> — 딜 관리</h1>
   <nav class="header-nav">
     <a href="index.html" class="btn-sm btn-outline">← 사이트 보기</a>
-    <button class="btn-sm btn-success" onclick="saveAll()">전체 저장</button>
+    <button class="btn-sm" style="background:#20c997;color:white;" onclick="reloadDealsFromSupabase()">🔄 Supabase 새로고침</button>
+    <button id="btn-migrate" class="btn-sm" style="background:#fd7e14;color:white;" onclick="migrateDealJsonToSupabase()">📥 deals.json → Supabase</button>
     <button id="btn-bulk-desc" class="btn-sm" style="background:#17a2b8;color:white;" onclick="bulkEnrichDescriptions()">📝 설명 자동 보강</button>
     <button class="btn-sm" style="background:#6f42c1;color:white;" onclick="document.getElementById('click-stats-section').scrollIntoView({behavior:'smooth'})">📊 클릭 통계</button>
-    <button id="btn-gh-push" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub에 저장</button>
+    <button id="btn-gh-push" class="btn-sm btn-push" onclick="pushToGitHub()">🚀 GitHub 백업</button>
   </nav>
 </header>
 
@@ -841,19 +842,23 @@ function enableSave(id) {
 }
 
 // ─── Pin toggle (table) ───
-function togglePin(id) {
+async function togglePin(id) {
   const deal = deals.find(d => d.id === id);
   if (!deal) return;
   deal.pinned = !deal.pinned;
   renderTable();
+  // ── Supabase 즉시 저장 ──
+  const ok = await saveDealToSupabase(deal);
   toast(
-    deal.pinned ? '📌 고정 설정됨 — GitHub 저장 버튼을 눌러 반영하세요' : '📍 고정 해제됨 — GitHub 저장 버튼을 눌러 반영하세요',
-    deal.pinned ? 'success' : ''
+    deal.pinned
+      ? (ok ? '📌 고정 설정됨 — Supabase에 즉시 반영됨' : '📌 고정 설정됨 — Supabase 저장 실패')
+      : (ok ? '📍 고정 해제됨 — Supabase에 즉시 반영됨' : '📍 고정 해제됨 — Supabase 저장 실패'),
+    ok && deal.pinned ? 'success' : ok ? '' : 'warn'
   );
 }
 
 // ─── Save row ───
-function saveRow(id) {
+async function saveRow(id) {
   const deal = deals.find(d => d.id === id);
   if (!deal) return;
   if (deal._newAff !== undefined) { deal.affiliateUrl = deal._newAff; delete deal._newAff; }
@@ -863,7 +868,9 @@ function saveRow(id) {
   }
   updateStats();
   renderTable();
-  toast('✅ 저장되었습니다. JSON 내보내기 후 deals.json을 업데이트하세요.', 'success');
+  // ── Supabase 저장 ──
+  const ok = await saveDealToSupabase(deal);
+  if (ok) toast('✅ Supabase에 저장되었습니다.', 'success');
 }
 
 // ─── Save all ───
@@ -894,12 +901,14 @@ function openPartners(id) {
 }
 
 // ─── Delete deal ───
-function deleteDeal(id) {
+async function deleteDeal(id) {
   if (!confirm('이 딜을 삭제하시겠습니까?')) return;
   deals = deals.filter(d => d.id !== id);
   updateStats();
   renderTable();
-  toast('삭제되었습니다.', 'warn');
+  // ── Supabase 삭제 ──
+  const ok = await deleteDealFromSupabase(id);
+  toast(ok ? '✅ 삭제되었습니다.' : '⚠️ 로컬 삭제됨 — Supabase 삭제 실패', ok ? 'warn' : 'warn');
 }
 
 // ─── Add deal ───
@@ -941,7 +950,11 @@ function addDeal() {
   clearForm();
   updateStats();
   renderTable();
-  toast('✅ 딜이 추가되었습니다!', 'success');
+
+  // ── Supabase 저장 ──
+  const newDeal = deals[deals.length - 1];
+  const ok = await saveDealToSupabase(newDeal);
+  toast(ok ? '✅ 딜이 추가되고 Supabase에 저장되었습니다!' : '⚠️ 로컬 추가됨 — Supabase 저장 실패', ok ? 'success' : 'warn');
 
   // 백그라운드: Supabase 확인 → 없으면 Microlink 수집 (논블로킹)
   void enrichDescription(name, purl);
@@ -1548,6 +1561,155 @@ async function bulkEnrichDescriptions() {
   );
 }
 
+// ══════════════════════════════════════════════════════════
+// 🗄️ Supabase deals CRUD (deals.json 대신 실시간 저장)
+// ══════════════════════════════════════════════════════════
+
+/** Supabase snake_case row → camelCase deal 객체 */
+function normalizeDeal(row) {
+  return {
+    id:            row.id,
+    name:          row.name,
+    category:      row.category,
+    image:         row.image,
+    addedAt:       row.added_at,
+    originalPrice: row.original_price,
+    salePrice:     row.sale_price,
+    priceType:     row.price_type,
+    store:         row.store,
+    productUrl:    row.product_url,
+    affiliateUrl:  row.affiliate_url || '',
+    expiresAt:     row.expires_at || '',
+    tags:          row.tags || ['핫딜'],
+    rating:        row.rating ? Number(row.rating) : 4.0,
+    reviewCount:   row.review_count || 0,
+    inStock:       row.in_stock !== false,
+    freeShipping:  row.free_shipping || false,
+    priceHistory:  row.price_history || [],
+    pinned:        row.pinned || false,
+  };
+}
+
+/** camelCase deal 객체 → Supabase snake_case row */
+function denormalizeDeal(d) {
+  const expiresAt = d.expiresAt && d.expiresAt.trim() ? d.expiresAt : null;
+  return {
+    id:             d.id,
+    name:           d.name,
+    category:       d.category || 'accessory',
+    image:          d.image || '',
+    added_at:       d.addedAt  || new Date().toISOString(),
+    original_price: d.originalPrice || 0,
+    sale_price:     d.salePrice || 0,
+    price_type:     d.priceType || 'regular',
+    store:          d.store || '',
+    product_url:    d.productUrl || '',
+    affiliate_url:  d.affiliateUrl || '',
+    expires_at:     expiresAt,
+    tags:           d.tags || ['핫딜'],
+    rating:         d.rating || 4.0,
+    review_count:   d.reviewCount || 0,
+    in_stock:       d.inStock !== false,
+    free_shipping:  d.freeShipping || false,
+    price_history:  d.priceHistory || [],
+    pinned:         d.pinned || false,
+  };
+}
+
+/** 딜 1개 UPSERT (저장/수정) → Supabase */
+async function saveDealToSupabase(deal) {
+  const row = denormalizeDeal(deal);
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/deals`, {
+      method:  'POST',
+      headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+      body:    JSON.stringify(row),
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`HTTP ${res.status}: ${err.slice(0, 120)}`);
+    }
+    return true;
+  } catch (e) {
+    console.error('[Supabase UPSERT 실패]', e);
+    toast(`❌ Supabase 저장 실패: ${e.message}`, 'warn');
+    return false;
+  }
+}
+
+/** 딜 삭제 → Supabase */
+async function deleteDealFromSupabase(id) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/deals?id=eq.${id}`, {
+      method:  'DELETE',
+      headers: SB_HEADERS,
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return true;
+  } catch (e) {
+    console.error('[Supabase DELETE 실패]', e);
+    toast(`❌ Supabase 삭제 실패: ${e.message}`, 'warn');
+    return false;
+  }
+}
+
+/** deals.json → Supabase 일괄 마이그레이션 (최초 1회) */
+async function migrateDealJsonToSupabase() {
+  if (!confirm('deals.json의 모든 딜을 Supabase deals 테이블로 가져옵니다.\n이 작업은 최초 1회만 실행하세요. 계속할까요?')) return;
+
+  const btn = document.getElementById('btn-migrate');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ 가져오는 중...'; }
+
+  try {
+    // 현재 로드된 deals 사용 (이미 deals.json에서 로드된 상태)
+    const toMigrate = deals;
+    if (!toMigrate.length) { toast('마이그레이션할 딜이 없습니다.', 'warn'); return; }
+
+    let ok = 0, fail = 0;
+    for (let i = 0; i < toMigrate.length; i += 20) {
+      const batch = toMigrate.slice(i, i + 20).map(denormalizeDeal);
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/deals`, {
+        method:  'POST',
+        headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+        body:    JSON.stringify(batch),
+      });
+      if (res.ok) ok += batch.length;
+      else fail += batch.length;
+      if (btn) btn.textContent = `⏳ ${ok + fail}/${toMigrate.length}개 처리 중...`;
+    }
+
+    toast(
+      fail === 0
+        ? `✅ 마이그레이션 완료! ${ok}개 딜이 Supabase에 저장되었습니다.`
+        : `⚠️ ${ok}개 성공, ${fail}개 실패. Supabase 테이블 스키마를 확인하세요.`,
+      fail === 0 ? 'success' : 'warn'
+    );
+    // 마이그레이션 후 Supabase에서 다시 로드
+    await reloadDealsFromSupabase();
+  } catch (e) {
+    toast(`❌ 마이그레이션 실패: ${e.message}`, 'warn');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '📥 deals.json → Supabase'; }
+  }
+}
+
+/** Supabase deals 테이블에서 목록 새로 고침 */
+async function reloadDealsFromSupabase() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/deals?select=*&order=pinned.desc,added_at.desc`,
+      { headers: SB_HEADERS }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    deals = (await res.json()).map(normalizeDeal);
+    updateStats();
+    renderTable();
+    toast('🔄 Supabase에서 새로고침 완료', 'success');
+  } catch (e) {
+    toast(`❌ 새로고침 실패: ${e.message}`, 'warn');
+  }
+}
+
 // ─── Load data ───
 // ─── 클릭 통계 ──────────────────────────────────────────────────
 let clickRawData = [];   // 원본 데이터 (CSV 내보내기용)
@@ -1732,12 +1894,31 @@ async function init() {
     document.getElementById('gh-status').className = 'gh-status ok';
   }
 
+  // ── Supabase deals 테이블에서 로드 (deals.json 폴백) ──
   try {
-    const res = await fetch('./data/deals.json?v=' + Date.now());
-    deals = await res.json();
-  } catch {
-    toast('deals.json을 불러오지 못했습니다.', 'warn');
-    deals = [];
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/deals?select=*&order=pinned.desc,added_at.desc`,
+      { headers: SB_HEADERS }
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const rows = await res.json();
+    if (rows.length > 0) {
+      deals = rows.map(normalizeDeal);
+      console.log(`[어드민] Supabase에서 ${deals.length}개 딜 로드됨`);
+    } else {
+      // Supabase 테이블이 비어있으면 deals.json에서 로드 (마이그레이션 전)
+      throw new Error('Supabase deals 테이블이 비어있음 — deals.json 폴백');
+    }
+  } catch (sbErr) {
+    console.warn('[어드민]', sbErr.message, '— deals.json 폴백 사용');
+    try {
+      const res = await fetch('./data/deals.json?v=' + Date.now());
+      deals = await res.json();
+      toast('💡 deals.json에서 로드됨. "deals.json → Supabase" 버튼으로 마이그레이션하세요.', '');
+    } catch {
+      toast('⚠️ 딜 데이터를 불러오지 못했습니다.', 'warn');
+      deals = [];
+    }
   }
   // 상품 설명 DB — Supabase에서 로드
   try {
