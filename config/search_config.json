@@ -348,6 +348,15 @@
       "min_price": 200000
     },
     {
+      "keyword": "갤럭시 워치 신제품에",
+      "category": "wearable",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-06-07"
+    },
+    {
       "_group": "=== 데스크탑/PC ==="
     },
     {
@@ -534,14 +543,46 @@
     "_comment": "루리웹 핫딜 게시판 RSS. category 태그로 정확한 분류 가능.",
     "_comment_categories": "PC/가전·게임H/W → 직접 포함 / 게임S/W → tech_keywords 매칭 시만 포함 / 나머지 스킵",
     "url": "https://bbs.ruliweb.com/market/board/1020/rss",
-    "direct_categories": ["PC/가전", "게임H/W"],
-    "keyword_categories": ["게임S/W"],
+    "direct_categories": [
+      "PC/가전",
+      "게임H/W"
+    ],
+    "keyword_categories": [
+      "게임S/W"
+    ],
     "tech_keywords": [
-      "삼성", "갤럭시", "LG", "소니", "애플", "아이폰", "맥북", "아이패드",
-      "닌텐도", "스위치", "PS5", "Xbox",
-      "SSD", "NVMe", "램", "메모리", "CPU", "GPU", "RTX",
-      "마우스", "키보드", "헤드셋", "이어폰", "헤드폰", "모니터", "웹캠",
-      "로지텍", "커세어", "레이저", "MSI", "ASUS", "MicroSD"
+      "삼성",
+      "갤럭시",
+      "LG",
+      "소니",
+      "애플",
+      "아이폰",
+      "맥북",
+      "아이패드",
+      "닌텐도",
+      "스위치",
+      "PS5",
+      "Xbox",
+      "SSD",
+      "NVMe",
+      "램",
+      "메모리",
+      "CPU",
+      "GPU",
+      "RTX",
+      "마우스",
+      "키보드",
+      "헤드셋",
+      "이어폰",
+      "헤드폰",
+      "모니터",
+      "웹캠",
+      "로지텍",
+      "커세어",
+      "레이저",
+      "MSI",
+      "ASUS",
+      "MicroSD"
     ],
     "max_posts": 30
   },
