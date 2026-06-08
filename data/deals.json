@@ -1,16 +1,15 @@
 [
   {
     "id": 1,
-    "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-07T13:18:52",
-    "originalPrice": 899000,
-    "salePrice": 379890,
-    "priceType": "msrp",
-    "store": "이마트몰",
-    "productUrl": "http://emart.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6001&ckwhere=naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=emart&a=A100704947&l=http%3A%2F%2Femart.ssg.com%2Fitem%2FitemView.ssg%3FitemId%3D1000775485957%26siteNo%3D6001%26ckwhere%3Dnaver%26appPopYn%3Dn%26utm_medium%3DPCS%26utm_source%3Dnaver%26utm_campaign%3Dnaver_pcs&l_cd1=B&l_cd2=1",
+    "name": "[네이버] 삼성 버즈 4 프로+온누리 페이백(359,000원/무료)",
+    "category": "smartphone",
+    "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
+    "addedAt": "2026-06-08T02:35:22",
+    "originalPrice": 359000,
+    "salePrice": 18480,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=709939",
+    "affiliateUrl": "",
     "expiresAt": "2026-06-11T23:59:00",
     "tags": [
       "핫딜",
@@ -19,51 +18,21 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-01",
-        "lprice": 789900
-      },
-      {
-        "date": "2026-06-02",
-        "lprice": 789890
-      },
-      {
-        "date": "2026-06-03",
-        "lprice": 789890
-      },
-      {
-        "date": "2026-06-04",
-        "lprice": 789890
-      },
-      {
-        "date": "2026-06-05",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-06",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-07",
-        "lprice": 379890
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 2,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-07T13:18:42",
+    "addedAt": "2026-06-08T02:34:32",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "나노스토어",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-11T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -108,14 +77,14 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-07T13:18:33",
+    "addedAt": "2026-06-08T02:34:24",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56454050696",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-11T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -126,8 +95,8 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-07",
-        "lprice": 35060
+        "date": "2026-06-08",
+        "lprice": 43600
       }
     ]
   },
@@ -396,7 +365,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -520,20 +489,19 @@
   },
   {
     "id": 13,
-    "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
+    "name": "[아마존 공식]11.6 12 12.5인치 노트북 슬리브 크롬북 케이스 울트라북 케이스 노트북 슬리브 태블릿 ",
     "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
-    "addedAt": "2026-06-06T06:23:49",
-    "originalPrice": 41240,
-    "salePrice": 31000,
+    "image": "https://shopping-phinf.pstatic.net/main_6035286/60352866837.jpg",
+    "addedAt": "2026-06-08T02:34:39",
+    "originalPrice": 41665,
+    "salePrice": 31440,
     "priceType": "avg7d",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8587823753&ctag=8587823753&lptag=V95249595050&itemId=24897899057&vendorItemId=95249595050&spec=10305199",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=6866715924&tid=1000000061",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-12T23:59:00",
     "tags": [
-      "핫딜",
-      "역대최저"
+      "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
@@ -541,24 +509,28 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-05-30",
-        "lprice": 45600
+        "date": "2026-05-29",
+        "lprice": 30600
       },
       {
-        "date": "2026-05-31",
-        "lprice": 45600
+        "date": "2026-05-30",
+        "lprice": 30400
       },
       {
         "date": "2026-06-01",
-        "lprice": 67900
+        "lprice": 50800
+      },
+      {
+        "date": "2026-06-03",
+        "lprice": 36730
+      },
+      {
+        "date": "2026-06-04",
+        "lprice": 49800
       },
       {
         "date": "2026-06-05",
-        "lprice": 30900
-      },
-      {
-        "date": "2026-06-06",
-        "lprice": 30900
+        "lprice": 51660
       }
     ]
   },
@@ -854,7 +826,7 @@
     "store": "나노스토어",
     "productUrl": "https://smartstore.naver.com/main/products/11843706255",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -900,12 +872,12 @@
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
     "addedAt": "2026-06-06T02:03:18",
     "originalPrice": 121760,
-    "salePrice": 96980,
+    "salePrice": 96990,
     "priceType": "avg7d",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53596694101",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -943,6 +915,50 @@
   },
   {
     "id": 22,
+    "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
+    "addedAt": "2026-06-06T06:23:49",
+    "originalPrice": 38300,
+    "salePrice": 30900,
+    "priceType": "avg7d",
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8587823753&ctag=8587823753&lptag=V95249595050&itemId=24897899057&vendorItemId=95249595050&spec=10305199",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-15T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-05-30",
+        "lprice": 45600
+      },
+      {
+        "date": "2026-05-31",
+        "lprice": 45600
+      },
+      {
+        "date": "2026-06-01",
+        "lprice": 67900
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 30900
+      },
+      {
+        "date": "2026-06-06",
+        "lprice": 30900
+      }
+    ]
+  },
+  {
+    "id": 23,
     "name": "MINISFORUM M1 Plus 미니PC 인텔 코어i5-12600H 게임/사무용 베어본",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9077803/90778030026.jpg",
@@ -990,57 +1006,6 @@
       {
         "date": "2026-06-04",
         "lprice": 457900
-      }
-    ]
-  },
-  {
-    "id": 23,
-    "name": "Beats Solo Buds-이어 헤드폰과 호환되는 트루 무선 노이즈 캔슬링 이어버드 투명 소프트 TPU 전",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6027828/60278280063.jpg",
-    "addedAt": "2026-06-02T10:01:59",
-    "originalPrice": 39664,
-    "salePrice": 32270,
-    "priceType": "avg7d",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9398549835&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9398549835?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-06-06T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-26",
-        "lprice": 30530
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 43360
-      },
-      {
-        "date": "2026-05-28",
-        "lprice": 54490
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 31080
-      },
-      {
-        "date": "2026-05-31",
-        "lprice": 30660
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 55260
-      },
-      {
-        "date": "2026-06-02",
-        "lprice": 32270
       }
     ]
   },
