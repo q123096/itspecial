@@ -1,16 +1,37 @@
 [
   {
     "id": 1,
+    "name": "[네이버] TeamGroup DDR4-3200 Elite 8GB(99,000원/5,000원)",
+    "category": "gaming",
+    "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
+    "addedAt": "2026-06-09T14:21:51",
+    "originalPrice": 99000,
+    "salePrice": 5000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=710505",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-12T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-09T08:59:02",
+    "addedAt": "2026-06-09T14:21:10",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "이마트몰",
     "productUrl": "http://emart.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6001&ckwhere=naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=emart&a=A100704947&l=http%3A%2F%2Femart.ssg.com%2Fitem%2FitemView.ssg%3FitemId%3D1000775485957%26siteNo%3D6001%26ckwhere%3Dnaver%26appPopYn%3Dn%26utm_medium%3DPCS%26utm_source%3Dnaver%26utm_campaign%3Dnaver_pcs&l_cd1=B&l_cd2=1",
+    "affiliateUrl": "",
     "expiresAt": "2026-06-13T23:59:00",
     "tags": [
       "핫딜",
@@ -52,11 +73,11 @@
     ]
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-09T08:58:52",
+    "addedAt": "2026-06-09T14:21:00",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -104,11 +125,11 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-09T08:58:44",
+    "addedAt": "2026-06-09T14:20:52",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
@@ -132,7 +153,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "[스팀] 언레일드2: 백 온 트랙 1.0 버전 40% 할인 (24,880원/무료)",
     "category": "gaming",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
@@ -153,7 +174,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "애플 미국정품 에어팟 프로 2세대 Apple 에어팟 프로 2세대 정품/USB-C 지원",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5595320/55953206062.3.jpg",
@@ -181,7 +202,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
@@ -232,7 +253,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -284,7 +305,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450229.20250715142328.jpg",
@@ -335,7 +356,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
@@ -386,7 +407,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -420,7 +441,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -467,7 +488,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "Lenovo 레노버 요가 11s 11.6인치 컨버터블 2인치 1인치 터치스크린 울트라북실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9113534/91135343554.jpg",
@@ -519,7 +540,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "삼성전자 갤럭시 워치4 클래식 블랙, 42mm, 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5601836/56018368325.20250730153452.jpg",
@@ -530,7 +551,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56018368325",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-13T23:59:00",
+    "expiresAt": "2026-06-16T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -571,7 +592,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "[아마존 공식]11.6 12 12.5인치 노트북 슬리브 크롬북 케이스 울트라북 케이스 노트북 슬리브 태블릿 ",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6035286/60352866837.jpg",
@@ -618,7 +639,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "2026년형 신형 맥북 네오 13인치 키보드 커버Apple A18Pro 칩A3404 13.0인치 A18 프로",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6034518/60345180669.jpg",
@@ -665,7 +686,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Apple iPad Pro 12.9 4세대  스페이스 그레이  128GB  Wi-Fi",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5824158/58241580043.2.jpg",
@@ -717,13 +738,13 @@
     ]
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "소니 A5000 렌즈미포함",
     "category": "camera",
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
     "addedAt": "2026-06-06T02:03:18",
     "originalPrice": 121425,
-    "salePrice": 94980,
+    "salePrice": 94990,
     "priceType": "avg7d",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53596694101",
@@ -765,7 +786,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -799,7 +820,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "텐바이텐 문자인쇄키스킨 애플 MAC02 MacBook Pro 13/15-inch Retina",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031881/60318813111.jpg",
@@ -847,7 +868,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "애플 맥북 에어 13인치 13.3인치 A19322018년 출시용 키보드 커버 프로텍터 플로럴 및 빅 레터 디",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6034515/60345152232.jpg",
@@ -894,7 +915,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -945,7 +966,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
@@ -989,7 +1010,7 @@
     ]
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "MINISFORUM M1 Plus 미니PC 인텔 코어i5-12600H 게임/사무용 베어본",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9077803/90778030026.jpg",
@@ -1041,7 +1062,7 @@
     ]
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "텐바이텐 애플 맥북에어 13형 AG Nanovid 저반사 지문방지 액정보호필름",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031868/60318689022.jpg",
@@ -1088,7 +1109,7 @@
     ]
   },
   {
-    "id": 25,
+    "id": 26,
     "name": "애플워치 케이스 범퍼 호환 커버 아이폰 워치 시리즈 10용 KZDOO 디펜더 프로텍터 러그드 유리 없음 슬림",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6033784/60337841120.jpg",
@@ -1139,7 +1160,7 @@
     ]
   },
   {
-    "id": 26,
+    "id": 27,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -1191,7 +1212,7 @@
     ]
   },
   {
-    "id": 27,
+    "id": 28,
     "name": "맥북에어15m4 APPLE 맥북에어15 15.3인치 가죽파우치 키스킨 M4",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6036715/60367155758.jpg",
@@ -1238,7 +1259,7 @@
     ]
   },
   {
-    "id": 28,
+    "id": 29,
     "name": "[롯데온] MX Master 4(179400원, 온누리 체감가 116842원/무배)",
     "category": "gaming",
     "image": "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
@@ -1259,7 +1280,7 @@
     "freeShipping": false
   },
   {
-    "id": 29,
+    "id": 30,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -1310,7 +1331,7 @@
     ]
   },
   {
-    "id": 30,
+    "id": 31,
     "name": "맥북에어m4 APPLE 맥북에어15 15.3인치 가죽파우치 키스킨 M4",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6036770/60367706071.jpg",
@@ -1357,7 +1378,7 @@
     ]
   },
   {
-    "id": 31,
+    "id": 32,
     "name": "[아마존 공식]13인치 노트북 슬리브 13인치 커버 보호 케이스 애플 맥북 에어 13.3인치 맥 프로 M1 ",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6032508/60325081123.jpg",
@@ -1404,7 +1425,7 @@
     ]
   },
   {
-    "id": 32,
+    "id": 33,
     "name": "WHCH520 노이즈 캔슬링 무선 폰용 EVA 하드 케이스 보호 운반 보관 가방 720N",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6030573/60305735748.jpg",
