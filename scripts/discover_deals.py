@@ -1163,8 +1163,86 @@ def fetch_ppomppu_deals(config: dict) -> list[dict]:
     return candidates
 
 
+# 뽐뿌 글에서 실제 쇼핑몰 URL을 추출할 때 인식할 도메인 목록
+_PRODUCT_DOMAINS = [
+    "smartstore.naver.com", "naver.me",
+    "coupang.com", "link.coupang.com",
+    "11st.co.kr",
+    "gmarket.co.kr",
+    "auction.co.kr",
+    "lotteon.com",
+    "ssg.com", "emart.ssg.com",
+    "himart.co.kr",
+    "lenovo.com/ko",
+    "apple.com/kr",
+    "samsung.com/kr",
+    "lg.com/kr",
+]
+
+
+def _enrich_ppomppu_candidates(candidates: list[dict], headers: dict, max_posts: int = 15) -> None:
+    """
+    뽐뿌 후보 목록의 게시글을 개별 방문 → 실제 쇼핑몰 URL + 본문 이미지 추출 (in-place).
+    추출 성공한 후보에 'product_url', 'post_image' 키 추가.
+    """
+    enriched = 0
+    for c in candidates:
+        if enriched >= max_posts:
+            break
+        post_url = c.get("link", "")
+        if "ppomppu.co.kr" not in post_url:
+            continue
+        try:
+            r = requests.get(post_url, headers=headers, timeout=8)
+            r.encoding = "euc-kr"
+            html = r.text
+
+            # 본문 영역만 추출 (board_contents td)
+            body_m = re.search(
+                r'<td[^>]+class=["\']board_contents["\'][^>]*>(.*?)</td>',
+                html, re.DOTALL | re.IGNORECASE,
+            )
+            search_area = body_m.group(1) if body_m else html
+
+            # ── 쇼핑몰 URL 추출 (href 우선, 텍스트 폴백) ──────────────
+            product_url = ""
+            for href in re.findall(r'href=["\']([^"\']{10,})["\']', search_area):
+                if any(d in href for d in _PRODUCT_DOMAINS):
+                    product_url = href.split('"')[0]   # 혹시 붙은 잔여 따옴표 제거
+                    break
+            if not product_url:
+                for url in re.findall(r'https?://[^\s<>"\'&]{10,}', search_area):
+                    if any(d in url for d in _PRODUCT_DOMAINS):
+                        product_url = url
+                        break
+
+            # ── 본문 첫 상품 이미지 추출 ──────────────────────────────
+            post_image = ""
+            for img_src in re.findall(
+                r'<img[^>]+src=["\']([^"\']+(?:jpg|jpeg|png|webp)[^"\']*)["\']',
+                search_area, re.IGNORECASE,
+            ):
+                if img_src.startswith("http") and "ppomppu" not in img_src:
+                    post_image = img_src
+                    break
+
+            if product_url:
+                c["product_url"] = product_url
+                enriched += 1
+                print(f"  🔗 URL 추출 성공: {product_url[:65]}")
+            if post_image:
+                c["post_image"] = post_image
+
+        except Exception as e:
+            print(f"  ⚠️  게시글 방문 오류: {e}")
+
+        time.sleep(0.5)
+
+    print(f"  → 뽐뿌 URL 보강: {enriched}/{min(len(candidates), max_posts)}개 성공")
+
+
 def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
-    """뽐뿌 후보 → deals.json 포맷 (productUrl이 게시글 링크)"""
+    """뽐뿌 후보 → deals.json 포맷"""
     disc = c["discount"]
     tags = ["핫딜"]
     if disc >= 30: tags.append("역대최저")
@@ -1172,17 +1250,22 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
     # 악세서리 키워드 포함 시 → 주변기기 카테고리로 재분류
     category = reclassify_to_accessory(c["title"], category)
 
+    # 실제 쇼핑몰 URL이 있으면 사용, 없으면 뽐뿌 게시글 링크 폴백
+    product_url = c.get("product_url") or c["link"]
+    # 상품 이미지: 본문 이미지 → 로고 폴백
+    image = c.get("post_image") or "https://itspecial.co.kr/icons/icon-192.png"
+
     return {
         "id":            next_id,
         "name":          c["title"][:60],
         "category":      category,
-        "image":         "https://itspecial.co.kr/icons/icon-192.png",
+        "image":         image,
         "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": c["originalPrice"],
         "salePrice":     c["salePrice"],
         "store":         "뽐뿌 핫딜",
-        "productUrl":    c["link"],
-        "affiliateUrl":  "",   # 쇼핑몰 직링크 아니므로 수동 확인 필요
+        "productUrl":    product_url,
+        "affiliateUrl":  "",
         "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=3)).strftime("%Y-%m-%dT23:59:00"),
         "tags":          tags,
         "rating":        4.0,
@@ -1939,6 +2022,14 @@ def main():
     ppomppu_candidates.sort(
         key=lambda c: (0 if c.get("_match") == "카테고리" else 1, -c["discount"])
     )
+    # 게시글 방문 → 실제 쇼핑몰 URL + 이미지 보강
+    _PPOMPPU_HEADERS = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://www.ppomppu.co.kr/",
+    }
+    print("\n🔗 뽐뿌 게시글 URL 보강 중...")
+    _enrich_ppomppu_candidates(ppomppu_candidates, _PPOMPPU_HEADERS, max_posts=15)
+
     for c in ppomppu_candidates[:20]:  # 뽐뿌 최대 20개 (HTML+RSS 합산)
         if _is_non_tech(c["title"]):
             print(f"  ⛔ 비IT 제외: {c['title'][:50]}")
