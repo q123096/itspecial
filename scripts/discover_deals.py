@@ -1255,6 +1255,28 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
     # 상품 이미지: 본문 이미지 → 로고 폴백
     image = c.get("post_image") or "https://itspecial.co.kr/icons/icon-192.png"
 
+    # 쇼핑몰 URL 기반 스토어명 자동 결정
+    def _store_from_url(url: str) -> str:
+        if "smartstore.naver.com" in url or "naver.me" in url:
+            return "네이버쇼핑"
+        if "coupang.com" in url:
+            return "쿠팡"
+        if "11st.co.kr" in url:
+            return "11번가"
+        if "gmarket.co.kr" in url:
+            return "G마켓"
+        if "auction.co.kr" in url:
+            return "옥션"
+        if "lotteon.com" in url:
+            return "롯데온"
+        if "ssg.com" in url:
+            return "SSG"
+        if "himart.co.kr" in url:
+            return "하이마트"
+        return "뽐뿌 핫딜"
+
+    store = _store_from_url(product_url)
+
     return {
         "id":            next_id,
         "name":          c["title"][:60],
@@ -1263,7 +1285,7 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
         "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": c["originalPrice"],
         "salePrice":     c["salePrice"],
-        "store":         "뽐뿌 핫딜",
+        "store":         store,
         "productUrl":    product_url,
         "affiliateUrl":  "",
         "expiresAt":     (datetime.now(timezone.utc) + timedelta(days=3)).strftime("%Y-%m-%dT23:59:00"),
