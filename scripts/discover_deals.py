@@ -748,7 +748,7 @@ def naver_product_to_deal(
     title = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()
     lp    = int(p.get("lprice") or 0)
     hp    = int(p.get("hprice") or 0)
-    mall  = p.get("mallName", "네이버쇼핑")
+    mall  = "네이버쇼핑"
     link  = p.get("link", "")
     image = p.get("image", "")
 
