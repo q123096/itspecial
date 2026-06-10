@@ -584,7 +584,7 @@ COUPANG_HOST = "https://api-gateway.coupang.com"
 
 def coupang_auth(method: str, path: str, query: str, secret: str, access: str) -> str:
     dt = datetime.now(timezone.utc).strftime("%y%m%dT%H%M%SZ")
-    msg = dt + method + path + (("?" + query) if query else "")
+    msg = dt + method + path + query
     sig = hmac.new(secret.encode(), msg.encode(), hashlib.sha256).hexdigest()
     return f"CEA algorithm=HmacSHA256, access-key={access}, signed-date={dt}, signature={sig}"
 
@@ -1635,8 +1635,12 @@ def upsert_deals_to_supabase(deals: list, url: str, key: str) -> None:
 
 # ─── 메인 ────────────────────────────────────────────────────────
 def main():
-    access       = os.environ.get("COUPANG_ACCESS_KEY", "")
-    secret       = os.environ.get("COUPANG_SECRET_KEY", "")
+    access       = os.environ.get("COUPANG_ACCESS_KEY", "").strip()
+    secret       = os.environ.get("COUPANG_SECRET_KEY", "").strip()
+    if access:
+        print(f"  🔑 COUPANG_ACCESS_KEY: {access[:8]}... ({len(access)}자)")
+    if secret:
+        print(f"  🔑 COUPANG_SECRET_KEY: ***... ({len(secret)}자)")
     naver_id     = os.environ.get("NAVER_CLIENT_ID", "")
     naver_secret = os.environ.get("NAVER_CLIENT_SECRET", "")
     resend_key   = os.environ.get("RESEND_API_KEY", "")
