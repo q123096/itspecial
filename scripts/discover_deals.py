@@ -589,14 +589,27 @@ def coupang_auth(method: str, path: str, query: str, secret: str, access: str) -
     return f"CEA algorithm=HmacSHA256, access-key={access}, signed-date={dt}, signature={sig}"
 
 
+_coupang_rate_limited = False   # 한도 초과 시 나머지 호출 스킵
+
+
 def coupang_get(path: str, params: dict, access: str, secret: str) -> dict | None:
+    global _coupang_rate_limited
+    if _coupang_rate_limited:
+        return None
+
     query = urllib.parse.urlencode(params)
     url   = f"{COUPANG_HOST}{path}?{query}"
     auth  = coupang_auth("GET", path, query, secret, access)
     try:
         r = requests.get(url, headers={"Authorization": auth}, timeout=10)
         if r.status_code == 200:
-            return r.json()
+            body = r.json()
+            if str(body.get("rCode", "00")) == "403":
+                print(f"  ⏸️  쿠팡 API 시간당 한도 초과 — 이번 실행 쿠팡 검색 중단")
+                print(f"     {body.get('rMessage','')[:120]}")
+                _coupang_rate_limited = True
+                return None
+            return body
         print(f"  ⚠️  쿠팡 API {r.status_code}: {r.text[:200]}")
     except Exception as e:
         print(f"  ❌ 요청 오류: {e}")
@@ -1745,7 +1758,7 @@ def main():
                     if added >= per_keyword:
                         break
 
-            time.sleep(0.5)  # API 속도 제한
+            time.sleep(1.0)  # API 속도 제한 (시간당 한도 절약)
 
         # ── 2. 쿠팡 카테고리 베스트셀러 ──
         print(f"\n📈 카테고리 베스트셀러 조회...")
@@ -1764,7 +1777,7 @@ def main():
                     new_deals.append(deal)
                     next_id += 1
                     print(f"  ✅ [{disc}%][{cat_cfg['name']}] {deal['name'][:35]}")
-            time.sleep(0.3)
+            time.sleep(1.0)
     else:
         print("\n⚠️  COUPANG_ACCESS_KEY 없음 — 쿠팡 검색 스킵")
         print("   GitHub Secrets에 키를 추가하면 완전 자동화됩니다.")
