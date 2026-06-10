@@ -748,8 +748,9 @@ def naver_product_to_deal(
     title = re.sub(r"<[^>]+>", "", p.get("title", "")).strip()
     lp    = int(p.get("lprice") or 0)
     hp    = int(p.get("hprice") or 0)
-    mall  = "네이버쇼핑"
     link  = p.get("link", "")
+    raw_mall = p.get("mallName", "네이버쇼핑")
+    mall  = "네이버쇼핑" if "smartstore.naver.com" in link or "naver.me" in link else raw_mall
     image = p.get("image", "")
 
     # SEO 스팸 / 잘린 상품명 제외
