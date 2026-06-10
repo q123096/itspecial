@@ -1176,7 +1176,7 @@ def ppomppu_candidate_to_deal(c: dict, category: str, next_id: int) -> dict:
         "id":            next_id,
         "name":          c["title"][:60],
         "category":      category,
-        "image":         "https://placehold.co/400x300/f1f3f5/adb5bd?text=뽐뿌+핫딜",
+        "image":         "https://itspecial.co.kr/icons/icon-192.png",
         "addedAt":       datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S"),
         "originalPrice": c["originalPrice"],
         "salePrice":     c["salePrice"],

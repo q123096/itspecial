@@ -289,7 +289,7 @@ function renderCard(deal) {
     <div class="deal-card" data-id="${deal.id}">
       <div class="deal-img-wrap">
         <img class="deal-img" src="${deal.image}" alt="${deal.name}" loading="lazy"
-             onerror="this.src='https://placehold.co/400x300/f1f3f5/adb5bd?text=이미지없음'">
+             onerror="this.onerror=null;this.src='/icons/icon-192.png';this.style.objectFit='contain';this.style.padding='24px'">
         <div class="deal-badges">${badgesHtml}</div>
         ${tooltipHtml}
         ${updateHtml}
