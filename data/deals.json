@@ -4,13 +4,13 @@
     "name": "[네이버] TeamGroup DDR4-3200 Elite 8GB(99,000원/5,000원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-10T14:51:52",
+    "addedAt": "2026-06-11T02:35:21",
     "originalPrice": 99000,
     "salePrice": 5000,
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/ixenpc/products/13627299271",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-13T23:59:00",
+    "expiresAt": "2026-06-14T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -25,13 +25,13 @@
     "name": "[대원샵] 스위치 인생게임 / (44,800 / 2,500)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-10T14:51:52",
+    "addedAt": "2026-06-11T02:35:22",
     "originalPrice": 44800,
     "salePrice": 2500,
     "store": "대원샵",
     "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/104715",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-13T23:59:00",
+    "expiresAt": "2026-06-14T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -46,13 +46,13 @@
     "name": "옥션) 터틀비치 리콘 게임패드 39900 / 2500",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-10T14:51:52",
+    "addedAt": "2026-06-11T02:35:22",
     "originalPrice": 39900,
     "salePrice": 2500,
     "store": "루리웹 핫딜",
     "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/104719",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-13T23:59:00",
+    "expiresAt": "2026-06-14T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -67,14 +67,14 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848964/58489640235.jpg",
-    "addedAt": "2026-06-10T14:51:13",
+    "addedAt": "2026-06-11T02:34:41",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "이마트몰",
     "productUrl": "http://emart.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6001&ckwhere=naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=emart&a=A100704947&l=http%3A%2F%2Femart.ssg.com%2Fitem%2FitemView.ssg%3FitemId%3D1000775485957%26siteNo%3D6001%26ckwhere%3Dnaver%26appPopYn%3Dn%26utm_medium%3DPCS%26utm_source%3Dnaver%26utm_campaign%3Dnaver_pcs&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-14T23:59:00",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -84,10 +84,6 @@
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
-      {
-        "date": "2026-06-04",
-        "lprice": 789890
-      },
       {
         "date": "2026-06-05",
         "lprice": 379890
@@ -111,6 +107,10 @@
       {
         "date": "2026-06-10",
         "lprice": 379890
+      },
+      {
+        "date": "2026-06-11",
+        "lprice": 379890
       }
     ]
   },
@@ -119,14 +119,14 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-10T14:51:06",
+    "addedAt": "2026-06-11T02:34:32",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -136,10 +136,6 @@
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
-      {
-        "date": "2026-06-03",
-        "lprice": 1079000
-      },
       {
         "date": "2026-06-04",
         "lprice": 1079000
@@ -151,6 +147,10 @@
       {
         "date": "2026-06-10",
         "lprice": 51000
+      },
+      {
+        "date": "2026-06-11",
+        "lprice": 51000
       }
     ]
   },
@@ -159,14 +159,14 @@
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
-    "addedAt": "2026-06-10T14:50:59",
+    "addedAt": "2026-06-11T02:34:25",
     "originalPrice": 359000,
     "salePrice": 212480,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56454050696",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
+    "expiresAt": "2026-06-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -177,7 +177,7 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-10",
+        "date": "2026-06-11",
         "lprice": 43600
       }
     ]
@@ -338,7 +338,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-18T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -365,7 +365,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-18T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -790,6 +790,57 @@
   },
   {
     "id": 21,
+    "name": "스마트 워치 커버 액정보호 강화유리 하드 케이스 삼성 갤럭시 7 / FE 6/5 4 40mm 44mm 20m",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6040118/60401186563.jpg",
+    "addedAt": "2026-06-11T02:34:20",
+    "originalPrice": 62280,
+    "salePrice": 48900,
+    "priceType": "avg7d",
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8826145310&ctag=8826145310&lptag=I25719308893&itemId=25719308893&vendorItemId=94397638326&spec=10305199",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-15T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-04",
+        "lprice": 108640
+      },
+      {
+        "date": "2026-06-05",
+        "lprice": 48020
+      },
+      {
+        "date": "2026-06-06",
+        "lprice": 115520
+      },
+      {
+        "date": "2026-06-07",
+        "lprice": 30780
+      },
+      {
+        "date": "2026-06-08",
+        "lprice": 30100
+      },
+      {
+        "date": "2026-06-09",
+        "lprice": 80000
+      },
+      {
+        "date": "2026-06-10",
+        "lprice": 45380
+      }
+    ]
+  },
+  {
+    "id": 22,
     "name": "Apple 맥북 프로 14 2023년 M2 Pro 10코어 스페이스 그레이 (MPHE3KH/A) 기본구성 S",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5938697/59386976050.20260325143629.jpg",
@@ -819,54 +870,6 @@
       {
         "date": "2026-05-27",
         "lprice": 1979000
-      }
-    ]
-  },
-  {
-    "id": 22,
-    "name": "텐바이텐 문자인쇄키스킨 애플 MAC02 MacBook Pro 13/15-inch Retina",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6031881/60318813111.jpg",
-    "addedAt": "2026-06-05T02:11:26",
-    "originalPrice": 38428,
-    "salePrice": 30360,
-    "priceType": "avg7d",
-    "store": "롯데ON",
-    "productUrl": "https://www.lotteon.com/p/product/LO2694321724?sitmNo=LO2694321724_2694321725&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=lotteon&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-09T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-28",
-        "lprice": 32240
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 30600
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 30400
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 50800
-      },
-      {
-        "date": "2026-06-03",
-        "lprice": 36730
-      },
-      {
-        "date": "2026-06-04",
-        "lprice": 49800
       }
     ]
   },
@@ -980,7 +983,7 @@
     "store": "스페이스마켓 인증몰",
     "productUrl": "https://smartstore.naver.com/main/products/13365557212",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-18T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -1093,53 +1096,6 @@
   },
   {
     "id": 28,
-    "name": "텐바이텐 애플 맥북에어 13형 AG Nanovid 저반사 지문방지 액정보호필름",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6031868/60318689022.jpg",
-    "addedAt": "2026-06-05T02:11:26",
-    "originalPrice": 38428,
-    "salePrice": 31280,
-    "priceType": "avg7d",
-    "store": "롯데ON",
-    "productUrl": "https://www.lotteon.com/p/product/LO2694331367?sitmNo=LO2694331367_2694331368&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=lotteon&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-09T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-28",
-        "lprice": 32240
-      },
-      {
-        "date": "2026-05-29",
-        "lprice": 30600
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 30400
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 50800
-      },
-      {
-        "date": "2026-06-03",
-        "lprice": 36730
-      },
-      {
-        "date": "2026-06-04",
-        "lprice": 49800
-      }
-    ]
-  },
-  {
-    "id": 29,
     "name": "애플워치 케이스 범퍼 호환 커버 아이폰 워치 시리즈 10용 KZDOO 디펜더 프로텍터 러그드 유리 없음 슬림",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6033784/60337841120.jpg",
@@ -1190,7 +1146,7 @@
     ]
   },
   {
-    "id": 30,
+    "id": 29,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 실버",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9054478/90544782245.jpg",
@@ -1242,7 +1198,7 @@
     ]
   },
   {
-    "id": 31,
+    "id": 30,
     "name": "맥북에어15m4 APPLE 맥북에어15 15.3인치 가죽파우치 키스킨 M4",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6036715/60367155758.jpg",
@@ -1289,7 +1245,7 @@
     ]
   },
   {
-    "id": 32,
+    "id": 31,
     "name": "[롯데온] MX Master 4(179400원, 온누리 체감가 116842원/무배)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -1299,7 +1255,7 @@
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=710162",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-18T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -1310,7 +1266,7 @@
     "freeShipping": false
   },
   {
-    "id": 33,
+    "id": 32,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -1361,7 +1317,7 @@
     ]
   },
   {
-    "id": 34,
+    "id": 33,
     "name": "맥북에어m4 APPLE 맥북에어15 15.3인치 가죽파우치 키스킨 M4",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6036770/60367706071.jpg",
@@ -1373,53 +1329,6 @@
     "productUrl": "https://link.auction.co.kr/gate/pcs?item-no=F583322433&sub-id=1&service-code=10000003",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=auction&a=A100704947&l=https%3A%2F%2Flink.auction.co.kr%2Fgate%2Fpcs%3Fitem-no%3DF583322433%26sub-id%3D1%26service-code%3D10000003&l_cd1=B&l_cd2=1",
     "expiresAt": "2026-06-13T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-29",
-        "lprice": 30600
-      },
-      {
-        "date": "2026-05-30",
-        "lprice": 30400
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 50800
-      },
-      {
-        "date": "2026-06-03",
-        "lprice": 36730
-      },
-      {
-        "date": "2026-06-04",
-        "lprice": 49800
-      },
-      {
-        "date": "2026-06-05",
-        "lprice": 51660
-      }
-    ]
-  },
-  {
-    "id": 35,
-    "name": "[아마존 공식]13인치 노트북 슬리브 13인치 커버 보호 케이스 애플 맥북 에어 13.3인치 맥 프로 M1 ",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6032508/60325081123.jpg",
-    "addedAt": "2026-06-05T14:23:32",
-    "originalPrice": 41665,
-    "salePrice": 35400,
-    "priceType": "avg7d",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=5531332547&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/5531332547?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-06-09T23:59:00",
     "tags": [
       "핫딜"
     ],
