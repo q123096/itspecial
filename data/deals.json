@@ -4,7 +4,7 @@
     "name": "[네이버] TeamGroup DDR4-3200 Elite 8GB(99,000원/5,000원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-13T02:11:37",
+    "addedAt": "2026-06-13T08:47:19",
     "originalPrice": 99000,
     "salePrice": 5000,
     "store": "네이버쇼핑",
@@ -25,14 +25,14 @@
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-06-10T09:39:25",
+    "addedAt": "2026-06-13T08:46:19",
     "originalPrice": 359000,
-    "salePrice": 211000,
+    "salePrice": 210000,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-20T23:59:00",
+    "expiresAt": "2026-06-17T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -43,7 +43,7 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-10",
+        "date": "2026-06-13",
         "lprice": 43600
       }
     ]
@@ -248,7 +248,7 @@
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-06-12T14:32:13",
     "originalPrice": 359000,
-    "salePrice": 257490,
+    "salePrice": 248420,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
