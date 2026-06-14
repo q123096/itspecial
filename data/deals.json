@@ -1,16 +1,17 @@
 [
   {
     "id": 1,
-    "name": "[네이버] TeamGroup DDR4-3200 Elite 8GB(99,000원/5,000원)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-14T09:02:21",
-    "originalPrice": 99000,
-    "salePrice": 5000,
+    "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
+    "addedAt": "2026-06-14T13:26:24",
+    "originalPrice": 1590000,
+    "salePrice": 835000,
+    "priceType": "msrp",
     "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/ixenpc/products/13627299271",
+    "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-18T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,6 +23,34 @@
   },
   {
     "id": 2,
+    "name": "Apple 에어팟 프로 2세대 (USB-C)",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
+    "addedAt": "2026-06-14T09:01:19",
+    "originalPrice": 359000,
+    "salePrice": 207390,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-21T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-14",
+        "lprice": 43600
+      }
+    ]
+  },
+  {
+    "id": 3,
     "name": "[스팀] 언레일드2: 백 온 트랙 1.0 버전 40% 할인 (24,880원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -42,7 +71,7 @@
     "freeShipping": false
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "[토스] 팬택 25W 1포트 초고속 파스텔 충전기 (5,900원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -61,34 +90,6 @@
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
-  },
-  {
-    "id": 4,
-    "name": "Apple 에어팟 프로 2세대 (USB-C)",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-06-14T09:01:19",
-    "originalPrice": 359000,
-    "salePrice": 217390,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-18T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-14",
-        "lprice": 43600
-      }
-    ]
   },
   {
     "id": 5,
@@ -411,7 +412,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://naver.me/xJcMBMsx",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-17T23:59:00",
+    "expiresAt": "2026-06-21T23:59:00",
     "tags": [
       "핫딜"
     ],
