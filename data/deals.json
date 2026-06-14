@@ -4,7 +4,7 @@
     "name": "[네이버] TeamGroup DDR4-3200 Elite 8GB(99,000원/5,000원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-14T02:33:53",
+    "addedAt": "2026-06-14T09:02:21",
     "originalPrice": 99000,
     "salePrice": 5000,
     "store": "네이버쇼핑",
@@ -22,17 +22,16 @@
   },
   {
     "id": 2,
-    "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-14T02:33:06",
-    "originalPrice": 1590000,
-    "salePrice": 835000,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/11900859314",
+    "name": "[스팀] 언레일드2: 백 온 트랙 1.0 버전 40% 할인 (24,880원/무료)",
+    "category": "gaming",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-06-05T14:24:10",
+    "originalPrice": 41467,
+    "salePrice": 24880,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=709467",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-18T23:59:00",
+    "expiresAt": "2026-06-14T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -44,12 +43,33 @@
   },
   {
     "id": 3,
+    "name": "[토스] 팬택 25W 1포트 초고속 파스텔 충전기 (5,900원/무료)",
+    "category": "gaming",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-06-10T02:12:47",
+    "originalPrice": 9800,
+    "salePrice": 5900,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=710622",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-13T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 4,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-06-14T02:33:00",
+    "addedAt": "2026-06-14T09:01:19",
     "originalPrice": 359000,
-    "salePrice": 203900,
+    "salePrice": 217390,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
@@ -71,49 +91,7 @@
     ]
   },
   {
-    "id": 4,
-    "name": "[스팀] 언레일드2: 백 온 트랙 1.0 버전 40% 할인 (24,880원/무료)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-05T14:24:10",
-    "originalPrice": 41467,
-    "salePrice": 24880,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=709467",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-14T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
     "id": 5,
-    "name": "[토스] 팬택 25W 1포트 초고속 파스텔 충전기 (5,900원/무료)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-10T02:12:47",
-    "originalPrice": 9800,
-    "salePrice": 5900,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=710622",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-13T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 6,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
@@ -124,7 +102,7 @@
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-18T23:59:00",
+    "expiresAt": "2026-06-21T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -141,7 +119,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -175,7 +153,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
@@ -214,13 +192,13 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-06-12T14:32:13",
     "originalPrice": 359000,
-    "salePrice": 245810,
+    "salePrice": 245690,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
@@ -241,7 +219,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "[아마존 공식]Bitowik 삼성 갤럭시 S24 울트라용 360° 회전 가능한 스탠드, MagSafe와 호환",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6038849/60388491265.jpg",
@@ -292,7 +270,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727458866.20250715142249.jpg",
@@ -319,7 +297,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "Lenovo 레노버 요가 11s 11.6인치 컨버터블 2인치 1인치 터치스크린 울트라북실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9113534/91135343554.jpg",
@@ -371,7 +349,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "삼성전자 갤럭시 워치4 클래식 블랙, 42mm, 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5601836/56018368325.20250730153452.jpg",
@@ -421,6 +399,26 @@
         "lprice": 109990
       }
     ]
+  },
+  {
+    "id": 13,
+    "name": "[n스토어] 갤럭시탭 s11 wifi 128g(1,029,000원/무료) 체감가 766,320원",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-06-14T09:02:21",
+    "originalPrice": 1029000,
+    "salePrice": 766320,
+    "store": "네이버쇼핑",
+    "productUrl": "https://naver.me/xJcMBMsx",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-17T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
   },
   {
     "id": 14,
@@ -787,7 +785,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53598611154",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-18T23:59:00",
+    "expiresAt": "2026-06-21T23:59:00",
     "tags": [
       "핫딜"
     ],
