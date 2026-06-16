@@ -4,7 +4,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-16T10:52:53",
+    "addedAt": "2026-06-16T16:21:40",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -56,7 +56,7 @@
     "name": "애플 맥북프로 16인치 i9-2.4 64G 2T 스페이스그레이",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9116738/91167381668.jpg",
-    "addedAt": "2026-06-16T10:52:43",
+    "addedAt": "2026-06-16T16:21:32",
     "originalPrice": 2490000,
     "salePrice": 1298000,
     "priceType": "msrp",
@@ -84,7 +84,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-16T10:52:41",
+    "addedAt": "2026-06-16T16:21:31",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -99,7 +99,13 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-16",
+        "lprice": 51000
+      }
+    ]
   },
   {
     "id": 4,
@@ -259,6 +265,54 @@
   },
   {
     "id": 9,
+    "name": "BEATS STUDIO 2 및 3 유선 무선 헤드폰 교체용 이어 패드 메모리 노이즈 차단 폼이 포함된 쿠션 ",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6047089/60470895822.jpg",
+    "addedAt": "2026-06-16T16:21:30",
+    "originalPrice": 50410,
+    "salePrice": 36630,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9432651997&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-20T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-09",
+        "lprice": 37530
+      },
+      {
+        "date": "2026-06-10",
+        "lprice": 49900
+      },
+      {
+        "date": "2026-06-11",
+        "lprice": 58710
+      },
+      {
+        "date": "2026-06-12",
+        "lprice": 37400
+      },
+      {
+        "date": "2026-06-13",
+        "lprice": 77920
+      },
+      {
+        "date": "2026-06-16",
+        "lprice": 41000
+      }
+    ]
+  },
+  {
+    "id": 10,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -285,7 +339,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "삼성전자 갤럭시 워치4 클래식 블랙, 42mm, 블루투스",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_5601836/56018368325.20250730153452.jpg",
@@ -337,7 +391,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "[n스토어] 갤럭시탭 s11 wifi 128g(1,029,000원/무료) 체감가 766,320원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -357,7 +411,7 @@
     "freeShipping": false
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450171.20250715142056.jpg",
@@ -384,7 +438,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Apple 에어팟 프로",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5645405/56454050696.20250827102408.jpg",
@@ -411,7 +465,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "스마트 워치 커버 액정보호 강화유리 하드 케이스 삼성 갤럭시 7 / FE 6/5 4 40mm 44mm 20m",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6040118/60401186563.jpg",
@@ -462,7 +516,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "소니 A5000 렌즈미포함",
     "category": "camera",
     "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
@@ -510,7 +564,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -561,7 +615,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -588,7 +642,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "4in1무선 충전기 핸드폰 아이폰 갤럭시 애플워치 에어팟 폴더블 스탠딩 고속 무선 충전기 호환되다 헤드폰 거",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6031601/60316019891.jpg",
@@ -632,7 +686,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 20,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5566852/55668524137.20250715142144.jpg",
@@ -659,7 +713,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",
@@ -686,7 +740,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "[롯데온] MX Master 4(179400원, 온누리 체감가 116842원/무배)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -707,7 +761,7 @@
     "freeShipping": false
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
