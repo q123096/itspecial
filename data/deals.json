@@ -4,14 +4,14 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-17T14:49:13",
+    "addedAt": "2026-06-18T02:35:29",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "신세계몰",
     "productUrl": "http://shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6004&salestrNo=6005&ckwhere=s_naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-21T23:59:00",
+    "expiresAt": "2026-06-22T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -21,10 +21,6 @@
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
-      {
-        "date": "2026-06-11",
-        "lprice": 379890
-      },
       {
         "date": "2026-06-12",
         "lprice": 789890
@@ -48,6 +44,10 @@
       {
         "date": "2026-06-17",
         "lprice": 379890
+      },
+      {
+        "date": "2026-06-18",
+        "lprice": 379890
       }
     ]
   },
@@ -56,14 +56,14 @@
     "name": "애플 맥북프로 16인치 i9-2.4 64G 2T 스페이스그레이",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9116738/91167381668.jpg",
-    "addedAt": "2026-06-17T14:49:03",
+    "addedAt": "2026-06-18T02:35:20",
     "originalPrice": 2490000,
     "salePrice": 1298000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13622871251",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-21T23:59:00",
+    "expiresAt": "2026-06-22T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -74,7 +74,7 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-17",
+        "date": "2026-06-18",
         "lprice": 79000
       }
     ]
@@ -84,14 +84,14 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-17T14:49:02",
+    "addedAt": "2026-06-18T02:35:19",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-21T23:59:00",
+    "expiresAt": "2026-06-22T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -140,7 +140,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-24T23:59:00",
+    "expiresAt": "2026-06-25T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -175,7 +175,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-24T23:59:00",
+    "expiresAt": "2026-06-25T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -385,20 +385,19 @@
   },
   {
     "id": 12,
-    "name": "삼성전자 갤럭시 워치4 클래식 블랙, 42mm, 블루투스",
-    "category": "wearable",
-    "image": "https://shopping-phinf.pstatic.net/main_5601836/56018368325.20250730153452.jpg",
-    "addedAt": "2026-06-09T01:59:35",
-    "originalPrice": 148492,
-    "salePrice": 109990,
+    "name": "애플 기기용 듀얼폰 무선 충전소 아이폰용 마그네틱 오토 스위치 7색 라이트앤클럭 아이폰17용 패밀리워치 충전",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6049553/60495532930.jpg",
+    "addedAt": "2026-06-18T02:35:08",
+    "originalPrice": 125454,
+    "salePrice": 92900,
     "priceType": "avg7d",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/56018368325",
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=8967519479&ctag=8967519479&lptag=I27887686367&itemId=27887686367&vendorItemId=95194182729&spec=10305199",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-16T23:59:00",
+    "expiresAt": "2026-06-22T23:59:00",
     "tags": [
-      "핫딜",
-      "역대최저"
+      "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
@@ -406,32 +405,32 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-03",
-        "lprice": 264000
+        "date": "2026-06-11",
+        "lprice": 188500
       },
       {
-        "date": "2026-06-04",
-        "lprice": 109990
+        "date": "2026-06-12",
+        "lprice": 116300
       },
       {
-        "date": "2026-06-05",
-        "lprice": 109990
+        "date": "2026-06-13",
+        "lprice": 35120
       },
       {
-        "date": "2026-06-06",
-        "lprice": 109990
+        "date": "2026-06-15",
+        "lprice": 389000
       },
       {
-        "date": "2026-06-07",
-        "lprice": 109990
+        "date": "2026-06-16",
+        "lprice": 33000
       },
       {
-        "date": "2026-06-08",
-        "lprice": 109990
+        "date": "2026-06-17",
+        "lprice": 64500
       },
       {
-        "date": "2026-06-09",
-        "lprice": 109990
+        "date": "2026-06-18",
+        "lprice": 51760
       }
     ]
   },
@@ -511,105 +510,27 @@
   },
   {
     "id": 16,
-    "name": "소니 A5000 렌즈미포함",
-    "category": "camera",
-    "image": "https://shopping-phinf.pstatic.net/main_5359669/53596694101.20250317105621.jpg",
-    "addedAt": "2026-06-06T02:03:18",
-    "originalPrice": 122685,
-    "salePrice": 96990,
-    "priceType": "avg7d",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53596694101",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-16T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-30",
-        "lprice": 96980
-      },
-      {
-        "date": "2026-05-31",
-        "lprice": 96990
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 96990
-      },
-      {
-        "date": "2026-06-02",
-        "lprice": 183210
-      },
-      {
-        "date": "2026-06-05",
-        "lprice": 159410
-      },
-      {
-        "date": "2026-06-06",
-        "lprice": 96990
-      }
-    ]
-  },
-  {
-    "id": 17,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
-    "addedAt": "2026-06-06T02:02:39",
+    "addedAt": "2026-06-18T02:35:19",
     "originalPrice": 1590000,
     "salePrice": 1259000,
     "priceType": "msrp",
-    "store": "나노스토어",
+    "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11843706255",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-16T23:59:00",
+    "expiresAt": "2026-06-22T23:59:00",
     "tags": [
       "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-30",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-05-31",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-06-01",
-        "lprice": 1098000
-      },
-      {
-        "date": "2026-06-02",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-06-03",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-06-04",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-06-05",
-        "lprice": 1079000
-      }
-    ]
+    "freeShipping": false
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -636,7 +557,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 18,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5566852/55668524137.20250715142144.jpg",
@@ -663,7 +584,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 19,
     "name": "아이폰용 마그네틱 충전기 스완스카우트 901M 애플 멀티 디바이스용 충전소 아이폰 17/16/15/14/13",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6048123/60481232712.jpg",
@@ -714,7 +635,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 20,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",
@@ -741,7 +662,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 21,
     "name": "[롯데온] MX Master 4(179400원, 온누리 체감가 116842원/무배)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -762,7 +683,7 @@
     "freeShipping": false
   },
   {
-    "id": 23,
+    "id": 22,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
