@@ -4,7 +4,7 @@
     "name": "[STEAM] 사이버펑크 Cyberpunk 2077 70% 할인 (19,800원/무배)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-20T08:40:36",
+    "addedAt": "2026-06-20T13:26:17",
     "originalPrice": 66000,
     "salePrice": 19800,
     "store": "뽐뿌 핫딜",
@@ -25,7 +25,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-20T08:39:53",
+    "addedAt": "2026-06-20T13:25:36",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -77,9 +77,9 @@
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-06-20T08:39:35",
+    "addedAt": "2026-06-20T13:25:18",
     "originalPrice": 359000,
-    "salePrice": 176760,
+    "salePrice": 179300,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
@@ -92,20 +92,14 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-20",
-        "lprice": 39900
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 4,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-20T08:39:43",
+    "addedAt": "2026-06-20T13:25:27",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -763,7 +757,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13238952561",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-24T23:59:00",
+    "expiresAt": "2026-06-27T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -832,6 +826,49 @@
   },
   {
     "id": 25,
+    "name": "무선 이어버드 블루투스 5.3 헤드폰 노이즈 캔슬링 및 딥 베이스 60H 재생 스테레오 이어버드 마이크 LE",
+    "category": "accessory",
+    "image": "https://shopping-phinf.pstatic.net/main_6053412/60534126087.jpg",
+    "addedAt": "2026-06-20T13:25:25",
+    "originalPrice": 55878,
+    "salePrice": 47430,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9442401578&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-24T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-13",
+        "lprice": 77920
+      },
+      {
+        "date": "2026-06-16",
+        "lprice": 41000
+      },
+      {
+        "date": "2026-06-18",
+        "lprice": 67100
+      },
+      {
+        "date": "2026-06-19",
+        "lprice": 35370
+      },
+      {
+        "date": "2026-06-20",
+        "lprice": 58000
+      }
+    ]
+  },
+  {
+    "id": 26,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",

@@ -961,14 +961,9 @@
     "avg_hprice_7d": 0
   },
   "에어팟 프로": {
-    "history": [
-      {
-        "date": "2026-06-20",
-        "lprice": 39900
-      }
-    ],
-    "avg_7d": 39900,
-    "days": 1,
+    "history": [],
+    "avg_7d": 0,
+    "days": 0,
     "avg_hprice_7d": 0
   },
   "갤럭시 버즈": {
