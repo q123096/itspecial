@@ -194,6 +194,12 @@
   </url>
   <url>
     <loc>https://itspecial.co.kr/deals/25.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://itspecial.co.kr/deals/26.html</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
