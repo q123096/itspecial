@@ -357,7 +357,25 @@
       "_added": "2026-06-07"
     },
     {
+      "keyword": "갤럭시 워치 신제품",
+      "category": "wearable",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-06-21"
+    },
+    {
       "_group": "=== 데스크탑/PC ==="
+    },
+    {
+      "keyword": "갤럭시 워치 등",
+      "category": "wearable",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-06-21"
     },
     {
       "keyword": "게이밍 완본체",
@@ -370,6 +388,15 @@
       "category": "desktop",
       "priority": 1,
       "min_price": 1200000
+    },
+    {
+      "keyword": "갤럭시 워치 등을",
+      "category": "wearable",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-06-21"
     },
     {
       "keyword": "RTX 5070 완본체",
