@@ -4,7 +4,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-25T02:08:31",
+    "addedAt": "2026-06-25T08:45:48",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -56,7 +56,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-25T02:08:21",
+    "addedAt": "2026-06-25T08:45:40",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -75,34 +75,6 @@
   },
   {
     "id": 3,
-    "name": "삼성전자 갤럭시 Z 플립6 256GB 자급제",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_9104341/91043419975.jpg",
-    "addedAt": "2026-06-25T02:08:01",
-    "originalPrice": 1299000,
-    "salePrice": 705250,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/13498909623",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-29T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-25",
-        "lprice": 285000
-      }
-    ]
-  },
-  {
-    "id": 4,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -124,7 +96,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -158,7 +130,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "삼성전자 갤럭시Z 폴드4 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5366578/53665785536.20250320142749.jpg",
@@ -185,13 +157,13 @@
     ]
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-06-24T14:04:51",
     "originalPrice": 359000,
-    "salePrice": 254360,
+    "salePrice": 254450,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
@@ -206,7 +178,7 @@
     "freeShipping": false
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "이어커버JBL 클럽 원 1 900 무선 오버이어 노이즈 캔슬링 헤드폰용 교체 이어패드 쿠션 머프 쌍",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6058994/60589940499.jpg",
@@ -258,7 +230,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "어쌔신 크리드 섀도우 - 한정판아마존 독점 Xbox Series X",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_9102565/91025656086.jpg",
@@ -310,7 +282,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "애플 맥북에어 13인치 M2 8C 10C 8G 512G 스타라이트",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9098783/90987832301.jpg",
@@ -331,7 +303,7 @@
     "freeShipping": false
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "Lenovo 레노버 요가 11s 11.6인치 컨버터블 2인치 1인치 터치스크린 울트라북실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9113534/91135343554.jpg",
@@ -383,7 +355,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "삼성전자 오디세이 OLED G8 G80SH 80~81cm(32인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_6008484/60084840407.20260520140404.jpg",
@@ -434,7 +406,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "[스팀] 위쳐3 [3480원/무료], EA스포츠 FC26 [4400원/무료]",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -454,7 +426,7 @@
     "freeShipping": false
   },
   {
-    "id": 14,
+    "id": 13,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -475,7 +447,7 @@
     "freeShipping": false
   },
   {
-    "id": 15,
+    "id": 14,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -502,7 +474,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "name": "맥세이프 충전기 무선 고속 애플 기기용 3 in 1 미니 접이식 충전소 아이폰 17/Air/16/15/14/",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6055913/60559137244.jpg",
@@ -553,7 +525,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572747/55727479739.20250715142144.jpg",
@@ -580,7 +552,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "엑스박스 시리즈X 콘솔 USB 360 one s 콘솔용 포트 LED XSX 케이스 별하늘",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_9078346/90783462893.jpg",
@@ -632,7 +604,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 18,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -683,7 +655,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 19,
     "name": "[미국당일출고] 애플워치 SE2 GPS SE 2세대 40mm 미드나잇밴드 미개봉 새상품",
     "category": "wearable",
     "image": "https://shopping-phinf.pstatic.net/main_8656444/86564442267.7.jpg",
@@ -735,7 +707,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 20,
     "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450169.20250715142056.jpg",
@@ -762,7 +734,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 21,
     "name": "무선 이어버드 블루투스 5.3 헤드폰 노이즈 캔슬링 및 딥 베이스 60H 재생 스테레오 이어버드 마이크 LE",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6053412/60534126087.jpg",
