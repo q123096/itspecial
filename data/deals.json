@@ -4,7 +4,7 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-26T02:10:03",
+    "addedAt": "2026-06-26T08:49:39",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
@@ -56,7 +56,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-26T02:09:52",
+    "addedAt": "2026-06-26T08:49:28",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -71,7 +71,13 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-26",
+        "lprice": 51000
+      }
+    ]
   },
   {
     "id": 3,
@@ -85,7 +91,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/12285984115",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-30T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -169,7 +175,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53665785536",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-02T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -394,7 +400,7 @@
     "store": "하이마트쇼핑몰",
     "productUrl": "https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0051025906&fromShop=naver_db99&utm_source=naver&utm_medium=PRICE&utm_campaign=naver_db99",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=himart&a=A100704947&l=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fgoods%2FgoodsDetail%3FgoodsNo%3D0051025906%26fromShop%3Dnaver_db99%26utm_source%3Dnaver%26utm_medium%3DPRICE%26utm_campaign%3Dnaver_db99&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-06-30T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -722,7 +728,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/55727450169",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-02T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜"
     ],
