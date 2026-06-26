@@ -1,39 +1,17 @@
 [
   {
     "id": 1,
-    "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-06-25T14:01:16",
-    "originalPrice": 359000,
-    "salePrice": 143900,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/9541960619",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-29T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-06-25T14:01:32",
+    "addedAt": "2026-06-26T02:10:03",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "신세계몰",
     "productUrl": "http://shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6004&salestrNo=6005&ckwhere=s_naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-29T23:59:00",
+    "expiresAt": "2026-06-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -43,10 +21,6 @@
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
-      {
-        "date": "2026-06-19",
-        "lprice": 379890
-      },
       {
         "date": "2026-06-20",
         "lprice": 379890
@@ -70,22 +44,26 @@
       {
         "date": "2026-06-25",
         "lprice": 379890
+      },
+      {
+        "date": "2026-06-26",
+        "lprice": 379890
       }
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-06-25T14:01:24",
+    "addedAt": "2026-06-26T02:09:52",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-29T23:59:00",
+    "expiresAt": "2026-06-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -94,6 +72,34 @@
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
+  },
+  {
+    "id": 3,
+    "name": "삼성전자 갤럭시 Z플립6 자급제 5G 256GB",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_8983049/89830494832.1.jpg",
+    "addedAt": "2026-06-26T02:09:31",
+    "originalPrice": 1299000,
+    "salePrice": 799800,
+    "priceType": "msrp",
+    "store": "네이버쇼핑",
+    "productUrl": "https://smartstore.naver.com/main/products/12285984115",
+    "affiliateUrl": "",
+    "expiresAt": "2026-06-30T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-26",
+        "lprice": 285000
+      }
+    ]
   },
   {
     "id": 4,
@@ -128,7 +134,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-02T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -190,7 +196,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-02T23:59:00",
+    "expiresAt": "2026-07-03T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -378,17 +384,17 @@
   },
   {
     "id": 12,
-    "name": "삼성전자 오디세이 OLED G8 G80SH 80~81cm(32인치)",
-    "category": "monitor",
-    "image": "https://shopping-phinf.pstatic.net/main_6008484/60084840407.20260520140404.jpg",
-    "addedAt": "2026-06-20T02:12:25",
-    "originalPrice": 229174,
-    "salePrice": 174890,
-    "priceType": "avg7d",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/60084840407",
+    "name": "삼성전자 자급제 갤럭시Z플립7/Z폴드7 256GB/512GB/1TB 모아보기",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5603065/56030655198.7.jpg",
+    "addedAt": "2026-06-26T02:09:30",
+    "originalPrice": 2099000,
+    "salePrice": 1600000,
+    "priceType": "msrp",
+    "store": "하이마트쇼핑몰",
+    "productUrl": "https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0051025906&fromShop=naver_db99&utm_source=naver&utm_medium=PRICE&utm_campaign=naver_db99",
     "affiliateUrl": "",
-    "expiresAt": "2026-06-24T23:59:00",
+    "expiresAt": "2026-06-30T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -398,32 +404,8 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-06-14",
-        "lprice": 259000
-      },
-      {
-        "date": "2026-06-15",
-        "lprice": 259000
-      },
-      {
-        "date": "2026-06-16",
-        "lprice": 77510
-      },
-      {
-        "date": "2026-06-17",
-        "lprice": 267990
-      },
-      {
-        "date": "2026-06-18",
-        "lprice": 268000
-      },
-      {
-        "date": "2026-06-19",
-        "lprice": 268000
-      },
-      {
-        "date": "2026-06-20",
-        "lprice": 174890
+        "date": "2026-06-26",
+        "lprice": 399000
       }
     ]
   },
@@ -757,49 +739,6 @@
   },
   {
     "id": 22,
-    "name": "무선 이어버드 블루투스 5.3 헤드폰 노이즈 캔슬링 및 딥 베이스 60H 재생 스테레오 이어버드 마이크 LE",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6053412/60534126087.jpg",
-    "addedAt": "2026-06-20T13:25:25",
-    "originalPrice": 55878,
-    "salePrice": 47430,
-    "priceType": "avg7d",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9442401578&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9442401578?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-06-24T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-13",
-        "lprice": 77920
-      },
-      {
-        "date": "2026-06-16",
-        "lprice": 41000
-      },
-      {
-        "date": "2026-06-18",
-        "lprice": 67100
-      },
-      {
-        "date": "2026-06-19",
-        "lprice": 35370
-      },
-      {
-        "date": "2026-06-20",
-        "lprice": 58000
-      }
-    ]
-  },
-  {
-    "id": 23,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",
