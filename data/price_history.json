@@ -329,10 +329,10 @@
       },
       {
         "date": "2026-06-26",
-        "lprice": 349000
+        "lprice": 341310
       }
     ],
-    "avg_7d": 343232,
+    "avg_7d": 342271,
     "days": 8,
     "avg_hprice_7d": 0
   },
@@ -841,10 +841,10 @@
     "history": [
       {
         "date": "2026-06-26",
-        "lprice": 285000
+        "lprice": 154760
       }
     ],
-    "avg_7d": 285000,
+    "avg_7d": 154760,
     "days": 1,
     "avg_hprice_7d": 0
   },
@@ -1124,24 +1124,19 @@
     "avg_hprice_7d": 0
   },
   "맥북 에어": {
-    "history": [
-      {
-        "date": "2026-06-26",
-        "lprice": 51000
-      }
-    ],
-    "avg_7d": 51000,
-    "days": 1,
+    "history": [],
+    "avg_7d": 0,
+    "days": 0,
     "avg_hprice_7d": 0
   },
   "맥북 프로": {
     "history": [
       {
         "date": "2026-06-26",
-        "lprice": 69000
+        "lprice": 79000
       }
     ],
-    "avg_7d": 69000,
+    "avg_7d": 79000,
     "days": 1,
     "avg_hprice_7d": 0
   },
@@ -1468,10 +1463,10 @@
       },
       {
         "date": "2026-06-26",
-        "lprice": 250170
+        "lprice": 250000
       }
     ],
-    "avg_7d": 247781,
+    "avg_7d": 247760,
     "days": 8,
     "avg_hprice_7d": 0
   },
@@ -1768,16 +1763,12 @@
   "삼성 노트북": {
     "history": [
       {
-        "date": "2026-06-05",
-        "lprice": 40000
-      },
-      {
-        "date": "2026-06-11",
-        "lprice": 53600
+        "date": "2026-06-26",
+        "lprice": 32640
       }
     ],
-    "avg_7d": 46800,
-    "days": 2,
+    "avg_7d": 32640,
+    "days": 1,
     "first_hprice": 0,
     "avg_hprice_7d": 0
   },
