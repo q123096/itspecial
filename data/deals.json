@@ -1,62 +1,10 @@
 [
   {
     "id": 1,
-    "name": "Apple 아이패드 에어 4세대 WiFi 공기계",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5848965/58489650643.jpg",
-    "addedAt": "2026-07-01T02:14:53",
-    "originalPrice": 899000,
-    "salePrice": 379890,
-    "priceType": "msrp",
-    "store": "신세계몰",
-    "productUrl": "http://shinsegaemall.ssg.com/item/itemView.ssg?itemId=1000775485957&siteNo=6004&salestrNo=6005&ckwhere=s_naver&appPopYn=n&utm_medium=PCS&utm_source=naver&utm_campaign=naver_pcs",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-05T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-25",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-26",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-27",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-28",
-        "lprice": 888730
-      },
-      {
-        "date": "2026-06-29",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-06-30",
-        "lprice": 899000
-      },
-      {
-        "date": "2026-07-01",
-        "lprice": 379890
-      }
-    ]
-  },
-  {
-    "id": 2,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-01T02:14:40",
+    "addedAt": "2026-07-01T09:28:19",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -80,7 +28,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "삼성전자 갤럭시 Z플립6 자급제 5G 256GB",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_8983049/89830494832.1.jpg",
@@ -108,7 +56,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450169.20250715142056.jpg",
@@ -135,13 +83,13 @@
     ]
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
     "addedAt": "2026-06-29T02:15:13",
     "originalPrice": 359000,
-    "salePrice": 228630,
+    "salePrice": 230280,
     "priceType": "msrp",
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
@@ -157,7 +105,7 @@
     "freeShipping": false
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -179,7 +127,7 @@
     "freeShipping": false
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -213,7 +161,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "삼성전자 갤럭시Z 폴드4 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5366578/53665785536.20250320142749.jpg",
@@ -240,7 +188,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -261,7 +209,7 @@
     "freeShipping": false
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727458867.20250715142249.jpg",
@@ -286,6 +234,26 @@
         "lprice": 399000
       }
     ]
+  },
+  {
+    "id": 10,
+    "name": "[톡딜] 세노비스 마그네슘 180일분+약통케이스 (28,000원/무료)",
+    "category": "gaming",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-07-01T09:29:28",
+    "originalPrice": 38000,
+    "salePrice": 28000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=716883",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-04T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
   },
   {
     "id": 11,
@@ -452,7 +420,7 @@
     "store": "하이마트쇼핑몰",
     "productUrl": "https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0047427863&fromShop=naver_db99&utm_source=naver&utm_medium=PRICE&utm_campaign=naver_db99",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=himart&a=A100704947&l=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fgoods%2FgoodsDetail%3FgoodsNo%3D0047427863%26fromShop%3Dnaver_db99%26utm_source%3Dnaver%26utm_medium%3DPRICE%26utm_campaign%3Dnaver_db99&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-05T23:59:00",
+    "expiresAt": "2026-07-08T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
