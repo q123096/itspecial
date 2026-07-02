@@ -1,31 +1,10 @@
 [
   {
     "id": 1,
-    "name": "[옥션] 마니커 생닭 11호 개체 냉장 1,050g 2봉 (삼성 12,930원/무료)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-02T02:08:04",
-    "originalPrice": 14690,
-    "salePrice": 6000,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=717073",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-05T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-02T02:06:59",
+    "addedAt": "2026-07-02T08:40:56",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -33,6 +12,34 @@
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
     "expiresAt": "2026-07-06T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-02",
+        "lprice": 51000
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
+    "addedAt": "2026-06-29T02:15:13",
+    "originalPrice": 359000,
+    "salePrice": 219680,
+    "priceType": "msrp",
+    "store": "G마켓",
+    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
+    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -72,28 +79,6 @@
   },
   {
     "id": 4,
-    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
-    "addedAt": "2026-06-29T02:15:13",
-    "originalPrice": 359000,
-    "salePrice": 221800,
-    "priceType": "msrp",
-    "store": "G마켓",
-    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-09T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 5,
     "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450169.20250715142056.jpg",
@@ -120,7 +105,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -142,7 +127,7 @@
     "freeShipping": false
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -176,7 +161,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "삼성전자 갤럭시Z 폴드4 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5366578/53665785536.20250320142749.jpg",
@@ -203,7 +188,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727458867.20250715142249.jpg",
@@ -230,7 +215,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -251,7 +236,7 @@
     "freeShipping": false
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "[톡딜] 세노비스 마그네슘 180일분+약통케이스 (28,000원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -271,7 +256,7 @@
     "freeShipping": false
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "[스팀] 와치독스2 [3250원/무료], EA스포츠 FC26 [4400원/무료]",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -291,7 +276,7 @@
     "freeShipping": false
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "삼성전자 자급제 갤럭시Z플립7/Z폴드7 256GB/512GB/1TB 모아보기",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5603065/56030655198.7.jpg",
@@ -318,7 +303,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -345,7 +330,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 14,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572747/55727479739.20250715142144.jpg",
@@ -372,7 +357,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 15,
     "name": "한성컴퓨터 라이젠5 9600X 32GB 1TB 내장그래픽 조립PC 게이밍 데스크탑 조립컴퓨터 A9600G",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_5536348/55363481617.jpg",
@@ -424,7 +409,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -475,7 +460,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",
@@ -502,7 +487,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 18,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
