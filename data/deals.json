@@ -1,15 +1,14 @@
 [
   {
     "id": 1,
-    "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-01T14:05:16",
-    "originalPrice": 359000,
-    "salePrice": 143900,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/9541960619",
+    "name": "[옥션] 마니커 생닭 11호 개체 냉장 1,050g 2봉 (삼성 12,930원/무료)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-07-02T02:08:04",
+    "originalPrice": 14690,
+    "salePrice": 6000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=717073",
     "affiliateUrl": "",
     "expiresAt": "2026-07-05T23:59:00",
     "tags": [
@@ -19,27 +18,21 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-01",
-        "lprice": 33580
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 2,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-01T14:05:23",
+    "addedAt": "2026-07-02T02:06:59",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-05T23:59:00",
+    "expiresAt": "2026-07-06T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -47,13 +40,7 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-01",
-        "lprice": 51000
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 3,
@@ -85,6 +72,28 @@
   },
   {
     "id": 4,
+    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
+    "addedAt": "2026-06-29T02:15:13",
+    "originalPrice": 359000,
+    "salePrice": 221800,
+    "priceType": "msrp",
+    "store": "G마켓",
+    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
+    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
+    "expiresAt": "2026-07-09T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 5,
     "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450169.20250715142056.jpg",
@@ -109,28 +118,6 @@
         "lprice": 285000
       }
     ]
-  },
-  {
-    "id": 5,
-    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
-    "addedAt": "2026-06-29T02:15:13",
-    "originalPrice": 359000,
-    "salePrice": 230280,
-    "priceType": "msrp",
-    "store": "G마켓",
-    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-08T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
   },
   {
     "id": 6,
@@ -165,7 +152,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-08T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -294,7 +281,7 @@
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=716955",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-04T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -305,78 +292,6 @@
   },
   {
     "id": 13,
-    "name": "[CJ온스타일] 브리츠 커널형 이어폰 외 다양 (29,900원/무료배송)",
-    "category": "audio",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-06-27T02:05:49",
-    "originalPrice": 39900,
-    "salePrice": 29900,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=715763",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-30T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 14,
-    "name": "어쌔신 크리드 섀도우 - 한정판아마존 독점 Xbox Series X",
-    "category": "gaming",
-    "image": "https://shopping-phinf.pstatic.net/main_9102565/91025656086.jpg",
-    "addedAt": "2026-06-22T02:39:56",
-    "originalPrice": 101188,
-    "salePrice": 75900,
-    "priceType": "avg7d",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/13481145721",
-    "affiliateUrl": "",
-    "expiresAt": "2026-06-30T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-16",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-17",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-18",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-19",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-20",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-21",
-        "lprice": 104800
-      },
-      {
-        "date": "2026-06-22",
-        "lprice": 75900
-      }
-    ]
-  },
-  {
-    "id": 15,
     "name": "삼성전자 자급제 갤럭시Z플립7/Z폴드7 256GB/512GB/1TB 모아보기",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5603065/56030655198.7.jpg",
@@ -403,7 +318,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 14,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -430,7 +345,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 15,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572747/55727479739.20250715142144.jpg",
@@ -457,7 +372,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 16,
     "name": "한성컴퓨터 라이젠5 9600X 32GB 1TB 내장그래픽 조립PC 게이밍 데스크탑 조립컴퓨터 A9600G",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_5536348/55363481617.jpg",
@@ -468,7 +383,7 @@
     "store": "하이마트쇼핑몰",
     "productUrl": "https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0047427863&fromShop=naver_db99&utm_source=naver&utm_medium=PRICE&utm_campaign=naver_db99",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=himart&a=A100704947&l=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fgoods%2FgoodsDetail%3FgoodsNo%3D0047427863%26fromShop%3Dnaver_db99%26utm_source%3Dnaver%26utm_medium%3DPRICE%26utm_campaign%3Dnaver_db99&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-08T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -509,7 +424,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 17,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -560,7 +475,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 18,
     "name": "삼성전자 갤럭시 Z 플립6 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359861/53598611154.20250317152516.jpg",
@@ -587,7 +502,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 19,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -598,7 +513,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11843706255",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-08T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜"
     ],
