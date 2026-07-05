@@ -4,7 +4,7 @@
     "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-05T08:39:21",
+    "addedAt": "2026-07-05T13:05:36",
     "originalPrice": 359000,
     "salePrice": 143900,
     "priceType": "msrp",
@@ -19,26 +19,20 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-05",
-        "lprice": 33580
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 2,
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-05T08:39:11",
+    "addedAt": "2026-07-05T13:05:24",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜",
