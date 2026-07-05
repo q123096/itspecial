@@ -163,9 +163,27 @@
       "_added": "2026-05-28"
     },
     {
+      "keyword": "아이폰 5",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-05"
+    },
+    {
       "keyword": "소니 WH-1000XM",
       "category": "audio",
       "priority": 2
+    },
+    {
+      "keyword": "아이폰 18",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-05"
     },
     {
       "keyword": "소니 WF-1000XM",
