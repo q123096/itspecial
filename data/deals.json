@@ -4,14 +4,14 @@
     "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-04T12:57:48",
+    "addedAt": "2026-07-05T02:01:53",
     "originalPrice": 359000,
     "salePrice": 143900,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/9541960619",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-08T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,24 +22,24 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-04",
+        "date": "2026-07-05",
         "lprice": 33580
       }
     ]
   },
   {
     "id": 2,
-    "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-04T12:57:55",
-    "originalPrice": 1590000,
-    "salePrice": 835000,
+    "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
+    "addedAt": "2026-07-05T02:01:40",
+    "originalPrice": 1299000,
+    "salePrice": 731500,
     "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/11900859314",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-08T23:59:00",
+    "expiresAt": "2026-07-09T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -50,8 +50,8 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-04",
-        "lprice": 51000
+        "date": "2026-07-05",
+        "lprice": 285000
       }
     ]
   },
@@ -107,33 +107,6 @@
   },
   {
     "id": 5,
-    "name": "삼성전자 갤럭시 Z 플립7 5G 256GB [자급제]",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450169.20250715142056.jpg",
-    "addedAt": "2026-06-24T02:07:47",
-    "originalPrice": 1299000,
-    "salePrice": 811910,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/55727450169",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-03T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-24",
-        "lprice": 285000
-      }
-    ]
-  },
-  {
-    "id": 6,
     "name": "Apple 에어팟 프로 2세대 (USB-C)",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -155,7 +128,7 @@
     "freeShipping": false
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -165,7 +138,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-11T23:59:00",
+    "expiresAt": "2026-07-12T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -189,7 +162,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "삼성전자 갤럭시Z 폴드4 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5366578/53665785536.20250320142749.jpg",
@@ -216,7 +189,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -237,7 +210,7 @@
     "freeShipping": false
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "[톡딜] 세노비스 마그네슘 180일분+약통케이스 (28,000원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -257,7 +230,7 @@
     "freeShipping": false
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "[스팀] 와치독스2 [3250원/무료], EA스포츠 FC26 [4400원/무료]",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -277,7 +250,7 @@
     "freeShipping": false
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "삼성전자 자급제 갤럭시Z플립7/Z폴드7 256GB/512GB/1TB 모아보기",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5603065/56030655198.7.jpg",
@@ -304,7 +277,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S7 FE WiFi전용, 128GB, 미스틱 블랙",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359713/53597137209.20250317120740.jpg",
@@ -356,7 +329,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 13,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727458867.20250715142249.jpg",
@@ -383,6 +356,58 @@
     ]
   },
   {
+    "id": 14,
+    "name": "MINISFORUM UM773 LITE 베어본본체 미니PC",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_5734138/57341383495.1.jpg",
+    "addedAt": "2026-07-05T02:02:52",
+    "originalPrice": 563051,
+    "salePrice": 445110,
+    "priceType": "avg7d",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=6468203891&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-09T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-06-29",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-06-30",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-07-01",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-07-02",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-07-03",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-07-04",
+        "lprice": 579900
+      },
+      {
+        "date": "2026-07-05",
+        "lprice": 445110
+      }
+    ]
+  },
+  {
     "id": 15,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
@@ -394,7 +419,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13365557212",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-11T23:59:00",
+    "expiresAt": "2026-07-12T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -421,7 +446,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/55727479739",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-11T23:59:00",
+    "expiresAt": "2026-07-12T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -500,7 +525,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/2305562910",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-11T23:59:00",
+    "expiresAt": "2026-07-12T23:59:00",
     "tags": [
       "핫딜"
     ],
