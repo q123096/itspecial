@@ -1,39 +1,17 @@
 [
   {
     "id": 1,
-    "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-05T13:05:36",
-    "originalPrice": 359000,
-    "salePrice": 143900,
+    "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
+    "addedAt": "2026-07-06T02:03:28",
+    "originalPrice": 1590000,
+    "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/9541960619",
+    "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-09T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
-    "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-05T13:05:24",
-    "originalPrice": 1299000,
-    "salePrice": 731500,
-    "priceType": "msrp",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-07-09T23:59:00",
+    "expiresAt": "2026-07-10T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -44,7 +22,35 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-05",
+        "date": "2026-07-06",
+        "lprice": 51000
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
+    "addedAt": "2026-07-06T02:03:12",
+    "originalPrice": 1299000,
+    "salePrice": 731500,
+    "priceType": "msrp",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-10T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-06",
         "lprice": 285000
       }
     ]
@@ -132,7 +138,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-12T23:59:00",
+    "expiresAt": "2026-07-13T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -157,44 +163,38 @@
   },
   {
     "id": 7,
-    "name": "삼성전자 갤럭시Z 폴드4 5G 256GB [자급제]",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5366578/53665785536.20250320142749.jpg",
-    "addedAt": "2026-06-24T08:51:56",
-    "originalPrice": 2099000,
-    "salePrice": 1416590,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53665785536",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-04T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-24",
-        "lprice": 399000
-      }
-    ]
-  },
-  {
-    "id": 8,
     "name": "Apple 에어팟 프로 3세대",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-06-24T14:04:51",
+    "addedAt": "2026-07-06T02:03:19",
     "originalPrice": 359000,
     "salePrice": 258890,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-04T23:59:00",
+    "expiresAt": "2026-07-10T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 8,
+    "name": "당일출고 에어팟 프로 3세대  지원 MFHP4KH/A",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_6037394/60373940448.jpg",
+    "addedAt": "2026-07-06T02:03:19",
+    "originalPrice": 359000,
+    "salePrice": 258890,
+    "priceType": "msrp",
+    "store": "롯데ON",
+    "productUrl": "https://www.lotteon.com/p/product/LO2697353002?sitmNo=LO2697353002_2697353003&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-10T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -413,7 +413,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13365557212",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-12T23:59:00",
+    "expiresAt": "2026-07-13T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -519,7 +519,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/2305562910",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-12T23:59:00",
+    "expiresAt": "2026-07-13T23:59:00",
     "tags": [
       "핫딜"
     ],
