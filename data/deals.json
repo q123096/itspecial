@@ -4,7 +4,7 @@
     "name": "[컴퓨존] 7800x3d + RX 9070 XT 완본체 (2,243,000원/7,500원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-09T01:51:15",
+    "addedAt": "2026-07-09T09:25:30",
     "originalPrice": 2243000,
     "salePrice": 7500,
     "store": "뽐뿌 핫딜",
@@ -25,7 +25,7 @@
     "name": "[스팀] 레드데드리뎀션2 75% 할인 (18,250원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-09T01:51:15",
+    "addedAt": "2026-07-09T09:25:30",
     "originalPrice": 73000,
     "salePrice": 18250,
     "store": "뽐뿌 핫딜",
@@ -46,13 +46,13 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 태블릿 64GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5846536/58465363719.6.jpg",
-    "addedAt": "2026-07-09T01:50:31",
+    "addedAt": "2026-07-09T09:24:33",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9010136250&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9010136250?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-13T23:59:00",
     "tags": [
       "핫딜",
@@ -98,7 +98,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-09T01:50:20",
+    "addedAt": "2026-07-09T09:24:20",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -126,13 +126,13 @@
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-09T01:50:00",
+    "addedAt": "2026-07-09T09:23:56",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-13T23:59:00",
     "tags": [
       "핫딜",
@@ -515,6 +515,33 @@
   },
   {
     "id": 19,
+    "name": "삼성 갤럭시 Z플립7 256GB 자급제 SM- F766N",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5947289/59472890791.jpg",
+    "addedAt": "2026-07-07T01:58:28",
+    "originalPrice": 1299000,
+    "salePrice": 1049000,
+    "priceType": "msrp",
+    "store": "현대Hmall",
+    "productUrl": "https://www.hmall.com/md/pda/itemPtc?ReferCode=429&slitmCd=2243265248&utm_source=naver&utm_medium=cps_pcs&utm_campaign=sale",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-16T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-07",
+        "lprice": 285000
+      }
+    ]
+  },
+  {
+    "id": 20,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572747/55727479739.20250715142144.jpg",
@@ -541,7 +568,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 21,
     "name": "한성컴퓨터 라이젠5 9600X 32GB 1TB 내장그래픽 조립PC 게이밍 데스크탑 조립컴퓨터 A9600G",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_5536348/55363481617.jpg",
@@ -593,7 +620,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 22,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -644,7 +671,7 @@
     ]
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S7 FE WiFi전용, 128GB, 미스틱 블랙",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359713/53597137209.20250317120740.jpg",
@@ -696,7 +723,7 @@
     ]
   },
   {
-    "id": 23,
+    "id": 24,
     "name": "ASUS 아수스 젠북 듀오 UX481 i5-10세대 16GB 512GB 노트북",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5720077/57200778655.jpg",
@@ -748,7 +775,7 @@
     ]
   },
   {
-    "id": 24,
+    "id": 25,
     "name": "Belink ME mini NAS 미니PC 가정용 스토리지 인텔 N200 저소음",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8931512/89315120534.jpg",
@@ -795,33 +822,6 @@
       {
         "date": "2026-07-08",
         "lprice": 316000
-      }
-    ]
-  },
-  {
-    "id": 25,
-    "name": "삼성 갤럭시 Z플립7 256GB 자급제 SM- F766N",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5947289/59472890791.jpg",
-    "addedAt": "2026-07-07T01:58:28",
-    "originalPrice": 1299000,
-    "salePrice": 1109000,
-    "priceType": "msrp",
-    "store": "현대Hmall",
-    "productUrl": "https://www.hmall.com/md/pda/itemPtc?ReferCode=429&slitmCd=2243265248&utm_source=naver&utm_medium=cps_pcs&utm_campaign=sale",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-16T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-07",
-        "lprice": 285000
       }
     ]
   },
