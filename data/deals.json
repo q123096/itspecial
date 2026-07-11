@@ -4,7 +4,7 @@
     "name": "[컴퓨존] 7800x3d + RX 9070 XT 완본체 (2,243,000원/7,500원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-11T01:29:47",
+    "addedAt": "2026-07-11T07:32:08",
     "originalPrice": 2243000,
     "salePrice": 7500,
     "store": "뽐뿌 핫딜",
@@ -25,7 +25,7 @@
     "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-11T01:28:27",
+    "addedAt": "2026-07-11T07:31:07",
     "originalPrice": 359000,
     "salePrice": 143900,
     "priceType": "msrp",
@@ -47,13 +47,13 @@
     "name": "Apple 아이패드 에어 4세대 WiFi 태블릿 64GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5846536/58465363719.6.jpg",
-    "addedAt": "2026-07-11T01:28:51",
+    "addedAt": "2026-07-11T07:31:27",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9010136250&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9010136250?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-15T23:59:00",
     "tags": [
       "핫딜",
@@ -99,7 +99,7 @@
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-11T01:28:40",
+    "addedAt": "2026-07-11T07:31:18",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -127,13 +127,13 @@
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-11T01:28:14",
+    "addedAt": "2026-07-11T07:30:59",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-15T23:59:00",
     "tags": [
       "핫딜",
@@ -146,7 +146,7 @@
     "priceHistory": [
       {
         "date": "2026-07-11",
-        "lprice": 285000
+        "lprice": 152820
       }
     ]
   },
@@ -157,12 +157,12 @@
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
     "addedAt": "2026-07-11T01:28:27",
     "originalPrice": 359000,
-    "salePrice": 221300,
+    "salePrice": 224990,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-15T23:59:00",
+    "expiresAt": "2026-07-18T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -240,7 +240,7 @@
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-07-06T02:03:19",
     "originalPrice": 359000,
-    "salePrice": 256850,
+    "salePrice": 257990,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
@@ -812,7 +812,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11843706255",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-15T23:59:00",
+    "expiresAt": "2026-07-18T23:59:00",
     "tags": [
       "핫딜"
     ],
