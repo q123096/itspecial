@@ -4,7 +4,7 @@
     "name": "[컴퓨존] 7800x3d + RX 9070 XT 완본체 (2,243,000원/7,500원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-12T01:30:48",
+    "addedAt": "2026-07-12T07:58:40",
     "originalPrice": 2243000,
     "salePrice": 7500,
     "store": "뽐뿌 핫딜",
@@ -22,17 +22,16 @@
   },
   {
     "id": 2,
-    "name": "Apple 아이패드 에어 4세대 WiFi 태블릿 64GB",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_5846536/58465363719.6.jpg",
-    "addedAt": "2026-07-12T01:30:01",
-    "originalPrice": 899000,
-    "salePrice": 379890,
-    "priceType": "msrp",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9010136250&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9010136250?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-07-16T23:59:00",
+    "name": "[롯데온] 아임닭 독일식 프랑크 닭가슴살 오리지널 소시지120g 15팩 (24,090원/무료)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-07-12T07:58:40",
+    "originalPrice": 24090,
+    "salePrice": 1606,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=719539",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -40,44 +39,14 @@
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-06",
-        "lprice": 955000
-      },
-      {
-        "date": "2026-07-07",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-07-08",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-07-09",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-07-10",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-07-11",
-        "lprice": 379890
-      },
-      {
-        "date": "2026-07-12",
-        "lprice": 379890
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 3,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-12T01:29:50",
+    "addedAt": "2026-07-12T07:57:44",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -105,13 +74,13 @@
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-12T01:29:28",
+    "addedAt": "2026-07-12T07:57:23",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-16T23:59:00",
     "tags": [
       "핫딜",
@@ -140,7 +109,7 @@
     "store": "G마켓",
     "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
     "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-16T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -245,7 +214,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-16T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -565,7 +534,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13612736055",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-16T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜"
     ],
