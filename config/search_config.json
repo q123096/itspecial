@@ -186,6 +186,15 @@
       "_added": "2026-07-05"
     },
     {
+      "keyword": "갤럭시 Z8",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-12"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
@@ -415,6 +424,15 @@
       "_auto": true,
       "_source": "naver_news",
       "_added": "2026-06-21"
+    },
+    {
+      "keyword": "갤럭시 워치 울트라2",
+      "category": "wearable",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-12"
     },
     {
       "keyword": "RTX 5070 완본체",
