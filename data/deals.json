@@ -4,13 +4,13 @@
     "name": "[컴퓨존] 7800x3d + RX 9070 XT 완본체 (2,243,000원/7,500원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-11T12:53:39",
+    "addedAt": "2026-07-12T01:30:48",
     "originalPrice": 2243000,
     "salePrice": 7500,
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=718382",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-14T23:59:00",
+    "expiresAt": "2026-07-15T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,39 +22,17 @@
   },
   {
     "id": 2,
-    "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-11T12:52:30",
-    "originalPrice": 359000,
-    "salePrice": 143900,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/9541960619",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-15T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "Apple 아이패드 에어 4세대 WiFi 태블릿 64GB",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5846536/58465363719.6.jpg",
-    "addedAt": "2026-07-11T12:52:52",
+    "addedAt": "2026-07-12T01:30:01",
     "originalPrice": 899000,
     "salePrice": 379890,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9010136250&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9010136250?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-07-15T23:59:00",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-16T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -64,10 +42,6 @@
     "inStock": true,
     "freeShipping": false,
     "priceHistory": [
-      {
-        "date": "2026-07-05",
-        "lprice": 785990
-      },
       {
         "date": "2026-07-06",
         "lprice": 955000
@@ -91,22 +65,26 @@
       {
         "date": "2026-07-11",
         "lprice": 379890
+      },
+      {
+        "date": "2026-07-12",
+        "lprice": 379890
       }
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "Apple 2020 맥북 에어 M1 256GB 13 8GB 실버",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8944536/89445369922.1.jpg",
-    "addedAt": "2026-07-11T12:52:42",
+    "addedAt": "2026-07-12T01:29:50",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11900859314",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-15T23:59:00",
+    "expiresAt": "2026-07-16T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -117,24 +95,24 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "lprice": 51000
       }
     ]
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-11T12:52:21",
+    "addedAt": "2026-07-12T01:29:28",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-07-15T23:59:00",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-16T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -145,10 +123,32 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "lprice": 152820
       }
     ]
+  },
+  {
+    "id": 5,
+    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
+    "addedAt": "2026-07-12T01:29:38",
+    "originalPrice": 359000,
+    "salePrice": 219440,
+    "priceType": "msrp",
+    "store": "G마켓",
+    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-16T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
   },
   {
     "id": 6,
@@ -162,7 +162,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-18T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -183,7 +183,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-18T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -235,17 +235,17 @@
   },
   {
     "id": 9,
-    "name": "Apple 에어팟 프로 3세대",
+    "name": "Apple 에어팟 프로 3세대 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-07-06T02:03:19",
+    "addedAt": "2026-07-12T01:29:38",
     "originalPrice": 359000,
     "salePrice": 257990,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-10T23:59:00",
+    "expiresAt": "2026-07-16T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -256,47 +256,6 @@
   },
   {
     "id": 10,
-    "name": "당일출고 에어팟 프로 3세대  지원 MFHP4KH/A",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_6037394/60373940448.jpg",
-    "addedAt": "2026-07-06T02:03:19",
-    "originalPrice": 359000,
-    "salePrice": 258890,
-    "priceType": "msrp",
-    "store": "롯데ON",
-    "productUrl": "https://www.lotteon.com/p/product/LO2697353002?sitmNo=LO2697353002_2697353003&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=lotteon&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-10T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 11,
-    "name": "[스팀] 와치독스2 [3250원/무료], EA스포츠 FC26 [4400원/무료]",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-01T14:06:16",
-    "originalPrice": 4400,
-    "salePrice": 3250,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=716955",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-10T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 12,
     "name": "[반디캠] 반디컷(-30%) 43,890원 / 반디캠(-28%) 59,400원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -316,7 +275,7 @@
     "freeShipping": false
   },
   {
-    "id": 13,
+    "id": 11,
     "name": "맥세이프 고속충전기 무선충전기 보조배터리 아이폰 애플워치 스마트폰 충전거치대 지갑형폴더블 3in1 무선충전기",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_9120203/91202032875.jpg",
@@ -360,7 +319,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 12,
     "name": "MINISFORUM UM773 LITE 베어본본체 미니PC",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_5734138/57341383495.1.jpg",
@@ -412,7 +371,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 13,
     "name": "삼성 갤럭시 A17 5G 케이스 유니콘 비틀 프로 군용 등급 낙하 방지 내장",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6080900/60809007082.jpg",
@@ -463,7 +422,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 14,
     "name": "삼성 갤럭시 z플립7 256GB 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
@@ -490,7 +449,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 15,
     "name": "Apple 아이폰 12 미니 64GB (공기계) + 확실한 품질검수 및 전용패키지 [대단한형제들]  퍼플 사",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6075145/60751452490.jpg",
@@ -541,7 +500,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 16,
     "name": "삼성 갤럭시 Z플립7 256GB 자급제 SM- F766N",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5947289/59472890791.jpg",
@@ -568,7 +527,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 17,
     "name": "삼성전자 갤럭시 Z 플립7 FE 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572747/55727479739.20250715142144.jpg",
@@ -595,7 +554,58 @@
     ]
   },
   {
-    "id": 20,
+    "id": 18,
+    "name": "Beelink 미니 PC S12 128 16GB N100 SSD 500GB 8 128",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_9115724/91157246467.jpg",
+    "addedAt": "2026-07-12T01:30:31",
+    "originalPrice": 418838,
+    "salePrice": 346300,
+    "priceType": "avg7d",
+    "store": "네이버쇼핑",
+    "productUrl": "https://smartstore.naver.com/main/products/13612736055",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-16T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-06",
+        "lprice": 449900
+      },
+      {
+        "date": "2026-07-07",
+        "lprice": 449900
+      },
+      {
+        "date": "2026-07-08",
+        "lprice": 316000
+      },
+      {
+        "date": "2026-07-09",
+        "lprice": 449900
+      },
+      {
+        "date": "2026-07-10",
+        "lprice": 449900
+      },
+      {
+        "date": "2026-07-11",
+        "lprice": 449900
+      },
+      {
+        "date": "2026-07-12",
+        "lprice": 346300
+      }
+    ]
+  },
+  {
+    "id": 19,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -646,7 +656,7 @@
     ]
   },
   {
-    "id": 21,
+    "id": 20,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S7 FE WiFi전용, 128GB, 미스틱 블랙",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359713/53597137209.20250317120740.jpg",
@@ -698,59 +708,7 @@
     ]
   },
   {
-    "id": 22,
-    "name": "ASUS 아수스 젠북 듀오 UX481 i5-10세대 16GB 512GB 노트북",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5720077/57200778655.jpg",
-    "addedAt": "2026-07-03T01:51:04",
-    "originalPrice": 1216750,
-    "salePrice": 1030000,
-    "priceType": "avg7d",
-    "store": "롯데ON",
-    "productUrl": "https://www.lotteon.com/p/product/LO2561193694?sitmNo=LO2561193694_2561193695&ch_no=100065&ch_dtl_no=1000030&entryPoint=pcs&dp_infw_cd=CHT",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=lotteon&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-10T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-27",
-        "lprice": 1199000
-      },
-      {
-        "date": "2026-06-28",
-        "lprice": 1295000
-      },
-      {
-        "date": "2026-06-29",
-        "lprice": 1295000
-      },
-      {
-        "date": "2026-06-30",
-        "lprice": 1295000
-      },
-      {
-        "date": "2026-07-01",
-        "lprice": 1295000
-      },
-      {
-        "date": "2026-07-02",
-        "lprice": 1295000
-      },
-      {
-        "date": "2026-07-03",
-        "lprice": 1030000
-      }
-    ]
-  },
-  {
-    "id": 23,
+    "id": 21,
     "name": "Belink ME mini NAS 미니PC 가정용 스토리지 인텔 N200 저소음",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8931512/89315120534.jpg",
@@ -801,7 +759,7 @@
     ]
   },
   {
-    "id": 24,
+    "id": 22,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
@@ -812,7 +770,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/11843706255",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-18T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜"
     ],
