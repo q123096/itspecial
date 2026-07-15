@@ -4,7 +4,7 @@
     "name": "[네이버] 스위치 쿠샨 -늑대들의 도시(37000/2500)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-15T07:49:59",
+    "addedAt": "2026-07-15T13:08:46",
     "originalPrice": 37000,
     "salePrice": 2500,
     "store": "네이버",
@@ -25,7 +25,7 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-15T07:49:07",
+    "addedAt": "2026-07-15T13:07:56",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -53,7 +53,7 @@
     "name": "SIEK 플레이스테이션 PS5 포탈 리모트 플레이어 휴대용 게임기",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_5321083/53210833765.20250502143914.jpg",
-    "addedAt": "2026-07-15T07:49:26",
+    "addedAt": "2026-07-15T13:08:15",
     "originalPrice": 624000,
     "salePrice": 348000,
     "priceType": "msrp",
@@ -493,6 +493,57 @@
   },
   {
     "id": 16,
+    "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
+    "addedAt": "2026-07-15T13:08:06",
+    "originalPrice": 1299000,
+    "salePrice": 1090000,
+    "priceType": "msrp",
+    "store": "네이버쇼핑",
+    "productUrl": "https://smartstore.naver.com/main/products/2305562910",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-19T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-08",
+        "lprice": 956050
+      },
+      {
+        "date": "2026-07-09",
+        "lprice": 956050
+      },
+      {
+        "date": "2026-07-10",
+        "lprice": 956050
+      },
+      {
+        "date": "2026-07-11",
+        "lprice": 956050
+      },
+      {
+        "date": "2026-07-12",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-13",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-14",
+        "lprice": 1388000
+      }
+    ]
+  },
+  {
+    "id": 17,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S7 FE WiFi전용, 128GB, 미스틱 블랙",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359713/53597137209.20250317120740.jpg",
@@ -544,7 +595,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "Belink ME mini NAS 미니PC 가정용 스토리지 인텔 N200 저소음",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8931512/89315120534.jpg",
@@ -595,7 +646,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 19,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
