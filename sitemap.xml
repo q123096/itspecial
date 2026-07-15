@@ -140,18 +140,24 @@
   </url>
   <url>
     <loc>https://itspecial.co.kr/deals/16.html</loc>
-    <lastmod>2026-07-04</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://itspecial.co.kr/deals/17.html</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://itspecial.co.kr/deals/18.html</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://itspecial.co.kr/deals/19.html</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
