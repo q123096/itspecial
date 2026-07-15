@@ -4,14 +4,14 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-14T13:04:38",
+    "addedAt": "2026-07-15T01:17:06",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/52820784037",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-18T23:59:00",
+    "expiresAt": "2026-07-19T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,63 +22,13 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-14",
+        "date": "2026-07-15",
         "lprice": 51000
       }
     ]
   },
   {
     "id": 2,
-    "name": "SIEK 플레이스테이션 PS5 포탈 리모트 플레이어 휴대용 게임기",
-    "category": "gaming",
-    "image": "https://shopping-phinf.pstatic.net/main_5321083/53210833765.20250502143914.jpg",
-    "addedAt": "2026-07-14T13:05:00",
-    "originalPrice": 624000,
-    "salePrice": 348000,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53210833765",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-18T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
-    "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-14T13:04:16",
-    "originalPrice": 1299000,
-    "salePrice": 731500,
-    "priceType": "msrp",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
-    "expiresAt": "2026-07-18T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-14",
-        "lprice": 285000
-      }
-    ]
-  },
-  {
-    "id": 4,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
@@ -100,7 +50,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 3,
     "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -122,7 +72,7 @@
     "freeShipping": false
   },
   {
-    "id": 6,
+    "id": 4,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -132,7 +82,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-21T23:59:00",
+    "expiresAt": "2026-07-22T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -156,7 +106,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 5,
     "name": "애플 맥북프로 M2 13인치 8코어 10코어 8GB 512GB 새상품 MNEQ3KH/A",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9073426/90734268198.jpg",
@@ -183,7 +133,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 6,
     "name": "Apple 에어팟 프로 3세대 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -204,7 +154,7 @@
     "freeShipping": false
   },
   {
-    "id": 9,
+    "id": 7,
     "name": "[반디캠] 반디컷(-30%) 43,890원 / 반디캠(-28%) 59,400원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -224,7 +174,7 @@
     "freeShipping": false
   },
   {
-    "id": 10,
+    "id": 8,
     "name": "맥세이프 고속충전기 무선충전기 보조배터리 아이폰 애플워치 스마트폰 충전거치대 지갑형폴더블 3in1 무선충전기",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_9120203/91202032875.jpg",
@@ -268,7 +218,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 9,
     "name": "삼성 갤럭시 A17 5G 케이스 유니콘 비틀 프로 군용 등급 낙하 방지 내장",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6080900/60809007082.jpg",
@@ -319,34 +269,7 @@
     ]
   },
   {
-    "id": 12,
-    "name": "삼성 갤럭시 z플립7 256GB 자급제",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_9091006/90910067544.1.jpg",
-    "addedAt": "2026-07-04T01:50:45",
-    "originalPrice": 1299000,
-    "salePrice": 1029000,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/13365557212",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-13T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-04",
-        "lprice": 285000
-      }
-    ]
-  },
-  {
-    "id": 13,
+    "id": 10,
     "name": "Apple 아이패드 에어 11 M3 Wi-Fi + Cellular 128GB - 스타라이트 MCFX4KH/A",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5761225/57612258574.jpg",
@@ -397,7 +320,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 11,
     "name": "삼성 갤럭시 Z플립7 256GB 자급제 SM- F766N",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5947289/59472890791.jpg",
@@ -424,7 +347,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 12,
     "name": "Beelink 미니 PC S12 128 16GB N100 SSD 500GB 8 128",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9115724/91157246467.jpg",
@@ -475,7 +398,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 13,
     "name": "마이크로소프트 스텐다드 디지털 콘솔 Xbox Series S 512GB",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_6026898/60268988796.2.jpg",
@@ -526,58 +449,7 @@
     ]
   },
   {
-    "id": 17,
-    "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
-    "addedAt": "2026-07-04T01:51:21",
-    "originalPrice": 1299000,
-    "salePrice": 1090000,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/2305562910",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-13T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-06-28",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-06-29",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-06-30",
-        "lprice": 956050
-      },
-      {
-        "date": "2026-07-01",
-        "lprice": 956050
-      },
-      {
-        "date": "2026-07-02",
-        "lprice": 956050
-      },
-      {
-        "date": "2026-07-03",
-        "lprice": 956050
-      },
-      {
-        "date": "2026-07-04",
-        "lprice": 1090000
-      }
-    ]
-  },
-  {
-    "id": 18,
+    "id": 14,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S7 FE WiFi전용, 128GB, 미스틱 블랙",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359713/53597137209.20250317120740.jpg",
@@ -629,7 +501,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 15,
     "name": "Belink ME mini NAS 미니PC 가정용 스토리지 인텔 N200 저소음",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8931512/89315120534.jpg",
@@ -680,7 +552,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 16,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
