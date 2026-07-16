@@ -4,7 +4,7 @@
     "name": "[네이버] PS5 겟피x 한정판(85800/2500)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-16T01:28:23",
+    "addedAt": "2026-07-16T07:54:42",
     "originalPrice": 85800,
     "salePrice": 2500,
     "store": "네이버",
@@ -25,7 +25,7 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-16T01:27:09",
+    "addedAt": "2026-07-16T07:53:52",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -50,6 +50,28 @@
   },
   {
     "id": 3,
+    "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
+    "addedAt": "2026-07-16T07:53:33",
+    "originalPrice": 1299000,
+    "salePrice": 731500,
+    "priceType": "msrp",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-20T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 4,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
@@ -71,7 +93,7 @@
     "freeShipping": false
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
@@ -93,7 +115,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -127,7 +149,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "애플 맥북프로 M2 13인치 8코어 10코어 8GB 512GB 새상품 MNEQ3KH/A",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9073426/90734268198.jpg",
@@ -154,7 +176,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Apple 에어팟 프로 3세대 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
@@ -175,7 +197,7 @@
     "freeShipping": false
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "[반디캠] 반디컷(-30%) 43,890원 / 반디캠(-28%) 59,400원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -195,7 +217,7 @@
     "freeShipping": false
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "삼성 갤럭시 A17 5G 케이스 유니콘 비틀 프로 군용 등급 낙하 방지 내장",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6080900/60809007082.jpg",
@@ -246,7 +268,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Apple 아이패드 에어 11 M3 Wi-Fi + Cellular 128GB - 스타라이트 MCFX4KH/A",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5761225/57612258574.jpg",
@@ -297,7 +319,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "삼성 갤럭시 Z플립7 256GB 자급제 SM- F766N",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5947289/59472890791.jpg",
@@ -324,7 +346,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "Beelink 미니 PC S12 128 16GB N100 SSD 500GB 8 128",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_9115724/91157246467.jpg",
@@ -375,7 +397,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "마이크로소프트 스텐다드 디지털 콘솔 Xbox Series S 512GB",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_6026898/60268988796.2.jpg",
@@ -426,7 +448,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -477,7 +499,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "Belink ME mini NAS 미니PC 가정용 스토리지 인텔 N200 저소음",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8931512/89315120534.jpg",
@@ -528,7 +550,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "Apple 2024 맥북 에어 M3 13 스페이스 그레이 8GB 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_8938821/89388216849.3.jpg",
