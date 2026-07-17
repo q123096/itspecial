@@ -4,7 +4,7 @@
     "name": "[미사용 새제품] 에어팟 프로 2세대 본체 C타입 USB-C 한쪽 소분판매",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_8708646/87086462889.1.jpg",
-    "addedAt": "2026-07-17T07:50:58",
+    "addedAt": "2026-07-17T13:01:06",
     "originalPrice": 359000,
     "salePrice": 147900,
     "priceType": "msrp",
@@ -32,7 +32,7 @@
     "name": "[닌텐도e샵]유니콘 오버로드 50% 할인 34,900원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-17T07:51:59",
+    "addedAt": "2026-07-17T13:02:40",
     "originalPrice": 69800,
     "salePrice": 34900,
     "store": "닌텐도e샵",
@@ -53,7 +53,7 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-17T07:51:09",
+    "addedAt": "2026-07-17T13:01:22",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -81,13 +81,13 @@
     "name": "삼성전자 갤럭시 Z 플립7 512GB SM-F766B 자급제 알뜰폰 공기계",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_6038990/60389900437.jpg",
-    "addedAt": "2026-07-17T07:50:50",
+    "addedAt": "2026-07-17T13:00:55",
     "originalPrice": 1299000,
     "salePrice": 731500,
     "priceType": "msrp",
     "store": "11번가",
     "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9418233227&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9418233227?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "affiliateUrl": "",
     "expiresAt": "2026-07-21T23:59:00",
     "tags": [
       "핫딜",
@@ -205,6 +205,27 @@
   },
   {
     "id": 9,
+    "name": "Apple 에어팟 프로 3세대 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
+    "addedAt": "2026-07-12T01:29:38",
+    "originalPrice": 359000,
+    "salePrice": 247990,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-20T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 10,
     "name": "아이폰 16 15 14 프로 맥스 타입-C 애플 태블릿 PC 삼성 안드로이드 카메라용 USB C &amp; ",
     "category": "accessory",
     "image": "https://shopping-phinf.pstatic.net/main_6087908/60879087661.jpg",
@@ -253,27 +274,6 @@
         "lprice": 66800
       }
     ]
-  },
-  {
-    "id": 10,
-    "name": "Apple 에어팟 프로 3세대 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-07-12T01:29:38",
-    "originalPrice": 359000,
-    "salePrice": 257990,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-20T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
   },
   {
     "id": 11,
