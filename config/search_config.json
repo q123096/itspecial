@@ -195,6 +195,15 @@
       "_added": "2026-07-12"
     },
     {
+      "keyword": "삼성 모바일 반등 계기 주목",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-19"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
