@@ -4,7 +4,7 @@
     "name": "[SSG] SAPPHIRE 라데온 RX 9060 XT NITRO+ OC D6 16GB (589,000원/5,",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-23T01:47:26",
+    "addedAt": "2026-07-23T08:11:00",
     "originalPrice": 589000,
     "salePrice": 5000,
     "store": "SSG",
@@ -25,7 +25,7 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-23T01:46:13",
+    "addedAt": "2026-07-23T08:10:08",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -71,17 +71,17 @@
   },
   {
     "id": 4,
-    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
-    "addedAt": "2026-07-21T01:27:23",
-    "originalPrice": 359000,
-    "salePrice": 219440,
+    "name": "삼성전자 갤럭시 Z 플립7 256GB SM-F766B 자급제",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5932393/59323939092.3.jpg",
+    "addedAt": "2026-07-20T13:45:48",
+    "originalPrice": 1299000,
+    "salePrice": 794310,
     "priceType": "msrp",
-    "store": "G마켓",
-    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-07-28T23:59:00",
+    "store": "11번가",
+    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9202329143&tid=1000000061",
+    "affiliateUrl": "https://www.11st.co.kr/products/9202329143?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "expiresAt": "2026-07-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -93,16 +93,16 @@
   },
   {
     "id": 5,
-    "name": "삼성전자 갤럭시 Z 플립7 256GB SM-F766B 자급제",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5932393/59323939092.3.jpg",
-    "addedAt": "2026-07-20T13:45:48",
-    "originalPrice": 1299000,
-    "salePrice": 794310,
+    "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
+    "addedAt": "2026-07-21T01:27:23",
+    "originalPrice": 359000,
+    "salePrice": 219680,
     "priceType": "msrp",
-    "store": "11번가",
-    "productUrl": "https://www.11st.co.kr/connect/Gateway.tmall?method=Xsite&prdNo=9202329143&tid=1000000061",
-    "affiliateUrl": "https://www.11st.co.kr/products/9202329143?trTypeCd=PW&trCtgrNo=585021&appKey=a7d1af92eee5721d2c6036bda35d4aea",
+    "store": "G마켓",
+    "productUrl": "https://link.gmarket.co.kr/gate/pcs?item-no=4638589616&sub-id=1003&service-code=10000003&lcd=100000102",
+    "affiliateUrl": "https://click.linkprice.com/click.php?m=gmarket&a=A100704947&l=https%3A%2F%2Flink.gmarket.co.kr%2Fgate%2Fpcs%3Fitem-no%3D4638589616%26sub-id%3D1003%26service-code%3D10000003%26lcd%3D100000102&l_cd1=B&l_cd2=1",
     "expiresAt": "2026-07-30T23:59:00",
     "tags": [
       "핫딜",
@@ -170,27 +170,6 @@
   },
   {
     "id": 8,
-    "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-07-22T01:26:05",
-    "originalPrice": 359000,
-    "salePrice": 241780,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
-    "affiliateUrl": "",
-    "expiresAt": "2026-07-30T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 9,
     "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450228.20250715142328.jpg",
@@ -211,7 +190,7 @@
     "freeShipping": false
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "삼성전자 갤럭시탭 갤럭시 탭 S6 Lite WiFi전용, 64GB, 옥스포드 그레이",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_5359793/53597931846.20250317140929.jpg",
@@ -222,7 +201,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53597931846",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-27T23:59:00",
+    "expiresAt": "2026-07-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -261,6 +240,27 @@
         "lprice": 365000
       }
     ]
+  },
+  {
+    "id": 10,
+    "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
+    "addedAt": "2026-07-22T01:26:05",
+    "originalPrice": 359000,
+    "salePrice": 260000,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
+    "affiliateUrl": "",
+    "expiresAt": "2026-07-30T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
   },
   {
     "id": 11,
