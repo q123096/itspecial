@@ -1,15 +1,14 @@
 [
   {
     "id": 1,
-    "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-25T12:58:52",
-    "originalPrice": 1590000,
-    "salePrice": 835000,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/52820784037",
+    "name": "[G9인샵] 강철부대 밀리터리 미니 쿨러백 (15,000원/무배)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-07-26T01:45:29",
+    "originalPrice": 15000,
+    "salePrice": 5000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=722692",
     "affiliateUrl": "",
     "expiresAt": "2026-07-29T23:59:00",
     "tags": [
@@ -23,16 +22,17 @@
   },
   {
     "id": 2,
-    "name": "[11번가] 한성 몬스터크랩 72g 20개 (15,800원 / 무료)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-07-21T01:28:38",
-    "originalPrice": 15800,
-    "salePrice": 9600,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=721494",
+    "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
+    "addedAt": "2026-07-26T01:44:26",
+    "originalPrice": 1590000,
+    "salePrice": 835000,
+    "priceType": "msrp",
+    "store": "네이버",
+    "productUrl": "https://search.shopping.naver.com/catalog/52820784037",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-24T23:59:00",
+    "expiresAt": "2026-07-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -118,7 +118,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-01T23:59:00",
+    "expiresAt": "2026-08-02T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -143,15 +143,15 @@
   },
   {
     "id": 7,
-    "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450228.20250715142328.jpg",
-    "addedAt": "2026-07-21T08:06:06",
-    "originalPrice": 2099000,
-    "salePrice": 1430840,
+    "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
+    "category": "audio",
+    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
+    "addedAt": "2026-07-22T01:26:05",
+    "originalPrice": 359000,
+    "salePrice": 244140,
     "priceType": "msrp",
     "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/55727450228",
+    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
     "affiliateUrl": "",
     "expiresAt": "2026-07-31T23:59:00",
     "tags": [
@@ -164,15 +164,15 @@
   },
   {
     "id": 8,
-    "name": "Apple 에어팟 프로 2세대 (USB-C) 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5352763/53527631617.20250508153426.jpg",
-    "addedAt": "2026-07-22T01:26:05",
-    "originalPrice": 359000,
-    "salePrice": 246290,
+    "name": "삼성전자 갤럭시 Z 폴드7 5G 256GB [자급제]",
+    "category": "smartphone",
+    "image": "https://shopping-phinf.pstatic.net/main_5572745/55727450228.20250715142328.jpg",
+    "addedAt": "2026-07-21T08:06:06",
+    "originalPrice": 2099000,
+    "salePrice": 1430840,
     "priceType": "msrp",
     "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53527631617",
+    "productUrl": "https://search.shopping.naver.com/catalog/55727450228",
     "affiliateUrl": "",
     "expiresAt": "2026-07-31T23:59:00",
     "tags": [
@@ -242,12 +242,12 @@
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
     "addedAt": "2026-07-24T13:15:46",
     "originalPrice": 359000,
-    "salePrice": 265990,
+    "salePrice": 256660,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-01T23:59:00",
+    "expiresAt": "2026-08-02T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -309,19 +309,20 @@
   },
   {
     "id": 12,
-    "name": "레노버 2022 요가 7i 16IAH7 16 코어i7 인텔 12세대 아크 A370M",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5976750/59767500616.jpg",
-    "addedAt": "2026-07-17T01:30:16",
-    "originalPrice": 1755455,
-    "salePrice": 1359640,
+    "name": "SEi12 미니PC 사무용 주식 고성능 컴퓨터 베어본 PC 인텔 i5-12450H",
+    "category": "desktop",
+    "image": "https://shopping-phinf.pstatic.net/main_8755587/87555877077.jpg",
+    "addedAt": "2026-07-26T01:45:11",
+    "originalPrice": 447162,
+    "salePrice": 358000,
     "priceType": "avg7d",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=9375521644&ctag=9375521644&lptag=l926221326261&itemId=16239122662&vendorItemId=89010112797&spec=10305197",
+    "store": "네이버쇼핑",
+    "productUrl": "https://smartstore.naver.com/main/products/10011374712",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-24T23:59:00",
+    "expiresAt": "2026-07-30T23:59:00",
     "tags": [
-      "핫딜"
+      "핫딜",
+      "역대최저"
     ],
     "rating": 4.0,
     "reviewCount": 0,
@@ -329,32 +330,32 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-11",
-        "lprice": 1999000
+        "date": "2026-07-20",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-12",
-        "lprice": 1999000
+        "date": "2026-07-21",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-13",
-        "lprice": 1999000
+        "date": "2026-07-22",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-14",
-        "lprice": 1999000
+        "date": "2026-07-23",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-15",
-        "lprice": 690000
+        "date": "2026-07-24",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-16",
-        "lprice": 1999000
+        "date": "2026-07-25",
+        "lprice": 459900
       },
       {
-        "date": "2026-07-17",
-        "lprice": 1359640
+        "date": "2026-07-26",
+        "lprice": 358000
       }
     ]
   },
@@ -381,17 +382,17 @@
   },
   {
     "id": 14,
-    "name": "비링크 ME mini 6 NAS 미니PC 인텔 N200 베어본PC 12G+64G+0G",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8930903/89309030002.jpg",
-    "addedAt": "2026-07-17T01:31:04",
-    "originalPrice": 426812,
-    "salePrice": 348800,
-    "priceType": "avg7d",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/11764519415",
+    "name": "Apple 아이패드 프로 11 3세대 M1칩  스페이스 그레이  256GB  Wi-Fi",
+    "category": "tablet",
+    "image": "https://shopping-phinf.pstatic.net/main_6089925/60899254348.jpg",
+    "addedAt": "2026-07-26T01:44:37",
+    "originalPrice": 1299000,
+    "salePrice": 1058000,
+    "priceType": "msrp",
+    "store": "쿠팡",
+    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=5392850137&ctag=5392850137&lptag=I8047070336&itemId=8047070336&vendorItemId=95769257049&spec=10305199",
     "affiliateUrl": "",
-    "expiresAt": "2026-07-24T23:59:00",
+    "expiresAt": "2026-07-30T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -402,32 +403,32 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-11",
-        "lprice": 449900
-      },
-      {
-        "date": "2026-07-12",
-        "lprice": 346300
-      },
-      {
-        "date": "2026-07-13",
-        "lprice": 449900
-      },
-      {
-        "date": "2026-07-14",
-        "lprice": 449900
-      },
-      {
-        "date": "2026-07-15",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-16",
-        "lprice": 459900
-      },
-      {
         "date": "2026-07-17",
-        "lprice": 348800
+        "lprice": 30000
+      },
+      {
+        "date": "2026-07-18",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-19",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-20",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-21",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-22",
+        "lprice": 1090000
+      },
+      {
+        "date": "2026-07-23",
+        "lprice": 30000
       }
     ]
   },
