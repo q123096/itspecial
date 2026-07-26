@@ -204,6 +204,15 @@
       "_added": "2026-07-19"
     },
     {
+      "keyword": "삼성 폴더블 3종",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-07-26"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
