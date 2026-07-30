@@ -4,7 +4,7 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-30T01:19:33",
+    "addedAt": "2026-07-30T08:05:46",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
@@ -26,16 +26,17 @@
     "name": "애플 맥북프로 M2 13인치 8코어 10코어 8GB 512GB 새상품 MNEQ3KH/A",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_9073426/90734268198.jpg",
-    "addedAt": "2026-07-27T01:51:33",
+    "addedAt": "2026-07-30T08:05:47",
     "originalPrice": 2490000,
     "salePrice": 1390000,
     "priceType": "msrp",
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/13189757101",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-06T23:59:00",
+    "expiresAt": "2026-08-03T23:59:00",
     "tags": [
-      "핫딜"
+      "핫딜",
+      "역대최저"
     ],
     "rating": 4.0,
     "reviewCount": 0,
@@ -43,8 +44,8 @@
     "freeShipping": false,
     "priceHistory": [
       {
-        "date": "2026-07-27",
-        "lprice": 79000
+        "date": "2026-07-30",
+        "lprice": 690000
       }
     ]
   },
@@ -81,9 +82,9 @@
     "name": "SIEK 플레이스테이션 PS5 포탈 리모트 플레이어 휴대용 게임기",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_5321083/53210833765.20250502143914.jpg",
-    "addedAt": "2026-07-30T01:19:55",
+    "addedAt": "2026-07-30T08:06:04",
     "originalPrice": 624000,
-    "salePrice": 368000,
+    "salePrice": 366660,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53210833765",
