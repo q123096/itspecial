@@ -4,14 +4,14 @@
     "name": "Apple 맥북 에어 2020년형 M1 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5282078/52820784037.20250205160125.jpg",
-    "addedAt": "2026-07-29T13:43:42",
+    "addedAt": "2026-07-30T01:19:33",
     "originalPrice": 1590000,
     "salePrice": 835000,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/52820784037",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-02T23:59:00",
+    "expiresAt": "2026-08-03T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -23,6 +23,33 @@
   },
   {
     "id": 2,
+    "name": "애플 맥북프로 M2 13인치 8코어 10코어 8GB 512GB 새상품 MNEQ3KH/A",
+    "category": "laptop",
+    "image": "https://shopping-phinf.pstatic.net/main_9073426/90734268198.jpg",
+    "addedAt": "2026-07-27T01:51:33",
+    "originalPrice": 2490000,
+    "salePrice": 1390000,
+    "priceType": "msrp",
+    "store": "네이버쇼핑",
+    "productUrl": "https://smartstore.naver.com/main/products/13189757101",
+    "affiliateUrl": "",
+    "expiresAt": "2026-08-06T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false,
+    "priceHistory": [
+      {
+        "date": "2026-07-27",
+        "lprice": 79000
+      }
+    ]
+  },
+  {
+    "id": 3,
     "name": "애플 2022 맥북프로 13인치 M2  A2338  MAC OS  256GB  8GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5872998/58729983760.jpg",
@@ -50,18 +77,18 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "SIEK 플레이스테이션 PS5 포탈 리모트 플레이어 휴대용 게임기",
     "category": "gaming",
     "image": "https://shopping-phinf.pstatic.net/main_5321083/53210833765.20250502143914.jpg",
-    "addedAt": "2026-07-29T13:44:03",
+    "addedAt": "2026-07-30T01:19:55",
     "originalPrice": 624000,
-    "salePrice": 366660,
+    "salePrice": 368000,
     "priceType": "msrp",
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53210833765",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-02T23:59:00",
+    "expiresAt": "2026-08-03T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -72,7 +99,7 @@
     "freeShipping": false
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "삼성전자 갤럭시 Z 플립7 256GB SM-F766B 자급제",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5932393/59323939092.3.jpg",
@@ -94,7 +121,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Apple 에어팟 프로 1세대 블루투스 이어폰 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5839742/58397422489.jpg",
@@ -116,7 +143,7 @@
     "freeShipping": false
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "삼성전자 갤럭시 Z 폴드6 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359793/53597934657.20250317143418.jpg",
@@ -143,7 +170,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -153,7 +180,7 @@
     "store": "네이버",
     "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-05T23:59:00",
+    "expiresAt": "2026-08-06T23:59:00",
     "tags": [
       "핫딜"
     ],
@@ -173,33 +200,6 @@
       {
         "date": "2026-05-27",
         "lprice": 1098000
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "애플 맥북프로 M2 13인치 8코어 10코어 8GB 512GB 새상품 MNEQ3KH/A",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_9073426/90734268198.jpg",
-    "addedAt": "2026-07-27T01:51:33",
-    "originalPrice": 2490000,
-    "salePrice": 1690000,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/13189757101",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-03T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-27",
-        "lprice": 79000
       }
     ]
   },
@@ -676,7 +676,7 @@
     "store": "네이버쇼핑",
     "productUrl": "https://smartstore.naver.com/main/products/2305562910",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
+    "expiresAt": "2026-08-06T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
