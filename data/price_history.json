@@ -823,14 +823,9 @@
     "avg_hprice_7d": 0
   },
   "갤럭시 Z 폴드 자급제": {
-    "history": [
-      {
-        "date": "2026-07-31",
-        "lprice": 401940
-      }
-    ],
-    "avg_7d": 401940,
-    "days": 1,
+    "history": [],
+    "avg_7d": 0,
+    "days": 0,
     "avg_hprice_7d": 0
   },
   "갤럭시 Z 플립 자급제": {
@@ -1134,14 +1129,9 @@
     "avg_hprice_7d": 0
   },
   "맥북 프로": {
-    "history": [
-      {
-        "date": "2026-07-31",
-        "lprice": 690000
-      }
-    ],
-    "avg_7d": 690000,
-    "days": 1,
+    "history": [],
+    "avg_7d": 0,
+    "days": 0,
     "avg_hprice_7d": 0
   },
   "LG 그램": {
