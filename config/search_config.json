@@ -320,6 +320,15 @@
       "min_price": 500000
     },
     {
+      "keyword": "삼성 갤탭 S12",
+      "category": "tablet",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-08-02"
+    },
+    {
       "_group": "=== 모니터 ==="
     },
     {
