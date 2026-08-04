@@ -202,7 +202,7 @@
     "store": "Xbox/PC",
     "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106119",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-06T23:59:00",
+    "expiresAt": "2026-08-11T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -214,58 +214,6 @@
   },
   {
     "id": 7,
-    "name": "삼성전자 갤럭시 Z 폴드8 Wide 클리어 케이스 투명",
-    "category": "accessory",
-    "image": "https://shopping-phinf.pstatic.net/main_6104676/61046761085.jpg",
-    "addedAt": "2026-07-29T01:25:58",
-    "originalPrice": 49209,
-    "salePrice": 35200,
-    "priceType": "avg7d",
-    "store": "하이마트쇼핑몰",
-    "productUrl": "https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0067880204&fromShop=naver_db99&utm_source=naver&utm_medium=PRICE&utm_campaign=naver_db99",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=himart&a=A100704947&l=https%3A%2F%2Fwww.e-himart.co.kr%2Fapp%2Fgoods%2FgoodsDetail%3FgoodsNo%3D0067880204%26fromShop%3Dnaver_db99%26utm_source%3Dnaver%26utm_medium%3DPRICE%26utm_campaign%3Dnaver_db99&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-08-02T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-23",
-        "lprice": 37200
-      },
-      {
-        "date": "2026-07-24",
-        "lprice": 35900
-      },
-      {
-        "date": "2026-07-25",
-        "lprice": 39600
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 48500
-      },
-      {
-        "date": "2026-07-27",
-        "lprice": 60400
-      },
-      {
-        "date": "2026-07-28",
-        "lprice": 78770
-      },
-      {
-        "date": "2026-07-29",
-        "lprice": 35200
-      }
-    ]
-  },
-  {
-    "id": 8,
     "name": "SEi12 미니PC 사무용 주식 고성능 컴퓨터 베어본 PC 인텔 i5-12450H",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8755587/87555877077.jpg",
@@ -317,7 +265,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Apple 아이패드 프로 11 3세대 M1칩  스페이스 그레이  256GB  Wi-Fi",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_6089925/60899254348.jpg",
@@ -369,7 +317,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "삼성전자 갤럭시Z 플립5 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359807/53598074168.20250317144255.jpg",
@@ -408,7 +356,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "삼성전자 오디세이 게이밍 모니터 G4 S25BG400 FHD 240Hz 62~64cm(25인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5281756/52817560577.20250214142427.jpg",
@@ -460,7 +408,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -512,7 +460,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "Apple 에어팟 프로 3세대 화이트",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
