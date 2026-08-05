@@ -202,7 +202,7 @@
     "store": "Xbox/PC",
     "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106119",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-11T23:59:00",
+    "expiresAt": "2026-08-12T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -266,58 +266,6 @@
   },
   {
     "id": 8,
-    "name": "Apple 아이패드 프로 11 3세대 M1칩  스페이스 그레이  256GB  Wi-Fi",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_6089925/60899254348.jpg",
-    "addedAt": "2026-07-26T01:44:37",
-    "originalPrice": 1299000,
-    "salePrice": 1058000,
-    "priceType": "msrp",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=5392850137&ctag=5392850137&lptag=I8047070336&itemId=8047070336&vendorItemId=95769257049&spec=10305199",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-03T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-17",
-        "lprice": 30000
-      },
-      {
-        "date": "2026-07-18",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-19",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-20",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-21",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-22",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-23",
-        "lprice": 30000
-      }
-    ]
-  },
-  {
-    "id": 9,
     "name": "삼성전자 갤럭시Z 플립5 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359807/53598074168.20250317144255.jpg",
@@ -356,7 +304,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "삼성전자 오디세이 게이밍 모니터 G4 S25BG400 FHD 240Hz 62~64cm(25인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5281756/52817560577.20250214142427.jpg",
@@ -408,7 +356,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
@@ -458,26 +406,5 @@
         "lprice": 30000
       }
     ]
-  },
-  {
-    "id": 12,
-    "name": "Apple 에어팟 프로 3세대 화이트",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_5698701/56987011355.20251014204108.jpg",
-    "addedAt": "2026-07-24T13:15:46",
-    "originalPrice": 359000,
-    "salePrice": 305250,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/56987011355",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-03T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
   }
 ]
