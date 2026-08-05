@@ -29,6 +29,27 @@
   },
   {
     "id": 2,
+    "name": "[네이버] 갤럭시 폴드8 와이드 플립8 S26 S25 하드 케이스 (1,000원~ / 2,500원)",
+    "category": "accessory",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-05T08:15:25",
+    "originalPrice": 2500,
+    "salePrice": 1500,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=724998",
+    "affiliateUrl": "",
+    "expiresAt": "2026-08-08T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
     "name": "삼성전자 갤럭시 Z플립6 자급제 5G 256GB",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_8983049/89830494832.1.jpg",
@@ -79,7 +100,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "삼성전자 갤럭시 Z 폴드6 5G 512GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359793/53597934657.20250317143418.jpg",
@@ -106,7 +127,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -140,7 +161,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 블랙",
     "category": "audio",
     "image": "https://shopping-phinf.pstatic.net/main_9063817/90638179698.jpg",
@@ -192,7 +213,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "[Xbox/PC] 발더스 게이트 3 30% 할인 (41,230원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -213,7 +234,7 @@
     "freeShipping": false
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "SEi12 미니PC 사무용 주식 고성능 컴퓨터 베어본 PC 인텔 i5-12450H",
     "category": "desktop",
     "image": "https://shopping-phinf.pstatic.net/main_8755587/87555877077.jpg",
@@ -265,7 +286,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "삼성전자 갤럭시Z 플립5 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359807/53598074168.20250317144255.jpg",
@@ -304,7 +325,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "삼성전자 오디세이 게이밍 모니터 G4 S25BG400 FHD 240Hz 62~64cm(25인치)",
     "category": "monitor",
     "image": "https://shopping-phinf.pstatic.net/main_5281756/52817560577.20250214142427.jpg",
@@ -356,7 +377,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
