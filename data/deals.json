@@ -1,34 +1,6 @@
 [
   {
     "id": 1,
-    "name": "애플 2022 맥북프로 13인치 M2  A2338  MAC OS  256GB  8GB",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5872998/58729983760.jpg",
-    "addedAt": "2026-07-28T01:25:53",
-    "originalPrice": 2490000,
-    "salePrice": 1449000,
-    "priceType": "msrp",
-    "store": "쿠팡",
-    "productUrl": "https://link.coupang.com/re/PCSNAVERPCSDP?pageKey=9334872597&ctag=9334872597&lptag=I27679636327&itemId=27679636327&vendorItemId=94641648805&spec=10305199",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-28",
-        "lprice": 79000
-      }
-    ]
-  },
-  {
-    "id": 2,
     "name": "[네이버] 갤럭시 폴드8 와이드 플립8 S26 S25 하드 케이스 (1,000원~ / 2,500원)",
     "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -49,85 +21,7 @@
     "freeShipping": false
   },
   {
-    "id": 3,
-    "name": "삼성전자 갤럭시 Z플립6 자급제 5G 256GB",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_8983049/89830494832.1.jpg",
-    "addedAt": "2026-07-31T01:45:58",
-    "originalPrice": 1299000,
-    "salePrice": 799800,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/12285984115",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-25",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-27",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-28",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-29",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-30",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-31",
-        "lprice": 470250
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "삼성전자 갤럭시 Z 폴드6 5G 512GB [자급제]",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5359793/53597934657.20250317143418.jpg",
-    "addedAt": "2026-07-28T08:12:44",
-    "originalPrice": 2099000,
-    "salePrice": 1408100,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53597934657",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-28",
-        "lprice": 401940
-      }
-    ]
-  },
-  {
-    "id": 5,
+    "id": 2,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -161,59 +55,7 @@
     ]
   },
   {
-    "id": 6,
-    "name": "Sony WH-1000XM4 무선 블루투스 헤드폰 헤드셋 블랙",
-    "category": "audio",
-    "image": "https://shopping-phinf.pstatic.net/main_9063817/90638179698.jpg",
-    "addedAt": "2026-07-31T01:46:12",
-    "originalPrice": 284500,
-    "salePrice": 199000,
-    "priceType": "avg7d",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/13093668606",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-25",
-        "lprice": 335800
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 335800
-      },
-      {
-        "date": "2026-07-27",
-        "lprice": 335800
-      },
-      {
-        "date": "2026-07-28",
-        "lprice": 335800
-      },
-      {
-        "date": "2026-07-29",
-        "lprice": 199000
-      },
-      {
-        "date": "2026-07-30",
-        "lprice": 199000
-      },
-      {
-        "date": "2026-07-31",
-        "lprice": 199000
-      }
-    ]
-  },
-  {
-    "id": 7,
+    "id": 3,
     "name": "[Xbox/PC] 발더스 게이트 3 30% 할인 (41,230원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -234,59 +76,7 @@
     "freeShipping": false
   },
   {
-    "id": 8,
-    "name": "SEi12 미니PC 사무용 주식 고성능 컴퓨터 베어본 PC 인텔 i5-12450H",
-    "category": "desktop",
-    "image": "https://shopping-phinf.pstatic.net/main_8755587/87555877077.jpg",
-    "addedAt": "2026-07-26T01:45:11",
-    "originalPrice": 447162,
-    "salePrice": 358000,
-    "priceType": "avg7d",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/10011374712",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-20",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-21",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-22",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-23",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-24",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-25",
-        "lprice": 459900
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 358000
-      }
-    ]
-  },
-  {
-    "id": 9,
+    "id": 4,
     "name": "삼성전자 갤럭시Z 플립5 5G 256GB [자급제]",
     "category": "smartphone",
     "image": "https://shopping-phinf.pstatic.net/main_5359807/53598074168.20250317144255.jpg",
@@ -325,59 +115,7 @@
     ]
   },
   {
-    "id": 10,
-    "name": "삼성전자 오디세이 게이밍 모니터 G4 S25BG400 FHD 240Hz 62~64cm(25인치)",
-    "category": "monitor",
-    "image": "https://shopping-phinf.pstatic.net/main_5281756/52817560577.20250214142427.jpg",
-    "addedAt": "2026-07-28T01:26:04",
-    "originalPrice": 241824,
-    "salePrice": 199000,
-    "priceType": "avg7d",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/52817560577",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-04T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-22",
-        "lprice": 248000
-      },
-      {
-        "date": "2026-07-23",
-        "lprice": 248000
-      },
-      {
-        "date": "2026-07-24",
-        "lprice": 248000
-      },
-      {
-        "date": "2026-07-25",
-        "lprice": 247920
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 247850
-      },
-      {
-        "date": "2026-07-27",
-        "lprice": 247820
-      },
-      {
-        "date": "2026-07-28",
-        "lprice": 199000
-      }
-    ]
-  },
-  {
-    "id": 11,
+    "id": 5,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
