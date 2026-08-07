@@ -4,13 +4,13 @@
     "name": "[네이버] PS5 고스트 오브 요테이 컬렉터즈 (96,000원/택3,000원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-06T13:39:58",
+    "addedAt": "2026-08-07T02:04:05",
     "originalPrice": 96000,
     "salePrice": 3000,
     "store": "네이버",
     "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106183",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-09T23:59:00",
+    "expiresAt": "2026-08-10T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -98,42 +98,23 @@
   },
   {
     "id": 5,
-    "name": "삼성전자 갤럭시Z 플립5 5G 256GB [자급제]",
-    "category": "smartphone",
-    "image": "https://shopping-phinf.pstatic.net/main_5359807/53598074168.20250317144255.jpg",
-    "addedAt": "2026-07-27T01:51:06",
-    "originalPrice": 1299000,
-    "salePrice": 1064940,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53598074168",
+    "name": "[LGU+] 너겟 요금제 라이브 예고 (가격다양/무료)",
+    "category": "laptop",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-07T02:04:05",
+    "originalPrice": 39000,
+    "salePrice": 29000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=725435",
     "affiliateUrl": "",
-    "expiresAt": "2026-08-05T23:59:00",
+    "expiresAt": "2026-08-10T23:59:00",
     "tags": [
       "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
     "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-24",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-25",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-26",
-        "lprice": 480000
-      },
-      {
-        "date": "2026-07-27",
-        "lprice": 480000
-      }
-    ]
+    "freeShipping": false
   },
   {
     "id": 6,
