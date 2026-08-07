@@ -1,27 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[네이버] PS5 고스트 오브 요테이 컬렉터즈 (96,000원/택3,000원)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-07T06:59:44",
-    "originalPrice": 96000,
-    "salePrice": 3000,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106183",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-10T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "[네이버] 갤럭시 폴드8 와이드 플립8 S26 S25 하드 케이스 (1,000원~ / 2,500원)",
     "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -42,7 +21,7 @@
     "freeShipping": false
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
     "category": "laptop",
     "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
@@ -76,7 +55,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "[Xbox/PC] 발더스 게이트 3 30% 할인 (41,230원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -97,7 +76,7 @@
     "freeShipping": false
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "[LGU+] 너겟 요금제 라이브 예고 (가격다양/무료)",
     "category": "laptop",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -117,7 +96,7 @@
     "freeShipping": false
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
     "category": "tablet",
     "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
