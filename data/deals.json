@@ -94,57 +94,5 @@
     "reviewCount": 0,
     "inStock": true,
     "freeShipping": false
-  },
-  {
-    "id": 5,
-    "name": "애플 아이패드 프로 10.5 64G 애플코리아정품 -DW-",
-    "category": "tablet",
-    "image": "https://shopping-phinf.pstatic.net/main_1273293/12732932697.jpg",
-    "addedAt": "2026-07-27T09:27:21",
-    "originalPrice": 1299000,
-    "salePrice": 1090000,
-    "priceType": "msrp",
-    "store": "네이버쇼핑",
-    "productUrl": "https://smartstore.naver.com/main/products/2305562910",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-06T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-07-17",
-        "lprice": 30000
-      },
-      {
-        "date": "2026-07-18",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-19",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-20",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-21",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-22",
-        "lprice": 1090000
-      },
-      {
-        "date": "2026-07-23",
-        "lprice": 30000
-      }
-    ]
   }
 ]
