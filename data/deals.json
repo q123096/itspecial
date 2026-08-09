@@ -22,40 +22,6 @@
   },
   {
     "id": 2,
-    "name": "Apple 맥북 에어 2022년 M2 8코어 8GB, 256GB",
-    "category": "laptop",
-    "image": "https://shopping-phinf.pstatic.net/main_5301855/53018551875.20250214173350.jpg",
-    "originalPrice": 1590000,
-    "salePrice": 1069000,
-    "priceType": "msrp",
-    "store": "네이버",
-    "productUrl": "https://search.shopping.naver.com/catalog/53018551875",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-07T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false,
-    "priceHistory": [
-      {
-        "date": "2026-05-25",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-05-26",
-        "lprice": 1079000
-      },
-      {
-        "date": "2026-05-27",
-        "lprice": 1098000
-      }
-    ]
-  },
-  {
-    "id": 3,
     "name": "[Xbox/PC] 발더스 게이트 3 30% 할인 (41,230원)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -76,7 +42,7 @@
     "freeShipping": false
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "[LGU+] 너겟 요금제 라이브 예고 (가격다양/무료)",
     "category": "laptop",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
