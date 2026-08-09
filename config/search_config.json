@@ -213,6 +213,15 @@
       "_added": "2026-07-26"
     },
     {
+      "keyword": "아이폰 9",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-08-09"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
