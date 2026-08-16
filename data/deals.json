@@ -4,11 +4,32 @@
     "name": "[컴퓨존] 7800X3D + RTX 5070 외 라이브 특가 외 (2,479,000원/7,500원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-16T00:37:36",
+    "addedAt": "2026-08-16T06:22:21",
     "originalPrice": 2479000,
     "salePrice": 7500,
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=726276",
+    "affiliateUrl": "",
+    "expiresAt": "2026-08-19T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
+    "name": "[롯데온] 제크 300gx1개+빠다코코넛 300gx1개+롯데샌드 파인애플 315gx1개 (10,890원/무료",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-16T06:22:21",
+    "originalPrice": 10890,
+    "salePrice": 3630,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=727298",
     "affiliateUrl": "",
     "expiresAt": "2026-08-19T23:59:00",
     "tags": [
