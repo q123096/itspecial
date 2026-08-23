@@ -231,6 +231,15 @@
       "_added": "2026-08-16"
     },
     {
+      "keyword": "갤럭시 S26 FE",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-08-23"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
