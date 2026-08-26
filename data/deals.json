@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "[네이버] 닌텐도 스위치2+스플래툰 레이더스 인질 (741,000/3,000))",
-    "category": "gaming",
+    "name": "[네이버] 스위치 겟피x 일빈판(44,000/2500)",
+    "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-26T00:38:21",
-    "originalPrice": 741000,
-    "salePrice": 3000,
+    "addedAt": "2026-08-26T06:28:56",
+    "originalPrice": 44000,
+    "salePrice": 2500,
     "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106629",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106655",
     "affiliateUrl": "",
     "expiresAt": "2026-08-29T23:59:00",
     "tags": [
@@ -22,27 +22,6 @@
   },
   {
     "id": 2,
-    "name": "[네이버]닌텐도 스위치2 본체+피트니스 복싱3 실물 게임칩(712800/3000)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-26T00:38:21",
-    "originalPrice": 712800,
-    "salePrice": 3000,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106626",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-29T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "[네이버] 씨위드 허브 두피 클리닉 다시마 샴푸 500ml (6,990원/무료)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -62,7 +41,7 @@
     "freeShipping": false
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
