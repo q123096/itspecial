@@ -1,27 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[네이버] 스위치 겟피x 일빈판(44,000/2500)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-26T12:28:33",
-    "originalPrice": 44000,
-    "salePrice": 2500,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106655",
-    "affiliateUrl": "",
-    "expiresAt": "2026-08-29T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "[네이버] 씨위드 허브 두피 클리닉 다시마 샴푸 500ml (6,990원/무료)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -41,7 +20,7 @@
     "freeShipping": false
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -51,7 +30,7 @@
     "store": "뽐뿌 핫딜",
     "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=729135",
     "affiliateUrl": "",
-    "expiresAt": "2026-09-02T23:59:00",
+    "expiresAt": "2026-09-03T23:59:00",
     "tags": [
       "핫딜"
     ],
