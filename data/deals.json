@@ -1,6 +1,27 @@
 [
   {
     "id": 1,
+    "name": "[네이버]닌텐도 스위치2+ 물거품의 유크로니아 =726,000원 유배3000원",
+    "category": "gaming",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-28T07:30:22",
+    "originalPrice": 726000,
+    "salePrice": 3000,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106731",
+    "affiliateUrl": "",
+    "expiresAt": "2026-08-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "[네이버] 씨위드 허브 두피 클리닉 다시마 샴푸 500ml (6,990원/무료)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -20,7 +41,7 @@
     "freeShipping": false
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
