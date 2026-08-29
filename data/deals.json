@@ -4,7 +4,7 @@
     "name": "[네이버]닌텐도 스위치2+ 물거품의 유크로니아 =726,000원 유배3000원",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-29T04:40:16",
+    "addedAt": "2026-08-29T11:56:17",
     "originalPrice": 726000,
     "salePrice": 3000,
     "store": "네이버",
@@ -22,6 +22,27 @@
   },
   {
     "id": 2,
+    "name": "[29cm]닌텐도스위치 마이리틀퍼피 일반판 29,800원/ 디럭스 70,000원",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-29T11:56:17",
+    "originalPrice": 70000,
+    "salePrice": 29800,
+    "store": "29cm",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106757",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-01T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
