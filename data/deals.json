@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "name": "[네이버]닌텐도 스위치2+ 물거품의 유크로니아 =726,000원 유배3000원",
-    "category": "gaming",
+    "name": "[디지털그랩]아이폰17 맥세이프 케이스 50%할인 37,500원/무료배송",
+    "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-29T15:54:59",
-    "originalPrice": 726000,
-    "salePrice": 3000,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106731",
+    "addedAt": "2026-08-30T02:13:07",
+    "originalPrice": 75000,
+    "salePrice": 37500,
+    "store": "디지털그랩",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106760",
     "affiliateUrl": "",
-    "expiresAt": "2026-09-01T23:59:00",
+    "expiresAt": "2026-09-02T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,27 +22,6 @@
   },
   {
     "id": 2,
-    "name": "[디지털그랩]아이폰17 맥세이프 케이스 50%할인 37,500원/무료배송",
-    "category": "accessory",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-29T15:54:59",
-    "originalPrice": 75000,
-    "salePrice": 37500,
-    "store": "디지털그랩",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106760",
-    "affiliateUrl": "",
-    "expiresAt": "2026-09-01T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
