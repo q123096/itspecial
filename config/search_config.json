@@ -260,6 +260,15 @@
       "min_price": 50000
     },
     {
+      "keyword": "갤럭시 버즈 시리즈의",
+      "category": "audio",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-08-30"
+    },
+    {
       "_group": "=== 노트북 ==="
     },
     {
