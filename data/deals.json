@@ -1,6 +1,27 @@
 [
   {
     "id": 1,
+    "name": "[다이소] 키보드형 컬러 계산기 12자리 (5,000원) (유료3,000원)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-08-31T12:04:32",
+    "originalPrice": 5000,
+    "salePrice": 3000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=730560",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-03T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
