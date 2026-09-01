@@ -1,6 +1,27 @@
 [
   {
     "id": 1,
+    "name": "[네이버] PS5 페르소나4 리바이벌 - 리미티드 박스(149,800/3000)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-01T10:43:13",
+    "originalPrice": 149800,
+    "salePrice": 3000,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106843",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-04T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "[다이소] 키보드형 컬러 계산기 12자리 (5,000원) (유료3,000원)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -21,7 +42,7 @@
     "freeShipping": false
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
