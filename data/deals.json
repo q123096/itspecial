@@ -22,6 +22,27 @@
   },
   {
     "id": 2,
+    "name": "[스팀] 코어키퍼 40%할인하여 12,900원",
+    "category": "gaming",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-03T10:19:41",
+    "originalPrice": 21500,
+    "salePrice": 12900,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=731325",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-06T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
