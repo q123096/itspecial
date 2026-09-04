@@ -43,6 +43,26 @@
   },
   {
     "id": 3,
+    "name": "[네이버] 아이폰 맥세이프 컬러엣지 스탠드링 케이스 외 (3,500원~/2,500원)",
+    "category": "accessory",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-04T10:07:57",
+    "originalPrice": 3500,
+    "salePrice": 2500,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=731723",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-07T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 4,
     "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
