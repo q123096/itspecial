@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "name": "[다이소] 키보드형 컬러 계산기 12자리 (5,000원) (유료3,000원)",
-    "category": "smartphone",
+    "name": "[스팀] 코어키퍼 40%할인하여 12,900원",
+    "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-31T12:04:32",
-    "originalPrice": 5000,
-    "salePrice": 3000,
+    "addedAt": "2026-09-03T10:19:41",
+    "originalPrice": 21500,
+    "salePrice": 12900,
     "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=730560",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=731325",
     "affiliateUrl": "",
-    "expiresAt": "2026-09-03T23:59:00",
+    "expiresAt": "2026-09-12T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,27 +22,6 @@
   },
   {
     "id": 2,
-    "name": "[스팀] 코어키퍼 40%할인하여 12,900원",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-09-03T10:19:41",
-    "originalPrice": 21500,
-    "salePrice": 12900,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=731325",
-    "affiliateUrl": "",
-    "expiresAt": "2026-09-11T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "[네이버] 아이폰 맥세이프 컬러엣지 스탠드링 케이스 외 (3,500원~/2,500원)",
     "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -53,26 +32,6 @@
     "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=731723",
     "affiliateUrl": "",
     "expiresAt": "2026-09-07T23:59:00",
-    "tags": [
-      "핫딜"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 4,
-    "name": "[스팀] 붉은 사막 20% 할인 (63,840원/무료)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-08-25T06:26:32",
-    "originalPrice": 79800,
-    "salePrice": 63840,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=729135",
-    "affiliateUrl": "",
-    "expiresAt": "2026-09-03T23:59:00",
     "tags": [
       "핫딜"
     ],
