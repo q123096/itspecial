@@ -1,6 +1,27 @@
 [
   {
     "id": 1,
+    "name": "[네이버]스위치 마계전기 디스가이아7(34,800/2,500)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-06T09:52:19",
+    "originalPrice": 34800,
+    "salePrice": 2500,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/106977",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-09T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "[스팀] 코어키퍼 40%할인하여 12,900원",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -21,7 +42,7 @@
     "freeShipping": false
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "[네이버] 아이폰 맥세이프 컬러엣지 스탠드링 케이스 외 (3,500원~/2,500원)",
     "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
