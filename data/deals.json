@@ -1,27 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[롯데온] 한돈 목살 1kg (23,940원)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-09-07T10:58:23",
-    "originalPrice": 23940,
-    "salePrice": 2400,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=732350",
-    "affiliateUrl": "",
-    "expiresAt": "2026-09-10T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "[스팀] 코어키퍼 40%할인하여 12,900원",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -42,7 +21,7 @@
     "freeShipping": false
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "[네이버] 아이폰 맥세이프 컬러엣지 스탠드링 케이스 외 (3,500원~/2,500원)",
     "category": "accessory",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
