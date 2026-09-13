@@ -4,7 +4,7 @@
     "name": "[소프라노몰] PS5 슈퍼 봄버맨 컬렉션 한정판 / 88,900원 + 2,500원",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-09-13T01:53:59",
+    "addedAt": "2026-09-13T10:46:38",
     "originalPrice": 88900,
     "salePrice": 2500,
     "store": "소프라노몰",
@@ -35,6 +35,26 @@
     "tags": [
       "핫딜",
       "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 3,
+    "name": "[네이버] TC-7 씨위드 허브 두피 클리닉 다시마 헤어 트리트먼트 500ml (5,990원/무배)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-13T10:46:37",
+    "originalPrice": 5990,
+    "salePrice": 4330,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=733912",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-16T23:59:00",
+    "tags": [
+      "핫딜"
     ],
     "rating": 4.0,
     "reviewCount": 0,
