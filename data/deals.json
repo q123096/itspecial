@@ -1,27 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[네이버] PS5 마블 울버린 (72,000/4,500)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-09-16T02:11:09",
-    "originalPrice": 72000,
-    "salePrice": 4500,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/107240",
-    "affiliateUrl": "",
-    "expiresAt": "2026-09-19T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "[네이버] TC-7 씨위드 허브 두피 클리닉 다시마 헤어 트리트먼트 500ml (5,990원/무배)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
