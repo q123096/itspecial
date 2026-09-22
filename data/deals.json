@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버] PS5 고요한 시골 정원 이야기 (74,100/3,000)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-09-22T10:31:44",
+    "originalPrice": 74100,
+    "salePrice": 3000,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/107472",
+    "affiliateUrl": "",
+    "expiresAt": "2026-09-25T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
