@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[지마켓] 오리온 다이제 312g 6개 (15,930원/무료) 일부카드 14,020원",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-01T18:06:57",
+    "originalPrice": 15930,
+    "salePrice": 13540,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=737626",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-04T23:59:00",
+    "tags": [
+      "핫딜"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
