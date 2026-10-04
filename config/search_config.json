@@ -240,6 +240,15 @@
       "_added": "2026-08-23"
     },
     {
+      "keyword": "갤럭시 탭 S12",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-10-04"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
@@ -269,7 +278,25 @@
       "_added": "2026-08-30"
     },
     {
+      "keyword": "갤럭시 버즈 온",
+      "category": "audio",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-10-04"
+    },
+    {
       "_group": "=== 노트북 ==="
+    },
+    {
+      "keyword": "갤럭시 버즈 온은",
+      "category": "audio",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-10-04"
     },
     {
       "keyword": "맥북 에어",
@@ -282,6 +309,15 @@
       "category": "laptop",
       "priority": 1,
       "min_price": 1500000
+    },
+    {
+      "keyword": "갤럭시 버즈 최초로",
+      "category": "audio",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-10-04"
     },
     {
       "keyword": "LG 그램",
