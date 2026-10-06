@@ -1,27 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[네이버] PS5 페르소나4 리바이벌 리미티드박스(149,800/3000)",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-10-06T03:42:29",
-    "originalPrice": 149800,
-    "salePrice": 3000,
-    "store": "네이버",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/107782",
-    "affiliateUrl": "",
-    "expiresAt": "2026-10-09T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
     "name": "[토스] 30일최저가 팬톤 오픈형 블루투스 6.0 무선이어폰 베이지 (4,830원/무료배송)",
     "category": "audio",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
