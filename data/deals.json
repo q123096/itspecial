@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버]PS5 하늘의 궤적 the 1st (69800/2500)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-14T02:33:44",
+    "originalPrice": 69800,
+    "salePrice": 2500,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/108015",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-17T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
