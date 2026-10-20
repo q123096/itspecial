@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버] 하늘의 궤적 2nd 스위치2 재입고 (87,300/2,500)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-20T10:35:54",
+    "originalPrice": 87300,
+    "salePrice": 2500,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/108180",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-23T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
+    "name": "[네이버] 스위치2 하늘의 궤적2 87,300원 배송료 2,500원",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-20T10:35:54",
+    "originalPrice": 87300,
+    "salePrice": 2500,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/108178",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-23T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
