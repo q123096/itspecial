@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버] 스위치2 하늘의 궤적 the 2nd (87,300/2,500)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-23T02:24:58",
+    "originalPrice": 87300,
+    "salePrice": 2500,
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/108266",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-26T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
