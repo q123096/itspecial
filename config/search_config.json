@@ -410,6 +410,15 @@
       "_added": "2026-08-16"
     },
     {
+      "keyword": "삼성 주도 시장 흔들까 이번",
+      "category": "tablet",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-10-25"
+    },
+    {
       "_group": "=== 모니터 ==="
     },
     {
