@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버] 갤럭시워치 4~9 갤럭시핏3 강화유리 케이스 스트랩 모음 (3,800원~/유배)",
+    "category": "accessory",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-10-28T02:56:04",
+    "originalPrice": 4800,
+    "salePrice": 2500,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=743667",
+    "affiliateUrl": "",
+    "expiresAt": "2026-10-31T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
