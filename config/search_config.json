@@ -320,6 +320,15 @@
       "_added": "2026-10-04"
     },
     {
+      "keyword": "갤럭시 버즈 시리즈",
+      "category": "audio",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "naver_news",
+      "_added": "2026-11-02"
+    },
+    {
       "keyword": "LG 그램",
       "category": "laptop",
       "priority": 1,
