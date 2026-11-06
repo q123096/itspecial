@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "[네이버] HP 레이저젯 팩스복합기 M227fdn A급 리퍼 (99,000원 무료배송)",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-11-06T13:25:32",
+    "originalPrice": 488000,
+    "salePrice": 99000,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "http://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=746672",
+    "affiliateUrl": "",
+    "expiresAt": "2026-11-09T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  }
+]
