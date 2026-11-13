@@ -1,6 +1,27 @@
 [
   {
     "id": 1,
+    "name": "[겟디즈] PS5 Pro 2TB 1,298,000원 / 듀얼센스 87,500원~",
+    "category": "smartphone",
+    "image": "https://itspecial.co.kr/icons/icon-192.png",
+    "addedAt": "2026-11-13T13:36:03",
+    "originalPrice": 1298000,
+    "salePrice": 87500,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=748617",
+    "affiliateUrl": "",
+    "expiresAt": "2026-11-16T23:59:00",
+    "tags": [
+      "핫딜",
+      "역대최저"
+    ],
+    "rating": 4.0,
+    "reviewCount": 0,
+    "inStock": true,
+    "freeShipping": false
+  },
+  {
+    "id": 2,
     "name": "[스팀] peak 5,210원 (38% 할인)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
@@ -21,7 +42,7 @@
     "freeShipping": false
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "[네이버] AKG N9 Hybrid 노이즈캔슬링 헤드폰 (202,060원 / 무배)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
