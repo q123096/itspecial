@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "name": "[롯데온] j5create JUCX18L 60W 울트라 소프트 고속 충전 케이블 (1,730원~/3,500원",
-    "category": "accessory",
+    "name": "[스팀] peak 5,210원 (38% 할인)",
+    "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-12T14:12:21",
-    "originalPrice": 3500,
-    "salePrice": 1730,
-    "store": "롯데온",
-    "productUrl": "https://www.lotteon.com/p/product/bundle/LO2809338948",
-    "affiliateUrl": "https://click.linkprice.com/click.php?m=lotteon&a=A100704947&l=0000&l_cd1=B&l_cd2=1",
-    "expiresAt": "2026-11-15T23:59:00",
+    "addedAt": "2026-11-11T13:09:44",
+    "originalPrice": 8403,
+    "salePrice": 5210,
+    "store": "뽐뿌 핫딜",
+    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=748004",
+    "affiliateUrl": "",
+    "expiresAt": "2026-11-20T23:59:00",
     "tags": [
       "핫딜",
       "역대최저"
@@ -22,27 +22,6 @@
   },
   {
     "id": 2,
-    "name": "[스팀] peak 5,210원 (38% 할인)",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-11T13:09:44",
-    "originalPrice": 8403,
-    "salePrice": 5210,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=748004",
-    "affiliateUrl": "",
-    "expiresAt": "2026-11-19T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "[네이버] AKG N9 Hybrid 노이즈캔슬링 헤드폰 (202,060원 / 무배)",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
