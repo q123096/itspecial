@@ -249,6 +249,15 @@
       "_added": "2026-10-04"
     },
     {
+      "keyword": "갤럭시 A18 4G 자급제",
+      "category": "smartphone",
+      "priority": 3,
+      "sort": "date",
+      "_auto": true,
+      "_source": "gsmarena",
+      "_added": "2026-11-16"
+    },
+    {
       "keyword": "소니 WF-1000XM",
       "category": "audio",
       "priority": 2
