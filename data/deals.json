@@ -1,69 +1,6 @@
 [
   {
     "id": 1,
-    "name": "[G마켓]PS5 콜오브듀티 모던 웨페어4 /88,900/2500",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-18T05:00:38",
-    "originalPrice": 88900,
-    "salePrice": 2500,
-    "store": "G마켓",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/109135",
-    "affiliateUrl": "",
-    "expiresAt": "2026-11-21T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 2,
-    "name": "[게임터치몰] PS5 콜 오브 듀티 모던 워페어 4 /88,900/3,000",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-18T05:00:38",
-    "originalPrice": 88900,
-    "salePrice": 3000,
-    "store": "게임터치몰",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/109140",
-    "affiliateUrl": "",
-    "expiresAt": "2026-11-21T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
-    "name": "[겟디즈] PS5 Pro 2TB 1,298,000원 / 듀얼센스 87,500원~",
-    "category": "smartphone",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-18T05:00:37",
-    "originalPrice": 1298000,
-    "salePrice": 87500,
-    "store": "뽐뿌 핫딜",
-    "productUrl": "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=748617",
-    "affiliateUrl": "",
-    "expiresAt": "2026-11-21T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 4,
     "name": "[스팀] peak 5,210원 (38% 할인)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
