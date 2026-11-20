@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "name": "[게임터치몰] PS5 콜 오브 듀티 모던 워페어 4 /88,900/3,000",
+    "name": "[네이버] 호리 일렉트릭 시간의 오카리나 79,800 / 3,000",
     "category": "smartphone",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-20T04:45:37",
-    "originalPrice": 88900,
+    "addedAt": "2026-11-20T14:33:56",
+    "originalPrice": 79800,
     "salePrice": 3000,
-    "store": "게임터치몰",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/109212",
+    "store": "네이버",
+    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/109234",
     "affiliateUrl": "",
     "expiresAt": "2026-11-23T23:59:00",
     "tags": [
@@ -22,27 +22,6 @@
   },
   {
     "id": 2,
-    "name": "[닌텐도] 하데스 75% 할인 7,000원",
-    "category": "gaming",
-    "image": "https://itspecial.co.kr/icons/icon-192.png",
-    "addedAt": "2026-11-20T04:45:37",
-    "originalPrice": 28000,
-    "salePrice": 7000,
-    "store": "닌텐도",
-    "productUrl": "https://bbs.ruliweb.com/market/board/1020/read/109204",
-    "affiliateUrl": "",
-    "expiresAt": "2026-11-23T23:59:00",
-    "tags": [
-      "핫딜",
-      "역대최저"
-    ],
-    "rating": 4.0,
-    "reviewCount": 0,
-    "inStock": true,
-    "freeShipping": false
-  },
-  {
-    "id": 3,
     "name": "[스팀] peak 5,210원 (38% 할인)",
     "category": "gaming",
     "image": "https://itspecial.co.kr/icons/icon-192.png",
